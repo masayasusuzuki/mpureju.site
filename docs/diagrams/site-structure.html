@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison PUREJU — サイト構成図</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --text: #e2e8f0;
+      --muted: #6b7280;
+      --p1: #f59e0b;
+      --p2: #3b82f6;
+      --p3: #8b5cf6;
+      --green: #10b981;
+      --teal: #14b8a6;
+      --red: #ef4444;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .app { display: flex; height: 100vh; overflow: hidden; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 18px 16px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-header .logo { font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+    .sidebar-header h1 { font-size: 14px; font-weight: 600; }
+
+    .sidebar-section { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .sidebar-section-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+
+    .filter-btn {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; padding: 5px 8px; border-radius: 6px;
+      border: none; background: transparent; color: var(--muted);
+      cursor: pointer; font-size: 12px; text-align: left; margin-bottom: 2px;
+      transition: background 0.12s, color 0.12s;
+    }
+    .filter-btn:hover { background: var(--surface2); color: var(--text); }
+    .filter-btn.active { background: var(--surface2); color: var(--text); }
+    .filter-btn .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .filter-btn .count { margin-left: auto; font-size: 10px; color: var(--muted); background: var(--bg); padding: 1px 5px; border-radius: 8px; }
+
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .stat-box { background: var(--bg); border-radius: 6px; padding: 8px; text-align: center; }
+    .stat-box .num { font-size: 20px; font-weight: 700; line-height: 1; margin-bottom: 3px; }
+    .stat-box .lbl { font-size: 10px; color: var(--muted); }
+
+    /* ===== MAIN ===== */
+    .main { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+    /* タブバー */
+    .tab-bar {
+      display: flex; align-items: center; gap: 2px;
+      padding: 10px 20px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .tab-btn {
+      padding: 7px 16px; border: none; background: transparent;
+      color: var(--muted); cursor: pointer; font-size: 13px;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--text); border-bottom-color: var(--p2); }
+
+    .toolbar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-bottom: 1px solid var(--border);
+      background: var(--bg); flex-shrink: 0; flex-wrap: wrap;
+    }
+    .toolbar-title { font-size: 12px; color: var(--muted); flex: 1; }
+    .search-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px; color: var(--text);
+      font-size: 12px; width: 180px; outline: none;
+    }
+    .search-box::placeholder { color: var(--muted); }
+    .search-box:focus { border-color: var(--p2); }
+    .view-btn {
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 5px;
+      background: transparent; color: var(--muted); cursor: pointer; font-size: 11px;
+    }
+    .view-btn.active { background: var(--surface2); color: var(--text); }
+
+    .scroll-area { flex: 1; overflow-y: auto; padding: 20px; }
+
+    /* ===== PAGE CARDS ===== */
+    .pages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 10px; margin-bottom: 24px; }
+
+    .page-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden; cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .page-card:hover { border-color: #4a5568; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+    .card-header {
+      padding: 12px 14px 10px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; background: var(--surface2); }
+    .card-meta { flex: 1; min-width: 0; }
+    .card-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-url { font-size: 10px; color: var(--muted); font-family: monospace; margin-top: 1px; }
+    .card-body { padding: 10px 14px; }
+
+    .phase-badge {
+      display: inline-flex; align-items: center; font-size: 9px; font-weight: 600;
+      padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .phase1 { background: rgba(245,158,11,0.15); color: var(--p1); }
+    .phase2 { background: rgba(59,130,246,0.15); color: var(--p2); }
+    .phase3 { background: rgba(139,92,246,0.15); color: var(--p3); }
+
+    .section-list { list-style: none; display: flex; flex-direction: column; gap: 3px; margin: 6px 0; }
+    .section-list li { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #94a3b8; }
+    .section-list li::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); }
+    .chip { font-family: monospace; font-size: 10px; padding: 1px 6px; border-radius: 3px; background: var(--bg); color: #94a3b8; border: 1px solid var(--border); }
+
+    .cms-badge { font-size: 10px; padding: 1px 7px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
+    .cms-microcms { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .cms-supabase { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .cms-static   { background: rgba(100,116,139,0.15); color: #94a3b8; }
+
+    .group-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; margin-top: 6px; }
+    .group-label-text { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .group-label-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ===== TREE ===== */
+    .tree-node { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 4px; }
+    .tree-node-header { display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: pointer; transition: background 0.1s; }
+    .tree-node-header:hover { background: var(--surface2); }
+    .toggle { color: var(--muted); font-size: 11px; width: 14px; flex-shrink: 0; transition: transform 0.2s; }
+    .tree-node.open .toggle { transform: rotate(90deg); }
+    .tree-children { display: none; padding: 4px 10px 10px 36px; border-top: 1px solid var(--border); flex-direction: column; gap: 2px; }
+    .tree-node.open .tree-children { display: flex; }
+    .tree-child { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #94a3b8; cursor: pointer; }
+    .tree-child:hover { background: var(--surface2); color: var(--text); }
+    .tree-child-url { font-family: monospace; font-size: 10px; color: var(--muted); margin-left: auto; }
+
+    /* ===== DATA TAB ===== */
+    .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 900px) { .data-grid { grid-template-columns: 1fr; } }
+
+    .data-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .data-card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .data-card-header .icon { font-size: 18px; }
+    .data-card-header .title { font-size: 13px; font-weight: 600; }
+    .data-card-header .subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .data-card-body { padding: 12px 16px; }
+
+    .schema-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .schema-table th { text-align: left; color: var(--muted); font-weight: 500; padding: 3px 6px; border-bottom: 1px solid var(--border); font-size: 10px; letter-spacing: 0.05em; }
+    .schema-table td { padding: 4px 6px; border-bottom: 1px solid rgba(46,50,72,0.5); color: #94a3b8; vertical-align: top; }
+    .schema-table tr:last-child td { border-bottom: none; }
+    .schema-table td:first-child { color: var(--text); font-family: monospace; font-size: 10px; white-space: nowrap; }
+    .field-type { display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px; background: var(--bg); color: var(--muted); margin-left: 3px; }
+    .field-rel { color: var(--teal); }
+
+    .db-badge { font-size: 10px; padding: 1px 7px; border-radius: 4px; }
+    .db-microcms { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .db-supabase { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .db-local    { background: rgba(245,158,11,0.15);  color: #fbbf24; }
+
+    /* ===== FLOW TAB ===== */
+    .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 900px) { .flow-grid { grid-template-columns: 1fr; } }
+
+    .flow-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .flow-card-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+
+    .flow-step {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 10px; background: var(--bg); border-radius: 6px;
+      margin-bottom: 4px; font-size: 11px; color: #94a3b8;
+    }
+    .flow-step .step-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .flow-step .step-text { flex: 1; }
+    .flow-step .step-text strong { color: var(--text); font-size: 12px; display: block; margin-bottom: 1px; }
+    .flow-arrow { text-align: center; color: var(--muted); font-size: 14px; margin: 2px 0; }
+
+    .nav-box { background: var(--bg); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
+    .nav-box-title { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .nav-items { display: flex; flex-wrap: wrap; gap: 4px; }
+    .nav-item { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); color: #94a3b8; }
+    .nav-item.highlight { background: rgba(239,68,68,0.15); color: #fca5a5; border-color: rgba(239,68,68,0.3); }
+    .nav-item.sub { font-size: 10px; background: var(--surface2); }
+
+    .url-table { width: 100%; font-size: 11px; border-collapse: collapse; }
+    .url-table td { padding: 5px 8px; border-bottom: 1px solid rgba(46,50,72,0.5); }
+    .url-table tr:last-child td { border-bottom: none; }
+    .url-table td:first-child { font-family: monospace; font-size: 10px; color: var(--green); }
+    .url-table td:last-child { color: #94a3b8; }
+
+    .env-table { width: 100%; font-size: 11px; border-collapse: collapse; }
+    .env-table td { padding: 4px 8px; border-bottom: 1px solid rgba(46,50,72,0.5); vertical-align: top; }
+    .env-table tr:last-child td { border-bottom: none; }
+    .env-table td:first-child { font-family: monospace; font-size: 10px; color: #fbbf24; white-space: nowrap; }
+    .env-table td:last-child { color: #94a3b8; }
+
+    .tag { display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px; background: rgba(139,92,246,0.15); color: #c4b5fd; margin-left: 4px; }
+    .tag.p1 { background: rgba(245,158,11,0.15); color: var(--p1); }
+
+    /* ===== DETAIL PANEL ===== */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; display: none; }
+    .overlay.open { display: block; }
+    .detail-panel {
+      position: fixed; top: 0; right: 0; width: 340px; height: 100vh;
+      background: var(--surface); border-left: 1px solid var(--border);
+      padding: 20px; overflow-y: auto; transform: translateX(100%);
+      transition: transform 0.22s ease; z-index: 100;
+    }
+    .detail-panel.open { transform: translateX(0); }
+    .panel-close { position: absolute; top: 14px; right: 14px; background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
+    .panel-close:hover { color: var(--text); }
+    .panel-title { font-size: 20px; font-weight: 700; margin: 10px 0 4px; }
+    .panel-url { font-family: monospace; font-size: 11px; color: var(--muted); margin-bottom: 16px; }
+    .panel-section-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+    .panel-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .panel-list li { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: #94a3b8; }
+    .panel-list li::before { content: "→"; color: var(--muted); font-size: 10px; margin-top: 2px; }
+    .panel-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Maison PUREJU</div>
+      <h1>サイト構成図</h1>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">フェーズ</div>
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">
+        <span class="dot" style="background:var(--muted)"></span> すべて
+        <span class="count" id="count-all">0</span>
+      </button>
+      <button class="filter-btn" data-filter="phase1" onclick="setFilter('phase1',this)">
+        <span class="dot" style="background:var(--p1)"></span> Phase 1
+        <span class="count" id="count-phase1">0</span>
+      </button>
+      <button class="filter-btn" data-filter="phase2" onclick="setFilter('phase2',this)">
+        <span class="dot" style="background:var(--p2)"></span> Phase 2
+        <span class="count" id="count-phase2">0</span>
+      </button>
+      <button class="filter-btn" data-filter="phase3" onclick="setFilter('phase3',this)">
+        <span class="dot" style="background:var(--p3)"></span> Phase 3
+        <span class="count" id="count-phase3">0</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">カテゴリ</div>
+      <button class="filter-btn active" data-cat="all" onclick="setCat('all',this)">🗂 すべて</button>
+      <button class="filter-btn" data-cat="top" onclick="setCat('top',this)">🏠 トップ</button>
+      <button class="filter-btn" data-cat="pillar" onclick="setCat('pillar',this)">📋 ピラー</button>
+      <button class="filter-btn" data-cat="content" onclick="setCat('content',this)">📝 コンテンツ</button>
+      <button class="filter-btn" data-cat="utility" onclick="setCat('utility',this)">🔧 ユーティリティ</button>
+      <button class="filter-btn" data-cat="admin" onclick="setCat('admin',this)">🔒 管理画面</button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">サマリー</div>
+      <div class="stats">
+        <div class="stat-box"><div class="num" id="stat-pages">-</div><div class="lbl">ページ数</div></div>
+        <div class="stat-box"><div class="num">10</div><div class="lbl">CMS スキーマ</div></div>
+        <div class="stat-box"><div class="num">6</div><div class="lbl">DB テーブル</div></div>
+        <div class="stat-box"><div class="num">3</div><div class="lbl">Phase</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section" style="font-size:11px; color:var(--muted); line-height:2;">
+      <div class="sidebar-section-title">凡例</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase1">P1</span> 基本ページ（開発中）</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase2">P2</span> 施術詳細・院長ほか</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase3">P3</span> AI・症例フィルター</div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <!-- タブバー -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tab-pages" onclick="switchTab('pages')">📄 ページ構成</button>
+      <button class="tab-btn" id="tab-data" onclick="switchTab('data')">🗄 データ設計</button>
+      <button class="tab-btn" id="tab-flow" onclick="switchTab('flow')">🔀 導線・設計</button>
+    </div>
+
+    <!-- ページ構成ツールバー -->
+    <div class="toolbar" id="pages-toolbar">
+      <div class="toolbar-title" id="toolbar-title">全ページ</div>
+      <input class="search-box" type="search" placeholder="ページ名・URLで検索…" oninput="search(this.value)" />
+      <button class="view-btn active" id="btn-grid" onclick="setView('grid')">グリッド</button>
+      <button class="view-btn" id="btn-tree" onclick="setView('tree')">ツリー</button>
+    </div>
+
+    <!-- ページ構成 -->
+    <div class="scroll-area" id="tab-content-pages">
+      <div id="view-grid"><div id="grid-content"></div></div>
+      <div id="view-tree" style="display:none"><div id="tree-content"></div></div>
+    </div>
+
+    <!-- データ設計 -->
+    <div class="scroll-area" id="tab-content-data" style="display:none">
+      <div class="group-label" style="margin-top:0">
+        <span class="group-label-text">microCMS スキーマ（10）</span>
+        <span class="group-label-line"></span>
+        <span class="db-badge db-microcms">microCMS</span>
+      </div>
+      <div class="data-grid" id="microcms-schemas"></div>
+
+      <div class="group-label">
+        <span class="group-label-text">Supabase テーブル（6）</span>
+        <span class="group-label-line"></span>
+        <span class="db-badge db-supabase">Supabase</span>
+      </div>
+      <div class="data-grid" id="supabase-tables"></div>
+
+      <div class="group-label">
+        <span class="group-label-text">開発参照ドキュメント（3）</span>
+        <span class="group-label-line"></span>
+        <span class="db-badge db-local">Local Docs</span>
+      </div>
+      <div class="data-grid" id="ref-docs"></div>
+    </div>
+
+    <!-- 導線・設計 -->
+    <div class="scroll-area" id="tab-content-flow" style="display:none">
+      <div class="flow-grid" id="flow-content"></div>
+    </div>
+
+  </main>
+</div>
+
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="detail-panel" id="detail-panel">
+  <button class="panel-close" onclick="closePanel()">✕</button>
+  <div id="panel-body"></div>
+</div>
+
+<script>
+// =====================================================
+// PAGE DATA
+// =====================================================
+const PAGES = [
+  { id:"top", name:"トップページ", url:"/", icon:"🏠", phase:1, cat:"top", cms:"static",
+    sections:["Hero（全画面・角丸）","キャンペーンバナー","お悩みから探す（顔SVG）","施術名から探す（タブUI）","症例実績","実績・掲載歴","内観写真①（パララックス）","選ばれる理由（4項目）","院長メッセージ","Our Team（無限スクロール）","お知らせ","Instagram / YouTube","内観写真②","アクセス"],
+    subpages:[], notes:"microCMS campaigns/news/cases を取得。Framer Motion パララックス。" },
+  { id:"mouth", name:"口元", url:"/mouth/", icon:"💋", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
+    subpages:["/mouth/lip-lift/","/mouth/m-lip/","/mouth/philtrum/","/mouth/lip-reduction/","/mouth/gummy-smile/","/mouth/case/"],
+    notes:"施術詳細は Phase 2 で microCMS treatments から動的生成。" },
+  { id:"eye", name:"目元", url:"/eye/", icon:"👁", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
+    subpages:["/eye/double-eyelid/","/eye/ptosis/","/eye/brow-lift/","/eye/under-eye/","/eye/epicanthoplasty/","/eye/case/"], notes:"" },
+  { id:"nose", name:"鼻", url:"/nose/", icon:"👃", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
+    subpages:["/nose/implant/","/nose/tip/","/nose/alar/","/nose/septum/","/nose/case/"], notes:"" },
+  { id:"lift", name:"リフトアップ", url:"/lift/", icon:"✨", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
+    subpages:["/lift/thread/","/lift/sofwave/","/lift/hifu/","/lift/case/"], notes:"" },
+  { id:"skin", name:"美容皮膚科", url:"/skin/", icon:"💆", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
+    subpages:["/skin/potenza/","/skin/injection/","/skin/laser/","/skin/case/"], notes:"" },
+  { id:"treatment-detail", name:"施術詳細", url:"/[pillar]/[slug]/ 他", icon:"📄", phase:2, cat:"pillar", cms:"microcms",
+    sections:["施術説明・リスク・副作用","料金（price_options）","ダウンタイム","症例写真","よくある質問","関連キャンペーン（サイドバー sticky）","CTA"],
+    subpages:["/treatment/[slug]/（汎用）"], notes:"Phase 1 は 404 許容。Phase 2 で全実装。" },
+  { id:"case", name:"症例写真（総合）", url:"/case/", icon:"🖼", phase:1, cat:"content", cms:"microcms",
+    sections:["フィルター（部位・施術・年代・性別）","症例グリッド","CTA"],
+    subpages:[], notes:"フィルター完全実装は Phase 3。Phase 1 は全件表示。" },
+  { id:"doctor", name:"院長・スタッフ", url:"/doctor/", icon:"👨‍⚕️", phase:2, cat:"content", cms:"microcms",
+    sections:["クリニック紹介・理念","院長プロフィール・経歴・学会実績","スタッフ紹介","リクルートセクション（/recruit/へ誘導）","CTA"],
+    subpages:[], notes:"microCMS doctor / staff スキーマ。フッター + /doctor/ からリクルートページへ誘導。" },
+  { id:"recruit", name:"採用情報", url:"/recruit/", icon:"💼", phase:2, cat:"content", cms:"microcms",
+    sections:["Hero","募集職種一覧（カード形式）","クリニックで働く魅力","CTA（応募フォームへ）"],
+    subpages:["/recruit/[slug]/"], notes:"microCMS jobs スキーマ。職種ごとに記事コンテンツ。フッターと /doctor/ からリンク。" },
+  { id:"column", name:"コラム", url:"/column/", icon:"📰", phase:2, cat:"content", cms:"microcms",
+    sections:["記事カードグリッド","カテゴリフィルター"],
+    subpages:["/column/[slug]/","/column/faq/"], notes:"faqs スキーマと連動。" },
+  { id:"news", name:"お知らせ", url:"/news/", icon:"📣", phase:1, cat:"content", cms:"microcms",
+    sections:["記事リスト"],
+    subpages:["/news/[slug]/"], notes:"" },
+  { id:"treatment-list", name:"施術一覧", url:"/treatment/", icon:"📋", phase:1, cat:"utility", cms:"microcms",
+    sections:["全施術をカテゴリ別横断表示","CTA"],
+    subpages:[], notes:"「施術名から探す」の /treatment/[slug]/ リンク先。" },
+  { id:"simulator", name:"シミュレーター", url:"/simulator/", icon:"🧮", phase:1, cat:"utility", cms:"static",
+    sections:["料金シミュレーター（複数選択→合計レンジ）","ダウンタイムシミュレーター（日付→カレンダー色分け）","CTA（LINE・Medicalforce）"],
+    subpages:[], notes:"react-day-picker + date-fns。各ピラーページにも埋込表示。" },
+  { id:"price", name:"料金一覧", url:"/price/", icon:"💴", phase:1, cat:"utility", cms:"microcms",
+    sections:["カテゴリ別料金表（税込総額）","注意事項・お支払い方法","医療費控除","CTA"],
+    subpages:[], notes:"treatments.price_options[] を集約表示。単一ソース。" },
+  { id:"contact", name:"お問い合わせ", url:"/contact/", icon:"✉️", phase:1, cat:"utility", cms:"supabase",
+    sections:["Web予約・LINE誘導","お問い合わせフォーム","→ Supabase inquiries に保存"],
+    subpages:[], notes:"自動返信メール有。Medicalforce / LINE へも誘導。" },
+  { id:"about", name:"クリニック紹介", url:"/about/", icon:"🏥", phase:2, cat:"utility", cms:"static",
+    sections:["コンセプト・内観写真","アクセス・地図","診療時間・休診日"],
+    subpages:[], notes:"Google Maps CID: 11387186794925088261" },
+  { id:"sitemap", name:"サイトマップ", url:"/sitemap/", icon:"🗺", phase:1, cat:"utility", cms:"static",
+    sections:["全ページへのリンク一覧"], subpages:[], notes:"" },
+  { id:"admin", name:"管理画面", url:"/admin/", icon:"🔒", phase:1, cat:"admin", cms:"supabase",
+    sections:["ログイン（Supabase Auth）","問い合わせ一覧・ステータス管理","ナレッジ管理（P3）","プロンプト管理（P3）","会話ログ（P3）"],
+    subpages:["/admin/login/","/admin/inquiries/","/admin/chat/（P3）"],
+    notes:"Supabase Auth + RLS。管理者のみアクセス可。" },
+];
+
+const CAT_LABELS = { top:"トップページ", pillar:"ピラーページ（部位別）", content:"コンテンツ", utility:"ユーティリティ", admin:"管理画面（非公開）" };
+const CMS_LABELS = { microcms:"microCMS", supabase:"Supabase", static:"Static" };
+
+// =====================================================
+// microCMS SCHEMAS
+// =====================================================
+const SCHEMAS = [
+  { name:"treatments", label:"施術情報", icon:"💉", note:"施術詳細 + 料金の単一ソース",
+    fields:[
+      { name:"title / slug / category", type:"text" },
+      { name:"description / doctor_comment", type:"richtext" },
+      { name:"risks", type:"text" },
+      { name:"thumbnail", type:"image" },
+      { name:"price_options[]", type:"repeat", note:"name / price / note" },
+      { name:"downtime_min_days / max_days", type:"number" },
+      { name:"downtime_milestones[]", type:"repeat", note:"label / days_after / description" },
+    ]},
+  { name:"cases", label:"症例記事", icon:"🖼", note:"Before/After + 記事本文",
+    fields:[
+      { name:"title / slug / thumbnail", type:"text" },
+      { name:"category / age_group / gender / concern", type:"select" },
+      { name:"treatment", type:"relation", note:"→ treatments" },
+      { name:"content", type:"richtext" },
+      { name:"before_photo", type:"image", note:"Before画像（個別フィールド）" },
+      { name:"after_photo",  type:"image", note:"After画像（個別フィールド）※結合画像NG" },
+      { name:"published_at", type:"date" },
+    ]},
+  { name:"news", label:"お知らせ", icon:"📣", note:"クリニックからのお知らせ",
+    fields:[
+      { name:"title / content", type:"text" },
+      { name:"category", type:"select", note:"notice / explanation / price-change" },
+      { name:"thumbnail / published_at", type:"text" },
+    ]},
+  { name:"columns", label:"コラム記事", icon:"📰", note:"ブログ・読み物コンテンツ",
+    fields:[
+      { name:"title / slug / content", type:"text" },
+      { name:"category / tags[]", type:"select" },
+      { name:"thumbnail / published_at", type:"text" },
+    ]},
+  { name:"doctor", label:"院長プロフィール", icon:"👨‍⚕️", note:"トップ Message セクションにも使用",
+    fields:[
+      { name:"name / title", type:"text" },
+      { name:"photo", type:"image" },
+      { name:"profile / message", type:"richtext" },
+      { name:"career / qualifications[]", type:"text" },
+      { name:"media_appearances[] / kol_activities", type:"text" },
+    ]},
+  { name:"campaigns", label:"キャンペーン", icon:"🏷", note:"バナー + 施術ページサイドバー",
+    fields:[
+      { name:"title / image / link_url", type:"text" },
+      { name:"start_date / end_date / is_active", type:"text" },
+      { name:"related_treatments[]", type:"relation", note:"→ treatments（施術ページに自動表示）" },
+    ]},
+  { name:"faqs", label:"よくある質問", icon:"❓", note:"ピラーページ・FAQページ共用",
+    fields:[
+      { name:"question / answer", type:"text" },
+      { name:"category", type:"select", note:"mouth/eye/nose/lift/skin/general/price/booking" },
+      { name:"sort_order", type:"number" },
+    ]},
+  { name:"setcourses", label:"セットコース", icon:"🎁", note:"悩み別 施術組み合わせ提案",
+    fields:[
+      { name:"title / tagline / concern", type:"text" },
+      { name:"category", type:"select", note:"mouth/eye/nose/lift/skin" },
+      { name:"treatments[]", type:"relation", note:"→ treatments" },
+      { name:"is_same_day / is_popular", type:"bool" },
+      { name:"before_photo", type:"image", note:"個別フィールド（結合画像NG）" },
+      { name:"after_photo",  type:"image", note:"個別フィールド（結合画像NG）" },
+    ]},
+  { name:"staff", label:"スタッフ", icon:"👥", note:"Team Slide の写真ソース",
+    fields:[
+      { name:"name / role", type:"text" },
+      { name:"photo", type:"image" },
+      { name:"profile", type:"text" },
+      { name:"action_photos[]", type:"image", note:"施術中アクションショット" },
+      { name:"sort_order", type:"number" },
+    ]},
+  { name:"media", label:"SNSメディア", icon:"📱", note:"Instagram / YouTube サムネ管理",
+    fields:[
+      { name:"platform", type:"select", note:"instagram / youtube" },
+      { name:"title / url", type:"text" },
+      { name:"thumbnail", type:"image" },
+      { name:"published_at", type:"date" },
+    ]},
+  { name:"jobs", label:"求人情報", icon:"💼", note:"採用情報一覧・詳細ページのソース",
+    fields:[
+      { name:"title / slug", type:"text" },
+      { name:"employment_type", type:"select", note:"正社員 / パート / 業務委託" },
+      { name:"description", type:"richtext", note:"仕事内容" },
+      { name:"requirements", type:"richtext", note:"応募条件" },
+      { name:"conditions", type:"richtext", note:"待遇・勤務条件" },
+      { name:"is_active", type:"select", note:"募集中フラグ" },
+      { name:"published_at", type:"date" },
+    ]},
+];
+
+// =====================================================
+// SUPABASE TABLES
+// =====================================================
+const TABLES = [
+  { name:"inquiries", label:"問い合わせ管理", icon:"✉️", phase:"P1", note:"管理画面でステータス管理・担当割当",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"name / email / phone", type:"varchar" },
+      { name:"subject / message", type:"text" },
+      { name:"status", type:"enum", note:"unread / in_progress / done" },
+      { name:"assigned_to", type:"UUID", note:"→ auth.users" },
+    ]},
+  { name:"conversion_events", label:"CVイベント記録", icon:"📊", phase:"P1", note:"GA4でカバーしきれない詳細ログ",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"event_type", type:"enum", note:"booking_click / line_click / phone_click" },
+      { name:"page_url / created_at", type:"varchar" },
+    ]},
+  { name:"chat_sessions", label:"チャットセッション", icon:"💬", phase:"P3", note:"チャットボット会話の単位",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"page_url / user_agent", type:"varchar" },
+      { name:"started_at / ended_at", type:"timestamp" },
+    ]},
+  { name:"chat_messages", label:"チャットメッセージ", icon:"🗨", phase:"P3", note:"",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"session_id", type:"UUID FK", note:"→ chat_sessions" },
+      { name:"role", type:"enum", note:"user / assistant" },
+      { name:"content / created_at", type:"text" },
+    ]},
+  { name:"chatbot_knowledge", label:"RAGナレッジ", icon:"🧠", phase:"P3", note:"管理画面からCRUD・embedding再生成",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"title / content", type:"text" },
+      { name:"category / is_active", type:"text" },
+    ]},
+  { name:"knowledge_embeddings", label:"ベクトルDB", icon:"🔢", phase:"P3", note:"pgvector拡張で類似度検索",
+    cols:[
+      { name:"id", type:"UUID PK" },
+      { name:"knowledge_id", type:"UUID FK", note:"→ chatbot_knowledge" },
+      { name:"content", type:"text" },
+      { name:"embedding", type:"vector(1536)", note:"pgvector" },
+    ]},
+];
+
+// =====================================================
+// REFERENCE DOCS
+// =====================================================
+const REF_DOCS = [
+  { file:"docs/treatment-menu.md", label:"施術メニュー一覧", icon:"📋",
+    note:"現行WordPressサイトより抽出。microCMS 投入の起点。",
+    details:[
+      "カテゴリ構成: 皮膚科 / 外科（目・鼻・口・糸・輪郭） / 点滴 / 内服薬",
+      "各施術の概要・リスク副作用・承認状況を記載",
+      "microCMS treatments スキーマ投入時の参照元",
+      "料金は price-list.md に分離（このファイルには記載しない）",
+    ]},
+  { file:"docs/price-list.md", label:"料金一覧", icon:"💴",
+    note:"WordPressコードエディタ出力より整理。microCMS 投入データ。",
+    details:[
+      "カテゴリ: 皮膚科 / 外科 / 点滴 / 内服薬 / 化粧品 / その他（麻酔・書類）",
+      "すべて税込総額。microCMS treatments.price_options[] と対応",
+      "price_options 構造: { name, option, price } の3列テーブル",
+      "⚠ microCMS 投入後は microCMS が正。このファイルは更新不要になる",
+    ]},
+  { file:"docs/codeediter", label:"WP コードエディタ出力（raw）", icon:"🗂",
+    note:"参照・検証のみ。直接編集不可。",
+    details:[
+      "現行サイト PRICE 固定ページのブロックエディタ全文（53.9KB）",
+      "SWELLテーマ + loos/tab ブロック構造（タブUI）",
+      "大カテゴリ: 皮膚科 / 外科 / 点滴 / 内服薬 / 化粧品 / その他",
+      "price-list.md の一次ソース。手動抽出完了済み",
+    ]},
+];
+
+// =====================================================
+// FLOW DATA
+// =====================================================
+const FLOWS = [
+  {
+    title:"🔀 予約・問い合わせ導線", fullWidth: false,
+    html:`
+      <div class="flow-step"><span class="step-icon">👤</span><div class="step-text"><strong>ユーザー</strong>各ページを回遊</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="step-icon">📅</span><div class="step-text"><strong>Web予約ボタン</strong>Medicalforce（外部）へ遷移</div></div>
+      <div class="flow-step"><span class="step-icon">💬</span><div class="step-text"><strong>LINE相談ボタン</strong>LINE公式アカウント → 最終的にMedicalforce</div></div>
+      <div class="flow-step"><span class="step-icon">✉️</span><div class="step-text"><strong>お問い合わせフォーム</strong>Supabase inquiries テーブルへ保存</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="step-icon">🔒</span><div class="step-text"><strong>管理画面（/admin/）</strong>ステータス管理・担当割当</div></div>
+    `
+  },
+  {
+    title:"🧭 施術ページへの動線", fullWidth: false,
+    html:`
+      <div class="nav-box">
+        <div class="nav-box-title">お悩みから探す（顔SVG）</div>
+        <div style="font-size:11px;color:#94a3b8">部位クリック → ピラーページ → 施術一覧 → 施術詳細</div>
+      </div>
+      <div class="nav-box">
+        <div class="nav-box-title">施術名から探す（タブUI）</div>
+        <div style="font-size:11px;color:#94a3b8">タブ選択 → 施術名クリック → 施術詳細（直接）</div>
+      </div>
+      <div class="nav-box">
+        <div class="nav-box-title">URL設計</div>
+        <table class="url-table">
+          <tr><td>/[pillar]/[slug]/</td><td>ピラー主要施術</td></tr>
+          <tr><td>/treatment/[slug]/</td><td>その他の施術（汎用）</td></tr>
+        </table>
+      </div>
+    `
+  },
+  {
+    title:"🖥 PC ナビゲーション（メガメニュー）", fullWidth: false,
+    html:`
+      <div class="nav-box">
+        <div class="nav-items">
+          <span class="nav-item">口元</span>
+          <span class="nav-item">目元</span>
+          <span class="nav-item">鼻</span>
+          <span class="nav-item">リフトアップ</span>
+          <span class="nav-item">美容皮膚科</span>
+          <span class="nav-item">症例写真</span>
+          <span class="nav-item">料金表</span>
+          <span class="nav-item">院長紹介</span>
+          <span class="nav-item highlight">Web予約</span>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:8px">各カテゴリホバーでサブメニュー展開（施術一覧・症例へのリンク）</div>
+    `
+  },
+  {
+    title:"📱 モバイル固定フッター（4ボタン）", fullWidth: false,
+    html:`
+      <div class="nav-box">
+        <div class="nav-items">
+          <span class="nav-item">💬 LINE相談</span>
+          <span class="nav-item highlight">📅 Web予約</span>
+          <span class="nav-item">📞 電話</span>
+          <span class="nav-item">☰ メニュー</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    title:"🧮 シミュレーター仕様", fullWidth: false,
+    html:`
+      <div class="nav-box">
+        <div class="nav-box-title">料金シミュレーター</div>
+        <div style="font-size:11px;color:#94a3b8">施術をチェックボックスで複数選択 → price_options[] から合計レンジを自動計算</div>
+      </div>
+      <div class="nav-box">
+        <div class="nav-box-title">ダウンタイムシミュレーター</div>
+        <div style="font-size:11px;color:#94a3b8;line-height:1.8">
+          施術希望日（仮）を入力<br>
+          🔴 安静期間 / 🟡 外出可 / 🟢 社会復帰 / ⭐ 完成目安<br>
+          複数施術 → マイルストーンの最大値を採用<br>
+          PC: 月カレンダー / SP: 横スクロールタイムライン
+        </div>
+      </div>
+      <div style="font-size:11px;color:#f59e0b;margin-top:6px">⚠ 「仮定」として提示。実予約可否はカウンセリングで確認。</div>
+    `
+  },
+  {
+    title:"🤖 AIチャットボット RAG（Phase 3）", fullWidth: false,
+    html:`
+      <div class="nav-box">
+        <div class="nav-box-title">ナレッジ登録フロー</div>
+        <div style="font-size:11px;color:#94a3b8;line-height:1.8">
+          管理画面で chatbot_knowledge を追加・編集<br>
+          ↓ 保存時に Supabase Edge Function をトリガー<br>
+          ↓ Embedding API（OpenAI）でベクトル化<br>
+          knowledge_embeddings テーブルに upsert
+        </div>
+      </div>
+      <div class="nav-box">
+        <div class="nav-box-title">応答フロー</div>
+        <div style="font-size:11px;color:#94a3b8;line-height:1.8">
+          ユーザー質問 → ベクトル化<br>
+          ↓ pgvector で類似度検索（Supabase）<br>
+          ↓ 関連チャンク + chatbot_prompts → DeepSeek API<br>
+          ↓ 回答 → chat_messages に保存
+        </div>
+      </div>
+    `
+  },
+  {
+    title:"🔑 環境変数", fullWidth: false,
+    html:`
+      <table class="env-table">
+        <tr><td>MICROCMS_API_KEY</td><td>microCMS APIキー</td></tr>
+        <tr><td>MICROCMS_SERVICE_DOMAIN</td><td>microCMSドメイン</td></tr>
+        <tr><td>NEXT_PUBLIC_SUPABASE_URL</td><td>Supabase URL</td></tr>
+        <tr><td>NEXT_PUBLIC_SUPABASE_ANON_KEY</td><td>匿名キー（クライアント）</td></tr>
+        <tr><td>SUPABASE_SERVICE_ROLE_KEY</td><td>サービスキー（サーバー専用）</td></tr>
+        <tr><td>NEXT_PUBLIC_GA_MEASUREMENT_ID</td><td>GA4 測定ID</td></tr>
+        <tr><td>DEEPSEEK_API_KEY</td><td>DeepSeek（P3）</td></tr>
+        <tr><td>OPENAI_API_KEY</td><td>Embedding生成（P3）</td></tr>
+      </table>
+    `
+  },
+  {
+    title:"📋 SEO方針", fullWidth: false,
+    html:`
+      <div class="flow-step"><span class="step-icon">📐</span><div class="step-text"><strong>3階層以内</strong>すべてのページ</div></div>
+      <div class="flow-step"><span class="step-icon">🔗</span><div class="step-text"><strong>トピッククラスター構造</strong>ピラーページ + 施術詳細</div></div>
+      <div class="flow-step"><span class="step-icon">🚫</span><div class="step-text"><strong>悩み別個別ページは作らない</strong>ピラーページ内セクションに統合</div></div>
+      <div class="flow-step"><span class="step-icon">⚕️</span><div class="step-text"><strong>医療広告ガイドライン遵守</strong>断定表現禁止・料金は税込総額表示</div></div>
+    `
+  },
+];
+
+// =====================================================
+// STATE
+// =====================================================
+let currentFilter = "all";
+let currentCat = "all";
+let currentView = "grid";
+let searchQuery = "";
+let currentTab = "pages";
+
+// =====================================================
+// TABS
+// =====================================================
+function switchTab(tab) {
+  currentTab = tab;
+  ["pages","data","flow"].forEach(t => {
+    document.getElementById(`tab-content-${t}`).style.display = t === tab ? "block" : "none";
+    document.getElementById(`tab-${t}`).classList.toggle("active", t === tab);
+  });
+  document.getElementById("pages-toolbar").style.display = tab === "pages" ? "flex" : "none";
+  if (tab === "data") renderData();
+  if (tab === "flow") renderFlow();
+}
+
+// =====================================================
+// FILTER / SEARCH
+// =====================================================
+function filtered() {
+  return PAGES.filter(p => {
+    const phaseMatch = currentFilter === "all" || `phase${p.phase}` === currentFilter;
+    const catMatch = currentCat === "all" || p.cat === currentCat;
+    const q = searchQuery.toLowerCase();
+    const textMatch = !q || p.name.toLowerCase().includes(q) || p.url.toLowerCase().includes(q);
+    return phaseMatch && catMatch && textMatch;
+  });
+}
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function setCat(c, btn) {
+  currentCat = c;
+  document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function search(q) { searchQuery = q; render(); }
+function setView(v) {
+  currentView = v;
+  document.getElementById('btn-grid').classList.toggle('active', v === 'grid');
+  document.getElementById('btn-tree').classList.toggle('active', v === 'tree');
+  render();
+}
+
+// =====================================================
+// RENDER PAGES
+// =====================================================
+function render() {
+  const pages = filtered();
+  const total = PAGES.length;
+  document.getElementById('toolbar-title').textContent =
+    pages.length === total ? `全ページ（${total}件）` : `${pages.length} / ${total} ページ`;
+  document.getElementById('count-all').textContent = PAGES.length;
+  document.getElementById('count-phase1').textContent = PAGES.filter(p => p.phase===1).length;
+  document.getElementById('count-phase2').textContent = PAGES.filter(p => p.phase===2).length;
+  document.getElementById('count-phase3').textContent = PAGES.filter(p => p.phase===3).length;
+  document.getElementById('stat-pages').textContent = pages.length;
+
+  document.getElementById('view-grid').style.display = currentView === 'grid' ? 'block' : 'none';
+  document.getElementById('view-tree').style.display = currentView === 'tree' ? 'block' : 'none';
+  if (currentView === 'grid') renderGrid(pages);
+  else renderTree(pages);
+}
+
+function renderGrid(pages) {
+  const catOrder = ['top','pillar','content','utility','admin'];
+  const groups = {};
+  pages.forEach(p => { if (!groups[p.cat]) groups[p.cat] = []; groups[p.cat].push(p); });
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!groups[cat]) return;
+    html += `<div class="group-label"><span class="group-label-text">${CAT_LABELS[cat]||cat}</span><span class="group-label-line"></span><span style="font-size:10px;color:var(--muted)">${groups[cat].length}件</span></div><div class="pages-grid" style="margin-bottom:20px">`;
+    groups[cat].forEach(p => { html += cardHTML(p); });
+    html += '</div>';
+  });
+  document.getElementById('grid-content').innerHTML = html;
+}
+
+function cardHTML(p) {
+  const secs = p.sections.slice(0,5).map(s=>`<li>${s}</li>`).join('') +
+    (p.sections.length>5 ? `<li style="color:var(--muted)">…他${p.sections.length-5}項目</li>` : '');
+  const subs = p.subpages.length ? `<div class="chip-row">${p.subpages.map(s=>`<span class="chip">${s}</span>`).join('')}</div>` : '';
+  return `<div class="page-card" onclick="openPanel('${p.id}')">
+    <div class="card-header">
+      <div class="card-icon">${p.icon}</div>
+      <div class="card-meta">
+        <div class="card-name">${p.name}</div>
+        <div class="card-url">${p.url}</div>
+      </div>
+      <span class="phase-badge phase${p.phase}">P${p.phase}</span>
+    </div>
+    <div class="card-body">
+      <span class="cms-badge cms-${p.cms}">${CMS_LABELS[p.cms]}</span>
+      <ul class="section-list">${secs}</ul>
+      ${subs}
+    </div>
+  </div>`;
+}
+
+function renderTree(pages) {
+  const catOrder = ['top','pillar','content','utility','admin'];
+  const groups = {};
+  pages.forEach(p => { if (!groups[p.cat]) groups[p.cat] = []; groups[p.cat].push(p); });
+  let html = '';
+  catOrder.forEach(cat => {j
+    if (!groups[cat]) return;
+    html += `<div class="tree-node open">
+      <div class="tree-node-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="toggle">▶</span>
+        <span style="font-weight:600">${CAT_LABELS[cat]||cat}</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--muted)">${groups[cat].length}</span>
+      </div>
+      <div class="tree-children">`;
+    groups[cat].forEach(p => {
+      html += `<div class="tree-child" onclick="openPanel('${p.id}')">
+        <span>${p.icon}</span>
+        <span style="color:var(--text)">${p.name}</span>
+        <span class="phase-badge phase${p.phase}" style="font-size:9px;padding:1px 4px">P${p.phase}</span>
+        <span class="tree-child-url">${p.url}</span>
+      </div>`;
+      p.subpages.forEach(s => {
+        html += `<div class="tree-child" style="padding-left:24px;cursor:default">
+          <span style="color:var(--border)">└</span>
+          <span style="font-family:monospace;font-size:10px">${s}</span>
+        </div>`;
+      });
+    });
+    html += '</div></div>';
+  });
+  document.getElementById('tree-content').innerHTML = html;
+}
+
+// =====================================================
+// RENDER DATA
+// =====================================================
+function renderData() {
+  // microCMS
+  const schemaHTML = SCHEMAS.map(s => `
+    <div class="data-card">
+      <div class="data-card-header">
+        <span class="icon">${s.icon}</span>
+        <div>
+          <div class="title">${s.name} <span style="font-size:10px;color:var(--muted);font-weight:normal">— ${s.label}</span></div>
+          <div class="subtitle">${s.note}</div>
+        </div>
+      </div>
+      <div class="data-card-body">
+        <table class="schema-table">
+          <tr><th>フィールド</th><th>型</th><th>備考</th></tr>
+          ${s.fields.map(f => `<tr>
+            <td>${f.name}</td>
+            <td><span class="field-type ${f.type==='relation'?'field-rel':''}">${f.type}</span></td>
+            <td>${f.note||''}</td>
+          </tr>`).join('')}
+        </table>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('microcms-schemas').innerHTML = schemaHTML;
+
+  // Supabase
+  const tableHTML = TABLES.map(t => `
+    <div class="data-card">
+      <div class="data-card-header">
+        <span class="icon">${t.icon}</span>
+        <div>
+          <div class="title">${t.name} <span class="phase-badge ${t.phase==='P1'?'phase1':'phase3'}" style="font-size:9px">${t.phase}</span></div>
+          <div class="subtitle">${t.note}</div>
+        </div>
+      </div>
+      <div class="data-card-body">
+        <table class="schema-table">
+          <tr><th>カラム</th><th>型</th><th>備考</th></tr>
+          ${t.cols.map(c => `<tr>
+            <td>${c.name}</td>
+            <td><span class="field-type">${c.type}</span></td>
+            <td>${c.note||''}</td>
+          </tr>`).join('')}
+        </table>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('supabase-tables').innerHTML = tableHTML;
+
+  // Reference Docs
+  const refHTML = REF_DOCS.map(d => `
+    <div class="data-card">
+      <div class="data-card-header">
+        <span class="icon">${d.icon}</span>
+        <div>
+          <div class="title" style="font-family:monospace;font-size:11px">${d.file}</div>
+          <div class="subtitle">${d.label}</div>
+          <div class="subtitle" style="color:#fbbf24;margin-top:2px">${d.note}</div>
+        </div>
+      </div>
+      <div class="data-card-body">
+        <ul class="section-list">
+          ${d.details.map(detail => `<li>${detail}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('ref-docs').innerHTML = refHTML;
+}
+
+// =====================================================
+// RENDER FLOW
+// =====================================================
+function renderFlow() {
+  const html = FLOWS.map(f => `
+    <div class="flow-card${f.fullWidth?' style="grid-column:span 2"':''}">
+      <div class="flow-card-title">${f.title}</div>
+      ${f.html}
+    </div>
+  `).join('');
+  document.getElementById('flow-content').innerHTML = html;
+}
+
+// =====================================================
+// DETAIL PANEL
+// =====================================================
+function openPanel(id) {
+  const p = PAGES.find(x => x.id === id);
+  if (!p) return;
+  const secs = p.sections.map(s => `<li>${s}</li>`).join('');
+  const subs = p.subpages.length
+    ? `<div class="panel-section-title">サブページ</div><div class="panel-chips">${p.subpages.map(s=>`<span class="chip">${s}</span>`).join('')}</div>`
+    : '';
+  const notes = p.notes
+    ? `<div class="panel-section-title">メモ</div><div style="font-size:12px;color:#94a3b8;background:var(--bg);padding:10px;border-radius:6px;line-height:1.7">${p.notes}</div>`
+    : '';
+  document.getElementById('panel-body').innerHTML = `
+    <div style="margin-bottom:8px"><span class="phase-badge phase${p.phase}">Phase ${p.phase}</span> <span class="cms-badge cms-${p.cms}">${CMS_LABELS[p.cms]}</span></div>
+    <div class="panel-title">${p.icon} ${p.name}</div>
+    <div class="panel-url">${p.url}</div>
+    <div class="panel-section-title">セクション構成</div>
+    <ul class="panel-list">${secs}</ul>
+    ${subs}${notes}
+  `;
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+function closePanel() {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// =====================================================
+// INIT
+// =====================================================
+render();
+</script>
+</body>
+</html>

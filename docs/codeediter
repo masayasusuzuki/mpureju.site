@@ -1,0 +1,375 @@
+<!-- wp:group {"className":"has-border -border01 is-style-big_icon_good","layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-border -border01 is-style-big_icon_good"><!-- wp:loos/dl {"className":"is-style-border"} -->
+<dl class="swell-block-dl is-style-border"><!-- wp:loos/dt {"className":""} -->
+<dt class="swell-block-dl__dt">～診察料について～ </dt>
+<!-- /wp:loos/dt -->
+
+<!-- wp:loos/dd {"className":"u-mb-ctrl u-mb-0"} -->
+<dd class="swell-block-dl__dd u-mb-ctrl u-mb-0"><!-- wp:paragraph -->
+<p>初診料／￥5,500<span class="swl-fz u-fz-xs">  </span>[spbr]外科再診料／￥5,500[spbr]皮膚科再診料／￥1,100</p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:loos/dd -->
+
+<!-- wp:loos/dt {"className":"u-mb-ctrl u-mb-0"} -->
+<dt class="swell-block-dl__dt u-mb-ctrl u-mb-0">～指名料について～</dt>
+<!-- /wp:loos/dt -->
+
+<!-- wp:loos/dd -->
+<dd class="swell-block-dl__dd"><!-- wp:paragraph {"className":"u-mb-ctrl u-mb-0"} -->
+<p class="u-mb-ctrl u-mb-0">看護師主任田村／￥2,200[spbr]看護師スタッフ／￥1,100</p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:loos/dd --></dl>
+<!-- /wp:loos/dl -->
+
+<!-- wp:paragraph {"align":"right"} -->
+<p class="has-text-align-right">※すべての金額は税込み表記です。</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:loos/columns {"colPC":"3","colTab":"3","colMobile":"2"} -->
+<div class="swell-block-columns" style="--clmn-w--pc:33.33%;--clmn-w--tab:33.33%;--clmn-w--mobile:50%"><div class="swell-block-columns__inner"><!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#hifuka","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#hifuka" class="swell-block-button__link"><span>皮膚科</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#geka","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#geka" class="swell-block-button__link"><span>外科</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#tenteki","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#tenteki" class="swell-block-button__link"><span>点滴</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#naifuku","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#naifuku" class="swell-block-button__link"><span>内服薬</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#kesyouhin","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#kesyouhin" class="swell-block-button__link"><span>化粧品</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column -->
+
+<!-- wp:loos/column -->
+<div class="swell-block-column swl-has-mb--s"><!-- wp:loos/button {"hrefUrl":"https://mpureju.com/price/#sonota","width":"100%","btnSize":"custom","className":"is-style-btn_normal"} -->
+<div class="swell-block-button -size-custom is-style-btn_normal" style="--the-width:100%"><a href="https://mpureju.com/price/#sonota" class="swell-block-button__link"><span>その他</span></a></div>
+<!-- /wp:loos/button --></div>
+<!-- /wp:loos/column --></div></div>
+<!-- /wp:loos/columns -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="hifuka">皮膚科</h2>
+<!-- /wp:heading -->
+
+<!-- wp:loos/tab {"tabId":"hifuka","tabHeaders":["ヒアルロン酸","ボトックス","ソフウェーブ","ブレッシング","ウルトラセルZi (HIFU）","XERF(RF)","サーマジェン（RF）","サーマハンド","サーマZi（RF＋HIFU）","ポテンツァ","サーマニードル","メソナJ","レーザー","IPL /フォトフェイシャル","KOライト","スキンブースター（手打ち）","ブースター（機械導入）","脂肪溶解注射","ピーリング","その他","パック"],"className":"is-style-balloon"} -->
+<div class="swell-block-tab is-style-balloon" data-width-pc="auto" data-width-sp="auto"><ul class="c-tabList" role="tablist"><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="true" aria-controls="tab-hifuka-0" data-onclick="tabControl">ヒアルロン酸</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-1" data-onclick="tabControl">ボトックス</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-2" data-onclick="tabControl">ソフウェーブ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-3" data-onclick="tabControl">ブレッシング</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-4" data-onclick="tabControl">ウルトラセルZi (HIFU）</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-5" data-onclick="tabControl">XERF(RF)</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-6" data-onclick="tabControl">サーマジェン（RF）</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-7" data-onclick="tabControl">サーマハンド</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-8" data-onclick="tabControl">サーマZi（RF＋HIFU）</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-9" data-onclick="tabControl">ポテンツァ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-10" data-onclick="tabControl">サーマニードル</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-11" data-onclick="tabControl">メソナJ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-12" data-onclick="tabControl">レーザー</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-13" data-onclick="tabControl">IPL /フォトフェイシャル</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-14" data-onclick="tabControl">KOライト</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-15" data-onclick="tabControl">スキンブースター（手打ち）</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-16" data-onclick="tabControl">ブースター（機械導入）</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-17" data-onclick="tabControl">脂肪溶解注射</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-18" data-onclick="tabControl">ピーリング</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-19" data-onclick="tabControl">その他</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-hifuka-20" data-onclick="tabControl">パック</button></li></ul><div class="c-tabBody"><!-- wp:loos/tab-body {"tabId":"hifuka"} -->
+<div id="tab-hifuka-0" class="c-tabBody__item" aria-hidden="false"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlTableWidth":"1200px"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ボルベラ/ボリフト/<br>ボリューマ/ボラックス/レスチレン</td><td>1本</td><td>¥99,000</td></tr><tr><td></td><td>2本</td><td>¥190,000</td></tr><tr><td></td><td>3本</td><td>¥270,000</td></tr><tr><td></td><td>4本目以降</td><td>¥80,000</td></tr><tr><td></td><td>鈍針追加</td><td>¥2,500</td></tr><tr><td>ボライト</td><td>1本</td><td>¥88,000</td></tr><tr><td></td><td>2本</td><td>¥149,000</td></tr><tr><td></td><td>3本</td><td>¥199,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":1,"tabId":"hifuka"} -->
+<div id="tab-hifuka-1" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>アラガン</td><td>表情筋1部位<br>(12単位まで)</td><td>¥19,800</td></tr><tr><td></td><td>50単位まで</td><td>¥75,000</td></tr><tr><td></td><td>100単位まで</td><td>¥139,000</td></tr><tr><td></td><td>タッチアップ<br>(1ヶ月以内)</td><td>¥9,900〜</td></tr><tr><td></td><td>12単位<br>(6ヶ月以内リピート料金)</td><td>¥17,820</td></tr><tr><td></td><td>50単位<br>(6ヶ月以内リピート料金)</td><td>¥63,750</td></tr><tr><td></td><td>100単位<br>(6ヶ月以内リピート料金)</td><td>¥111,200</td></tr><tr><td>コアトックス</td><td>100単位まで</td><td>¥84,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":2,"tabId":"hifuka"} -->
+<div id="tab-hifuka-2" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ソフウェーブ</td><td>頬のみ</td><td>¥165,000</td></tr><tr><td></td><td>口横+顎下</td><td>¥165,000</td></tr><tr><td></td><td>全顔</td><td>¥198,000</td></tr><tr><td></td><td>全顔+あご下+首</td><td>¥248,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥80,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":3,"tabId":"hifuka"} -->
+<div id="tab-hifuka-3" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>DRS/VRS</td><td></td><td>¥77,000</td></tr><tr><td>薬剤</td><td>マックーム</td><td>¥22,000</td></tr><tr><td>薬剤</td><td>PRP</td><td>¥22,000</td></tr><tr><td>薬剤</td><td>ジュベルック</td><td>¥22,000</td></tr><tr><td>薬剤</td><td>プルリアル</td><td>¥22,000</td></tr><tr><td>薬剤</td><td>ジャルプロ</td><td>¥22,000</td></tr><tr><td>薬剤</td><td>ボトックス</td><td>¥10,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":4,"tabId":"hifuka"} -->
+<div id="tab-hifuka-4" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ウルトラセルZi</td><td>400shot</td><td>¥108,000</td></tr><tr><td></td><td>500shot</td><td>¥133,000</td></tr><tr><td></td><td>600shot</td><td>¥153,000</td></tr><tr><td>ウルトラセルZi：脂肪</td><td>1回</td><td>¥55,000</td></tr><tr><td>(1回 200shot)</td><td>3回</td><td>¥145,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":5,"tabId":"hifuka"} -->
+<div id="tab-hifuka-5" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>スタンダード</td><td>¥99,000</td></tr><tr><td>プレミアム</td><td>¥165,000</td></tr><tr><td>HIFU＋XERF</td><td>¥207,000</td></tr><tr><td>ドクター照射代</td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":6,"tabId":"hifuka"} -->
+<div id="tab-hifuka-6" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>サーマジェン400shot</td><td>1回</td><td>¥78,000</td></tr><tr><td></td><td>3回</td><td>¥198,000</td></tr><tr><td>サーマジェン100shot追加</td><td></td><td>¥18,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":7,"tabId":"hifuka"} -->
+<div id="tab-hifuka-7" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>サーマハンド</td><td></td><td>¥99,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":8,"tabId":"hifuka"} -->
+<div id="tab-hifuka-8" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>サーマジェン＋ウルトラセルZi <br>計800shot</td><td>1回</td><td>¥168,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":9,"tabId":"hifuka"} -->
+<div id="tab-hifuka-9" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ニキビ跡・毛穴</td><td>1回</td><td>¥99,000</td></tr><tr><td></td><td>3回</td><td>¥270,000</td></tr><tr><td>肌育成</td><td>1回</td><td>¥70,000</td></tr><tr><td></td><td>3回</td><td>¥189,000</td></tr><tr><td>肝斑</td><td>1回</td><td>¥55,000</td></tr><tr><td></td><td>5回</td><td>¥229,000</td></tr><tr><td>ニキビ</td><td>10個まで</td><td>¥35,000</td></tr><tr><td>ダイヤモンド</td><td>1回</td><td>¥55,000</td></tr><tr><td></td><td>3回</td><td>¥150,000</td></tr><tr><td>ポテンツァアイ</td><td>1回</td><td>¥55,000</td></tr><tr><td></td><td>3回</td><td>¥150,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":10,"tabId":"hifuka"} -->
+<div id="tab-hifuka-10" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>全顔</td><td>1回</td><td>¥69,000</td></tr><tr><td>顎下追加</td><td></td><td>¥10,000</td></tr><tr><td>首追加</td><td></td><td>¥10,000</td></tr><tr><td>肌育（肝斑）</td><td>1回</td><td>¥55,000</td></tr><tr><td>エクソソーム追加(肝斑)</td><td></td><td>¥10,000</td></tr><tr><td>ドクター照射代</td><td></td><td>¥50,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":11,"tabId":"hifuka"} -->
+<div id="tab-hifuka-11" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>メソナJ</td><td>1回</td><td>¥29,000</td></tr><tr><td></td><td>3回</td><td>¥79,000</td></tr><tr><td>メソナJ（プレミアム）</td><td>1回</td><td>¥33,000</td></tr><tr><td></td><td>3回</td><td>¥90,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":12,"tabId":"hifuka"} -->
+<div id="tab-hifuka-12" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>スポット</td><td>5㎜未満</td><td>¥11,000</td></tr><tr><td>【ピンポイントのしみ】</td><td>5㎜以上</td><td>¥22,000</td></tr><tr><td></td><td>全顔</td><td>¥99,000</td></tr><tr><td>ルビーフラクショナル</td><td>1回</td><td>¥33,000</td></tr><tr><td>【複数のしみ・そばかす】</td><td>3回</td><td>¥89,000</td></tr><tr><td>カスタマイズトーニング</td><td>1回</td><td>¥25,500</td></tr><tr><td>【くすみ・肝斑】</td><td>3回</td><td>¥69,000</td></tr><tr><td>ジェネシス（全顔＋首）</td><td>1回</td><td>¥25,500</td></tr><tr><td>【赤み・肌のハリ】</td><td>3回</td><td>¥69,000</td></tr><tr><td>ジェネシス（手の甲/首）</td><td>1回</td><td>¥16,500</td></tr><tr><td></td><td>3回</td><td>¥45,000</td></tr><tr><td>トーニング＋ジェネシス</td><td>1回</td><td>¥44,000</td></tr><tr><td></td><td>3回</td><td>¥118,000</td></tr><tr><td>フラクショナル</td><td>1回</td><td>¥33,000</td></tr><tr><td>【毛穴・小じわ】</td><td>3回</td><td>¥89,000</td></tr><tr><td>カスタマイズレーザー</td><td>1回</td><td>¥59,000</td></tr><tr><td>【フラクショナル＋トーニング<br>＋ジェネシス】</td><td>3回</td><td>¥159,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":13,"tabId":"hifuka"} -->
+<div id="tab-hifuka-13" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>セレックV</td><td>1回</td><td>¥27,500</td></tr><tr><td></td><td>3回</td><td>¥75,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":14,"tabId":"hifuka"} -->
+<div id="tab-hifuka-14" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th></th><th>価格</th></tr></thead><tbody><tr><td>全顔1回</td><td>¥6,600</td></tr><tr><td>全顔5回</td><td>¥29,900</td></tr><tr><td>他院術後1回</td><td>¥11,000</td></tr><tr><td>他院術後5回</td><td>¥49,900</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":15,"tabId":"hifuka"} -->
+<div id="tab-hifuka-15" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ベビーピンク</td><td></td><td>¥39,000</td></tr><tr><td>ジャルプロクラシック(3cc)</td><td>1回</td><td>¥55,000</td></tr><tr><td></td><td>4回</td><td>¥200,000</td></tr><tr><td>ジャルプロスーパーハイドロ</td><td>1回</td><td>¥110,000</td></tr><tr><td></td><td>3回</td><td>¥300,000</td></tr><tr><td>エラスティックブースター(6cc)</td><td>全顔/手の甲</td><td>¥88,000</td></tr><tr><td></td><td>首追加</td><td>¥20,000</td></tr><tr><td>うるおいシルキー注射(8cc)</td><td>全顔/手の甲</td><td>¥140,000</td></tr><tr><td></td><td>首追加</td><td>¥40,000</td></tr><tr><td>プレミアムシルキー注射</td><td>全顔</td><td>¥180,000</td></tr><tr><td></td><td>首追加</td><td>¥50,000</td></tr><tr><td>エクソソーム<br>(顔/頭皮)</td><td>1回</td><td>¥99,000</td></tr><tr><td></td><td>3回</td><td>¥270,000</td></tr><tr><td></td><td>首追加</td><td>¥60,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":16,"tabId":"hifuka"} -->
+<div id="tab-hifuka-16" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>ベビーピンク</td><td>¥22,000</td></tr><tr><td>マックーム</td><td>¥22,000</td></tr><tr><td>PRP</td><td>¥22,000</td></tr><tr><td>ジュベルック</td><td>¥22,000</td></tr><tr><td>PN2%</td><td>¥22,000</td></tr><tr><td>ジャルプロクラシック</td><td>¥22,000</td></tr><tr><td>プルリアル</td><td>¥22,000</td></tr><tr><td>エクソソーム</td><td>¥33,000</td></tr><tr><td>ボトックス</td><td>¥10,000</td></tr><tr><td>ナノゴールド</td><td>¥5,500</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":17,"tabId":"hifuka"} -->
+<div id="tab-hifuka-17" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>チンセラプラス</td><td>4cc</td><td>¥50,000</td></tr><tr><td></td><td>8cc</td><td>¥90,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":18,"tabId":"hifuka"} -->
+<div id="tab-hifuka-18" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>メイクアップピール</td><td></td><td>¥20,000</td></tr><tr><td></td><td>他施術併用</td><td>¥16,500</td></tr><tr><td>ミックスピールマヌカ</td><td></td><td>¥20,000</td></tr><tr><td></td><td>他施術併用</td><td>¥16,500</td></tr><tr><td>マッサージピール</td><td>顔</td><td>¥20,000</td></tr><tr><td></td><td>顔＋首</td><td>¥29,700</td></tr><tr><td></td><td>手の甲</td><td>¥16,500</td></tr><tr><td>ペパーミントピール</td><td></td><td>¥20,000</td></tr><tr><td>ミラノリピール</td><td>顔 1回</td><td>¥25,000</td></tr><tr><td></td><td>顔 3回</td><td>¥68,000</td></tr><tr><td></td><td>体</td><td>¥35,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":19,"tabId":"hifuka"} -->
+<div id="tab-hifuka-19" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ヒアルロニダーゼ</td><td>自院</td><td>¥25,000</td></tr><tr><td></td><td>他院</td><td>¥45,000</td></tr><tr><td>ヒレネックス（ヒト由来）</td><td>自院</td><td>¥40,000</td></tr><tr><td></td><td>他院</td><td>¥60,000</td></tr><tr><td>オビソート</td><td>自院</td><td>¥15,000</td></tr><tr><td></td><td>他院</td><td>¥55,000</td></tr><tr><td>ケナコルト</td><td>自院</td><td>¥11,000</td></tr><tr><td></td><td>他院</td><td>¥33,000</td></tr><tr><td>サブシジョン</td><td>2×2cm</td><td>¥33,000</td></tr><tr><td></td><td>5×5cm</td><td>¥99,000</td></tr><tr><td></td><td>5×5cm ２ヶ所</td><td>¥165,000</td></tr><tr><td></td><td>PRP注入追加</td><td>¥99,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":20,"tabId":"hifuka"} -->
+<div id="tab-hifuka-20" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>SRSパック</td><td>¥2,200</td></tr><tr><td>シカパック</td><td>¥3,300</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body --></div></div>
+<!-- /wp:loos/tab -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="geka">外科</h2>
+<!-- /wp:heading -->
+
+<!-- wp:loos/tab {"tabId":"geka","tabHeaders":["目","鼻","口","糸","輪郭","ほくろ、いぼ","その他"],"className":"is-style-balloon"} -->
+<div class="swell-block-tab is-style-balloon" data-width-pc="auto" data-width-sp="auto"><ul class="c-tabList" role="tablist"><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="true" aria-controls="tab-geka-0" data-onclick="tabControl">目</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-1" data-onclick="tabControl">鼻</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-2" data-onclick="tabControl">口</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-3" data-onclick="tabControl">糸</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-4" data-onclick="tabControl">輪郭</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-5" data-onclick="tabControl">ほくろ、いぼ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-geka-6" data-onclick="tabControl">その他</button></li></ul><div class="c-tabBody"><!-- wp:loos/tab-body {"tabId":"geka"} -->
+<div id="tab-geka-0" class="c-tabBody__item" aria-hidden="false"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>二重埋没</td><td></td><td>¥140,000</td></tr><tr><td>二重抜糸</td><td>自院(1本)</td><td>¥22,000</td></tr><tr><td></td><td>他院(1本)</td><td>¥55,000</td></tr><tr><td>二重全切開</td><td></td><td>¥380,000</td></tr><tr><td></td><td>眼窩脂肪除去</td><td>¥66,000</td></tr><tr><td>眼瞼下垂</td><td>埋没</td><td>¥280,000</td></tr><tr><td></td><td>切開</td><td>¥600,000</td></tr><tr><td>眉下切開</td><td></td><td>¥380,000</td></tr><tr><td></td><td>吊り上げ固定</td><td>¥33,000</td></tr><tr><td></td><td>ROOF切除</td><td>¥66,000</td></tr><tr><td>目頭切開／目頭上切開</td><td></td><td>¥280,000</td></tr><tr><td>脱脂</td><td></td><td>¥280,000</td></tr><tr><td>上眼瞼除皺</td><td></td><td>¥330,000</td></tr><tr><td>下眼瞼除皺</td><td></td><td>¥380,000</td></tr><tr><td>下眼瞼除皺＋脱脂</td><td></td><td>¥450,000</td></tr><tr><td>脂肪再配置</td><td></td><td>¥450,000</td></tr><tr><td>表ハムラ</td><td></td><td>¥550,000</td></tr><tr><td></td><td>吊り上げ固定</td><td>¥88,000</td></tr><tr><td>裏ハムラ</td><td></td><td>¥550,000</td></tr><tr><td>目尻切開</td><td></td><td>¥280,000</td></tr><tr><td>グラマラス</td><td>埋没</td><td>¥280,000</td></tr><tr><td></td><td>切開</td><td>¥380,000</td></tr><tr><td>蒙古襞形成</td><td></td><td>¥380,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":1,"tabId":"geka"} -->
+<div id="tab-geka-1" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>プロテーゼ</td><td></td><td>¥250,000</td></tr><tr><td>鼻尖形成</td><td></td><td>¥330,000</td></tr><tr><td>耳介軟骨移植</td><td></td><td>¥250,000</td></tr><tr><td>ストラット法オプション</td><td></td><td>¥100,000</td></tr><tr><td>鼻中隔軟骨移植</td><td></td><td>¥300,000</td></tr><tr><td>肋軟骨移植</td><td></td><td>¥500,000</td></tr><tr><td>鼻中隔延長</td><td></td><td>¥500,000</td></tr><tr><td>鼻翼縮小</td><td>内または外</td><td>¥280,000</td></tr><tr><td></td><td>内＋外</td><td>¥380,000</td></tr><tr><td>鼻孔縁下降</td><td></td><td>¥350,000</td></tr><tr><td>鼻翼挙上</td><td></td><td>¥380,000</td></tr><tr><td>鼻孔縁挙上</td><td></td><td>¥350,000</td></tr><tr><td>鼻骨骨切り</td><td></td><td>¥500,000</td></tr><tr><td>ハンプ切除</td><td></td><td>¥440,000</td></tr><tr><td>鼻翼基部形成（貴族）</td><td></td><td>¥440,000</td></tr><tr><td>鼻柱基部形成（猫）</td><td></td><td>¥440,000</td></tr><tr><td>側頭筋膜移植</td><td></td><td>¥250,000</td></tr><tr><td>プロテーゼ抜去</td><td>自院</td><td>¥110,000</td></tr><tr><td></td><td>他院</td><td>¥220,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":2,"tabId":"geka"} -->
+<div id="tab-geka-2" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>口角挙上</td><td></td><td>¥450,000</td></tr><tr><td>M字リップ</td><td></td><td>¥380,000</td></tr><tr><td></td><td>筋弁作成</td><td>¥110,000</td></tr><tr><td>ピーナッツリップ</td><td></td><td>¥320,000</td></tr><tr><td>人中短縮</td><td></td><td>¥380,000</td></tr><tr><td>外側人中短縮</td><td></td><td>¥380,000</td></tr><tr><td></td><td>筋肉処理</td><td>¥33,000</td></tr><tr><td>口唇縮小</td><td>上または下</td><td>¥280,000</td></tr><tr><td></td><td>上＋下</td><td>¥480,000</td></tr><tr><td>口唇拡大</td><td>上または下</td><td>¥450,000</td></tr><tr><td>ガミースマイル手術</td><td></td><td>¥380,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":3,"tabId":"geka"} -->
+<div id="tab-geka-3" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>糸リフト</td><td>メンテナンス<br>（４〜8本）</td><td>¥200,000</td></tr><tr><td></td><td>スタンダード<br>（６〜12本）</td><td>¥350,000</td></tr><tr><td></td><td>プレミアム<br>（10〜16本）</td><td>¥500,000</td></tr><tr><td>ショートスレッド</td><td>40本</td><td>¥110,000</td></tr><tr><td></td><td>60本</td><td>¥145,000</td></tr><tr><td></td><td>80本</td><td>¥170,000</td></tr><tr><td></td><td>100本</td><td>¥190,000</td></tr><tr><td>アイスレッド</td><td>20本</td><td>¥110,000</td></tr><tr><td>マルチフィル</td><td>1本</td><td>¥45,000</td></tr><tr><td>エクステンダー</td><td>1本</td><td>¥55,000</td></tr><tr><td>フラットリフト</td><td>1本</td><td>¥40,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":4,"tabId":"geka"} -->
+<div id="tab-geka-4" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>脂肪吸引</td><td>頬</td><td>¥240,000</td></tr><tr><td></td><td>あご下</td><td>¥240,000</td></tr><tr><td></td><td>頬＋あご下</td><td>¥390,000</td></tr><tr><td>バッカルファット除去</td><td></td><td>¥280,000</td></tr><tr><td>脂肪採取</td><td></td><td>¥200,000</td></tr><tr><td>ナノリッチ作成</td><td></td><td>¥150,000</td></tr><tr><td>脂肪注入</td><td>額以外</td><td>¥110,000</td></tr><tr><td></td><td>額</td><td>¥220,000</td></tr><tr><td></td><td>全顔</td><td>¥400,000</td></tr><tr><td>MACSフェイスリフト</td><td></td><td>¥990,000</td></tr><tr><td>SMASフェイスリフト</td><td></td><td>¥1,270,000</td></tr><tr><td>ネックリフト</td><td></td><td>¥660,000</td></tr><tr><td>フェイス＋ネックリフト</td><td></td><td>¥1,650,000</td></tr><tr><td>ペリカンリフト</td><td></td><td>¥770,000</td></tr><tr><td>こめかみリフト</td><td></td><td>¥550,000</td></tr><tr><td>前額リフト</td><td></td><td>¥770,000</td></tr><tr><td>こめかみ＋前額リフト</td><td></td><td>¥990,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":5,"tabId":"geka"} -->
+<div id="tab-geka-5" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ほくろ除去（CO2レーザー）</td><td>1mm</td><td>¥7,700</td></tr><tr><td>いぼ除去（CO2レーザー）</td><td>1個</td><td>¥7,700</td></tr><tr><td></td><td>全顔</td><td>¥99,000</td></tr><tr><td></td><td>首</td><td>¥99,000</td></tr><tr><td>ほくろ/いぼ除去（切除）</td><td>〜5mm</td><td>¥80,000</td></tr><tr><td></td><td>〜10mm</td><td>¥150,000</td></tr><tr><td></td><td>1mm追加</td><td>¥20,000</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":6,"tabId":"geka"} -->
+<div id="tab-geka-6" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>血液検査代</td><td>局所/静脈麻酔</td><td>¥5,500</td></tr><tr><td></td><td>全身麻酔</td><td>¥11,000</td></tr><tr><td>他院修正代</td><td>小</td><td>¥110,000</td></tr><tr><td></td><td>中</td><td>¥220,000</td></tr><tr><td></td><td>大</td><td>¥330,000</td></tr><tr><td>KOライト</td><td>自院術後1回</td><td>¥6,600</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body --></div></div>
+<!-- /wp:loos/tab -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="tenteki">点滴</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>高濃度ビタミンC</td><td>半量</td><td>¥6,000</td></tr><tr><td></td><td>全量</td><td>¥12,000</td></tr><tr><td>高濃度ビタミンC 採血</td><td></td><td>¥7,700</td></tr><tr><td>エクソソーム点滴</td><td>1回</td><td>¥66,000</td></tr><tr><td></td><td>3回</td><td>¥180,000</td></tr><tr><td></td><td>倍量1回</td><td>¥99,000</td></tr><tr><td></td><td>倍量3回</td><td>¥270,000</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="naifuku">内服薬</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>肝斑セット（トラネキサム酸＋シナール＋ユベラ＋ハイチオール）</td><td>１ヶ月分</td><td>¥13,500</td></tr><tr><td>基本セット（トラネキサム酸＋シナール）</td><td>１ヶ月分</td><td>¥7,700</td></tr><tr><td>トラネキサム酸　</td><td>１ヶ月分</td><td>¥5,000</td></tr><tr><td>シナール（ビタミンC）</td><td>１ヶ月分</td><td>¥3,500</td></tr><tr><td>ユベラ（ビタミンE）</td><td>１ヶ月分</td><td>¥3,500</td></tr><tr><td>ハイチオール　</td><td>１ヶ月分</td><td>¥3,500</td></tr><tr><td>NB-X （総合ビタミンB）</td><td>120錠</td><td>¥6,696</td></tr><tr><td>ビタミンC(3000)＋D(顆粒)</td><td>30包</td><td>¥5,832</td></tr><tr><td>ビタミンC(2000)＋D(カプセル)</td><td>30錠</td><td>¥4,536</td></tr><tr><td>亜鉛/亜鉛-X</td><td>90錠</td><td>¥5,940</td></tr><tr><td>セルアクチン</td><td>60錠</td><td>¥36,000</td></tr><tr><td>フィナステリド</td><td>30錠</td><td>¥7,500</td></tr><tr><td>デュタステリド</td><td>30錠</td><td>¥7,500</td></tr><tr><td>ミノキシジル</td><td>100錠</td><td>¥6,000</td></tr><tr><td>タダラフィル</td><td>1錠</td><td>¥660</td></tr><tr><td>リザベン</td><td>1ヶ月分</td><td>¥6,600</td></tr><tr><td>イソトレチノイン</td><td>1錠</td><td>¥720</td></tr><tr><td>アルダクトン</td><td>1錠</td><td>¥120</td></tr><tr><td>柴苓湯</td><td>1週間分</td><td>¥6,600</td></tr><tr><td>ルミガン</td><td>１本</td><td>¥5,500</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="kesyouhin">化粧品</h2>
+<!-- /wp:heading -->
+
+<!-- wp:loos/tab {"tabId":"b4ca1ebd","tabHeaders":["レカルカ","リビジョン","ガウディスキン","ゼオスキン","ピュレアジー","シスペラ","reveiller","Lov me Touch","サンソリット","プラスリストア"],"className":"is-style-balloon"} -->
+<div class="swell-block-tab is-style-balloon" data-width-pc="auto" data-width-sp="auto"><ul class="c-tabList" role="tablist"><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="true" aria-controls="tab-b4ca1ebd-0" data-onclick="tabControl">レカルカ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-1" data-onclick="tabControl">リビジョン</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-2" data-onclick="tabControl">ガウディスキン</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-3" data-onclick="tabControl">ゼオスキン</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-4" data-onclick="tabControl">ピュレアジー</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-5" data-onclick="tabControl">シスペラ</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-6" data-onclick="tabControl">reveiller</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-7" data-onclick="tabControl">Lov me Touch</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-8" data-onclick="tabControl">サンソリット</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-b4ca1ebd-9" data-onclick="tabControl">プラスリストア</button></li></ul><div class="c-tabBody"><!-- wp:loos/tab-body {"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-0" class="c-tabBody__item" aria-hidden="false"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlTableWidth":"1200px"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>ヒアルBXCボリューマーリップ</td><td></td><td>¥ 4,180</td></tr><tr><td>ハニームースクレンジング</td><td></td><td>&nbsp;¥3,300</td></tr><tr><td>ブライトリーモイストシャインバブル</td><td></td><td>&nbsp;¥3,850 </td></tr><tr><td>FVC5バブルパック</td><td></td><td>¥13,200</td></tr><tr><td>CFセラムアドバンス（01）</td><td></td><td>¥13,200</td></tr><tr><td>シムセラムEX（02）</td><td></td><td>¥15,400</td></tr><tr><td>EXクリーム（03）</td><td></td><td>¥16,500</td></tr><tr><td>ブライトリーモイストシャインミスト</td><td></td><td>¥7,920</td></tr><tr><td>ファビラスA-DR</td><td></td><td>¥14,300</td></tr><tr><td>DREXエッセンス</td><td></td><td>¥16,500</td></tr><tr><td>モイストロボシャインマスクBXC</td><td></td><td>¥8,800</td></tr><tr><td>スキンスムーサー</td><td></td><td>¥8,250</td></tr><tr><td>イルミネイトパウダー</td><td><br></td><td>¥6,600</td></tr><tr><td>DREXモイストリペアミスト</td><td></td><td>¥9,020</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":1,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-1" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>C+ コレクティング<br>コンプレックス30％</td><td></td><td>¥21,780</td></tr><tr><td>DEJフェイスクリーム</td><td></td><td>¥20,900</td></tr><tr><td>DEJ ナイトフェイスクリーム</td><td></td><td>¥21,780</td></tr><tr><td>DEJデイリーブースティングセラム</td><td></td><td>¥29,700</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":2,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-2" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>インナーモイストTAローション</td><td></td><td>¥6,820</td></tr><tr><td>HQクリア</td><td></td><td>¥9,900</td></tr><tr><td>デュアルレチノプラス</td><td></td><td>¥8,800</td></tr><tr><td>エクラリバイブ</td><td></td><td>¥19,800</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":3,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-3" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>バランサートナー</td><td></td><td>¥7,700</td></tr><tr><td>デイリーPD</td><td></td><td>¥24,200</td></tr><tr><td>ミラミン</td><td></td><td>¥14,300</td></tr><tr><td>ミラミックス</td><td></td><td>¥14,300</td></tr><tr><td>シーセラム</td><td></td><td>¥16,280</td></tr><tr><td>ロザトロール</td><td></td><td>¥16,500</td></tr><tr><td>スキンブライセラム0.25</td><td></td><td>¥14,300</td></tr><tr><td>スキンブライセラム0.5</td><td></td><td>¥16,060</td></tr><tr><td>Wテクスチャーリペア</td><td></td><td>¥24,640</td></tr><tr><td>イルミネーションAOXセラム</td><td></td><td>¥21,780</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":4,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-4" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>フェイシャルクレンジンフォーム</td><td></td><td>¥4,950</td></tr><tr><td>カーミングフェイシャルミスト</td><td></td><td>¥6,930</td></tr><tr><td>カーミングトナー</td><td></td><td>¥7,150</td></tr><tr><td>ファーミングマスク</td><td>1箱（5枚）</td><td>¥7,150</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":5,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-5" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>シスペラ</td><td></td><td>¥35,200</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":6,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-6" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>The Cocktail</td><td></td><td>¥8,800</td></tr><tr><td>The Eye</td><td></td><td>¥19,800</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":7,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-7" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>グラナクティブ2％</td><td>¥4,620</td></tr><tr><td>グラナクティブ7％</td><td>¥6,820</td></tr><tr><td>ホワイトシャインローション</td><td>¥5,720</td></tr><tr><td>スキンバリアナノミルク</td><td>¥3,080</td></tr><tr><td>シルキーUVミルク</td><td>¥2,980</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":8,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-8" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>ユーブロックベースクリーム</td><td>¥3,960</td></tr><tr><td>ユーブロック（内服）30粒</td><td>¥7,020</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":9,"tabId":"b4ca1ebd"} -->
+<div id="tab-b4ca1ebd-9" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-style-stripes is-all-centered","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-style-stripes is-all-centered has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>クレンジングソープ泡ピールケア</td><td></td><td>¥4,070</td></tr><tr><td>UVローション&lt;SPF 50PA＋&gt;</td><td></td><td>¥3,300</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body --></div></div>
+<!-- /wp:loos/tab -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl" id="sonota">その他</h2>
+<!-- /wp:heading -->
+
+<!-- wp:loos/tab {"tabId":"a267cbb4","tabHeaders":["診察料","麻酔","書類"],"className":"is-style-balloon"} -->
+<div class="swell-block-tab is-style-balloon" data-width-pc="auto" data-width-sp="auto"><ul class="c-tabList" role="tablist"><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="true" aria-controls="tab-a267cbb4-0" data-onclick="tabControl">診察料</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-a267cbb4-1" data-onclick="tabControl">麻酔</button></li><li class="c-tabList__item" role="presentation"><button role="tab" class="c-tabList__button" aria-selected="false" aria-controls="tab-a267cbb4-2" data-onclick="tabControl">書類</button></li></ul><div class="c-tabBody"><!-- wp:loos/tab-body {"tabId":"a267cbb4"} -->
+<div id="tab-a267cbb4-0" class="c-tabBody__item" aria-hidden="false"><!-- wp:table {"className":"is-all-centered is-style-stripes","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-all-centered is-style-stripes has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>皮膚科初診料</td><td>¥5,500</td></tr><tr><td>皮膚科再診料</td><td>¥1,100</td></tr><tr><td>外科科初診料</td><td>¥5,500</td></tr><tr><td>外科科再診料</td><td>¥5,500</td></tr><tr><td>最終来院日より6か月以降の再診料</td><td>¥5,500</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":1,"tabId":"a267cbb4"} -->
+<div id="tab-a267cbb4-1" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-all-centered is-style-stripes","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-all-centered is-style-stripes has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th></th><th>価格</th></tr></thead><tbody><tr><td>笑気麻酔</td><td>30分</td><td>¥5,500</td></tr><tr><td>ブロック麻酔</td><td></td><td>¥3,300</td></tr><tr><td>局所麻酔</td><td></td><td>¥2,200</td></tr><tr><td>静脈麻酔</td><td></td><td>¥55,000</td></tr><tr><td>全身麻酔</td><td></td><td>¥165,000</td></tr><tr><td>麻酔テープ</td><td></td><td>¥2,200</td></tr><tr><td>麻酔クリーム</td><td></td><td>¥2,200</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body -->
+
+<!-- wp:loos/tab-body {"id":2,"tabId":"a267cbb4"} -->
+<div id="tab-a267cbb4-2" class="c-tabBody__item" aria-hidden="true"><!-- wp:table {"className":"is-all-centered is-style-stripes","fontSize":"small","swlFixedHead":"both"} -->
+<figure class="wp-block-table is-all-centered is-style-stripes has-small-font-size"><table class="has-fixed-layout"><thead><tr><th>カテゴリー</th><th>価格</th></tr></thead><tbody><tr><td>診断書作成</td><td>¥11,000</td></tr><tr><td>紹介状作成</td><td>¥11,000</td></tr><tr><td>Aura画像提供料</td><td>¥5,500</td></tr><tr><td>Aura再撮影料</td><td>¥3,300</td></tr><tr><td>NeoVoir 画像提供料</td><td>¥5,500</td></tr><tr><td>NeoVoir 再撮影料</td><td>¥3,300</td></tr></tbody></table></figure>
+<!-- /wp:table --></div>
+<!-- /wp:loos/tab-body --></div></div>
+<!-- /wp:loos/tab -->
+
+<!-- wp:heading {"className":"is-style-section_ttl"} -->
+<h2 class="wp-block-heading is-style-section_ttl">ご案内</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3,"className":"is-style-default"} -->
+<h3 class="wp-block-heading is-style-default">料金表について</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>〇料金表の価格は全て税込表示となっております。<br>〇当院の施術は全て自由診療です。<br>〇診察の結果、施術の適応がない場合も診察料を頂戴いたします。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"className":"is-style-default"} -->
+<h3 class="wp-block-heading is-style-default">お支払いについて</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>現金によるお支払いのほか、各種クレジットカード、医療用ローンによるお支払いも承っております。詳しくはカウンセリング予約時にお気軽にお問い合わせください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
