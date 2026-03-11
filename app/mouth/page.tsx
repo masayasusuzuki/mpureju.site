@@ -25,7 +25,7 @@ const CONFIG: PillarConfig = {
   treatments: [
     {
       name: "口角挙上",
-      slug: "lip-corner-lift",
+      slug: "lip-lift",
       desc: "下がった口角の皮膚・粘膜を切開し筋肉処理を行うことで、口角を上外側に引き上げます。",
     },
     {

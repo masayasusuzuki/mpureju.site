@@ -27,7 +27,7 @@
 
 | # | スキーマ名 | 用途 | 主なフィールド |
 |---|-----------|------|----------------|
-| 1 | **treatments**（施術情報） | 施術詳細ページ + 料金一覧の単一ソース | title, slug, category, description, doctor_comment, risks, thumbnail, price_options[]（name・price・note）, **downtime_min_days, downtime_max_days, downtime_milestones[]**（label・days_after・description） |
+| 1 | **treatments**（施術情報） | 施術詳細ページのコンテンツ管理 | title, slug, pillar, catch_copy, description, recommended_for, procedure_flow, doctor_comment, hero_image, risks, downtime_min_days, downtime_max_days ※全フィールド必須。**料金は別API `prices` で管理**（後述） |
 | 2 | **cases**（症例記事） | 記事形式の症例コンテンツ。サムネ+本文で編集自由度を確保 | title, slug, thumbnail, category, treatment（relation）, age_group, gender, concern, content（richtext）, before_photo, after_photo, published_at |
 | 3 | **news**（お知らせ） | クリニックからのお知らせ | title, content, category（notice/explanation/price-change）, thumbnail, published_at |
 | 4 | **columns**（コラム記事） | ブログ・読み物コンテンツ | title, slug, content, category, thumbnail, tags[], published_at |
@@ -39,11 +39,45 @@
 | 10 | **media**（SNSメディア） | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
 | 11 | **jobs**（求人情報） | `/recruit/` 一覧・詳細ページのコンテンツ管理。職種ごとに記事形式で管理 | title, slug, employment_type（正社員/パート/業務委託）, description（richtext）, requirements（応募条件・richtext）, conditions（待遇・勤務条件・richtext）, is_active（募集中フラグ）, published_at |
 
-> **料金の管理方針：** `treatments` の `price_options[]` が単一ソース。施術詳細ページと `/price/` 一覧ページの両方がこのデータを参照するため、更新箇所は1か所で済む。
+> **⚠️ 料金の管理方針（重要・設計変更）：**
+> 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
+> - `prices` API から treatments へコンテンツ参照でリレーション（1施術 : N料金プラン）
+> - `/price/` ページ → `prices` API を直接取得
+> - 施術詳細ページ → 該当 treatment に紐づく prices を取得（2回のAPI呼び出し）
+> - 施術一覧・ピラーページ → 必要に応じて prices を取得
+> - **料金の更新は `prices` API のみで完結**する（treatments を編集する必要なし）
+>
+> ※ `prices` API のスキーマ設計は未確定。確定次第このドキュメントを更新すること。
 >
 > **症例写真の管理方針：** `cases` の `before_photo` と `after_photo` は結合済み画像ではなく**別フィールドで個別管理**する。理由：①画像編集ソフト不要でそのままアップロード可能、②片方だけの差し替えが容易、③フロント側でホバー切替・左右スライダー比較など表示パターンを柔軟に変えられる。`setcourses` の before/after も同様。
 >
 > **チャットボットのプロンプト・RAGナレッジはmicroCMSで管理しない。** Supabaseテーブルで直接管理し、管理画面からCRUD操作する。
+
+### treatments 詳細スキーマ
+
+| # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
+|---|---|---|---|---|---|
+| 1 | `title` | 施術名 | テキストフィールド | ✅ | |
+| 2 | `slug` | URLスラッグ | テキストフィールド | ✅ | |
+| 3 | `pillar` | 部位 | セレクトフィールド | ✅ | mouth / eye / nose / lift / skin |
+| 4 | `catch_copy` | キャッチコピー | テキストフィールド | ✅ | 施術一覧・ピラーページで表示 |
+| 5 | `description` | 施術説明 | リッチエディタ | ✅ | |
+| 6 | `recommended_for` | こんな方におすすめ | リッチエディタ | ✅ | 箇条書き想定 |
+| 7 | `procedure_flow` | 施術の流れ | リッチエディタ | ✅ | カウンセリング→施術→アフターケア等 |
+| 8 | `doctor_comment` | ドクターコメント | テキストエリア | ✅ | |
+| 9 | `hero_image` | メイン画像 | 画像 | ✅ | |
+| 10 | `risks` | リスク・副作用 | リッチエディタ | ✅ | |
+| 11 | `downtime_min_days` | DT最小日数 | 数字 | ✅ | シミュレーター用 |
+| 12 | `downtime_max_days` | DT最大日数 | 数字 | ✅ | シミュレーター用 |
+
+> **⚠️ 旧スキーマからの変更点：**
+> - `category` → `pillar` にリネーム（部位の意味をより明確に）
+> - `catch_copy` を新規追加（施術一覧・カード表示用のキャッチコピー）
+> - `thumbnail` → `hero_image` にリネーム（メイン画像としての用途を明確に）
+> - `risks` をテキストエリア → **リッチエディタ** に変更（箇条書き・太字等の書式が必要なため）
+> - `price_options[]` を削除 → **独立 API `prices` に分離**（後述）
+> - `downtime_milestones[]` は API 作成後にカスタムフィールド/繰り返しフィールドとして追加予定
+> - **全フィールドを必須に設定**（下書き段階でも全項目入力を運用ルールとする）
 
 ---
 
@@ -54,7 +88,7 @@
 | ファイル | 内容 | 用途 |
 |---------|------|------|
 | `docs/treatment-menu.md` | 施術名・概要・リスク副作用一覧 | 現行WordPressより抽出。施術コンテンツ整備・microCMS投入の起点。 |
-| `docs/price-list.md` | 全施術・化粧品の料金一覧（税込） | WordPressコードエディタ出力から整理。microCMS `treatments.price_options[]` への投入データ。 |
+| `docs/price-list.md` | 全施術・化粧品の料金一覧（税込） | WordPressコードエディタ出力から整理。microCMS `prices` API への投入データ。 |
 | `docs/codeediter` | WordPressコードエディタ出力（raw） | 現行サイトの PRICE ページ ブロック構造そのまま。参照・検証のみ。直接編集不可。 |
 
 **料金データの流れ:**
@@ -64,12 +98,13 @@
   ↓ 手動抽出
 docs/price-list.md（開発参照ドキュメント）
   ↓ microCMS 投入時に参照
-microCMS treatments.price_options[]（本番単一ソース）
+microCMS prices API（本番単一ソース）← treatments へコンテンツ参照でリレーション
   ↓ API取得
-/price/ ページ + 各施術詳細ページ（フロント表示）
+/price/ ページ（prices 直接取得）
+施術詳細ページ（treatments + 紐づく prices を取得）
 ```
 
-> **注意:** `docs/price-list.md` はあくまで開発用の中間ドキュメント。microCMS 投入後は microCMS が正となる。料金変更は microCMS 側のみを更新すること。
+> **注意:** `docs/price-list.md` はあくまで開発用の中間ドキュメント。microCMS 投入後は microCMS が正となる。料金変更は `prices` API のみを更新すること。
 
 ---
 
@@ -495,7 +530,7 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 
 ### 料金シミュレーター
 - 施術をチェックボックスで複数選択
-- `treatments.price_options[]` から合計金額レンジを自動計算して表示
+- `prices` API から該当施術の料金を取得し、合計金額レンジを自動計算して表示
 - CTA：「この組み合わせでLINE相談する」「カウンセリングで詳細を確認する → Medicalforce」
 
 ### ダウンタイムシミュレーター（カレンダーUI）
@@ -520,12 +555,11 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 | SPタイムライン | CSS + `framer-motion` |
 | 日付計算 | `date-fns` |
 
-### microCMSスキーマへの追加フィールド
+### microCMSスキーマへの追加フィールド（API作成後に設定）
 
-**`treatments` に追加：**
-- `downtime_min_days`: number
-- `downtime_max_days`: number
+**`treatments` に追加（繰り返しフィールド）：**
 - `downtime_milestones[]`: 繰り返しフィールド（label / days_after / description）
+- ※ `downtime_min_days`, `downtime_max_days` は基本フィールドとして作成済み
 
 **`setcourses`（新規スキーマ）：**
 - title, tagline, concern（解決する悩み）

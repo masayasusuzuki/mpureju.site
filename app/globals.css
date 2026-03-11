@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   /* Brand colors - Maison PUREJU */
@@ -184,5 +185,105 @@ html {
     .section-container {
       padding: 0 2rem;
     }
+  }
+
+  /* こんな方におすすめ - チェックマーク付きリスト */
+  .recommended-checklist ul,
+  .recommended-checklist ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .recommended-checklist li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .recommended-checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.3em;
+    width: 1.1rem;
+    height: 1.1rem;
+    background-color: var(--color-brand-gold);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+  .recommended-checklist p {
+    margin: 0;
+  }
+
+  /* 施術の流れ - タイムラインスタイル */
+  .procedure-timeline {
+    counter-reset: step;
+    padding-left: 3.8rem;
+    position: relative;
+  }
+
+  /* 縦線 */
+  .procedure-timeline::before {
+    content: "";
+    position: absolute;
+    left: 1.15rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background-color: var(--color-brand-gold);
+    opacity: 0.25;
+  }
+
+  .procedure-timeline h2 {
+    all: unset;
+    display: block;
+    counter-increment: step;
+    position: relative;
+    font-family: var(--font-noto-serif), serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-brand-dark);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .procedure-timeline > h2:first-child {
+    margin-top: 0;
+  }
+
+  /* ゴールド丸番号 */
+  .procedure-timeline h2::before {
+    content: counter(step);
+    position: absolute;
+    left: -3.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 9999px;
+    background-color: var(--color-brand-gold);
+    color: white;
+    font-family: var(--font-cormorant), serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 1;
+  }
+
+  .procedure-timeline p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.9;
   }
 }

@@ -1,17 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-export interface PriceRow {
-  category: string;
-  option?: string;
-  price: string;
-}
-
-export interface SubTab {
-  label: string;
-  rows: PriceRow[];
-}
+import type { PriceRow, SubTab } from "@/lib/price-data";
 
 export function PriceSubTabs({ tabs }: { tabs: SubTab[] }) {
   const [activeIdx, setActiveIdx] = useState(0);
