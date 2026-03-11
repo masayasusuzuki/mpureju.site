@@ -53,7 +53,7 @@ export default function TopPage() {
           {/* 背景画像 - zoom-out */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/toppage/hero_background.jpg"
+            src="/toppage/hero_background02.png"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover object-center"
