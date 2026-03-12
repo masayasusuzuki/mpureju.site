@@ -6,7 +6,9 @@ export const metadata: Metadata = {
     "銀座の美容外科・美容皮膚科クリニック。形成外科専門医が担当する目元・鼻・口元・リフトアップ・美容皮膚科の施術。",
 };
 
-import { MediaSectionPlaceholder } from "@/components/sections/MediaSection";
+import { MediaSection } from "@/components/sections/MediaSection";
+import { getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
+import type { News } from "@/types/microcms";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TeamMarquee } from "@/components/sections/TeamMarquee";
@@ -15,24 +17,26 @@ import { FaceMenu } from "@/components/sections/FaceMenu";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { CaseCarousel } from "@/components/sections/CaseCarousel";
 
-// TODO: Replace MediaSectionPlaceholder with MediaSection once microCMS is connected
-// import { MediaSection } from "@/components/sections/MediaSection";
 // TODO: Import other section components as they are built
-// import { HeroSection } from "@/components/sections/HeroSection";
-// import { CampaignBanner } from "@/components/sections/CampaignBanner";
-// import { FaceMenu } from "@/components/sections/FaceMenu";
-// import { TreatmentNav } from "@/components/sections/TreatmentNav";
-// import { CaseResults } from "@/components/sections/CaseResults";
-// import { MediaSection } from "@/components/sections/MediaSection";
-// import { ClinicInterior } from "@/components/sections/ClinicInterior";
-// import { ValueSection } from "@/components/sections/ValueSection";
-// import { DoctorMessage } from "@/components/sections/DoctorMessage";
-// import { TeamSlide } from "@/components/sections/TeamSlide";
-// import { NewsSection } from "@/components/sections/NewsSection";
-// import { AccessSection } from "@/components/sections/AccessSection";
-// import { ReserveCTA } from "@/components/sections/ReserveCTA";
 
-export default function TopPage() {
+export default async function TopPage() {
+  const hasCategory = (item: News, cat: string) =>
+    Array.isArray(item.category) ? item.category.includes(cat) : item.category === cat;
+
+  const [mediaData, teamPhotoData, newsData] = await Promise.all([
+    getMediaList(),
+    getTeamPhotos(),
+    getNewsList(),
+  ]);
+  const teamPhotos = teamPhotoData.contents.map((t) => t.photo.url);
+  const newsItems = newsData.contents.filter((n) => hasCategory(n, "お知らせ")).slice(0, 3);
+  const credentialItems = newsData.contents.filter((n) => hasCategory(n, "実績・掲載歴"));
+  const instagramItems = mediaData.contents.filter((m) =>
+    Array.isArray(m.platform) ? m.platform.includes("Instagram") : m.platform === "Instagram"
+  );
+  const youtubeItems = mediaData.contents.filter((m) =>
+    Array.isArray(m.platform) ? m.platform.includes("YouTube") : m.platform === "YouTube"
+  );
   return (
     <>
       {/* Hero animations - inline <style> で確実にキーフレームを参照 */}
@@ -53,7 +57,7 @@ export default function TopPage() {
           {/* 背景画像 - zoom-out */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/toppage/hero_background02.png"
+            src="/toppage/hero_background03.jpg"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover object-center"
@@ -153,51 +157,40 @@ export default function TopPage() {
       </section>
 
       {/* Section 6: Credentials */}
-      {/* TODO: Phase 2 で microCMS media スキーマから取得に切り替え */}
       <section className="py-16 md:py-24 bg-[var(--color-brand-cream)]">
         <div className="section-container">
           <SectionHeading number="04" en="Credentials" ja="実績・掲載歴" className="mb-12" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                image: "/works/works01.jpg",
-                title: "第6回美容医療コミュニティ講演",
-                desc: "ニードルRF新時代の幕開け — 最新MicroneedleRF治療の臨床最前線",
-              },
-              {
-                image: "/works/works02.jpg",
-                title: "美容医療メディア「キレイレポ」独占取材掲載",
-                desc: "形成外科専門医 廣瀬雅史による口角挙上術の解説",
-              },
-            ].map((item) => (
-              <div key={item.title} className="bg-white overflow-hidden flex flex-col">
-                {/* サムネイル 16:9 */}
-                <div className="relative w-full aspect-video bg-[var(--color-brand-dark)]/5 shrink-0">
-                  {item.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
-                    </div>
-                  )}
-                </div>
-                {/* テキスト */}
-                <div className="p-5 flex flex-col gap-2 flex-1">
-                  <p className="font-serif text-sm leading-relaxed text-[var(--color-brand-dark)]">
-                    {item.title}
-                  </p>
-                  <p className="text-xs text-[var(--color-text-secondary)] font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {credentialItems.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {credentialItems.map((item) => (
+                <a key={item.id} href={`/news/${item.slug}`} className="group bg-white overflow-hidden flex flex-col">
+                  <div className="relative w-full aspect-video bg-[var(--color-brand-dark)]/5 shrink-0 overflow-hidden">
+                    {item.thumbnail ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.thumbnail.url}
+                        alt={item.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5 flex flex-col gap-2 flex-1">
+                    <p className="font-serif text-sm leading-relaxed text-[var(--color-brand-dark)] group-hover:text-[var(--color-brand-gold)] transition-colors">
+                      {item.title}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--color-text-secondary)] py-8 text-center">
+              まだコンテンツがありません
+            </p>
+          )}
         </div>
       </section>
 
@@ -354,7 +347,7 @@ export default function TopPage() {
             </p>
           </div>
         </div>
-        <TeamMarquee />
+        <TeamMarquee photos={teamPhotos} />
       </section>
 
       {/* Section 11: News */}
@@ -369,23 +362,33 @@ export default function TopPage() {
               一覧を見る →
             </a>
           </div>
-          <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-4 p-4 bg-white">
-                <span className="text-sm text-[var(--color-text-secondary)] whitespace-nowrap">
-                  2026.01.0{i}
-                </span>
-                <span className="text-sm text-[var(--color-text-primary)]">
-                  お知らせタイトル（microCMS連携予定）
-                </span>
-              </div>
-            ))}
-          </div>
+          {newsItems.length > 0 ? (
+            <div className="space-y-4">
+              {newsItems.map((item) => (
+                <a key={item.id} href={`/news/${item.slug}`} className="flex gap-4 p-4 bg-white hover:bg-[var(--color-brand-cream)]/50 transition-colors">
+                  <span className="text-sm text-[var(--color-text-secondary)] whitespace-nowrap">
+                    {new Date(item.published_at).toLocaleDateString("ja-JP", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                    }).replace(/\//g, ".")}
+                  </span>
+                  <span className="text-sm text-[var(--color-text-primary)]">
+                    {item.title}
+                  </span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--color-text-secondary)] py-8 text-center">
+              まだお知らせはありません
+            </p>
+          )}
         </div>
       </section>
 
       {/* Section 12: Media（SNS） */}
-      <MediaSectionPlaceholder />
+      <MediaSection instagramItems={instagramItems} youtubeItems={youtubeItems} />
 
       {/* Section 13: クリニック内観② - parallax */}
       <ParallaxImage

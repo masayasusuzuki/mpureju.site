@@ -1,6 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
+import type { Media, News, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -37,5 +38,47 @@ export async function getTreatmentsByPillar(pillar: string) {
       filters: `pillar[contains]${pillar}`,
       limit: 100,
     },
+  });
+}
+
+// ── news ──────────────────────────────────────
+
+/** ニュース一覧を取得 */
+export async function getNewsList(queries?: MicroCMSQueries) {
+  return microcms.getList<News>({
+    endpoint: "news",
+    queries: { limit: 20, ...queries },
+  });
+}
+
+/** slugでニュースを1件取得 */
+export async function getNewsBySlug(slug: string) {
+  const data = await microcms.getList<News>({
+    endpoint: "news",
+    queries: {
+      filters: `slug[equals]${slug}`,
+      limit: 1,
+    },
+  });
+  return data.contents[0] ?? null;
+}
+
+// ── team_photos ───────────────────────────────
+
+/** チーム写真一覧を取得 */
+export async function getTeamPhotos(queries?: MicroCMSQueries) {
+  return microcms.getList<TeamPhoto>({
+    endpoint: "team_photos",
+    queries: { limit: 30, ...queries },
+  });
+}
+
+// ── media ─────────────────────────────────────
+
+/** メディア一覧を取得 */
+export async function getMediaList(queries?: MicroCMSQueries) {
+  return microcms.getList<Media>({
+    endpoint: "media",
+    queries: { limit: 20, ...queries },
   });
 }

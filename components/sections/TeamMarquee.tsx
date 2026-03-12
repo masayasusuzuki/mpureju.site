@@ -1,26 +1,18 @@
 "use client";
 
-export interface TeamMember {
-  id: string;
-  name: string;
-  title: string;
-  image: string;
-}
-
-const PLACEHOLDERS = Array.from({ length: 6 }, (_, i) => ({ id: String(i) }));
-
 export function TeamMarquee({
-  members,
+  photos,
   speed = 40,
 }: {
-  members?: TeamMember[];
+  photos: string[];
   speed?: number;
 }) {
-  const items = members ?? PLACEHOLDERS;
+  if (photos.length === 0) return null;
 
   return (
-    <div className="overflow-hidden">
-      {/* アイテムを2セット並べて -50% までスライドでシームレスループ */}
+    <div className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-36 md:w-56 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-36 md:w-56 bg-gradient-to-l from-white to-transparent" />
       <div
         className="flex gap-5"
         style={{
@@ -28,29 +20,17 @@ export function TeamMarquee({
           animation: `marquee-scroll ${speed}s linear infinite`,
         }}
       >
-        {[...items, ...items].map((item, i) => (
+        {[...photos, ...photos].map((src, i) => (
           <div
             key={i}
             className="flex-shrink-0 w-52 h-72 bg-[var(--color-brand-cream)] overflow-hidden"
           >
-            {"image" in item ? (
-              <div className="relative w-full h-full">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={(item as TeamMember).image}
-                  alt={(item as TeamMember).name}
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3">
-                  <p className="text-white text-sm font-medium leading-tight">
-                    {(item as TeamMember).name}
-                  </p>
-                  <p className="text-white/70 text-xs mt-0.5">
-                    {(item as TeamMember).title}
-                  </p>
-                </div>
-              </div>
-            ) : null}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt=""
+              className="w-full h-full object-cover object-top brightness-125 contrast-90"
+            />
           </div>
         ))}
       </div>
