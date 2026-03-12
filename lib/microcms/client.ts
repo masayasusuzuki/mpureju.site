@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Media, News, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Media, News, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -39,6 +39,21 @@ export async function getTreatmentsByPillar(pillar: string) {
       limit: 100,
     },
   });
+}
+
+// ── campaigns ─────────────────────────────────
+
+/** 公開中のキャンペーン一覧を取得 */
+export async function getCampaigns() {
+  const data = await microcms.getList<Campaign>({
+    endpoint: "campaigns",
+    queries: {
+      filters: "is_active[equals]true",
+      limit: 10,
+    },
+  });
+  const now = new Date();
+  return data.contents.filter((c) => new Date(c.start_at) <= now);
 }
 
 // ── news ──────────────────────────────────────

@@ -6,6 +6,16 @@ export interface MicroCMSImage {
   height: number;
 }
 
+/** microCMS campaigns スキーマ */
+export interface Campaign {
+  id: string;
+  title: string;
+  image: MicroCMSImage;
+  link_url?: string;
+  start_at: string;
+  is_active: boolean;
+}
+
 /** microCMS news スキーマ */
 export interface News {
   id: string;

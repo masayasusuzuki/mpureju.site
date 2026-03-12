@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 import { MediaSection } from "@/components/sections/MediaSection";
-import { getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
+import { getCampaigns, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
 import type { News } from "@/types/microcms";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -23,10 +23,11 @@ export default async function TopPage() {
   const hasCategory = (item: News, cat: string) =>
     Array.isArray(item.category) ? item.category.includes(cat) : item.category === cat;
 
-  const [mediaData, teamPhotoData, newsData] = await Promise.all([
+  const [mediaData, teamPhotoData, newsData, campaigns] = await Promise.all([
     getMediaList(),
     getTeamPhotos(),
     getNewsList(),
+    getCampaigns(),
   ]);
   const teamPhotos = teamPhotoData.contents.map((t) => t.photo.url);
   const newsItems = newsData.contents.filter((n) => hasCategory(n, "お知らせ")).slice(0, 3);
@@ -93,7 +94,6 @@ export default async function TopPage() {
       <div className="relative z-10">
 
       {/* Section 2: Campaign Banner */}
-      {/* TODO: Phase 2 で microCMS campaigns から取得に切り替え */}
       <section className="py-10 bg-white">
         <div className="section-container">
           {(() => {
@@ -102,23 +102,40 @@ export default async function TopPage() {
               <SectionHeading en="Campaign" ja={`${month}のキャンペーン`} className="mb-8" />
             );
           })()}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { src: "/campaign/3月_samune01.png", alt: "キャンペーン 1" },
-              { src: "/campaign/3月_samune02.png", alt: "キャンペーン 2" },
-            ].map((banner, i) => (
-              <ScrollFadeIn key={banner.src} delay={i * 0.1}>
-                <div className="aspect-video overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={banner.src}
-                    alt={banner.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </ScrollFadeIn>
-            ))}
-          </div>
+          {campaigns.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {campaigns.map((campaign, i) => {
+                const card = (
+                  <div>
+                    <div className="aspect-video overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={campaign.image.url}
+                        alt={campaign.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-[var(--color-brand-dark)] mt-3 font-light">
+                      {campaign.title}
+                    </p>
+                  </div>
+                );
+                return (
+                  <ScrollFadeIn key={campaign.id} delay={i * 0.1}>
+                    {campaign.link_url ? (
+                      <a href={campaign.link_url} target="_blank" rel="noopener noreferrer" className="block hover:opacity-90 transition-opacity">
+                        {card}
+                      </a>
+                    ) : card}
+                  </ScrollFadeIn>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--color-text-secondary)] py-8 text-center">
+              現在キャンペーンはありません
+            </p>
+          )}
         </div>
       </section>
 
