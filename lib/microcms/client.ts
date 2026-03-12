@@ -41,6 +41,19 @@ export async function getTreatmentsByPillar(pillar: string) {
   });
 }
 
+// ── treatments search ─────────────────────────
+
+/** キーワードで施術を検索 */
+export async function searchTreatments(keyword: string) {
+  return microcms.getList<Treatment>({
+    endpoint: "treatments",
+    queries: {
+      q: keyword,
+      limit: 20,
+    },
+  });
+}
+
 // ── campaigns ─────────────────────────────────
 
 /** 公開中のキャンペーン一覧を取得 */

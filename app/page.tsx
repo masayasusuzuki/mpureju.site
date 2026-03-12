@@ -16,6 +16,7 @@ import { TreatmentTabs } from "@/components/sections/TreatmentTabs";
 import { FaceMenu } from "@/components/sections/FaceMenu";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { CaseCarousel } from "@/components/sections/CaseCarousel";
+import { SearchBar } from "@/components/sections/SearchBar";
 
 // TODO: Import other section components as they are built
 
@@ -136,6 +137,13 @@ export default async function TopPage() {
               現在キャンペーンはありません
             </p>
           )}
+        </div>
+      </section>
+
+      {/* Search */}
+      <section className="py-14 md:py-20 bg-[var(--color-brand-cream)]">
+        <div className="section-container">
+          <SearchBar />
         </div>
       </section>
 
