@@ -17,7 +17,7 @@ const TOC = [
 ];
 
 export default async function LipLiftPage() {
-  const treatment = await getTreatmentBySlug("lip-lift");
+  const treatment = await getTreatmentBySlug("corner-lip-lift");
   if (!treatment) notFound();
 
   const priceRows = findPriceRowsByTitle(treatment.title);

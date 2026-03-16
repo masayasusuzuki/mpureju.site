@@ -250,7 +250,7 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 /contact/             予約・お問い合わせ（Medicalforce / LINEへ誘導）
 
 /mouth/               口元 [ピラーページ]
-  /mouth/lip-lift/    口角挙上
+  /mouth/corner-lip-lift/    口角挙上
   /mouth/m-lip/       M字リップ
   /mouth/philtrum/    人中短縮
   /mouth/lip-reduction/ 口唇縮小
@@ -310,21 +310,21 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 ```
 お悩みから探す（顔SVG インタラクティブUI）
   └→ 部位クリック（例: 口元）→ /mouth/（ピラーページ）
-       └→ ピラーページ内の施術リスト → /mouth/lip-lift/ 等（施術詳細）
+       └→ ピラーページ内の施術リスト → /mouth/corner-lip-lift/ 等（施術詳細）
 
 施術名から探す（タブUI）
-  └→ 口元タブ → 「口角挙上」クリック → /mouth/lip-lift/（施術詳細）
+  └→ 口元タブ → 「口角挙上」クリック → /mouth/corner-lip-lift/（施術詳細）
 ```
 
 ### 施術詳細ページのURL設計
 
 | 種別 | URL形式 | 例 |
 |-----|--------|----|
-| ピラー主要施術 | `/[pillar]/[slug]/` | `/mouth/lip-lift/` |
+| ピラー主要施術 | `/[pillar]/[slug]/` | `/mouth/corner-lip-lift/` |
 | その他全施術 | `/treatment/[slug]/` | `/treatment/peanut-lip/` |
 
 **ピラー主要施術（定義済みURL）:**
-- 口元: `/mouth/lip-lift` `/mouth/m-lip` `/mouth/philtrum` `/mouth/lip-reduction` `/mouth/gummy-smile`
+- 口元: `/mouth/corner-lip-lift` `/mouth/m-lip` `/mouth/philtrum` `/mouth/lip-reduction` `/mouth/gummy-smile`
 - 目元: `/eye/double-eyelid` `/eye/ptosis` `/eye/brow-lift` `/eye/under-eye` `/eye/epicanthoplasty`
 - 鼻: `/nose/implant` `/nose/tip` `/nose/alar` `/nose/septum`
 - リフトアップ: `/lift/thread` `/lift/sofwave` `/lift/hifu`
