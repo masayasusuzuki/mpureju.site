@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTreatmentBySlug } from "@/lib/microcms/client";
+import { getTreatmentBySlug, getTreatmentsByPillar } from "@/lib/microcms/client";
 import { findPriceRowsByTitle } from "@/lib/price-data";
 import { InlinePricePanel } from "@/components/sections/InlinePricePanel";
 import { RichContent } from "@/components/ui/RichContent";
@@ -17,11 +18,41 @@ const TOC = [
   { id: "downtime", label: "ダウンタイム" },
 ];
 
-export default async function LipLiftPage() {
-  const treatment = await getTreatmentBySlug("corner-lip-lift");
+export async function generateStaticParams() {
+  const data = await getTreatmentsByPillar("mouth");
+  return data.contents
+    .filter((t) => t.slug)
+    .map((t) => ({ slug: t.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const treatment = await getTreatmentBySlug(slug);
+  if (!treatment) return {};
+  return {
+    title: `${treatment.title}｜口の整形・唇の整形`,
+    description: treatment.catch_copy,
+  };
+}
+
+export default async function MouthTreatmentPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const treatment = await getTreatmentBySlug(slug);
   if (!treatment) notFound();
 
   const priceRows = findPriceRowsByTitle(treatment.title);
+
+  // サイドバー用: 同じピラーの他の施術
+  const allMouth = await getTreatmentsByPillar("mouth");
+  const otherTreatments = allMouth.contents.filter((t) => t.slug !== slug);
 
   return (
     <article>
@@ -84,9 +115,7 @@ export default async function LipLiftPage() {
             {/* こんな方におすすめ */}
             {treatment.recommended_for && (
               <section id="recommended" className="relative bg-[var(--color-brand-cream)] border border-[var(--color-brand-gold)]/30 p-6 md:p-8 rounded-sm">
-                {/* 左上 L字装飾 */}
                 <span className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[var(--color-brand-gold)]" />
-                {/* 右下 L字装飾 */}
                 <span className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[var(--color-brand-gold)]" />
 
                 <div className="flex items-baseline gap-3 mb-6">
@@ -114,58 +143,10 @@ export default async function LipLiftPage() {
                   BEFORE &amp; AFTER
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { id: 3, treatment: "口角挙上", concern: "口角の下垂", age: "40代" },
-                  { id: 8, treatment: "口角挙上", concern: "口角が下がって見える", age: "30代" },
-                ].map((c) => (
-                  <div key={c.id} className="bg-white border border-[var(--color-brand-brown)]/10 overflow-hidden">
-                    {/* Before */}
-                    <div className="relative w-full bg-[#e8e4dc]" style={{ paddingBottom: "75%" }}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-[var(--color-text-secondary)]/40 text-xs tracking-[0.25em]">PHOTO</span>
-                      </div>
-                      <span className="absolute top-2 left-2 text-[10px] tracking-[0.2em] text-[var(--color-text-secondary)] bg-white/80 px-2 py-0.5">
-                        Before
-                      </span>
-                    </div>
-                    {/* 仕切り */}
-                    <div className="h-px bg-[var(--color-brand-brown)]/10" />
-                    {/* After */}
-                    <div className="relative w-full bg-[#ddd8cf]" style={{ paddingBottom: "75%" }}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-[var(--color-text-secondary)]/40 text-xs tracking-[0.25em]">PHOTO</span>
-                      </div>
-                      <span className="absolute top-2 left-2 text-[10px] tracking-[0.2em] text-[var(--color-text-secondary)] bg-white/80 px-2 py-0.5">
-                        After
-                      </span>
-                    </div>
-                    {/* 施術情報 */}
-                    <div className="px-4 py-4 space-y-2 border-t border-[var(--color-brand-brown)]/10">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-[10px] tracking-[0.15em] text-[var(--color-brand-gold)] shrink-0">施術名</span>
-                        <span className="text-sm text-[var(--color-brand-dark)] font-light">{c.treatment}</span>
-                      </div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-[10px] tracking-[0.15em] text-[var(--color-brand-gold)] shrink-0">お悩み</span>
-                        <span className="text-sm text-[var(--color-text-secondary)] font-light">{c.concern}</span>
-                      </div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-[10px] tracking-[0.15em] text-[var(--color-brand-gold)] shrink-0">年代</span>
-                        <span className="text-sm text-[var(--color-text-secondary)] font-light">{c.age}</span>
-                      </div>
-                    </div>
-                    {/* CTA */}
-                    <div className="px-4 pb-4">
-                      <Link
-                        href="/mouth/case"
-                        className="block text-center text-[11px] tracking-[0.18em] border border-[var(--color-brand-dark)] py-2.5 text-[var(--color-brand-dark)] hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors"
-                      >
-                        この症例を詳しく見る
-                      </Link>
-                    </div>
-                  </div>
-                ))}
+              <div className="bg-[var(--color-brand-cream)] p-6 text-center rounded-sm">
+                <p className="text-sm text-[var(--color-text-secondary)] font-light">
+                  症例写真は準備中です
+                </p>
               </div>
               <div className="mt-6 text-center">
                 <Link
@@ -284,7 +265,7 @@ export default async function LipLiftPage() {
           <aside className="w-full lg:w-72 xl:w-80 shrink-0">
             <div className="lg:sticky lg:top-24 space-y-6">
 
-              {/* キャンペーン枠（データ未接続） */}
+              {/* キャンペーン枠 */}
               <div className="border border-[var(--color-brand-gold)]/30 rounded-sm overflow-hidden">
                 <div className="bg-[var(--color-brand-gold)]/10 px-4 py-3">
                   <p className="text-xs tracking-[0.15em] text-[var(--color-brand-gold)] font-medium">
@@ -303,35 +284,31 @@ export default async function LipLiftPage() {
                 </div>
               </div>
 
-              {/* 料金を確認（インライン展開） */}
+              {/* 料金 */}
               <InlinePricePanel title={treatment.title} rows={priceRows} />
 
-
               {/* 口元の他の施術 */}
-              <div className="border border-[var(--color-brand-brown)]/10 rounded-sm">
-                <div className="px-4 py-3 border-b border-[var(--color-brand-brown)]/10">
-                  <p className="text-xs tracking-[0.15em] text-[var(--color-brand-dark)] font-medium">
-                    口元のその他の施術
-                  </p>
+              {otherTreatments.length > 0 && (
+                <div className="border border-[var(--color-brand-brown)]/10 rounded-sm">
+                  <div className="px-4 py-3 border-b border-[var(--color-brand-brown)]/10">
+                    <p className="text-xs tracking-[0.15em] text-[var(--color-brand-dark)] font-medium">
+                      口元のその他の施術
+                    </p>
+                  </div>
+                  <ul className="divide-y divide-[var(--color-brand-brown)]/5">
+                    {otherTreatments.map((t) => (
+                      <li key={t.id}>
+                        <Link
+                          href={`/mouth/${t.slug}`}
+                          className="block px-4 py-3 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-cream)]/50 transition-colors"
+                        >
+                          {t.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="divide-y divide-[var(--color-brand-brown)]/5">
-                  {[
-                    { name: "M字リップ", slug: "m-lip" },
-                    { name: "人中短縮", slug: "philtrum-shortening" },
-                    { name: "口唇縮小", slug: "lip-reduction" },
-                    { name: "ガミースマイル手術", slug: "gummy-smile" },
-                  ].map((t) => (
-                    <li key={t.slug}>
-                      <Link
-                        href={`/mouth/${t.slug}`}
-                        className="block px-4 py-3 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-cream)]/50 transition-colors"
-                      >
-                        {t.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              )}
             </div>
           </aside>
 

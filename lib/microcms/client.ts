@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, Media, News, Recruit, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Media, News, Recruit, StaffBlog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -36,6 +36,7 @@ export async function getTreatmentsByPillar(pillar: string) {
     endpoint: "treatments",
     queries: {
       filters: `pillar[contains]${pillar}`,
+      orders: "sort_order",
       limit: 100,
     },
   });
@@ -143,6 +144,40 @@ export async function getRecruitListAll(queries?: MicroCMSQueries) {
     });
   } catch {
     return { contents: [], totalCount: 0, offset: 0, limit: 20 };
+  }
+}
+
+// ── staff_blog ──────────────────────────────
+
+/** スタッフブログ一覧を取得 */
+export async function getStaffBlogList(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<StaffBlog>({
+      endpoint: "staff_blog",
+      queries: {
+        orders: "-published_at",
+        limit: 10,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 10 };
+  }
+}
+
+/** slugでスタッフブログを1件取得 */
+export async function getStaffBlogBySlug(slug: string) {
+  try {
+    const data = await microcms.getList<StaffBlog>({
+      endpoint: "staff_blog",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+    return data.contents[0] ?? null;
+  } catch {
+    return null;
   }
 }
 

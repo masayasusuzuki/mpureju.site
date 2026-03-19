@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { ValuesCarousel } from "@/components/sections/ValuesCarousel";
 import { PositionAccordion } from "@/components/sections/PositionAccordion";
+import { getStaffBlogList } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "採用情報",
@@ -133,7 +135,9 @@ const SELECTION_STEPS = [
   { label: "入社", description: "勤務開始" },
 ];
 
-export default function RecruitPage() {
+export default async function RecruitPage() {
+  const staffBlogData = await getStaffBlogList({ limit: 3 });
+  const staffBlogs = staffBlogData.contents;
   return (
     <>
       {/* ── Hero ── */}
@@ -230,10 +234,51 @@ export default function RecruitPage() {
         <ValuesCarousel items={VALUES} />
       </section>
 
+      {/* ── スタッフブログ ── */}
+      {staffBlogs.length > 0 && (
+        <section className="py-16 md:py-24 bg-white">
+          <div className="section-container">
+            <SectionHeading en="Staff Blog" ja="スタッフブログ" number="03" className="mb-14" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {staffBlogs.map((post, i) => (
+                <ScrollFadeIn key={post.id} delay={i * 0.1}>
+                  <Link href={`/recruit/staff-blog/${post.slug}`} className="block bg-[var(--color-brand-cream)] overflow-hidden h-full group">
+                    <div className="aspect-video relative overflow-hidden">
+                      <Image
+                        src={post.thumbnail.url}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div className="px-5 py-4">
+                      <p className="font-serif text-sm text-[var(--color-brand-dark)] leading-relaxed line-clamp-2 group-hover:text-[var(--color-brand-gold)] transition-colors">
+                        {post.title}
+                      </p>
+                    </div>
+                  </Link>
+                </ScrollFadeIn>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link
+                href="/recruit/staff-blog"
+                className="inline-flex items-center gap-2 text-sm text-[var(--color-brand-gold)] hover:underline underline-offset-4 font-light tracking-wide"
+              >
+                スタッフブログをもっと見る →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── 求める人材像 ── */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-[var(--color-brand-cream)]">
         <div className="section-container">
-          <SectionHeading en="Ideal Candidate" ja="求める人材像" number="03" className="mb-14" />
+          <SectionHeading en="Ideal Candidate" ja="求める人材像" number="04" className="mb-14" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-14">
             {IDEAL_CANDIDATE.map((item, i) => (
@@ -279,7 +324,7 @@ export default function RecruitPage() {
         style={{ background: "linear-gradient(160deg, #f7f0e6 0%, #fdfcfa 100%)" }}
       >
         <div className="section-container">
-          <SectionHeading en="Open Positions" ja="募集中の職種" number="04" className="mb-14" />
+          <SectionHeading en="Open Positions" ja="募集中の職種" number="05" className="mb-14" />
           <div className="max-w-3xl">
             <PositionAccordion positions={POSITIONS} />
           </div>
@@ -289,7 +334,7 @@ export default function RecruitPage() {
       {/* ── 福利厚生 ── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="section-container">
-          <SectionHeading en="Benefits" ja="福利厚生" number="05" className="mb-14" />
+          <SectionHeading en="Benefits" ja="福利厚生" number="06" className="mb-14" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-[var(--color-brand-brown)]/10">
             {COMMON_BENEFITS.map((item, i) => (
               <ScrollFadeIn key={item} delay={i * 0.04}>
@@ -309,7 +354,7 @@ export default function RecruitPage() {
         style={{ background: "linear-gradient(160deg, #f7f0e6 0%, #fdfcfa 100%)" }}
       >
         <div className="section-container">
-          <SectionHeading en="Flow" ja="選考フロー" number="06" className="mb-14" />
+          <SectionHeading en="Flow" ja="選考フロー" number="07" className="mb-14" />
           <ScrollFadeIn>
             <div className="flex flex-col md:flex-row items-start md:items-stretch gap-0">
               {SELECTION_STEPS.map((s, i) => (

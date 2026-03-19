@@ -58,6 +58,15 @@ html {
   animation: hero-fade-in 0.9s ease-out forwards;
 }
 
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Hero zoom-out animation */
 @keyframes hero-zoom-out {
   from { transform: scale(1.05); }

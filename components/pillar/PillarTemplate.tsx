@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
@@ -8,6 +9,7 @@ export type Treatment = {
   name: string;
   slug: string;
   desc: string;
+  image?: { url: string };
 };
 
 export type PillarConfig = {
@@ -90,12 +92,22 @@ export function PillarTemplate({ config }: { config: PillarConfig }) {
                   className="group flex flex-col sm:flex-row overflow-hidden hover:bg-[var(--color-brand-cream)]/40 transition-colors duration-200"
                 >
                   {/* 画像 */}
-                  <div className="relative bg-[var(--color-brand-cream)] w-full sm:w-52 lg:w-64 shrink-0 aspect-[4/3]">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[var(--color-text-secondary)]/30 text-xs tracking-[0.25em]">
-                        PHOTO
-                      </span>
-                    </div>
+                  <div className="relative bg-[var(--color-brand-cream)] w-full sm:w-52 lg:w-64 shrink-0 aspect-[4/3] overflow-hidden">
+                    {t.image ? (
+                      <Image
+                        src={t.image.url}
+                        alt={t.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, 256px"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-[var(--color-text-secondary)]/30 text-xs tracking-[0.25em]">
+                          PHOTO
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* テキスト */}

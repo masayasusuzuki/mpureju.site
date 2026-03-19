@@ -15,4 +15,5 @@ export type Treatment = {
   risks: string;
   downtime_min_days: number;
   downtime_max_days: number;
+  sort_order: number;
 } & MicroCMSListContent;
