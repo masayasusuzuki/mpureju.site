@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, Media, News, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Media, News, Recruit, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -109,4 +109,55 @@ export async function getMediaList(queries?: MicroCMSQueries) {
     endpoint: "media",
     queries: { limit: 20, ...queries },
   });
+}
+
+// ── recruit ──────────────────────────────────
+
+/** 募集中の求人一覧を取得 */
+export async function getRecruitList(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<Recruit>({
+      endpoint: "recruit",
+      queries: {
+        filters: "is_active[equals]true",
+        orders: "sort_order",
+        limit: 20,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 20 };
+  }
+}
+
+/** 全求人一覧を取得（is_active問わず） */
+export async function getRecruitListAll(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<Recruit>({
+      endpoint: "recruit",
+      queries: {
+        orders: "sort_order",
+        limit: 20,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 20 };
+  }
+}
+
+/** slugで求人を1件取得 */
+export async function getRecruitBySlug(slug: string) {
+  try {
+    const data = await microcms.getList<Recruit>({
+      endpoint: "recruit",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+    return data.contents[0] ?? null;
+  } catch {
+    return null;
+  }
 }

@@ -34,9 +34,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 数字だけ Noto Sans JP を使う（Cormorant の数字は視認性が低いため） */
+@font-face {
+  font-family: "SansDigits";
+  src: local("Noto Sans JP"), local("NotoSansJP-Regular"), local("NotoSansJP");
+  unicode-range: U+0030-0039, U+002E, U+002C, U+0025, U+00A5, U+0028-0029;
+  /* 0-9, period, comma, %, ¥, parentheses */
+}
+
 /* English decorative font utility */
 .font-en {
-  font-family: var(--font-cormorant), "Times New Roman", serif;
+  font-family: "SansDigits", var(--font-cormorant), "Times New Roman", serif;
 }
 
 /* Hero text fade-in */
@@ -94,7 +102,7 @@ html {
   margin-bottom: 0.75rem;
 }
 .rdp-caption_label {
-  font-family: var(--font-cormorant), serif;
+  font-family: "SansDigits", var(--font-cormorant), serif;
   font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -113,7 +121,7 @@ html {
 /* 日付セル */
 .rdp-day_button {
   border-radius: 50%;
-  font-family: var(--font-cormorant), serif;
+  font-family: "SansDigits", var(--font-cormorant), serif;
   font-size: 1.0625rem;
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -269,7 +277,7 @@ html {
     border-radius: 9999px;
     background-color: var(--color-brand-gold);
     color: white;
-    font-family: var(--font-cormorant), serif;
+    font-family: "SansDigits", var(--font-cormorant), serif;
     font-size: 1.3rem;
     font-weight: 800;
     display: flex;
@@ -286,4 +294,38 @@ html {
     font-size: 0.9rem;
     line-height: 1.9;
   }
+
+}
+
+/* microCMS リッチエディタ — テーブル横スクロールラッパー
+   RichContent コンポーネントが <table> を自動で .table-scroll-wrapper で囲む */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5em 0;
+}
+
+.table-scroll-wrapper table {
+  border-collapse: collapse;
+  min-width: 600px;
+  width: 100%;
+}
+
+.table-scroll-wrapper th,
+.table-scroll-wrapper td {
+  border: 1px solid rgba(61, 43, 26, 0.2);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  vertical-align: top;
+}
+
+.table-scroll-wrapper th {
+  background-color: var(--color-brand-cream);
+  color: var(--color-brand-dark);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }

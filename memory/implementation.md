@@ -24,3 +24,28 @@
 
 ### 次の作業
 - `/mouth/corner-lip-lift` のUI確認・チューニング（Hero画像なし・2カラム構成の状態を確認）
+
+---
+
+## 2026-03-19 / 採用情報ページ（/recruit/）新規作成
+
+### やったこと
+- `app/recruit/page.tsx` — 採用一覧ページ（Hero / Mission / 働く魅力カルーセル / 求める人材像 / 募集職種アコーディオン / 福利厚生 / 選考フロー / CTA）
+- `app/recruit/entry/page.tsx` + `EntryForm.tsx` — エントリーフォーム（3職種タブ切替、URLパラメータで初期選択、広報のみポートフォリオURL欄）
+- `components/sections/ValuesCarousel.tsx` — 横スクロール式カルーセル（CSS overflow-x: auto）
+- `components/sections/PositionAccordion.tsx` — 職種詳細アコーディオン（排他開閉、写真・テーブル・エントリーCTA）
+- `components/ui/RichContent.tsx` — microCMSリッチエディタのテーブルを横スクロールラッパーで囲むコンポーネント
+- `globals.css` — `.table-scroll-wrapper` テーブルスタイル追加
+- `app/mouth/corner-lip-lift/page.tsx` — RichContent適用（テーブル横スクロール対応）
+- `recruit-spec.md` — v2に更新（ベンチマーク分析、ページ構成、APIスキーマ）
+- 3職種の詳細情報ハードコード（業務内容・勤務時間・給与・応募条件）
+
+### 注意点
+- ~~microCMS recruit APIは未作成。現状ハードコードで運用~~ → ハードコードで確定（3職種なのでCMS不要と判断）
+- [ ] 写真プレースホルダー（PHOTO）が各所に残っている。院長写真・職種写真・働く魅力写真の素材が必要
+- [ ] エントリーフォームのバックエンド未実装（TODO: Supabase接続）
+- [ ] `app/recruit/[slug]/page.tsx` が残っている。ハードコード運用に切り替えたので不要になる可能性あり
+
+### 次の作業
+- 写真素材の投入
+- エントリーフォームのSupabase接続

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getTreatmentBySlug } from "@/lib/microcms/client";
 import { findPriceRowsByTitle } from "@/lib/price-data";
 import { InlinePricePanel } from "@/components/sections/InlinePricePanel";
+import { RichContent } from "@/components/ui/RichContent";
 
 const PROSE_STYLE =
   "prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]";
@@ -204,10 +205,7 @@ export default async function LipLiftPage() {
               <h2 className="font-serif text-xl md:text-2xl text-[var(--color-brand-dark)] mb-8 border-l-4 border-[var(--color-brand-gold)] pl-4">
                 施術説明
               </h2>
-              <div
-                className={PROSE_STYLE}
-                dangerouslySetInnerHTML={{ __html: treatment.description }}
-              />
+              <RichContent html={treatment.description} className={PROSE_STYLE} />
             </section>
 
             {/* 施術の流れ */}
@@ -257,10 +255,7 @@ export default async function LipLiftPage() {
               <h2 className="font-serif text-xl md:text-2xl text-[var(--color-brand-dark)] mb-8 border-l-4 border-[var(--color-brand-gold)] pl-4">
                 リスク・副作用
               </h2>
-              <div
-                className={PROSE_STYLE}
-                dangerouslySetInnerHTML={{ __html: treatment.risks }}
-              />
+              <RichContent html={treatment.risks} className={PROSE_STYLE} />
             </section>
 
             {/* ダウンタイム */}

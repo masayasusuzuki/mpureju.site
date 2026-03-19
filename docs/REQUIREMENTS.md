@@ -25,19 +25,19 @@
 
 ## microCMS スキーマ設計
 
-| # | スキーマ名 | 用途 | 主なフィールド |
-|---|-----------|------|----------------|
-| 1 | **treatments**（施術情報） | 施術詳細ページのコンテンツ管理 | title, slug, pillar, catch_copy, description, recommended_for, procedure_flow, doctor_comment, hero_image, risks, downtime_min_days, downtime_max_days ※全フィールド必須。**料金は別API `prices` で管理**（後述） |
-| 2 | **cases**（症例記事） | 記事形式の症例コンテンツ。サムネ+本文で編集自由度を確保 | title, slug, thumbnail, category, treatment（relation）, age_group, gender, concern, content（richtext）, before_photo, after_photo, published_at |
-| 3 | **news**（お知らせ） | クリニックからのお知らせ | title, content, category（notice/explanation/price-change）, thumbnail, published_at |
-| 4 | **columns**（コラム記事） | ブログ・読み物コンテンツ | title, slug, content, category, thumbnail, tags[], published_at |
-| 5 | **doctor**（院長プロフィール） | 院長紹介ページ・Message セクション | name, title, photo, profile, message, career, qualifications[], media_appearances[], kol_activities |
-| 6 | **campaigns**（キャンペーン） | Campaign Bannerの管理 + 施術ページのサイドバー表示 | title, image, link_url, start_date, end_date, is_active, **related_treatments[]**（treatmentsへのリレーション） |
-| 7 | **faqs**（よくある質問） | サイト表示用FAQ（ピラーページ・FAQページ） | question, answer, category（mouth/eye/nose/lift/skin/general/price/booking）, sort_order |
-| 8 | **setcourses**（セットコース） | 悩み別の施術組み合わせ提案 | title, tagline, concern, category, treatments[]（relation）, is_same_day, before_photo, after_photo, is_popular |
-| 9 | **staff**（スタッフ） | `/doctor/` ページのスタッフ紹介 + Team Slideの写真 | name, role（例：形成外科専門医・看護師等）, photo, profile, action_photos[]（施術中の様子）, sort_order |
-| 10 | **media**（SNSメディア） | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
-| 11 | **jobs**（求人情報） | `/recruit/` 一覧・詳細ページのコンテンツ管理。職種ごとに記事形式で管理 | title, slug, employment_type（正社員/パート/業務委託）, description（richtext）, requirements（応募条件・richtext）, conditions（待遇・勤務条件・richtext）, is_active（募集中フラグ）, published_at |
+| # | API名（日本語） | エンドポイント | 用途 | 主なフィールド |
+|---|----------------|--------------|------|----------------|
+| 1 | 施術情報 | `treatments` | 施術詳細ページのコンテンツ管理 | title, slug, pillar, catch_copy, description, recommended_for, procedure_flow, doctor_comment, hero_image, risks, downtime_min_days, downtime_max_days ※全フィールド必須。**料金は別API `prices` で管理**（後述） |
+| 2 | 症例記事 | `cases` | 記事形式の症例コンテンツ。サムネ+本文で編集自由度を確保 | title, slug, thumbnail, category, treatment（relation）, age_group, gender, concern, content（richtext）, before_photo, after_photo, published_at |
+| 3 | お知らせ | `news` | クリニックからのお知らせ | title, content, category（notice/explanation/price-change）, thumbnail, published_at |
+| 4 | コラム記事 | `columns` | ブログ・読み物コンテンツ | title, slug, content, category, thumbnail, tags[], published_at |
+| 5 | 院長プロフィール | `doctor` | 院長紹介ページ・Message セクション | name, title, photo, profile, message, career, qualifications[], media_appearances[], kol_activities |
+| 6 | キャンペーン | `campaigns` | Campaign Bannerの管理 + 施術ページのサイドバー表示 | title, image, link_url, start_date, end_date, is_active, **related_treatments[]**（treatmentsへのリレーション） |
+| 7 | よくある質問 | `faqs` | サイト表示用FAQ（ピラーページ・FAQページ） | question, answer, category（mouth/eye/nose/lift/skin/general/price/booking/recruit）, sort_order |
+| 8 | セットコース | `setcourses` | 悩み別の施術組み合わせ提案 | title, tagline, concern, category, treatments[]（relation）, is_same_day, before_photo, after_photo, is_popular |
+| 9 | スタッフ | `staff` | `/doctor/` ページのスタッフ紹介 + Team Slideの写真 | name, role（例：形成外科専門医・看護師等）, photo, profile, action_photos[]（施術中の様子）, sort_order |
+| 10 | SNSメディア | `media` | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
+| 11 | 採用情報 | `recruit` | `/recruit/` 一覧・詳細ページのコンテンツ管理。職種ごとに記事形式で管理 | title, slug, employment_type（正社員/パート/業務委託）, tagline, description（richtext）, working_hours, salary, location, requirements（応募条件・richtext）, benefits（福利厚生・richtext）, image, is_active（募集中フラグ）, sort_order |
 
 > **⚠️ 料金の管理方針（重要・設計変更）：**
 > 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
@@ -78,6 +78,29 @@
 > - `price_options[]` を削除 → **独立 API `prices` に分離**（後述）
 > - `downtime_milestones[]` は API 作成後にカスタムフィールド/繰り返しフィールドとして追加予定
 > - **全フィールドを必須に設定**（下書き段階でも全項目入力を運用ルールとする）
+
+### recruit 詳細スキーマ
+
+| # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
+|---|---|---|---|---|---|
+| 1 | `title` | 職種名 | テキストフィールド | ✅ | 例: 看護師 |
+| 2 | `slug` | URLスラッグ | テキストフィールド | ✅ | 例: nurse |
+| 3 | `employment_type` | 雇用形態 | セレクトフィールド | ✅ | 正社員 / パート / 業務委託 |
+| 4 | `tagline` | サブタイトル | テキストフィールド | ✅ | 一覧カード・ページ上部に表示する一行キャッチ |
+| 5 | `description` | 業務内容 | リッチエディタ | ✅ | |
+| 6 | `working_hours` | 勤務時間 | テキストエリア | ✅ | |
+| 7 | `salary` | 給与 | テキストエリア | ❌ | 職種により非公開の場合あり |
+| 8 | `location` | 勤務地 | テキストフィールド | ❌ | 未入力時はページ共通の勤務地を表示 |
+| 9 | `requirements` | 応募条件 | リッチエディタ | ✅ | 箇条書き想定 |
+| 10 | `benefits` | 福利厚生（職種固有） | リッチエディタ | ❌ | 共通福利厚生に追加がある場合のみ |
+| 11 | `image` | 職種イメージ画像 | 画像 | ❌ | 施術風景・業務風景など |
+| 12 | `is_active` | 募集中フラグ | 真偽値 | ✅ | falseで一覧から非表示 |
+| 13 | `sort_order` | 表示順 | 数値 | ✅ | 小さい順に表示 |
+
+> **ページ共通コンテンツの扱い：**
+> 院長メッセージ・全職種共通の福利厚生・選考フロー・FAQはコード側にハードコード。
+> - 院長メッセージは `doctor` API から取得も可
+> - 採用FAQは `faqs` API に `category: recruit` を追加して管理
 
 ---
 
@@ -432,7 +455,7 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 - [ ] 院長紹介（`/doctor/`）+ リクルートセクション
 - [ ] コラム一覧・記事（`/column/`）
 - [ ] クリニック紹介（`/about/`）
-- [ ] 採用情報（`/recruit/`・`/recruit/[slug]/`）microCMS jobs スキーマ
+- [ ] 採用情報（`/recruit/`・`/recruit/[slug]/`）microCMS recruit スキーマ
 
 ### Phase 3
 - [ ] 症例写真フィルター機能（`/case/`）
