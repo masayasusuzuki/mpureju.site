@@ -53,20 +53,3 @@ export interface StaffBlog {
   published_at: string;
 }
 
-/** microCMS recruit スキーマ */
-export interface Recruit {
-  id: string;
-  title: string;
-  slug: string;
-  employment_type: string[];
-  tagline: string;
-  description: string;
-  working_hours: string;
-  salary?: string;
-  location?: string;
-  requirements: string;
-  benefits?: string;
-  image?: MicroCMSImage;
-  is_active: boolean;
-  sort_order: number;
-}

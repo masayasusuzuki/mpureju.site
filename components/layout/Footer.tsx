@@ -19,11 +19,13 @@ const concernLinks = [
 ];
 
 const treatmentLinks = [
-  { label: "口元の施術", href: "/mouth" },
-  { label: "目元の施術", href: "/eye" },
-  { label: "鼻の施術", href: "/nose" },
-  { label: "リフトアップ", href: "/lift" },
-  { label: "美容皮膚科", href: "/skin" },
+  { label: "美容皮膚科", href: "/treatment#dermatology" },
+  { label: "美容外科（目）", href: "/treatment#surgery" },
+  { label: "美容外科（鼻）", href: "/treatment#surgery" },
+  { label: "美容外科（口）", href: "/treatment#surgery" },
+  { label: "美容外科（糸・輪郭）", href: "/treatment#surgery" },
+  { label: "点滴・注射", href: "/treatment#iv" },
+  { label: "内服薬", href: "/treatment#medicine" },
 ];
 
 const col3Links = [
@@ -125,8 +127,8 @@ export function Footer() {
                 <p className="text-xs text-[var(--color-text-secondary)] tracking-widest mb-2">施術から探す</p>
                 <div className="border-t border-[var(--color-brand-dark)]/20 mb-1" />
                 <nav>
-                  {treatmentLinks.map((link) => (
-                    <div key={link.href} className="border-b border-[var(--color-brand-dark)]/10">
+                  {treatmentLinks.map((link, i) => (
+                    <div key={i} className="border-b border-[var(--color-brand-dark)]/10">
                       <Link href={link.href} className="flex items-center justify-between py-3 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-dark)] transition-colors">
                         {link.label}
                         <span className="text-[var(--color-brand-gold)] text-base leading-none">＋</span>

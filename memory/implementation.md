@@ -44,8 +44,25 @@
 - ~~microCMS recruit APIは未作成。現状ハードコードで運用~~ → ハードコードで確定（3職種なのでCMS不要と判断）
 - [ ] 写真プレースホルダー（PHOTO）が各所に残っている。院長写真・職種写真・働く魅力写真の素材が必要
 - [ ] エントリーフォームのバックエンド未実装（TODO: Supabase接続）
-- [ ] `app/recruit/[slug]/page.tsx` が残っている。ハードコード運用に切り替えたので不要になる可能性あり
+- ~~`app/recruit/[slug]/page.tsx` が残っている。ハードコード運用に切り替えたので不要になる可能性あり~~ → 2026-03-23 削除済み
 
 ### 次の作業
 - 写真素材の投入
 - エントリーフォームのSupabase接続
+
+---
+
+## 2026-03-23 / recruit APIコード整理 + ドキュメント更新
+
+### やったこと
+- microCMS `recruit` エンドポイントは廃止済み（職種3つのためハードコード運用）。関連するデッドコードを削除:
+  - `app/recruit/[slug]/page.tsx` — 求人詳細ページを削除
+  - `lib/microcms/client.ts` — `getRecruitList`, `getRecruitListAll`, `getRecruitBySlug` を削除
+  - `types/microcms.ts` — `Recruit` 型を削除
+- `staff_blog` APIが別途作成されていたことを確認し、ドキュメントに反映:
+  - `docs/REQUIREMENTS.md` — recruit スキーマを廃止表記、staff_blog スキーマを追加
+  - `CLAUDE.md` — Data Flow・URL構造を更新
+  - `memory/implementation.md` — 本セクション追記
+
+### 注意点
+- [ ] `/recruit/staff-blog/` 一覧ページが未実装（詳細ページのみ存在）

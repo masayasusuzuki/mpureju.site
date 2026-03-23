@@ -39,7 +39,7 @@ npm run lint    # ESLint チェック
 ```
 microCMS (コンテンツ管理)
   └── treatments, prices（予定）, cases, news, columns, doctor,
-      campaigns, faqs, setcourses, staff, media, recruit
+      campaigns, faqs, setcourses, staff, media, staff_blog
 
 Supabase (DB / バックエンド)
   ├── inquiries (お問い合わせフォーム)
@@ -141,8 +141,22 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID
 /news/                    お知らせ
 /contact/                 お問い合わせ
 /about/                   クリニック紹介・アクセス
-/recruit/                 採用情報一覧
-/recruit/[slug]/          求人詳細
+/reservation/             予約ガイド（Web/LINE/電話の手順・初診の流れ）
+/first-visit/             初めての方へ（カウンセリングの流れ・注意事項）
+/payment/                 お支払い方法（医療ローン詳細）
+/commitment/              当院のこだわり（衛生管理・使用機器・麻酔方針）
+/aftercare/               アフターケアガイド（施術後の過ごし方）
+/comparison/              施術比較（埋没 vs 切開 等）
+/campaign/                キャンペーン一覧
+/monitor/                 モニター募集
+/glossary/                美容医療用語集
+/recruit/                 採用情報一覧（職種データはハードコード）
+/recruit/staff-blog/      スタッフブログ一覧
+/recruit/staff-blog/[slug]/ スタッフブログ詳細
+/privacy                  プライバシーポリシー
+/medical-guidelines       医療広告ガイドライン
+/cancel-policy            キャンセルポリシー
+/legal                    特定商取引法に基づく表示
 /admin/                   管理画面（Supabase Auth で保護）
 ```
 

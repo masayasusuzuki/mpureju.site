@@ -37,7 +37,8 @@
 | 8 | セットコース | `setcourses` | 悩み別の施術組み合わせ提案 | title, tagline, concern, category, treatments[]（relation）, is_same_day, before_photo, after_photo, is_popular |
 | 9 | スタッフ | `staff` | `/doctor/` ページのスタッフ紹介 + Team Slideの写真 | name, role（例：形成外科専門医・看護師等）, photo, profile, action_photos[]（施術中の様子）, sort_order |
 | 10 | SNSメディア | `media` | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
-| 11 | 採用情報 | `recruit` | `/recruit/` 一覧・詳細ページのコンテンツ管理。職種ごとに記事形式で管理 | title, slug, employment_type（正社員/パート/業務委託）, tagline, description（richtext）, working_hours, salary, location, requirements（応募条件・richtext）, benefits（福利厚生・richtext）, image, is_active（募集中フラグ）, sort_order |
+| 11 | ~~採用情報~~ | ~~`recruit`~~ | **廃止** — 職種が3つのみのためハードコード運用に変更。APIは削除済み | — |
+| 12 | スタッフブログ | `staff_blog` | `/recruit/staff-blog/` 採用ページ内のスタッフブログ | title, slug, thumbnail, body（richtext）, category[], published_at |
 
 > **⚠️ 料金の管理方針（重要・設計変更）：**
 > 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
@@ -79,25 +80,22 @@
 > - `downtime_milestones[]` は API 作成後にカスタムフィールド/繰り返しフィールドとして追加予定
 > - **全フィールドを必須に設定**（下書き段階でも全項目入力を運用ルールとする）
 
-### recruit 詳細スキーマ
+### ~~recruit 詳細スキーマ~~ （廃止）
+
+> **変更理由：** 募集職種が3つ（看護師・受付カウンセラー・広報）のみのため、microCMS管理は過剰と判断。`app/recruit/page.tsx` 内にハードコードで運用。APIエンドポイントは削除済み。
+
+### staff_blog 詳細スキーマ
 
 | # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
 |---|---|---|---|---|---|
-| 1 | `title` | 職種名 | テキストフィールド | ✅ | 例: 看護師 |
-| 2 | `slug` | URLスラッグ | テキストフィールド | ✅ | 例: nurse |
-| 3 | `employment_type` | 雇用形態 | セレクトフィールド | ✅ | 正社員 / パート / 業務委託 |
-| 4 | `tagline` | サブタイトル | テキストフィールド | ✅ | 一覧カード・ページ上部に表示する一行キャッチ |
-| 5 | `description` | 業務内容 | リッチエディタ | ✅ | |
-| 6 | `working_hours` | 勤務時間 | テキストエリア | ✅ | |
-| 7 | `salary` | 給与 | テキストエリア | ❌ | 職種により非公開の場合あり |
-| 8 | `location` | 勤務地 | テキストフィールド | ❌ | 未入力時はページ共通の勤務地を表示 |
-| 9 | `requirements` | 応募条件 | リッチエディタ | ✅ | 箇条書き想定 |
-| 10 | `benefits` | 福利厚生（職種固有） | リッチエディタ | ❌ | 共通福利厚生に追加がある場合のみ |
-| 11 | `image` | 職種イメージ画像 | 画像 | ❌ | 施術風景・業務風景など |
-| 12 | `is_active` | 募集中フラグ | 真偽値 | ✅ | falseで一覧から非表示 |
-| 13 | `sort_order` | 表示順 | 数値 | ✅ | 小さい順に表示 |
+| 1 | `title` | タイトル | テキストフィールド | ✅ | |
+| 2 | `slug` | URLスラッグ | テキストフィールド | ✅ | |
+| 3 | `thumbnail` | サムネイル | 画像 | ✅ | |
+| 4 | `body` | 本文 | リッチエディタ | ✅ | |
+| 5 | `category` | カテゴリ | セレクトフィールド（複数） | ❌ | |
+| 6 | `published_at` | 公開日 | 日時 | ✅ | |
 
-> **ページ共通コンテンツの扱い：**
+> **採用ページ共通コンテンツの扱い：**
 > 院長メッセージ・全職種共通の福利厚生・選考フロー・FAQはコード側にハードコード。
 > - 院長メッセージは `doctor` API から取得も可
 > - 採用FAQは `faqs` API に `category: recruit` を追加して管理
@@ -319,6 +317,15 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 /recruit/             採用情報一覧
 /recruit/[slug]/      求人詳細
 /about/               クリニック紹介・院長・アクセス統合
+/reservation/         予約ガイド（Web予約・LINE予約・電話の手順・初診の流れ）
+/first-visit/         初めての方へ（カウンセリングの流れ・当日の持ち物・注意事項）
+/aftercare/           アフターケアガイド（施術後の過ごし方・緊急連絡先）
+/commitment/          当院のこだわり（衛生管理・使用機器・麻酔方針）
+/comparison/          施術比較（埋没 vs 切開、糸リフト vs 切開リフト等）
+/payment/             お支払い方法（クレジット・医療ローン詳細・分割シミュレーション）
+/glossary/            美容医療用語集（SEOロングテール狙い）
+/campaign/            キャンペーン一覧
+/monitor/             モニター募集（割引条件・対象施術・応募フォーム）
 /sitemap/             サイトマップ
 ```
 
@@ -434,31 +441,60 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 ## フェーズ計画
 
 ### Phase 1（現在のスコープ）
-- [ ] プロジェクト初期設定（Next.js + microCMS + Supabase + Tailwind）
-- [ ] 環境変数設定（Vercel）
-- [ ] 共通レイアウト（Header・Footer・スマホ固定フッター）
-- [ ] グローバルナビゲーション（メガメニュー）
-- [ ] トップページ（`/`）
-- [ ] 口元ピラーページ（`/mouth/`）
-- [ ] 目元ピラーページ（`/eye/`）
-- [ ] 鼻ピラーページ（`/nose/`）
-- [ ] リフトアップピラーページ（`/lift/`）
-- [ ] 美容皮膚科ピラーページ（`/skin/`）
-- [ ] 施術一覧ページ（`/treatment/`）
-- [ ] シミュレーターページ（`/simulator/`）
-- [ ] 料金一覧ページ（`/price/`）
-- [ ] お問い合わせページ（`/contact/`）+ Supabase inquiries 連携
+
+**実装済み:**
+- [x] プロジェクト初期設定（Next.js + microCMS + Supabase + Tailwind）
+- [x] 環境変数設定（Vercel）
+- [x] 共通レイアウト（Header・Footer・スマホ固定フッター）
+- [x] グローバルナビゲーション（メガメニュー）
+- [x] トップページ（`/`）
+- [x] 口元ピラーページ（`/mouth/`）
+- [x] 目元ピラーページ（`/eye/`）
+- [x] 鼻ピラーページ（`/nose/`）
+- [x] リフトアップピラーページ（`/lift/`）
+- [x] 美容皮膚科ピラーページ（`/skin/`）
+- [x] 施術一覧ページ（`/treatment/`）
+- [x] シミュレーターページ（`/simulator/`）
+- [x] 料金一覧ページ（`/price/`）
+- [x] お問い合わせページ（`/contact/`）
+- [x] お知らせ一覧（`/news/`）・詳細（`/news/[slug]/`）
+- [x] 検索ページ（`/search/`）
+- [x] 採用情報（`/recruit/`）※職種はハードコード運用
+- [x] エントリーフォーム（`/recruit/entry/`）
+- [x] スタッフブログ一覧・詳細（`/recruit/staff-blog/`）
+- [x] よくあるご質問（`/column/faq/`）
+- [x] プライバシーポリシー（`/privacy`）
+- [x] 医療広告ガイドライン（`/medical-guidelines`）
+- [x] キャンセルポリシー（`/cancel-policy`）
+- [x] 特定商取引法（`/legal`）
+
+**未実装:**
 - [ ] 管理画面ベース（`/admin/`）認証 + 問い合わせ管理
+- [ ] Supabase inquiries 連携（お問い合わせ・エントリーフォーム）
+
+### Phase 1.5（追加ページ — ハードコードで先行実装）
+
+| ページ | 優先度 | 内容 |
+|--------|--------|------|
+| `/about/` | 高 | クリニック紹介・アクセス（院内写真、地図、理念） |
+| `/doctor/` | 高 | 院長・スタッフ紹介（経歴、資格、メッセージ） |
+| `/reservation/` | 高 | 予約ガイド（Web予約・LINE予約・電話の手順、初診の流れ、持ち物） |
+| `/first-visit/` | 高 | 初めての方へ（カウンセリングの流れ、当日の流れ、所要時間、注意事項） |
+| `/payment/` | 中 | お支払い方法（クレジット・医療ローン詳細・分割シミュレーション） |
+| `/commitment/` | 中 | 当院のこだわり（衛生管理・使用機器・麻酔方針） |
+| `/aftercare/` | 中 | アフターケアガイド（施術後の過ごし方・緊急連絡先） |
+| `/comparison/` | 中 | 施術比較（埋没 vs 切開、糸リフト vs 切開リフト等） |
+| `/campaign/` | 中 | キャンペーン一覧 |
+| `/monitor/` | 低 | モニター募集（割引条件・対象施術・応募フォーム） |
+| `/glossary/` | 低 | 美容医療用語集（SEOロングテール狙い） |
 
 ### Phase 2
-- [ ] 施術詳細ページ（`/treatment/[slug]/` 全施術）
-- [ ] 院長紹介（`/doctor/`）+ リクルートセクション
+- [ ] 施術詳細ページ（`/mouth/[slug]/` 全ピラー展開）
 - [ ] コラム一覧・記事（`/column/`）
-- [ ] クリニック紹介（`/about/`）
-- [ ] 採用情報（`/recruit/`・`/recruit/[slug]/`）microCMS recruit スキーマ
+- [ ] microCMS `faqs` API 移行（ハードコード → CMS管理）
 
 ### Phase 3
-- [ ] 症例写真フィルター機能（`/case/`）
+- [ ] 症例写真フィルター機能（`/case/`・`/[pillar]/case/`）
 - [ ] AIチャットボット（DeepSeek API + Supabase pgvector）
 - [ ] 管理画面（`/admin/`）チャットボットFAQ・会話ログ
 
