@@ -11,6 +11,7 @@ const menuItems = [
   { label: "鼻の整形", href: "/nose" },
   { label: "糸の施術・リフトアップ", href: "/lift" },
   { label: "美容皮膚科", href: "/skin" },
+  { label: "内服薬", href: "/medicine" },
   { label: "医療機器一覧", href: "/machine" },
 ];
 
