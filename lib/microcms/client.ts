@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Machine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -146,3 +146,36 @@ export async function getStaffBlogBySlug(slug: string) {
   }
 }
 
+// ── machines ─────────────────────────────────
+
+/** マシン一覧を取得 */
+export async function getMachineList(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<Machine>({
+      endpoint: "machines",
+      queries: {
+        orders: "sort_order",
+        limit: 50,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 50 };
+  }
+}
+
+/** slugでマシンを1件取得 */
+export async function getMachineBySlug(slug: string) {
+  try {
+    const data = await microcms.getList<Machine>({
+      endpoint: "machines",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+    return data.contents[0] ?? null;
+  } catch {
+    return null;
+  }
+}

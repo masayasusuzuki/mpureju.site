@@ -53,3 +53,17 @@ export interface StaffBlog {
   published_at: string;
 }
 
+/** microCMS machines スキーマ */
+export interface Machine {
+  id: string;
+  name: string;
+  name_en: string;
+  slug: string;
+  thumbnail: MicroCMSImage;
+  type: string;
+  catch_copy: string;
+  target_concerns?: string;
+  description: string;
+  sort_order?: number;
+}
+

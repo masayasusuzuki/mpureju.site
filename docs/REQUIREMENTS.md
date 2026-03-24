@@ -39,6 +39,7 @@
 | 10 | SNSメディア | `media` | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
 | 11 | ~~採用情報~~ | ~~`recruit`~~ | **廃止** — 職種が3つのみのためハードコード運用に変更。APIは削除済み | — |
 | 12 | スタッフブログ | `staff_blog` | `/recruit/staff-blog/` 採用ページ内のスタッフブログ | title, slug, thumbnail, body（richtext）, category[], published_at |
+| 13 | 医療機器 | `machines` | `/machine/` 医療機器一覧・詳細ページ。カテゴリ別カードグリッド表示 | name, name_en, slug, thumbnail, category（セレクト）, type, catch_copy, description（richtext）, sort_order |
 
 > **⚠️ 料金の管理方針（重要・設計変更）：**
 > 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
@@ -94,6 +95,20 @@
 | 4 | `body` | 本文 | リッチエディタ | ✅ | |
 | 5 | `category` | カテゴリ | セレクトフィールド（複数） | ❌ | |
 | 6 | `published_at` | 公開日 | 日時 | ✅ | |
+
+### machines 詳細スキーマ
+
+| # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
+|---|---|---|---|---|---|
+| 1 | `name` | マシン名 | テキストフィールド | ✅ | 例: ソフウェーブ |
+| 2 | `name_en` | マシン名（英語） | テキストフィールド | ✅ | 例: Sofwave。カード・見出しに表示 |
+| 3 | `slug` | スラッグ | テキストフィールド | ✅ | URL用。例: `sofwave` → `/machine/sofwave` |
+| 4 | `thumbnail` | サムネイル画像 | 画像 | ✅ | マシン本体の写真。一覧カード・詳細ページで使用 |
+| 5 | `category` | カテゴリ | セレクトフィールド | ✅ | 選択肢: たるみ・リフトアップ系 / 高周波（RF）系 / ニードルRF・肌再生系 / レーザー・光治療系 / 導入・スキンケア系 |
+| 6 | `type` | 種別 | テキストフィールド | ✅ | 例: HIFU（高密度焦点式超音波） |
+| 7 | `catch_copy` | キャッチコピー | テキストフィールド | ✅ | 1行の概要説明。meta descriptionにも使用 |
+| 8 | `description` | 詳細説明 | リッチエディタ | ✅ | 詳細ページの本文 |
+| 9 | `sort_order` | 表示順 | 数値 | ❌ | 小さい順に表示。未入力は末尾 |
 
 > **採用ページ共通コンテンツの扱い：**
 > 院長メッセージ・全職種共通の福利厚生・選考フロー・FAQはコード側にハードコード。
@@ -314,6 +329,8 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
   /column/faq/        よくある質問
 /news/                お知らせ
 /contact/             お問い合わせ（フォーム + LINE/Medicalforceへの誘導）
+/machine/             医療機器一覧（カテゴリ別カードグリッド）
+/machine/[slug]/      医療機器詳細
 /recruit/             採用情報一覧
 /recruit/[slug]/      求人詳細
 /about/               クリニック紹介・院長・アクセス統合

@@ -66,3 +66,25 @@
 
 ### 注意点
 - [ ] `/recruit/staff-blog/` 一覧ページが未実装（詳細ページのみ存在）
+
+---
+
+## 2026-03-24 / 医療機器一覧ページ（/machine/）新規作成
+
+### やったこと
+- `types/microcms.ts` — `Machine` 型追加（name, name_en, slug, thumbnail, category, type, catch_copy, description, sort_order）
+- `lib/microcms/client.ts` — `getMachineList()`, `getMachineBySlug()` 追加
+- `app/machine/page.tsx` — 一覧ページ作成。カテゴリ別カードグリッド（PC4列/タブ3列/SP2列）。5カテゴリはフロント側で定義済み（データ0件でもセクション表示）
+- `app/machine/[slug]/page.tsx` — 詳細ページ作成。マシン画像+RichContent説明+サイドバー（同カテゴリマシン）
+- `components/layout/Header.tsx` — メニュードロップダウンに「マシンリスト」追加
+- `globals.css` — `.table-scroll-wrapper` を `@layer components` 内に移動（Tailwind v4の詳細度問題を修正）
+- `docs/REQUIREMENTS.md` — machines スキーマ・URL構造を追記
+- `CLAUDE.md` — URL Structure に `/machine/` を追記
+
+### 注意点
+- [ ] microCMS に `machines` API を作成する必要あり（API名: 医療機器 / エンドポイント: machines）
+- [ ] `category` はセレクトフィールドで5つの選択肢を設定: たるみ・リフトアップ系 / 高周波（RF）系 / ニードルRF・肌再生系 / レーザー・光治療系 / 導入・スキンケア系
+- [ ] マシンのサムネイル画像を用意してmicroCMSに登録する
+
+### 次の作業
+- microCMS で machines API 作成 → テストデータ投入 → 表示確認

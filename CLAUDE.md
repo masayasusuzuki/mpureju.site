@@ -150,6 +150,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID
 /campaign/                キャンペーン一覧
 /monitor/                 モニター募集
 /glossary/                美容医療用語集
+/machine/                 医療機器一覧（カテゴリ別カードグリッド、microCMS管理）
+/machine/[slug]/          医療機器詳細
 /recruit/                 採用情報一覧（職種データはハードコード）
 /recruit/staff-blog/      スタッフブログ一覧
 /recruit/staff-blog/[slug]/ スタッフブログ詳細
