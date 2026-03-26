@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMachineBySlug, getMachineList } from "@/lib/microcms/client";
+import { getMachineBySlug, getMachineList, getCampaigns } from "@/lib/microcms/client";
 import { RichContent } from "@/components/ui/RichContent";
+import { SidebarCampaign } from "@/components/sections/SidebarCampaign";
 
 const PROSE_STYLE =
-  "prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]";
+  "prose prose-neutral max-w-none prose-headings:font-light prose-headings:tracking-wide prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]";
 
 export async function generateStaticParams() {
   const data = await getMachineList();
@@ -38,8 +39,11 @@ export default async function MachineDetailPage({
   const machine = await getMachineBySlug(slug);
   if (!machine) notFound();
 
-  // サイドバー: 他のマシン
-  const allMachines = await getMachineList();
+  // サイドバー: 他のマシン + キャンペーン
+  const [allMachines, campaigns] = await Promise.all([
+    getMachineList(),
+    getCampaigns(),
+  ]);
   const otherMachines = allMachines.contents.filter(
     (m) => m.slug !== slug
   );
@@ -126,23 +130,7 @@ export default async function MachineDetailPage({
             <div className="lg:sticky lg:top-24 space-y-6">
 
               {/* キャンペーン枠 */}
-              <div className="border border-[var(--color-brand-gold)]/30 rounded-sm overflow-hidden">
-                <div className="bg-[var(--color-brand-gold)]/10 px-4 py-3">
-                  <p className="text-xs tracking-[0.15em] text-[var(--color-brand-gold)] font-medium">
-                    CAMPAIGN
-                  </p>
-                </div>
-                <div className="p-4">
-                  <div className="aspect-video bg-[var(--color-brand-cream)] flex items-center justify-center mb-4 rounded-sm">
-                    <span className="text-xs text-[var(--color-text-secondary)]/40 tracking-widest">
-                      COMING SOON
-                    </span>
-                  </div>
-                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                    キャンペーン情報は準備中です
-                  </p>
-                </div>
-              </div>
+              <SidebarCampaign campaigns={campaigns} />
 
               {/* 他のマシン */}
               {otherMachines.length > 0 && (
@@ -186,7 +174,7 @@ export default async function MachineDetailPage({
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://mpureju.com/reservation"
+              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"

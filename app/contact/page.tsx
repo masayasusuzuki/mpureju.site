@@ -102,7 +102,7 @@ export default function ContactPage() {
               {/* 予約ボタン */}
               <div className="space-y-3">
                 <a
-                  href="https://mpureju.com/reservation"
+                  href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full py-3.5 bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] text-xs tracking-widest font-medium hover:opacity-90 transition-opacity"

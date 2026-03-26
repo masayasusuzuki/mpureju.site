@@ -341,7 +341,7 @@ export function SimulatorClient({ initialSlugs }: { initialSlugs: string[] }) {
                     この日程でLINE相談する
                   </a>
                   <a
-                    href="https://mpureju.com/reservation"
+                    href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-full py-4 border border-[var(--color-brand-gold)] text-[var(--color-brand-gold)] text-xs tracking-[0.2em] hover:bg-[var(--color-brand-gold)] hover:text-white transition-colors"

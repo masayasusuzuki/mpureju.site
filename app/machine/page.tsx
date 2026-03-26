@@ -163,7 +163,7 @@ export default async function MachinePage({
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
             <a
-              href="https://mpureju.com/reservation"
+              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"

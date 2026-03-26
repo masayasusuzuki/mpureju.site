@@ -105,3 +105,43 @@
 ### 次の作業
 - microCMS `medicines` API構成の確定 → ハードコードからAPI取得に移行
 - 内服薬の画像素材準備
+
+---
+
+## 2026-03-26 / skin microCMS接続 + 施術詳細テンプレート統一 + CSS改善
+
+### やったこと
+
+**skin ピラー microCMS 接続:**
+- `app/skin/page.tsx` — `getTreatmentsByPillar("skin")` で動的取得+フォールバック構造に移行
+- `app/skin/[slug]/page.tsx` — 施術詳細ページ新規作成（19件の SSG ページ生成）
+
+**施術詳細ページのテンプレート統一（リファクタリング）:**
+- `components/pillar/TreatmentDetailTemplate.tsx` — 共通テンプレート作成（約270行）
+- 5ピラーの `[slug]/page.tsx` を約350行 → 約50行に縮小（`PillarInfo` 設定 + データ取得のみ）
+- 今後の UI 修正は `TreatmentDetailTemplate.tsx` の1ファイルで完結
+
+**テーブル CSS 根本修正:**
+- `.table-scroll-wrapper` スタイルを `@layer components` → unlayered に移動（`prose` の utilities 層に負けていた問題を解消）
+- デスクトップ: `table-layout: fixed`（均等列幅）、クリームグラデヘッダー
+- モバイル: CSS でカード型レイアウトに変換（`thead` 非表示、`data-label` 属性でラベル表示）
+- `RichContent` コンポーネント: テーブルラップ時に各 `td` へ対応する `th` テキストを `data-label` として自動付与
+
+**フォント方針変更:**
+- 記事コンテンツ内の見出し: 明朝体 → ゴシック体（`font-light` + `tracking-wide`）に統一（全8ファイル）
+- テーブルヘッダー・ラベルの明朝体も削除
+
+**ドクターコメント UI 刷新:**
+- クリーム背景ボックス + 四角い写真 → 丸アイコン + 吹き出し風レイアウトに変更
+- 「ドクターコメント」タイトル → 英字ラベル「DOCTOR'S COMMENT」+ 吹き出しデザイン
+- セクション位置: 施術説明の直後（施術の流れの前）に移動
+- TOC ラベル: 「ドクターコメント」→「院長より」
+
+### 注意点
+- ~~skin 詳細ページ CTA「医師が」と「院長が」の不一致~~ → テンプレート統一で解消
+- ~~5ファイルの施術詳細ページでコード重複~~ → `TreatmentDetailTemplate` に統一済み
+- [ ] ドクターコメントの吹き出しデザインは mouth で調整中。合格後に他ピラーに反映（テンプレート統一済みなので自動反映）
+
+### 次の作業
+- ドクターコメントの最終デザイン確定
+- テーブルの実機確認（モバイルカード表示）

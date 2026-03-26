@@ -110,7 +110,7 @@ export default async function StaffBlogDetailPage({
           {/* 本文 */}
           <RichContent
             html={post.body}
-            className="prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[2] prose-p:font-light prose-img:rounded-sm prose-li:text-[var(--color-text-secondary)]"
+            className="prose prose-neutral max-w-none prose-headings:font-light prose-headings:tracking-wide prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[2] prose-p:font-light prose-img:rounded-sm prose-li:text-[var(--color-text-secondary)]"
           />
 
           {/* 戻るリンク */}

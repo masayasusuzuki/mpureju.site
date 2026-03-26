@@ -73,7 +73,7 @@ export default async function NewsDetailPage({
             {/* 本文 */}
             {item.description && (
               <div
-                className="prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]"
+                className="prose prose-neutral max-w-none prose-headings:font-light prose-headings:tracking-wide prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
             )}
@@ -118,7 +118,7 @@ export default async function NewsDetailPage({
               {/* CTA */}
               <div className="space-y-3">
                 <a
-                  href="https://mpureju.com/reservation"
+                  href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-6 py-3 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"

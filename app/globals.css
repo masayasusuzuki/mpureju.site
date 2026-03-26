@@ -356,7 +356,6 @@ html {
 .table-scroll-wrapper td::before {
   content: attr(data-label);
   display: block;
-  font-family: var(--font-noto-serif), serif;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-brand-dark);
@@ -412,7 +411,6 @@ html {
       rgba(245, 240, 232, 0.4) 100%
     );
     color: var(--color-brand-dark);
-    font-family: var(--font-noto-serif), serif;
     font-weight: 600;
     font-size: 0.8125rem;
     letter-spacing: 0.06em;
