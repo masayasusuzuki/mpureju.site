@@ -18,8 +18,8 @@
 - `app/mouth/page.tsx` — 口角挙上の slug を `lip-corner-lift` → `lip-lift` に修正
 
 ### 注意点
-- [ ] `app/mouth/corner-lip-lift/page.tsx` は静的ディレクトリ＋ハードコード slug で動いている。全施術を microCMS に投入完了したら `app/mouth/[slug]/page.tsx`（動的ルート）に切り替えること。他ピラー（eye, nose, lift, skin）も同様。
-- [ ] ピラーページ（`/mouth/` 等）の施術一覧はハードコード。全施術を microCMS に入れ終わったら `getTreatmentsByPillar()` で動的取得に切り替え、サムネイルも `hero_image` から表示する。カード用の別APIは不要（treatments の `title` / `catch_copy` / `hero_image` で足りる）。
+- ~~`app/mouth/corner-lip-lift/page.tsx` は静的ディレクトリ＋ハードコード slug で動いている~~ → `app/mouth/[slug]/page.tsx` 動的ルートに切り替え済み。eye/nose/liftも同様に実装済み
+- ~~ピラーページの施術一覧はハードコード~~ → mouth/eye/nose/lift/skinすべて `getTreatmentsByPillar()` で動的取得+フォールバック構造に移行済み
 - [ ] `prices` API（料金）のスキーマが未確定。確定したら REQUIREMENTS.md を更新し、フロントの料金取得ロジックを実装する。
 
 ### 次の作業
@@ -69,22 +69,39 @@
 
 ---
 
-## 2026-03-24 / 医療機器一覧ページ（/machine/）新規作成
+## 2026-03-24 / 医療機器・施術一覧・内服薬の大幅アップデート
 
 ### やったこと
-- `types/microcms.ts` — `Machine` 型追加（name, name_en, slug, thumbnail, category, type, catch_copy, description, sort_order）
-- `lib/microcms/client.ts` — `getMachineList()`, `getMachineBySlug()` 追加
-- `app/machine/page.tsx` — 一覧ページ作成。カテゴリ別カードグリッド（PC4列/タブ3列/SP2列）。5カテゴリはフロント側で定義済み（データ0件でもセクション表示）
-- `app/machine/[slug]/page.tsx` — 詳細ページ作成。マシン画像+RichContent説明+サイドバー（同カテゴリマシン）
-- `components/layout/Header.tsx` — メニュードロップダウンに「マシンリスト」追加
-- `globals.css` — `.table-scroll-wrapper` を `@layer components` 内に移動（Tailwind v4の詳細度問題を修正）
-- `docs/REQUIREMENTS.md` — machines スキーマ・URL構造を追記
-- `CLAUDE.md` — URL Structure に `/machine/` を追記
+
+**医療機器（/machine/）:**
+- `Machine` 型: `category` 削除 → `target_concerns` 追加
+- 一覧ページ: カテゴリグルーピング廃止 → フラットグリッド（3列、6件/ページのページネーション、`scroll={false}`）
+- 詳細ページ: 概要バー「カテゴリ」→「対象のお悩み」、サイドバーにキャンペーン枠追加、「同カテゴリ」→「その他のマシン」
+- `client.ts`: `normalizeMachine` 削除（カテゴリ廃止で不要に）
+- カードに常時シャドウ（`shadow-sm`）、サムネ16:9 `object-cover`
+- `docs/machine-data.md`: 13台→10台に整理（ソフウェーブ/サーマZii/ブレッシング/IPL/ブースター削除）、Q+C/CO2レーザー/セレックV追加
+- `globals.css`: `.machine-description.prose h2` スタイル追加（ゴールドグラデ背景帯+左バー+下線）
+- description部分をコードブロック（プレーンテキスト）で独立させ、microCMSリッチエディタにコピペしやすい構造に
+
+**施術ピラーページ:**
+- 目（9→17施術）: 二重抜糸/目頭上切開/上眼瞼除皺/下眼瞼除皺/下眼瞼除皺+脱脂/脂肪再配置/表ハムラ・裏ハムラ分離/蒙古襞形成を追加
+- 鼻（9→17施術）: ストラット法/鼻中隔軟骨移植/肋軟骨移植/鼻翼挙上/鼻孔縁挙上/鼻柱基部形成/側頭筋膜移植/プロテーゼ抜去を追加
+- 糸・リフト（9→11施術）: ショートスレッド/アイスレッドを追加
+- 目・鼻・糸リフトの一覧ページをmicroCMS取得+フォールバック構造に変更（mouthと同パターン）
+- `app/eye/[slug]/page.tsx`, `app/nose/[slug]/page.tsx`, `app/lift/[slug]/page.tsx` — 詳細ページ新規作成
+
+**内服薬（/medicine/）:**
+- `app/medicine/page.tsx` — 一覧ページ新規作成（6カテゴリ、machineと同じカードグリッド）
+- `app/medicine/[slug]/page.tsx` — 詳細ページ新規作成（12薬品ハードコード、目次+薬剤説明+用法用量+副作用+使用上の注意+サイドバー）
+- `components/layout/Header.tsx` — メニューに「内服薬」追加
 
 ### 注意点
-- [ ] microCMS に `machines` API を作成する必要あり（API名: 医療機器 / エンドポイント: machines）
-- [ ] `category` はセレクトフィールドで5つの選択肢を設定: たるみ・リフトアップ系 / 高周波（RF）系 / ニードルRF・肌再生系 / レーザー・光治療系 / 導入・スキンケア系
-- [ ] マシンのサムネイル画像を用意してmicroCMSに登録する
+- ~~`category` はセレクトフィールドで5つの選択肢を設定~~ → カテゴリ廃止済み
+- [ ] マシンのサムネイル画像（16:9）を用意してmicroCMSに登録する
+- [ ] 内服薬ページはハードコード運用中。microCMS `medicines` API の構成が決まったら移行する
+- [ ] 内服薬一覧のサムネイルエリアにカテゴリ名プレースホルダーが表示されている。microCMS移行時に画像に差し替え
+- [ ] `app/nose/[slug]/page.tsx` と `app/lift/[slug]/page.tsx` は sed で生成。微調整が必要な場合あり
 
 ### 次の作業
-- microCMS で machines API 作成 → テストデータ投入 → 表示確認
+- microCMS `medicines` API構成の確定 → ハードコードからAPI取得に移行
+- 内服薬の画像素材準備

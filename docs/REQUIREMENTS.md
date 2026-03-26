@@ -39,7 +39,8 @@
 | 10 | SNSメディア | `media` | トップページのMedia セクション。InstagramリールとYouTube動画のサムネイル + リンクを管理 | platform（`instagram` / `youtube`）, title（説明文・YouTube用）, thumbnail（MicroCMSImage）, url（投稿URL）, published_at |
 | 11 | ~~採用情報~~ | ~~`recruit`~~ | **廃止** — 職種が3つのみのためハードコード運用に変更。APIは削除済み | — |
 | 12 | スタッフブログ | `staff_blog` | `/recruit/staff-blog/` 採用ページ内のスタッフブログ | title, slug, thumbnail, body（richtext）, category[], published_at |
-| 13 | 医療機器 | `machines` | `/machine/` 医療機器一覧・詳細ページ。カテゴリ別カードグリッド表示 | name, name_en, slug, thumbnail, category（セレクト）, type, catch_copy, description（richtext）, sort_order |
+| 13 | 医療機器 | `machines` | `/machine/` 医療機器一覧・詳細ページ。フラットグリッド表示（カテゴリ廃止） | name, name_en, slug, thumbnail, type, catch_copy, target_concerns, description（richtext）, sort_order |
+| 14 | 内服薬 | `medicines` | `/medicine/` 内服薬一覧・詳細ページ（予定）。現在はハードコード運用 | name, slug, category, catch_copy, description（richtext）, usage, side_effects, contraindications, sort_order |
 
 > **⚠️ 料金の管理方針（重要・設計変更）：**
 > 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
@@ -98,17 +99,34 @@
 
 ### machines 詳細スキーマ
 
+> **設計変更（2026-03-24）：** `category` フィールドを廃止し、`target_concerns` を追加。一覧ページのカテゴリグルーピングを廃止しフラットグリッド表示に変更。理由：10台程度のマシン数ではカテゴリ分けが不要、1台しかないカテゴリが多く意味が薄い。`type` で技術種別、`target_concerns` でお悩みタグを表示。
+
 | # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
 |---|---|---|---|---|---|
-| 1 | `name` | マシン名 | テキストフィールド | ✅ | 例: ソフウェーブ |
-| 2 | `name_en` | マシン名（英語） | テキストフィールド | ✅ | 例: Sofwave。カード・見出しに表示 |
-| 3 | `slug` | スラッグ | テキストフィールド | ✅ | URL用。例: `sofwave` → `/machine/sofwave` |
-| 4 | `thumbnail` | サムネイル画像 | 画像 | ✅ | マシン本体の写真。一覧カード・詳細ページで使用 |
-| 5 | `category` | カテゴリ | セレクトフィールド | ✅ | 選択肢: たるみ・リフトアップ系 / 高周波（RF）系 / ニードルRF・肌再生系 / レーザー・光治療系 / 導入・スキンケア系 |
-| 6 | `type` | 種別 | テキストフィールド | ✅ | 例: HIFU（高密度焦点式超音波） |
-| 7 | `catch_copy` | キャッチコピー | テキストフィールド | ✅ | 1行の概要説明。meta descriptionにも使用 |
+| 1 | `name` | マシン名 | テキストフィールド | ✅ | 例: ウルトラセルzi |
+| 2 | `name_en` | マシン名（英語） | テキストフィールド | ✅ | 例: ULTRAcel zi |
+| 3 | `slug` | スラッグ | テキストフィールド | ✅ | URL用。例: `ultracel-zi` → `/machine/ultracel-zi` |
+| 4 | `thumbnail` | サムネイル画像 | 画像 | ✅ | 16:9。一覧カード・詳細ページで使用 |
+| 5 | `type` | 種別 | テキストフィールド | ✅ | HIFU / RF / ニードルRF / レーザー / CO2レーザー / 光治療 / LEDライト / エレクトロポレーション |
+| 6 | `catch_copy` | キャッチコピー | テキストフィールド | ✅ | 1行の概要説明。meta descriptionにも使用 |
+| 7 | `target_concerns` | 対象のお悩み | テキストフィールド | ❌ | 例: たるみ / 毛穴・ニキビ跡。一覧カードにタグ表示 |
 | 8 | `description` | 詳細説明 | リッチエディタ | ✅ | 詳細ページの本文 |
 | 9 | `sort_order` | 表示順 | 数値 | ❌ | 小さい順に表示。未入力は末尾 |
+
+### machines データ一覧（10台）
+
+| マシン名 | type | target_concerns |
+|---|---|---|
+| ウルトラセルzi | HIFU | たるみ |
+| サーマジェン | RF | たるみ |
+| XERF（ザーフ） | RF | たるみ |
+| ポテンツァ | ニードルRF | 毛穴・ニキビ跡 |
+| サーマニードル | ニードルRF | 毛穴・ニキビ跡 |
+| Q+C | レーザー | シミ・くすみ・赤み |
+| CO2レーザー | CO2レーザー | ホクロ・イボ |
+| セレックV | 光治療 | 幅広いお悩み |
+| KOライト | LEDライト | ダウンタイム軽減・ニキビ・発毛 |
+| メソナJ | エレクトロポレーション | 乾燥・くすみ・赤み |
 
 > **採用ページ共通コンテンツの扱い：**
 > 院長メッセージ・全職種共通の福利厚生・選考フロー・FAQはコード側にハードコード。

@@ -304,39 +304,140 @@ html {
     line-height: 1.9;
   }
 
-  /* 医療機器詳細 — リッチエディタ内 h2 スタイル */
+}
 
-  /* microCMS リッチエディタ — テーブル横スクロールラッパー
-     RichContent コンポーネントが <table> を自動で .table-scroll-wrapper で囲む */
+/* ── microCMS リッチエディタ — テーブルスタイル ──
+   RichContent コンポーネントが <table> を自動で .table-scroll-wrapper で囲む。
+   @layer の外に置くことで prose（utilities層）より優先させる。
+   モバイルではカード型に変換し、デスクトップでは横レイアウトを維持 */
+
+.table-scroll-wrapper {
+  margin: 2em 0;
+}
+
+/* ── モバイル: カード型レイアウト ── */
+.table-scroll-wrapper table {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.table-scroll-wrapper thead {
+  display: none;
+}
+
+.table-scroll-wrapper tbody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.table-scroll-wrapper tbody tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(201, 169, 110, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(61, 43, 26, 0.05);
+}
+
+.table-scroll-wrapper th,
+.table-scroll-wrapper td {
+  border: none;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.85;
+  color: var(--color-text-secondary);
+  vertical-align: top;
+  background: white;
+}
+
+.table-scroll-wrapper td::before {
+  content: attr(data-label);
+  display: block;
+  font-family: var(--font-noto-serif), serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+}
+
+/* ── デスクトップ: 洗練された横レイアウト ── */
+@media (min-width: 768px) {
   .table-scroll-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin: 1.5em 0;
+    border-radius: 8px;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    box-shadow: 0 1px 4px rgba(61, 43, 26, 0.04);
   }
 
   .table-scroll-wrapper table {
-    border-collapse: collapse;
-    min-width: 600px;
-    width: 100%;
+    display: table;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 100%;
   }
 
-  .table-scroll-wrapper th,
-  .table-scroll-wrapper td {
-    border: 1px solid rgba(61, 43, 26, 0.2);
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    vertical-align: top;
+  .table-scroll-wrapper thead {
+    display: table-header-group;
+  }
+
+  .table-scroll-wrapper tbody {
+    display: table-row-group;
+  }
+
+  .table-scroll-wrapper tbody tr {
+    display: table-row;
+    background: white;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    transition: background-color 0.15s ease;
+  }
+
+  .table-scroll-wrapper tbody tr:hover {
+    background-color: rgba(245, 240, 232, 0.35);
   }
 
   .table-scroll-wrapper th {
-    background-color: var(--color-brand-cream);
+    background: linear-gradient(
+      180deg,
+      rgba(245, 240, 232, 0.8) 0%,
+      rgba(245, 240, 232, 0.4) 100%
+    );
     color: var(--color-brand-dark);
-    font-weight: 500;
+    font-family: var(--font-noto-serif), serif;
+    font-weight: 600;
     font-size: 0.8125rem;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
     white-space: nowrap;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 2px solid rgba(201, 169, 110, 0.25);
+    text-align: left;
+  }
+
+  .table-scroll-wrapper td {
+    padding: 1.125rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+  }
+
+  .table-scroll-wrapper td::before {
+    display: none;
+  }
+
+  .table-scroll-wrapper td + td,
+  .table-scroll-wrapper th + th {
+    border-left: 1px solid rgba(201, 169, 110, 0.08);
+  }
+
+  .table-scroll-wrapper tbody tr:last-child td {
+    border-bottom: none;
   }
 }
 
