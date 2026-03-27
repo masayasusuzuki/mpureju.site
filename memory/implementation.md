@@ -145,3 +145,31 @@
 ### 次の作業
 - ドクターコメントの最終デザイン確定
 - テーブルの実機確認（モバイルカード表示）
+
+---
+
+## 2026-03-27 / チャットボットUI + microCMS medicines スキーマ確定
+
+### やったこと
+
+**チャットボットUI（Phase 3 先行）:**
+- `components/chat/ChatBot.tsx` — フローティングチャットボタン+ウィンドウ新規作成
+- `app/layout.tsx` — ChatBot コンポーネントを追加（全ページ共通表示）
+- 右下常駐ゴールドボタン、タップでチャットウィンドウ開閉
+- 初期メッセージ + 5つの候補ボタン（施術相談・料金・ダウンタイム・予約方法・カウンセリング）
+- 「準備中」バナー表示、入力欄disabled
+- モバイル: MobileBottomNavの上に配置（bottom-20）、PC: 右下（bottom-8）
+
+**microCMS `medicines` スキーマ確定:**
+- API名: 内服薬・処方薬 / エンドポイント: medicines
+- 10フィールド: name, slug, category（セレクト6択）, thumbnail, catch_copy, description（richtext）, usage, side_effects, contraindications, sort_order
+- カテゴリ選択肢: 美肌・シミ対策 / 頭皮・毛髪ケア / AGA治療 / ニキビ・肌荒れ / ダウンタイム軽減 / まつ毛育成
+- FAQはハードコードのまま（変更頻度が低いためCMS化不要と判断）
+
+### 注意点
+- [ ] チャットボットはUI枠のみ。Phase 3でDeepSeek + pgvector RAG接続時に有効化
+- [ ] medicines APIにコンテンツ（12薬品）を投入し、フロント側をAPI取得に切り替える
+
+### 次の作業
+- microCMS medicines APIにコンテンツ投入（ハードコードデータを移行）
+- フロント側を `getMedicineList()` / `getMedicineBySlug()` に切り替え

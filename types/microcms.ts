@@ -67,6 +67,21 @@ export interface Machine {
   sort_order?: number;
 }
 
+/** microCMS medicines スキーマ */
+export interface Medicine {
+  id: string;
+  name: string;
+  slug: string;
+  category: string;
+  thumbnail?: MicroCMSImage;
+  catch_copy: string;
+  description: string;
+  usage: string;
+  side_effects: string;
+  contraindications: string;
+  sort_order?: number;
+}
+
 /** microCMS clinic_calendar スキーマ（オブジェクト形式） */
 export interface ClinicCalendar {
   regular_holidays: string[];

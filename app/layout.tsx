@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP, Cormorant_Garamond } from "next/font/googl
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { ChatBot } from "@/components/chat/ChatBot";
 import "./globals.css";
 
 const notoSans = Noto_Sans_JP({
@@ -58,6 +59,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileBottomNav />
+        <ChatBot />
       </body>
     </html>
   );

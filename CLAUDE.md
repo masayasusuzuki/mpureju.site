@@ -39,7 +39,8 @@ npm run lint    # ESLint チェック
 ```
 microCMS (コンテンツ管理)
   └── treatments, prices（予定）, cases, news, columns, doctor,
-      campaigns, faqs, setcourses, staff, media, staff_blog
+      campaigns, faqs, setcourses, staff, media, staff_blog,
+      machines, medicines
 
 Supabase (DB / バックエンド)
   ├── inquiries (お問い合わせフォーム)
@@ -158,8 +159,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID
 /glossary/                美容医療用語集
 /machine/                 医療機器一覧（フラットグリッド、microCMS管理、6件/ページ）
 /machine/[slug]/          医療機器詳細
-/medicine/                内服薬・処方薬一覧（カテゴリ別カードグリッド、ハードコード→microCMS移行予定）
-/medicine/[slug]/         内服薬詳細
+/medicine/                内服薬・処方薬一覧（カテゴリ別カードグリッド、microCMS `medicines` API管理）
+/medicine/[slug]/         内服薬詳細（microCMS管理）
 /recruit/                 採用情報一覧（職種データはハードコード）
 /recruit/staff-blog/      スタッフブログ一覧
 /recruit/staff-blog/[slug]/ スタッフブログ詳細

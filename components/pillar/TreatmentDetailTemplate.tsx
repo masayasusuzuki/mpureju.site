@@ -3,6 +3,8 @@ import Link from "next/link";
 import { findPriceRowsByTitle } from "@/lib/price-data";
 import { InlinePricePanel } from "@/components/sections/InlinePricePanel";
 import { SidebarCampaign } from "@/components/sections/SidebarCampaign";
+import { FaqAccordion, type FaqItem } from "@/components/sections/FaqAccordion";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RichContent } from "@/components/ui/RichContent";
 import type { Treatment } from "@/lib/microcms/types";
 import type { Campaign } from "@/types/microcms";
@@ -30,9 +32,10 @@ interface Props {
   treatment: Treatment;
   otherTreatments: Treatment[];
   campaigns?: Campaign[];
+  faqs?: FaqItem[];
 }
 
-export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [] }: Props) {
+export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [], faqs = [] }: Props) {
   const priceRows = findPriceRowsByTitle(treatment.title);
 
   return (
@@ -277,6 +280,21 @@ export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, ca
 
         </div>
       </div>
+
+      {/* ── よくある質問 ── */}
+      {faqs.length > 0 && (
+        <section
+          className="py-16 md:py-24"
+          style={{ background: "linear-gradient(160deg, #fdfcfa 0%, #f5ede0 100%)" }}
+        >
+          <div className="section-container">
+            <SectionHeading en="FAQ" ja="よくある質問" className="mb-12" />
+            <div className="max-w-3xl">
+              <FaqAccordion items={faqs} />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── フルワイド CTA ── */}
       <section className="bg-white border-t border-[var(--color-brand-gold)]/20 py-16 md:py-20">

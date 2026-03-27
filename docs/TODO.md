@@ -56,8 +56,8 @@
 | よくある質問 | `/column/faq/` | 🔧 | ハードコード。microCMS `faqs` API 移行予定 |
 | 医療機器一覧 | `/machine/` | ✅ | microCMS 取得、フラットグリッド、6件/ページ |
 | 医療機器詳細 | `/machine/[slug]/` | ✅ | microCMS 取得、キャンペーンサイドバー対応済み |
-| 内服薬一覧 | `/medicine/` | 🔧 | ハードコード → microCMS `medicines` API 移行予定 |
-| 内服薬詳細 | `/medicine/[slug]/` | 🔧 | ハードコード |
+| 内服薬一覧 | `/medicine/` | 🔧 | microCMS `medicines` API 作成済み。フロント接続未実装 |
+| 内服薬詳細 | `/medicine/[slug]/` | 🔧 | 同上 |
 | キャンペーン一覧 | `/campaign/` | ⬜ | microCMS `campaigns` API は存在。一覧ページ未実装 |
 
 ### 採用関連
@@ -124,7 +124,7 @@
 | SNSメディア | `media` | ✅ | ✅ | ✅ |
 | スタッフブログ | `staff_blog` | ✅ | ✅ | 🔧 詳細のみ。一覧未実装 |
 | 医療機器 | `machines` | ✅ | ✅ | ✅ |
-| 内服薬 | `medicines` | ⬜ | ⬜ | ⬜（ハードコード中） |
+| 内服薬・処方薬 | `medicines` | ✅ | ⬜ | ⬜（ハードコード中→接続予定） |
 | 料金 | `prices` | ⬜ | ⬜ | ⬜（ハードコード中） |
 | サイト画像 | `site_images` | ⬜ | ⬜ | ⬜（`/public/` にハードコード中） |
 | 営業カレンダー | `clinic_calendar` | ⬜ | ⬜ | ⬜ オブジェクト形式。定休曜日+臨時休診+取消日 → カレンダーウィジェット |
@@ -160,7 +160,7 @@
 | OpenAI 埋め込みベクトル生成 | ⬜ | |
 | DeepSeek API 接続 | ⬜ | |
 | RAG パイプライン実装 | ⬜ | |
-| チャットウィジェット UI | ⬜ | |
+| チャットウィジェット UI | 🔧 | フローティングボタン+ウィンドウ枠実装済み（準備中表示）。バックエンド未接続 | |
 | Admin ナレッジ CRUD | ⬜ | |
 | Admin プロンプト管理 | ⬜ | |
 | Admin 会話ログ閲覧 | ⬜ | |

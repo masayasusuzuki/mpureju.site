@@ -40,7 +40,7 @@
 | 11 | ~~採用情報~~ | ~~`recruit`~~ | **廃止** — 職種が3つのみのためハードコード運用に変更。APIは削除済み | — |
 | 12 | スタッフブログ | `staff_blog` | `/recruit/staff-blog/` 採用ページ内のスタッフブログ | title, slug, thumbnail, body（richtext）, category[], published_at |
 | 13 | 医療機器 | `machines` | `/machine/` 医療機器一覧・詳細ページ。フラットグリッド表示（カテゴリ廃止） | name, name_en, slug, thumbnail, type, catch_copy, target_concerns, description（richtext）, sort_order |
-| 14 | 内服薬 | `medicines` | `/medicine/` 内服薬一覧・詳細ページ（予定）。現在はハードコード運用 | name, slug, category, catch_copy, description（richtext）, usage, side_effects, contraindications, sort_order |
+| 14 | 内服薬・処方薬 | `medicines` | `/medicine/` 内服薬一覧・詳細ページ。microCMS管理に移行 | name, slug, category（**セレクト**: 美肌・シミ対策 / 頭皮・毛髪ケア / AGA治療 / ニキビ・肌荒れ / ダウンタイム軽減 / まつ毛育成）, thumbnail, catch_copy, description（richtext）, usage, side_effects, contraindications, sort_order |
 | 15 | サイト画像 | `site_images` | **未実装（予定）** — サイト各所の固定画像（ヒーロー・背景等）を一元管理。現在は `/public/` にハードコード | page_section（**セレクト**: top_fv / top_clinic_1 / top_clinic_2 / top_choose_1〜4 / top_doctor / persona_20s / persona_30s / persona_50s / persona_mens / pillar_mouth / pillar_eye / pillar_nose / pillar_lift / pillar_skin）, image, alt, sort_order |
 | 16 | 営業カレンダー | `clinic_calendar` | **未実装（予定）** — 休診日管理。**オブジェクト形式**（1レコード）。詳細は下記参照 | regular_holidays（セレクト複数）, extra_holidays（テキストエリア）, cancel_holidays（テキストエリア） |
 

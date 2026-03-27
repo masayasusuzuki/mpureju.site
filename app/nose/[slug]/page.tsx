@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTreatmentBySlug, getTreatmentsByPillar, getCampaigns } from "@/lib/microcms/client";
 import { TreatmentDetailTemplate, type PillarInfo } from "@/components/pillar/TreatmentDetailTemplate";
+import { getFaqsBySlug } from "@/lib/faq-data";
 
 const PILLAR: PillarInfo = {
   slug: "nose",
@@ -43,6 +44,7 @@ export default async function NoseTreatmentPage({
     getCampaigns(),
   ]);
   const otherTreatments = all.contents.filter((t) => t.slug !== slug);
+  const faqs = getFaqsBySlug(slug);
 
   return (
     <TreatmentDetailTemplate
@@ -50,6 +52,7 @@ export default async function NoseTreatmentPage({
       treatment={treatment}
       otherTreatments={otherTreatments}
       campaigns={campaigns}
+      faqs={faqs}
     />
   );
 }

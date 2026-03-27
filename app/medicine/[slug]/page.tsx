@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getMedicineList, getMedicineBySlug } from "@/lib/microcms/client";
 
-/* ── ハードコードデータ（microCMS移行後に置き換え） ── */
-
-type MedicineData = {
+/* ── フォールバック（microCMS未投入時） ── */
+type FallbackMedicine = {
   slug: string;
   name: string;
   category: string;
@@ -15,7 +15,7 @@ type MedicineData = {
   contraindications: string;
 };
 
-const MEDICINES: MedicineData[] = [
+const FALLBACK_MEDICINES: FallbackMedicine[] = [
   {
     slug: "tranexamic-set",
     name: "トラネキサム酸 / シナール / ユベラ / ハイチオール",
@@ -145,20 +145,27 @@ const TOC = [
   { id: "contraindications", label: "使用上の注意" },
 ];
 
-export function generateStaticParams() {
-  return MEDICINES.map((m) => ({ slug: m.slug }));
+export async function generateStaticParams() {
+  const { contents } = await getMedicineList();
+  if (contents.length > 0) {
+    return contents.map((m) => ({ slug: m.slug }));
+  }
+  return FALLBACK_MEDICINES.map((m) => ({ slug: m.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const medicine = MEDICINES.find((m) => m.slug === params.slug);
-  if (!medicine) return {};
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const medicine = await getMedicineBySlug(slug);
+  const fallback = FALLBACK_MEDICINES.find((m) => m.slug === slug);
+  const data = medicine ?? fallback;
+  if (!data) return {};
   return {
-    title: `${medicine.name}｜内服薬・処方薬｜Maison PUREJU`,
-    description: medicine.catch_copy,
+    title: `${data.name}｜内服薬・処方薬｜Maison PUREJU`,
+    description: data.catch_copy,
   };
 }
 
@@ -168,10 +175,16 @@ export default async function MedicineDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const medicine = MEDICINES.find((m) => m.slug === slug);
-  if (!medicine) notFound();
+  const medicine = await getMedicineBySlug(slug);
+  const fallback = FALLBACK_MEDICINES.find((m) => m.slug === slug);
+  const data = medicine ?? fallback;
+  if (!data) notFound();
 
-  const otherMedicines = MEDICINES.filter((m) => m.slug !== slug);
+  // サイドバー用: 他の内服薬
+  const { contents: allMedicines } = await getMedicineList();
+  const otherList = allMedicines.length > 0
+    ? allMedicines.filter((m) => m.slug !== slug)
+    : FALLBACK_MEDICINES.filter((m) => m.slug !== slug);
 
   return (
     <article>
@@ -184,16 +197,16 @@ export default async function MedicineDetailPage({
               <span>/</span>
               <Link href="/medicine" className="hover:text-[var(--color-brand-dark)] transition-colors">内服薬</Link>
               <span>/</span>
-              <span className="text-[var(--color-brand-dark)]/80">{medicine.name}</span>
+              <span className="text-[var(--color-brand-dark)]/80">{data.name}</span>
             </nav>
             <p className="text-xs tracking-[0.2em] text-[var(--color-brand-gold)] mb-2">
-              {medicine.category}
+              {data.category}
             </p>
             <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[var(--color-brand-dark)] tracking-wide">
-              {medicine.name}
+              {data.name}
             </h1>
             <p className="text-sm md:text-base text-[var(--color-text-secondary)] mt-3 max-w-4xl leading-relaxed">
-              {medicine.catch_copy}
+              {data.catch_copy}
             </p>
           </div>
         </div>
@@ -233,7 +246,7 @@ export default async function MedicineDetailPage({
               </h2>
               <div
                 className="prose prose-neutral max-w-none prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9]"
-                dangerouslySetInnerHTML={{ __html: medicine.description }}
+                dangerouslySetInnerHTML={{ __html: data.description }}
               />
             </section>
 
@@ -243,7 +256,7 @@ export default async function MedicineDetailPage({
                 用法・用量
               </h2>
               <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-[1.9]">
-                {medicine.usage}
+                {data.usage}
               </p>
             </section>
 
@@ -252,9 +265,10 @@ export default async function MedicineDetailPage({
               <h2 className="font-serif text-xl md:text-2xl text-[var(--color-brand-dark)] mb-8 border-l-4 border-[var(--color-brand-gold)] pl-4">
                 副作用
               </h2>
-              <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-[1.9]">
-                {medicine.side_effects}
-              </p>
+              <div
+                className="prose prose-neutral max-w-none prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9]"
+                dangerouslySetInnerHTML={{ __html: data.side_effects }}
+              />
             </section>
 
             {/* 使用上の注意 */}
@@ -264,7 +278,7 @@ export default async function MedicineDetailPage({
               </h2>
               <div className="bg-[var(--color-brand-cream)] border border-[var(--color-brand-gold)]/20 p-5 md:p-6 rounded-sm">
                 <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-[1.9]">
-                  {medicine.contraindications}
+                  {data.contraindications}
                 </p>
               </div>
             </section>
@@ -294,7 +308,7 @@ export default async function MedicineDetailPage({
               </div>
 
               {/* その他の内服薬 */}
-              {otherMedicines.length > 0 && (
+              {otherList.length > 0 && (
                 <div className="border border-[var(--color-brand-brown)]/10 rounded-sm">
                   <div className="px-4 py-3 border-b border-[var(--color-brand-brown)]/10">
                     <p className="text-xs tracking-[0.15em] text-[var(--color-brand-dark)] font-medium">
@@ -302,7 +316,7 @@ export default async function MedicineDetailPage({
                     </p>
                   </div>
                   <ul className="divide-y divide-[var(--color-brand-brown)]/5">
-                    {otherMedicines.map((m) => (
+                    {otherList.map((m) => (
                       <li key={m.slug}>
                         <Link
                           href={`/medicine/${m.slug}`}
