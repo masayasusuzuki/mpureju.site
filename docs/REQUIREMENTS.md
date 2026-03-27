@@ -42,6 +42,7 @@
 | 13 | 医療機器 | `machines` | `/machine/` 医療機器一覧・詳細ページ。フラットグリッド表示（カテゴリ廃止） | name, name_en, slug, thumbnail, type, catch_copy, target_concerns, description（richtext）, sort_order |
 | 14 | 内服薬 | `medicines` | `/medicine/` 内服薬一覧・詳細ページ（予定）。現在はハードコード運用 | name, slug, category, catch_copy, description（richtext）, usage, side_effects, contraindications, sort_order |
 | 15 | サイト画像 | `site_images` | **未実装（予定）** — サイト各所の固定画像（ヒーロー・背景等）を一元管理。現在は `/public/` にハードコード | page_section（**セレクト**: top_fv / top_clinic_1 / top_clinic_2 / top_choose_1〜4 / top_doctor / persona_20s / persona_30s / persona_50s / persona_mens / pillar_mouth / pillar_eye / pillar_nose / pillar_lift / pillar_skin）, image, alt, sort_order |
+| 16 | 営業カレンダー | `clinic_calendar` | **未実装（予定）** — 休診日管理。**オブジェクト形式**（1レコード）。詳細は下記参照 | regular_holidays（セレクト複数）, extra_holidays（テキストエリア）, cancel_holidays（テキストエリア） |
 
 > **⚠️ 料金の管理方針（重要・設計変更）：**
 > 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
@@ -133,6 +134,29 @@
 > 院長メッセージ・全職種共通の福利厚生・選考フロー・FAQはコード側にハードコード。
 > - 院長メッセージは `doctor` API から取得も可
 > - 採用FAQは `faqs` API に `category: recruit` を追加して管理
+
+### clinic_calendar 詳細スキーマ
+
+> **API形式: オブジェクト**（リスト形式ではなく1レコード）。休診日の設定を一元管理する。
+> 現行WordPressでは「休日設定」プラグインで定休日曜日 + 臨時休日 + 取消日を管理しており、同等の機能を microCMS で再現する。
+
+| # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
+|---|---|---|---|---|---|
+| 1 | `regular_holidays` | 定休曜日 | セレクトフィールド（複数選択） | ✅ | 選択肢: `sun`（日）/ `mon`（月）/ `tue`（火）/ `wed`（水）/ `thu`（木）/ `fri`（金）/ `sat`（土）。現行は月曜定休 |
+| 2 | `extra_holidays` | 臨時休診日 | テキストエリア | ❌ | 1行に1日付（`YYYY-MM-DD` 形式）。年末年始・GW・お盆・学会参加等。例: `2026-01-01` |
+| 3 | `cancel_holidays` | 定休取消日 | テキストエリア | ❌ | 定休曜日だが営業する日。1行に1日付（`YYYY-MM-DD` 形式）。例: 月曜祝日の振替営業等 |
+
+**フロント側の休診判定ロジック:**
+```
+休診 = (曜日が regular_holidays に含まれる || 日付が extra_holidays に含まれる)
+       && 日付が cancel_holidays に含まれない
+```
+
+**表示箇所（予定）:**
+- `/reservation/` ページ内にカレンダーウィジェットとして配置
+- トップページやフッター等にも埋め込み可能（コンポーネント化）
+- 当月 + 翌月の2ヶ月表示
+- 休診日はグレーアウト or ピンク背景で表示
 
 ---
 

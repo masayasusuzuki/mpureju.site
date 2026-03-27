@@ -157,10 +157,10 @@ export function ReservationFlow() {
         ))}
       </div>
 
-      {/* カルーセル */}
-      <div className="max-w-2xl mx-auto">
+      {/* カルーセル: ボタン横配置 */}
+      <div className="max-w-3xl mx-auto">
         {/* プログレスバー */}
-        <div className="flex gap-1 mb-6">
+        <div className="flex gap-1 mb-6 max-w-2xl mx-auto">
           {tab.steps.map((_, i) => (
             <button
               key={i}
@@ -174,88 +174,91 @@ export function ReservationFlow() {
           ))}
         </div>
 
-        {/* カード */}
-        <div className="bg-white border border-[var(--color-brand-brown)]/8 rounded-lg overflow-hidden">
-          {/* 画像 */}
-          {current.image && (
-            <div className="w-full aspect-[2/1] bg-[var(--color-brand-cream)] overflow-hidden">
-              <img
-                src={current.image}
-                alt={current.title}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-            </div>
-          )}
-
-          {/* テキスト */}
-          <div className="px-6 py-6 md:px-8">
-            <div className="flex items-baseline gap-1.5 mb-2">
-              <span className="font-en text-[0.6875rem] tracking-[0.2em] text-[var(--color-brand-gold)] font-medium">
-                STEP
-              </span>
-              <span className="font-en text-2xl font-light text-[var(--color-brand-gold)] leading-none">
-                {current.number}
-              </span>
-            </div>
-
-            <h3 className="text-lg font-medium text-[var(--color-brand-dark)] mb-3">
-              {current.title}
-            </h3>
-            <p className="text-sm text-[var(--color-text-secondary)] leading-[1.8]">
-              {current.desc}
-            </p>
-
-            {current.note && (
-              <div className="flex flex-wrap gap-3 mt-4">
-                {current.note.map((n) => (
-                  <div
-                    key={n.label}
-                    className="bg-[var(--color-brand-cream)] px-4 py-2.5 rounded-sm"
-                  >
-                    <p className="text-[0.6875rem] font-medium text-[var(--color-brand-gold)] mb-1">
-                      {n.label}
-                    </p>
-                    <p className="text-xs text-[var(--color-text-secondary)]">
-                      {n.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* ナビゲーション */}
-        <div className="flex items-center justify-between mt-5">
+        {/* カード + 左右ボタン */}
+        <div className="flex items-center gap-3 md:gap-5">
+          {/* 左ボタン */}
           <button
             onClick={prev}
             disabled={step === 0}
-            className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-[var(--color-brand-gold)]/25 text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-cream)] disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M9 2L4 7L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            前へ
           </button>
-          <p className="text-xs text-[var(--color-text-secondary)]">
-            <span className="font-en font-medium text-[var(--color-brand-dark)]">{step + 1}</span>
-            <span className="mx-1">/</span>
-            <span className="font-en">{tab.steps.length}</span>
-          </p>
+
+          {/* カード */}
+          <div className="flex-1 min-w-0 bg-white border border-[var(--color-brand-brown)]/8 rounded-lg overflow-hidden">
+            {/* 画像 */}
+            {current.image && (
+              <div className="w-full aspect-[2/1] bg-[var(--color-brand-cream)] overflow-hidden">
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
+            )}
+
+            {/* テキスト */}
+            <div className="px-5 py-5 md:px-8 md:py-6">
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="w-8 h-8 rounded-full bg-[var(--color-brand-gold)] text-white text-sm font-medium flex items-center justify-center">
+                  {step + 1}
+                </span>
+                <span className="text-xs tracking-[0.15em] text-[var(--color-brand-gold)] font-medium">
+                  STEP {step + 1}
+                </span>
+              </div>
+
+              <h3 className="text-lg font-medium text-[var(--color-brand-dark)] mb-3">
+                {current.title}
+              </h3>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-[1.8]">
+                {current.desc}
+              </p>
+
+              {current.note && (
+                <div className="flex flex-wrap gap-3 mt-4">
+                  {current.note.map((n) => (
+                    <div
+                      key={n.label}
+                      className="bg-[var(--color-brand-cream)] px-4 py-2.5 rounded-sm"
+                    >
+                      <p className="text-[0.6875rem] font-medium text-[var(--color-brand-gold)] mb-1">
+                        {n.label}
+                      </p>
+                      <p className="text-xs text-[var(--color-text-secondary)]">
+                        {n.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 右ボタン */}
           <button
             onClick={next}
             disabled={step === tab.steps.length - 1}
-            className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-[var(--color-brand-gold)]/25 text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-cream)] disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           >
-            次へ
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M5 2L10 7L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
         </div>
+
+        {/* カウンター */}
+        <p className="text-center mt-4 text-xs text-[var(--color-text-secondary)]">
+          <span className="font-en font-medium text-[var(--color-brand-dark)]">{step + 1}</span>
+          <span className="mx-1">/</span>
+          <span className="font-en">{tab.steps.length}</span>
+        </p>
       </div>
     </div>
   );

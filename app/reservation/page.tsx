@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ReservationFlow } from "./ReservationFlow";
+import { getClinicCalendar } from "@/lib/microcms/client";
+import { ClinicCalendarWidget } from "@/components/ui/ClinicCalendarWidget";
 
 export const metadata: Metadata = {
   title: "ご予約・ご来院の流れ｜Maison PUREJU 銀座",
@@ -45,7 +47,9 @@ const TIME_ESTIMATES = [
   },
 ];
 
-export default function ReservationPage() {
+export default async function ReservationPage() {
+  const calendar = await getClinicCalendar();
+
   return (
     <article>
       {/* ── Hero ── */}
@@ -175,6 +179,56 @@ export default function ReservationPage() {
           </div>
         </div>
       </section>
+
+      {/* ── キャンセルポリシー ── */}
+      <section className="py-14 md:py-20 bg-white border-t border-[var(--color-brand-brown)]/8">
+        <div className="section-container max-w-3xl">
+          <p className="font-en text-xs tracking-[0.3em] text-[var(--color-brand-gold)] mb-2 text-center">
+            CANCELLATION POLICY
+          </p>
+          <h2 className="font-serif text-xl md:text-2xl text-[var(--color-brand-dark)] text-center mb-8">
+            予約の変更・キャンセルについて
+          </h2>
+          <div className="space-y-4 text-sm text-[var(--color-text-secondary)] leading-[1.9]">
+            <p>
+              キャンセル及び変更のお申し出はご予約日より<strong className="text-[var(--color-brand-dark)]">2営業日前の17:00まで</strong>とさせていただきます。ご予約時間に遅れる場合は、当日お受けいただける施術内容をクリニックよりご提案させていただきます。
+            </p>
+            <p>
+              ご予約日より2営業日前17:00以降のキャンセル及び変更につきましては<strong className="text-[var(--color-brand-dark)]">3,000円（税込）のキャンセル料</strong>を頂戴しておりますのでご了承ください。
+            </p>
+            <p>
+              ご予約のキャンセルや変更を3回以上連続、もしくは無断キャンセルを2回された患者様におかれましては予約を承ることができなくなります。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 営業カレンダー ── */}
+      {calendar && (
+        <section className="py-14 md:py-20 bg-[var(--color-brand-cream)]/40">
+          <div className="section-container max-w-2xl">
+            <div className="text-center mb-8">
+              <p className="font-en text-xs tracking-[0.3em] text-[var(--color-brand-gold)] mb-2">
+                CALENDAR
+              </p>
+              <h2 className="font-serif text-xl md:text-2xl text-[var(--color-brand-dark)]">
+                営業カレンダー
+              </h2>
+            </div>
+            <div className="bg-white rounded-lg border border-[var(--color-brand-brown)]/8 px-5 py-6 md:px-8 md:py-8">
+              <ClinicCalendarWidget
+                regularHolidays={calendar.regular_holidays ?? []}
+                extraHolidays={calendar.extra_holidays
+                  ? calendar.extra_holidays.split("\n").map((s: string) => s.trim()).filter(Boolean)
+                  : []}
+                cancelHolidays={calendar.cancel_holidays
+                  ? calendar.cancel_holidays.split("\n").map((s: string) => s.trim()).filter(Boolean)
+                  : []}
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
     </article>
   );
