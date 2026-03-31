@@ -137,6 +137,45 @@ export default async function ColumnDetailPage({
               </div>
             )}
 
+            {/* 記事画像カルーセル */}
+            {col.images && col.images.length > 0 && (
+              <div className="mb-10">
+                <div
+                  className="flex overflow-x-auto gap-2.5"
+                  style={{
+                    scrollSnapType: "x mandatory",
+                    WebkitOverflowScrolling: "touch",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
+                  }}
+                >
+                  {col.images.map((img, i) => (
+                    <div
+                      key={i}
+                      className="relative shrink-0 aspect-square overflow-hidden bg-[var(--color-brand-cream)]"
+                      style={{ scrollSnapAlign: "start", width: "65%" }}
+                    >
+                      <Image
+                        src={img.url}
+                        alt={`${col.title} 画像${i + 2}`}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 1024px) 65vw, 500px"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-center items-center gap-2 mt-3">
+                  {col.images.map((_, i) => (
+                    <span
+                      key={i}
+                      className="block w-1.5 h-1.5 rounded-full bg-[var(--color-brand-gold)]/30"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* 目次 */}
             {tocItems.length > 0 && (
               <nav className="border border-[var(--color-brand-brown)]/15 p-5 md:p-6 mb-10">
@@ -163,48 +202,6 @@ export default async function ColumnDetailPage({
 
             {/* 本文 */}
             <MarkdownContent markdown={col.content} className={PROSE_STYLE} />
-
-            {/* 記事画像カルーセル */}
-            {col.images && col.images.length > 0 && (
-              <div className="mt-12 pt-10 border-t border-[var(--color-brand-brown)]/10">
-                <p className="text-xs tracking-[0.2em] text-[var(--color-brand-gold)] mb-5">GALLERY</p>
-                {/* スクロールコンテナ */}
-                <div
-                  className="flex overflow-x-auto gap-2.5"
-                  style={{
-                    scrollSnapType: "x mandatory",
-                    WebkitOverflowScrolling: "touch",
-                    scrollbarWidth: "none",
-                    msOverflowStyle: "none",
-                  }}
-                >
-                  {col.images.map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative shrink-0 aspect-square overflow-hidden bg-[var(--color-brand-cream)]"
-                      style={{ scrollSnapAlign: "start", width: "82%" }}
-                    >
-                      <Image
-                        src={img.url}
-                        alt={`${col.title} 画像${i + 2}`}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 1024px) 82vw, 600px"
-                      />
-                    </div>
-                  ))}
-                </div>
-                {/* ドット */}
-                <div className="flex justify-center items-center gap-2 mt-3">
-                  {col.images.map((_, i) => (
-                    <span
-                      key={i}
-                      className="block w-1.5 h-1.5 rounded-full bg-[var(--color-brand-gold)]/30"
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* 元リールリンク */}
             {col.instagram_url && (
