@@ -13,6 +13,7 @@ const menuItems = [
   { label: "美容皮膚科", href: "/skin" },
   { label: "内服薬", href: "/medicine" },
   { label: "医療機器一覧", href: "/machine" },
+  { label: "美容コラム", href: "/column" },
 ];
 
 export function Header() {
@@ -121,6 +122,16 @@ export function Header() {
               院長紹介
             </Link>
             <Link
+              href="/about"
+              className={`px-3 py-2 text-sm transition-colors duration-300 ${
+                isTransparent
+                  ? "text-white/90 hover:text-white"
+                  : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
+              }`}
+            >
+              当院について
+            </Link>
+            <Link
               href="/recruit"
               className={`px-3 py-2 text-sm transition-colors duration-300 ${
                 isTransparent
@@ -212,6 +223,13 @@ export function Header() {
             onClick={() => setMobileMenuOpen(false)}
           >
             院長紹介
+          </Link>
+          <Link
+            href="/about"
+            className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            当院について
           </Link>
           <Link
             href="/recruit"

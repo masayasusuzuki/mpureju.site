@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { findPriceRowsByTitle } from "@/lib/price-data";
 import { InlinePricePanel } from "@/components/sections/InlinePricePanel";
+import type { PriceRow } from "@/lib/price-data";
 import { SidebarCampaign } from "@/components/sections/SidebarCampaign";
 import { FaqAccordion, type FaqItem } from "@/components/sections/FaqAccordion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -33,10 +33,10 @@ interface Props {
   otherTreatments: Treatment[];
   campaigns?: Campaign[];
   faqs?: FaqItem[];
+  priceRows?: PriceRow[];
 }
 
-export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [], faqs = [] }: Props) {
-  const priceRows = findPriceRowsByTitle(treatment.title);
+export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [], faqs = [], priceRows = [] }: Props) {
 
   return (
     <article>
@@ -67,7 +67,7 @@ export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, ca
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <dt className="text-xs text-[var(--color-text-secondary)] tracking-wider mb-1">部位</dt>
-              <dd className="font-serif text-base text-[var(--color-brand-dark)]">{treatment.pillar}</dd>
+              <dd className="font-serif text-base text-[var(--color-brand-dark)]">{pillar.label}</dd>
             </div>
             <div>
               <dt className="text-xs text-[var(--color-text-secondary)] tracking-wider mb-1">施術名</dt>

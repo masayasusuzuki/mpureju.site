@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, ClinicCalendar, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
+import type { Campaign, ClinicCalendar, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -193,7 +193,8 @@ export async function getMedicineList(queries?: MicroCMSQueries) {
         ...queries,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[getMedicineList] failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 50 };
   }
 }
@@ -203,6 +204,40 @@ export async function getMedicineBySlug(slug: string) {
   try {
     const data = await microcms.getList<Medicine>({
       endpoint: "medicines",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+    return data.contents[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// ── columns ──────────────────────────────────────
+
+/** コラム一覧を取得 */
+export async function getColumnList(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<Column>({
+      endpoint: "columns",
+      queries: {
+        orders: "-publishedAt",
+        limit: 12,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 12 };
+  }
+}
+
+/** slugでコラムを1件取得 */
+export async function getColumnBySlug(slug: string) {
+  try {
+    const data = await microcms.getList<Column>({
+      endpoint: "columns",
       queries: {
         filters: `slug[equals]${slug}`,
         limit: 1,

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maison PUREJU — サイト構成図</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -298,9 +299,9 @@
     <div class="sidebar-section">
       <div class="sidebar-section-title">サマリー</div>
       <div class="stats">
-        <div class="stat-box"><div class="num" id="stat-pages">-</div><div class="lbl">ページ数</div></div>
-        <div class="stat-box"><div class="num">10</div><div class="lbl">CMS スキーマ</div></div>
-        <div class="stat-box"><div class="num">6</div><div class="lbl">DB テーブル</div></div>
+        <div class="stat-box"><div class="num" id="stat-pages">-</div><div class="lbl">総URL数</div></div>
+        <div class="stat-box"><div class="num" style="color:var(--green)">115</div><div class="lbl">実装済み(200)</div></div>
+        <div class="stat-box"><div class="num">13</div><div class="lbl">CMS スキーマ</div></div>
         <div class="stat-box"><div class="num">3</div><div class="lbl">Phase</div></div>
       </div>
     </div>
@@ -321,6 +322,9 @@
       <button class="tab-btn active" id="tab-pages" onclick="switchTab('pages')">📄 ページ構成</button>
       <button class="tab-btn" id="tab-data" onclick="switchTab('data')">🗄 データ設計</button>
       <button class="tab-btn" id="tab-flow" onclick="switchTab('flow')">🔀 導線・設計</button>
+      <button class="tab-btn" id="tab-chatbot" onclick="switchTab('chatbot')">🤖 チャットボット</button>
+      <button class="tab-btn" id="tab-db" onclick="switchTab('db')">🗃 DB管理フロー</button>
+      <button class="tab-btn" id="tab-scalability" onclick="switchTab('scalability')">🚀 拡張性</button>
     </div>
 
     <!-- ページ構成ツールバー -->
@@ -340,14 +344,14 @@
     <!-- データ設計 -->
     <div class="scroll-area" id="tab-content-data" style="display:none">
       <div class="group-label" style="margin-top:0">
-        <span class="group-label-text">microCMS スキーマ（10）</span>
+        <span class="group-label-text">microCMS スキーマ（13）</span>
         <span class="group-label-line"></span>
         <span class="db-badge db-microcms">microCMS</span>
       </div>
       <div class="data-grid" id="microcms-schemas"></div>
 
       <div class="group-label">
-        <span class="group-label-text">Supabase テーブル（6）</span>
+        <span class="group-label-text">Supabase テーブル（8）</span>
         <span class="group-label-line"></span>
         <span class="db-badge db-supabase">Supabase</span>
       </div>
@@ -366,6 +370,708 @@
       <div class="flow-grid" id="flow-content"></div>
     </div>
 
+    <!-- チャットボット設計 -->
+    <div class="scroll-area" id="tab-content-chatbot" style="display:none">
+
+      <!-- サブタブ -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px;">
+        <button id="ctab-text" onclick="switchChatTab('text')" style="font-size:12px;padding:5px 14px;border-radius:6px;border:1px solid var(--p3);background:var(--p3);color:#fff;cursor:pointer;">💬 テキスト相談</button>
+        <button id="ctab-photo" onclick="switchChatTab('photo')" style="font-size:12px;padding:5px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;">📸 写真診断</button>
+        <button id="ctab-data" onclick="switchChatTab('data')" style="font-size:12px;padding:5px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;">🗄 データソース</button>
+        <button id="ctab-knowledge" onclick="switchChatTab('knowledge')" style="font-size:12px;padding:5px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;">📚 ナレッジ登録</button>
+      </div>
+
+      <!-- テキスト相談フロー -->
+      <div id="ctab-content-text">
+        <div class="group-label" style="margin-top:0">
+          <span class="group-label-text">テキスト相談フロー（Phase 3）</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:16px;padding:10px 14px;background:var(--surface);border-left:3px solid var(--p3);border-radius:0 6px 6px 0;">
+          構造化データ（料金・施術名）→ SQL検索で正確に取得<br>
+          非構造化データ（コラム・施術詳細）→ pgvector RAGで意味検索<br>
+          DeepSeek APIがクエリ分解・応答生成に専念。データ検索はコード側が担当。
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#c4b5fd;font-weight:600;margin-bottom:6px;">① ユーザーが質問を送信</div>
+            チャットウィンドウからテキストを送信すると <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">/api/chat</code> に POST される。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#c4b5fd;font-weight:600;margin-bottom:6px;">② DeepSeek 1回目：意図分類 + クエリ分解</div>
+            ユーザーの口語表現を検索に適したキーワードに変換。同時に「料金・施術・FAQ・コラム・挨拶」のどれかに意図を分類し、呼び出すツールを決定する。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#c4b5fd;font-weight:600;margin-bottom:6px;">③ コード側でデータ検索</div>
+            ツールの種類に応じて Supabase SQL（料金・施術）またはpgvectorベクトル検索（コラム・ナレッジ）を実行。LLMにはURLを生成させず、コードが責任を持って正確なデータを取得する。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#c4b5fd;font-weight:600;margin-bottom:6px;">④ DeepSeek 2回目：応答生成</div>
+            検索結果をコンテキストとして渡し、自然な日本語で最終回答を生成。会話履歴は <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">chat_messages</code> テーブルに保存し、連続した会話が可能。
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+flowchart TD
+    U["👤 ユーザー質問"]:::user --> API["Next.js API Route\n/api/chat"]:::api
+    API --> LLM1["🤖 DeepSeek（1回目）\n意図分類 + クエリ分解"]:::llm
+    LLM1 -->|"料金問い合わせ"| SP["searchPrice(keyword)\nSQL ILIKE"]:::sql
+    LLM1 -->|"施術内容の質問"| ST["searchTreatment(keyword)\nSQL ILIKE"]:::sql
+    LLM1 -->|"よくある質問"| SF["searchFaq(keyword)\nキーワード検索"]:::sql
+    LLM1 -->|"詳細・コラム等"| SK["searchKnowledge(query)\npgvector 類似度検索"]:::rag
+    LLM1 -->|"一般的な挨拶等"| SKIP["ツール不要"]:::skip
+    SP --> DATA["🗃 検索結果"]:::data
+    ST --> DATA
+    SF --> DATA
+    SK --> DATA
+    DATA --> LLM2["🤖 DeepSeek（2回目）\n応答生成"]:::llm
+    SKIP --> LLM2
+    LLM2 --> RES["💬 応答テキスト"]:::res
+    RES --> SAVE["chat_messages に保存"]:::save
+    SAVE --> U
+    classDef user fill:#c9a96e,stroke:#a8894e,color:#1a1408
+    classDef api fill:#1e293b,stroke:#334155,color:#e2e8f0
+    classDef llm fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef sql fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef rag fill:#059669,stroke:#047857,color:#fff
+    classDef skip fill:#374151,stroke:#4b5563,color:#9ca3af
+    classDef data fill:#1e293b,stroke:#c9a96e,color:#e2e8f0
+    classDef res fill:#c9a96e,stroke:#a8894e,color:#1a1408
+    classDef save fill:#1e293b,stroke:#334155,color:#e2e8f0
+          </pre>
+        </div>
+
+        <div class="group-label">
+          <span class="group-label-text">Tool Use（Function Calling）一覧</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+flowchart TB
+    LLM["🤖 DeepSeek"]:::llm
+    LLM --> T1["searchPrice(keyword)"]:::tool
+    LLM --> T2["searchTreatment(keyword)"]:::tool
+    LLM --> T3["searchFaq(keyword)"]:::tool
+    LLM --> T4["searchKnowledge(query)"]:::tool
+    T1 --> D1[("price_items\nSQL ILIKE")]:::sql
+    T2 --> D2[("treatment_items\nSQL ILIKE")]:::sql
+    T3 --> D3[("faq_items\nキーワード検索")]:::sql
+    T4 --> D4[("knowledge_embeddings\npgvector cosine")]:::rag
+    classDef llm fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef tool fill:#c9a96e,stroke:#a8894e,color:#1a1408
+    classDef sql fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef rag fill:#059669,stroke:#047857,color:#fff
+          </pre>
+        </div>
+        <div style="font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(197,169,110,0.08);border-left:3px solid var(--p1);border-radius:0 4px 4px 0;">
+          🔵 青 = 構造化データ（SQL検索・正確）　　🟢 緑 = 非構造化データ（ベクトル検索・意味ベース）　　🟣 紫 = DeepSeek API
+        </div>
+      </div>
+
+      <!-- 写真診断フロー -->
+      <div id="ctab-content-photo" style="display:none">
+        <div class="group-label" style="margin-top:0">
+          <span class="group-label-text">写真でおすすめ診断フロー（Phase 3）</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:16px;padding:10px 14px;background:var(--surface);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;">
+          画像解析 → Gemini API（マルチモーダル）／テキスト解釈 → DeepSeek API<br>
+          写真は保存しない（base64でそのまま送信・利用規約に明記）<br>
+          診断実行条件：写真アップロード AND（テキスト入力 OR タグ選択）の両方が必須
+        </div>
+
+        <!-- ステップ説明 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">① 入力バリデーション</div>
+            写真と悩み（テキスト or タグ）の両方が揃うまで「AIに診断してもらう」ボタンは disabled のまま。片方だけではAPIを呼ばない設計。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">② Gemini API で画像解析</div>
+            写真をbase64に変換してGemini APIへ送信。美容医療の観点から顔・肌の状態を分析したテキストを返す。写真はサーバーに一切保存しない。システムプロンプトはSupabaseの <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">chatbot_prompts</code> で管理・編集可能。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">③ DeepSeek 1回目：クエリ分解</div>
+            Geminiの画像解析テキスト + ユーザーの悩みテキストを統合。「どの部位（pillar）か」「どんなキーワードで施術・記事を検索すべきか」をJSON形式で出力させる。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">④ microCMS でコンテンツ検索</div>
+            DeepSeekが出力したキーワードをもとにコード側でmicroCMS <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">treatments</code> / <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">columns</code> を検索。マッチした施術・記事のURLをリンクとして取得。LLMにURLを生成させないことでハルシネーションを防ぐ。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;grid-column:span 2;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">⑤ DeepSeek 2回目：最終アドバイス生成</div>
+            画像解析結果・ユーザー悩み・検索結果をすべて統合し、自然な日本語でアドバイス文を生成。UIには「アドバイステキスト」「おすすめ施術リンクカード」「おすすめ記事リンク」の3セクションで表示する。
+          </div>
+        </div>
+
+        <div class="group-label">
+          <span class="group-label-text">1. 写真診断フロー全体</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+flowchart TD
+    U["👤 ユーザー\n写真 + 悩みテキスト/タグ"]:::user
+    VALID{"両方入力済み？\n写真 AND 悩み"}:::check
+    U --> VALID
+    VALID -->|"いずれか未入力"| BLOCK["ボタン disabled\nインラインエラー表示"]:::warn
+    VALID -->|"OK"| API["Next.js API Route\n/api/photo-diagnosis"]:::api
+
+    API --> GEM["🖼 Gemini API\n画像解析\n写真はサーバーに保存しない"]:::gemini
+    GEM --> GOUT["画像解析テキスト\n例: 目の下のたるみ、ハリ不足"]:::data
+
+    GOUT --> DS1["🤖 DeepSeek（1回目）\nクエリ分解\nGemini解析 + ユーザー悩みを統合"]:::llm
+    DS1 --> JOUT["JSON出力\nconcerns / pillar / search_queries"]:::data
+
+    JOUT --> CMS["microCMS 検索\ntreatments / columns\nコード側でマッチング"]:::cms
+    CMS --> LINKS["施術ページリンク\n記事リンク"]:::data
+
+    LINKS --> DS2["🤖 DeepSeek（2回目）\n最終アドバイス生成\n検索結果を統合"]:::llm
+    DS2 --> OUT["アドバイス文\n+ 施術リンクカード\n+ おすすめ記事リンク"]:::res
+    OUT --> U
+
+    classDef user fill:#c9a96e,stroke:#a8894e,color:#1a1408
+    classDef check fill:#374151,stroke:#6b7280,color:#e2e8f0
+    classDef warn fill:#7f1d1d,stroke:#ef4444,color:#fca5a5
+    classDef api fill:#1e293b,stroke:#334155,color:#e2e8f0
+    classDef gemini fill:#0d6b5e,stroke:#14b8a6,color:#99f6e4
+    classDef llm fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef cms fill:#1e3a5f,stroke:#2563eb,color:#93c5fd
+    classDef data fill:#1e293b,stroke:#c9a96e,color:#e2e8f0
+    classDef res fill:#c9a96e,stroke:#a8894e,color:#1a1408
+          </pre>
+        </div>
+
+        <div class="group-label">
+          <span class="group-label-text">2. DeepSeek クエリ分解出力スキーマ</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;font-size:12px;color:#e2e8f0;font-family:monospace;line-height:1.8;">
+<pre>{
+  "concerns": ["目の下のたるみ", "クマ", "ハリ不足"],
+  "pillar": ["eye", "skin"],          // 5ピラー内に限定
+  "search_queries": {
+    "treatments": ["たるみ", "クマ", "ヒアルロン酸"],
+    "columns": ["クマ 改善", "目の下 たるみ 施術"]
+  }
+}</pre>
+          <div style="margin-top:12px;padding:8px 12px;background:rgba(197,169,110,0.08);border-left:3px solid var(--p1);border-radius:0 4px 4px 0;font-family:sans-serif;">
+            LLMは「意味解釈・クエリ生成」のみ担当。URLの解決は100%コード側がmicroCMS検索で行う。ハルシネーション防止。
+          </div>
+        </div>
+
+        <div class="group-label">
+          <span class="group-label-text">3. UI状態遷移</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+stateDiagram-v2
+    state "初期状態" as INIT
+    state "写真アップ済み" as PHOTO
+    state "悩み入力済み" as CONCERN
+    state "診断可能（両方OK）" as READY
+    state "診断中..." as LOADING
+    state "結果表示" as RESULT
+    [*] --> INIT: 写真診断画面を開く
+    INIT --> PHOTO: 写真をアップロード
+    INIT --> CONCERN: テキスト入力 or タグ選択
+    PHOTO --> READY: 悩みも入力
+    CONCERN --> READY: 写真もアップ
+    READY --> LOADING: AIに診断してもらうボタン押下
+    LOADING --> RESULT: API応答完了
+    RESULT --> READY: やり直す
+          </pre>
+        </div>
+
+        <div style="font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(20,184,166,0.08);border-left:3px solid var(--teal);border-radius:0 4px 4px 0;">
+          🟦 Gemini API = 画像解析専用　　🟣 DeepSeek API = テキスト解釈・応答生成　　🔵 microCMS = 施術・記事データソース
+        </div>
+      </div>
+
+      <!-- データソース構成 -->
+      <div id="ctab-content-data" style="display:none">
+        <div class="group-label" style="margin-top:0">
+          <span class="group-label-text">データソース構成</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;border-top:2px solid #2563eb;">
+            <div style="color:#93c5fd;font-weight:600;margin-bottom:6px;">🔵 構造化データ（SQL）</div>
+            <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">price_items</code> / <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">treatment_items</code><br>
+            Supabaseテーブルで管理。mpureju.adminから直接編集。料金ページ・施術一覧ページにISRで反映。テキスト相談のSQL検索にも使用。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;border-top:2px solid #059669;">
+            <div style="color:#6ee7b7;font-weight:600;margin-bottom:6px;">🟢 非構造化データ（RAG）</div>
+            <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">chatbot_knowledge</code> / <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">knowledge_embeddings</code><br>
+            コラム・施術詳細など自由記述コンテンツ。OpenAI Embeddingでベクトル化し、pgvectorで意味検索。テキスト相談の詳細質問に対応。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;border-top:2px solid #14b8a6;">
+            <div style="color:#99f6e4;font-weight:600;margin-bottom:6px;">🩵 microCMS コンテンツ</div>
+            <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">treatments</code> / <code style="background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px;">columns</code><br>
+            写真診断の施術・記事リンク提示に使用。DeepSeekが出力したキーワードでコード側が検索し、実在するURLのみを返す。
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+flowchart LR
+    subgraph SQL["構造化データ（SQL検索）"]
+        direction TB
+        PI[("price_items\n料金テーブル")]
+        TI[("treatment_items\n施術一覧テーブル")]
+    end
+    subgraph RAG["非構造化データ（RAG）"]
+        direction TB
+        CK[("chatbot_knowledge\nナレッジ")]
+        KE[("knowledge_embeddings\nベクトルDB")]
+    end
+    subgraph CMS["microCMS"]
+        direction TB
+        TR["treatments\n施術記事"]
+        COL["columns\nコラム記事"]
+        CP2[("chatbot_prompts\nシステムプロンプト")]
+    end
+    subgraph MGMT["管理（mpureju.admin）"]
+        direction TB
+        ADMIN["管理画面"]
+    end
+    ADMIN -->|CRUD| PI
+    ADMIN -->|CRUD| TI
+    ADMIN -->|CRUD| CK
+    ADMIN -->|編集| CP2
+    CK -->|"Edge Function\nOpenAI Embedding"| KE
+    subgraph SITE["mpureju.site"]
+        direction TB
+        PRICE["/price/"]
+        TREAT["/treatment/"]
+        CHAT["テキスト相談"]
+        PHOTO["写真診断"]
+    end
+    PI -->|ISR取得| PRICE
+    TI -->|ISR取得| TREAT
+    PI -->|SQL検索| CHAT
+    TI -->|SQL検索| CHAT
+    KE -->|類似度検索| CHAT
+    CP2 -->|プロンプト注入| CHAT
+    CP2 -->|プロンプト注入| PHOTO
+    TR -->|キーワード検索| PHOTO
+    COL -->|キーワード検索| PHOTO
+    classDef sqlStyle fill:#1e3a5f,stroke:#2563eb,color:#93c5fd
+    classDef ragStyle fill:#064e3b,stroke:#059669,color:#6ee7b7
+    classDef cmsStyle fill:#1e3a5f,stroke:#14b8a6,color:#99f6e4
+    classDef mgmtStyle fill:#1f1535,stroke:#7c3aed,color:#c4b5fd
+    classDef siteStyle fill:#2d1f0e,stroke:#c9a96e,color:#fde68a
+    class PI,TI sqlStyle
+    class CK,KE ragStyle
+    class TR,COL,CP2 cmsStyle
+    class ADMIN mgmtStyle
+    class PRICE,TREAT,CHAT,PHOTO siteStyle
+          </pre>
+        </div>
+      </div>
+
+      <!-- ナレッジ登録フロー -->
+      <div id="ctab-content-knowledge" style="display:none">
+        <div class="group-label" style="margin-top:0">
+          <span class="group-label-text">ナレッジ登録フロー</span>
+          <span class="group-label-line"></span>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:16px;padding:10px 14px;background:var(--surface);border-left:3px solid var(--green);border-radius:0 6px 6px 0;">
+          テキスト相談でコラム・施術詳細などの「詳しい情報」に答えるためのRAGナレッジを管理画面から登録・編集する仕組み。<br>
+          登録するだけで自動的にベクトル化され、チャットボットがすぐ参照できるようになる。
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#6ee7b7;font-weight:600;margin-bottom:6px;">① 管理画面でナレッジを登録・編集</div>
+            mpureju.admin の管理画面から <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">chatbot_knowledge</code> テーブルにコンテンツを追加・編集する。施術詳細・よくある質問・クリニック情報などを自由記述で登録可能。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;">
+            <div style="color:#6ee7b7;font-weight:600;margin-bottom:6px;">② Supabase Edge Function が自動起動</div>
+            DB保存をトリガーにEdge Functionが起動。OpenAI Embedding APIにテキストを送り、意味ベクトルを生成する。<br>※ Embeddingのみ OpenAI。チャット応答はDeepSeek。
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:14px;font-size:12px;color:#94a3b8;line-height:1.9;grid-column:span 2;">
+            <div style="color:#6ee7b7;font-weight:600;margin-bottom:6px;">③ knowledge_embeddings にupsert → 即座に検索可能</div>
+            生成したベクトルを <code style="background:var(--bg);padding:1px 5px;border-radius:3px;">knowledge_embeddings</code> テーブルにupsert。テキスト相談でユーザーが質問すると、pgvector のコサイン類似度検索でこのナレッジが参照される。登録した瞬間からチャットボットに反映される。
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+          <pre class="mermaid">
+flowchart LR
+    A["✏️ 管理画面で\nナレッジ追加・編集"]:::admin
+    B[("chatbot_knowledge\nに保存")]:::db
+    C["Supabase\nEdge Function"]:::func
+    D["OpenAI\nEmbedding API"]:::api
+    E[("knowledge_embeddings\nにupsert")]:::db
+    A --> B -->|トリガー| C --> D --> E
+    classDef admin fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef db fill:#1e293b,stroke:#c9a96e,color:#e2e8f0
+    classDef func fill:#059669,stroke:#047857,color:#fff
+    classDef api fill:#2563eb,stroke:#1d4ed8,color:#fff
+          </pre>
+        </div>
+        <div style="font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(197,169,110,0.08);border-left:3px solid var(--p1);border-radius:0 4px 4px 0;">
+          ナレッジ登録時のEmbeddingのみOpenAI API使用。チャット応答生成はDeepSeek API。写真診断画像解析はGemini API。
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DB管理フロー -->
+    <div class="scroll-area" id="tab-content-db" style="display:none">
+      <div style="margin-bottom:12px">
+        <div class="group-label" style="margin-top:0">
+          <span class="group-label-text">Supabase DB — 管理画面 → サイト反映フロー</span>
+          <span class="group-label-line"></span>
+          <span class="db-badge db-supabase">SSOT</span>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:20px;padding:10px 14px;background:var(--surface);border-left:3px solid var(--green);border-radius:0 6px 6px 0;">
+          料金・施術一覧の唯一の信頼できる情報源（SSOT）は Supabase DB。<br>
+          管理画面（mpureju.admin）で編集 → 各コンテンツページに自動反映。
+        </div>
+      </div>
+
+      <div class="group-label">
+        <span class="group-label-text">管理フロー全体図</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+        <pre class="mermaid">
+flowchart TD
+    subgraph ADMIN_GRP["管理画面 - mpureju.admin"]
+        direction TB
+        AUTH["Supabase Auth\nメール+パスワード認証"]:::admin
+        PRICE_UI["料金管理\n/prices"]:::admin
+        TREAT_UI["施術一覧管理\n/treatments"]:::admin
+        AUTH --> PRICE_UI
+        AUTH --> TREAT_UI
+    end
+
+    subgraph DB_GRP["Supabase DB"]
+        direction TB
+        PI[("price_items\n料金テーブル")]:::db
+        TI[("treatment_items\n施術一覧テーブル")]:::db
+    end
+
+    subgraph SITE_GRP["mpureju.site - コンテンツページ"]
+        direction TB
+        PRICE_PAGE["/price - 料金一覧"]:::site
+        TREAT_PAGE["/treatment - 施術一覧"]:::site
+        PILLAR_DETAIL["/{pillar}/{slug} - 施術詳細"]:::site
+        MED_DETAIL["/medicine/{slug} - 内服薬詳細"]:::site
+    end
+
+    PRICE_UI -- "CRUD" --> PI
+    TREAT_UI -- "CRUD" --> TI
+
+    PI -- "getPriceSubTabs()\ngetPriceRows()" --> PRICE_PAGE
+    PI -- "getPriceRows()" --> TREAT_PAGE
+    PI -- "findPriceRowsByName()" --> PILLAR_DETAIL
+    PI -- "findMedicinePriceRows()" --> MED_DETAIL
+
+    TI -- "getTreatmentSubTabs()\ngetTreatmentRowsBySection()" --> TREAT_PAGE
+
+    classDef admin fill:#1e3a5f,stroke:#3b82f6,color:#93c5fd
+    classDef db fill:#134e3a,stroke:#10b981,color:#6ee7b7
+    classDef site fill:#2d1b4e,stroke:#8b5cf6,color:#c4b5fd
+        </pre>
+      </div>
+
+      <div class="group-label">
+        <span class="group-label-text">DBテーブル構造</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+        <pre class="mermaid">
+erDiagram
+    price_items {
+        uuid id PK "主キー"
+        text section "皮膚科 外科 点滴 内服薬 化粧品"
+        text sub_tab "サブカテゴリ"
+        text category "施術名・薬剤名"
+        text option "オプション名"
+        text price "料金 税込表示"
+        int sort_order "表示順"
+    }
+    treatment_items {
+        uuid id PK "主キー"
+        text section "皮膚科 外科 点滴 内服薬"
+        text sub_tab "サブカテゴリ"
+        text name "施術名"
+        text description "概要"
+        text risks "リスク・副作用"
+        int sort_order "表示順"
+    }
+        </pre>
+      </div>
+
+      <div class="group-label">
+        <span class="group-label-text">クエリ関数マッピング</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;overflow-x:auto;">
+        <pre class="mermaid">
+flowchart LR
+    subgraph QUERIES["lib/supabase/queries.ts"]
+        direction TB
+        Q1["getPriceSubTabs(section)\nSubTab[] 料金・外科など"]:::fn
+        Q2["getPriceRows(section)\nPriceRow[] 点滴・内服薬など"]:::fn
+        Q3["findPriceRowsByName(title)\n施術名で部分一致検索"]:::fn
+        Q4["findMedicinePriceRows(name)\n複合薬剤名を分割してOR検索"]:::fn
+        Q5["getTreatmentRowsBySection(section)\nTreatmentRow[]"]:::fn
+        Q6["getTreatmentSubTabs(section)\nTreatmentSubTab[] 外科タブ"]:::fn
+    end
+
+    Q1 --> P1["/price - 皮膚科・外科タブ"]:::page
+    Q2 --> P2["/price - 点滴・内服薬テーブル"]:::page
+    Q2 --> P3["/treatment - 点滴・内服薬テーブル"]:::page
+    Q3 --> P4["/{pillar}/{slug} サイドバー料金"]:::page
+    Q4 --> P5["/medicine/{slug} サイドバー料金"]:::page
+    Q5 --> P6["/treatment - 皮膚科・点滴テーブル"]:::page
+    Q6 --> P7["/treatment - 外科サブタブ"]:::page
+
+    classDef fn fill:#1e293b,stroke:#334155,color:#93c5fd
+    classDef page fill:#2d1b4e,stroke:#8b5cf6,color:#c4b5fd
+        </pre>
+      </div>
+      <div style="font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(16,185,129,0.08);border-left:3px solid var(--green);border-radius:0 4px 4px 0;">
+        🟢 緑 = Supabase DB / 管理画面　　🟣 紫 = フロントエンドページ　　🔵 青 = 管理画面操作
+      </div>
+    </div>
+
+    <!-- 拡張性 -->
+    <div class="scroll-area" id="tab-content-scalability" style="display:none">
+
+      <!-- イントロ -->
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:24px;padding:14px 18px;background:var(--surface);border-left:4px solid var(--p1);border-radius:0 8px 8px 0;line-height:1.9;">
+        このサイトは <strong style="color:var(--text)">「どこかを変えたら別の場所も直さなければならない」依存関係がほとんどない</strong> 設計になっています。<br>
+        コンテンツ・料金・ページ・AI知識——それぞれが独立して拡張できます。
+      </div>
+
+      <!-- Before / After -->
+      <div class="group-label" style="margin-top:0">
+        <span class="group-label-text">Before / After — ハードコード vs SSOT設計</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+        <div style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:600;color:#f87171;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">❌ Before — WordPress ハードコード</div>
+          <ul class="section-list" style="gap:6px;">
+            <li>料金変更 → どのファイルを直せばいいか不明</li>
+            <li>変更漏れがあっても検知できない</li>
+            <li>施術追加 → コードとCMSを両方手動で同期</li>
+            <li>254ページ、管理者以外は触れない</li>
+            <li>AI連携しようとするとデータ形式がバラバラで詰む</li>
+          </ul>
+        </div>
+        <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:600;color:#6ee7b7;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">✅ After — SSOT設計（現サイト）</div>
+          <ul class="section-list" style="gap:6px;">
+            <li>料金変更 → 管理画面で1行編集、全ページ自動反映</li>
+            <li>施術追加 → microCMSに登録するだけでページが生える</li>
+            <li>AIチャットボットもDBを直接参照 → 同期不要</li>
+            <li>スタッフが管理画面から安全にCRUD操作</li>
+            <li>データフローが1本化されているため変更漏れが構造上起きない</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 拡張パターン一覧 -->
+      <div class="group-label">
+        <span class="group-label-text">拡張パターン — 何をしたいときに何を触るか</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px;">
+        <table class="schema-table" style="font-size:12px;">
+          <tr>
+            <th style="padding:10px 14px;width:28%">やりたいこと</th>
+            <th style="padding:10px 14px;width:22%">触る場所</th>
+            <th style="padding:10px 14px;width:12%">コード変更</th>
+            <th style="padding:10px 14px;">自動反映される箇所</th>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">料金を変更する</td>
+            <td><span class="db-badge db-supabase">管理画面 / price_items</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">/price/ ・施術詳細サイドバー・内服薬詳細・AIチャットボット</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">施術一覧に新施術を追加</td>
+            <td><span class="db-badge db-supabase">管理画面 / treatment_items</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">/treatment/ ・AIチャットボット</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">施術詳細ページを追加</td>
+            <td><span class="db-badge db-microcms">microCMS / treatments</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">/{pillar}/{slug}/ が自動生成（ISR）</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">新しいピラーページを追加</td>
+            <td><span class="db-badge db-local">page.tsx 約50行追加</span></td>
+            <td style="color:#fbbf24;text-align:center">最小限</td>
+            <td style="color:#94a3b8">TreatmentDetailTemplate がそのまま適用される</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">AIの知識を追加・更新</td>
+            <td><span class="db-badge db-supabase">管理画面 / chatbot_knowledge</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">Embedding自動生成 → RAG検索に即反映</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">AIの回答トーンを変える</td>
+            <td><span class="db-badge db-supabase">管理画面 / chatbot_prompts</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">次のチャットから即反映</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">内服薬・機器を追加</td>
+            <td><span class="db-badge db-microcms">microCMS / medicines or machines</span></td>
+            <td style="color:var(--green);text-align:center">不要</td>
+            <td style="color:#94a3b8">/medicine/[slug]/ か /machine/[slug]/ が自動生成</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">新コンテンツ種別を追加<br><span style="font-size:10px;color:var(--muted)">（例: 用語集・比較記事）</span></td>
+            <td><span class="db-badge db-microcms">microCMS にAPI追加</span></td>
+            <td style="color:#fbbf24;text-align:center">ページ1枚のみ</td>
+            <td style="color:#94a3b8">以降はCMS管理だけで運用可能</td>
+          </tr>
+          <tr>
+            <td style="padding:9px 14px;color:var(--text)">コンバージョン計測を追加</td>
+            <td><span class="db-badge db-supabase">conversion_events に event_type 追加</span></td>
+            <td style="color:#fbbf24;text-align:center">enum 1行のみ</td>
+            <td style="color:#94a3b8">蓄積データが分析基盤に自動反映</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- データフロー図 -->
+      <div class="group-label">
+        <span class="group-label-text">拡張の独立性 — どのレイヤーも他に波及しない</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;overflow-x:auto;">
+        <pre class="mermaid">
+flowchart LR
+    subgraph CMS["📝 microCMS — リッチコンテンツ"]
+        direction TB
+        C1["施術詳細記事\n（treatments）"]
+        C2["内服薬・機器\n（medicines / machines）"]
+        C3["コラム・症例・スタッフ"]
+    end
+    subgraph DB["🗄 Supabase — 構造化データ"]
+        direction TB
+        D1[("price_items\n料金テーブル")]
+        D2[("treatment_items\n施術一覧")]
+        D3[("chatbot_knowledge\nAI知識")]
+    end
+    subgraph SITE["🌐 mpureju.site"]
+        direction TB
+        P1["/{pillar}/{slug}/\n施術詳細"]
+        P2["/price/ /treatment/\n一覧・料金"]
+        P3["AIチャットボット\n（Phase 3）"]
+    end
+    subgraph ADMIN["🔒 mpureju.admin\n管理画面"]
+        direction TB
+        A1["料金・施術CRUD"]
+        A2["ナレッジ・プロンプト管理"]
+    end
+    C1 -->|"ISR取得"| P1
+    C2 -->|"ISR取得"| P1
+    D1 -->|"ISR取得"| P2
+    D2 -->|"ISR取得"| P2
+    D1 -->|"SQL検索"| P3
+    D3 -->|"ベクトル検索"| P3
+    A1 -->|"CRUD"| D1
+    A1 -->|"CRUD"| D2
+    A2 -->|"CRUD"| D3
+    classDef cmsStyle fill:#1e3a5f,stroke:#14b8a6,color:#99f6e4
+    classDef dbStyle fill:#134e3a,stroke:#10b981,color:#6ee7b7
+    classDef siteStyle fill:#2d1b4e,stroke:#8b5cf6,color:#c4b5fd
+    classDef adminStyle fill:#1e3a5f,stroke:#3b82f6,color:#93c5fd
+    class CMS,C1,C2,C3 cmsStyle
+    class DB,D1,D2,D3 dbStyle
+    class SITE,P1,P2,P3 siteStyle
+    class ADMIN,A1,A2 adminStyle
+        </pre>
+      </div>
+      <div style="font-size:11px;color:var(--muted);padding:8px 12px;background:rgba(197,169,110,0.08);border-left:3px solid var(--p1);border-radius:0 4px 4px 0;margin-bottom:24px;">
+        各レイヤーは独立しており、<strong style="color:var(--text)">CMSを変えてもDBに影響なし・DBを変えてもCMSに影響なし</strong>。拡張時の副作用がない。
+      </div>
+
+      <!-- フェーズ別拡張ロードマップ -->
+      <div class="group-label">
+        <span class="group-label-text">フェーズ別 — 拡張ロードマップ</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+        <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--p1);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 1（完了 / 進行中）</div>
+          <ul class="section-list" style="gap:5px;">
+            <li>5ピラー + 全施術詳細ページ</li>
+            <li>料金・施術一覧（Supabase SSOT）</li>
+            <li>お問い合わせフォーム</li>
+            <li>採用ページ・スタッフブログ</li>
+            <li>管理画面（施術・料金CRUD）</li>
+            <li>CVイベント計測基盤</li>
+          </ul>
+        </div>
+        <div style="background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--p2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 2（次期）</div>
+          <ul class="section-list" style="gap:5px;">
+            <li>院長・スタッフ紹介ページ</li>
+            <li>コラム・about・初診ガイド</li>
+            <li>施術比較・キャンペーン</li>
+            <li>症例写真総合ページ</li>
+            <li>問い合わせ管理（ステータス）</li>
+          </ul>
+        </div>
+        <div style="background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.3);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--p3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 3（将来）</div>
+          <ul class="section-list" style="gap:5px;">
+            <li>AIチャットボット（DeepSeek + RAG）</li>
+            <li>写真でおすすめ診断（Gemini）</li>
+            <li>症例フィルター（多軸絞り込み）</li>
+            <li>ナレッジ管理 UI</li>
+            <li>会話ログ分析ダッシュボード</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 設計の要点 -->
+      <div class="group-label">
+        <span class="group-label-text">設計のポイント — なぜ拡張コストが低いか</span>
+        <span class="group-label-line"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+        <div class="flow-card">
+          <div class="flow-card-title">🗂 データの役割分担が明確</div>
+          <div class="flow-step"><span class="step-icon">📝</span><div class="step-text"><strong>microCMS</strong>編集者が書くリッチコンテンツ（施術説明・画像・コラム）</div></div>
+          <div class="flow-step"><span class="step-icon">🗄</span><div class="step-text"><strong>Supabase</strong>構造化データ（料金・施術名・問い合わせ・AIログ）</div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:8px;background:var(--bg);border-radius:4px;">役割が明確なので「どちらに入れるか迷う」が起きない。新データも自然に配置先が決まる。</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card-title">🧩 テンプレート設計による再利用</div>
+          <div class="flow-step"><span class="step-icon">🔧</span><div class="step-text"><strong>TreatmentDetailTemplate</strong>5ピラー共通。新ピラー追加は page.tsx 50行のみ</div></div>
+          <div class="flow-step"><span class="step-icon">🔧</span><div class="step-text"><strong>PillarTemplate</strong>ピラー一覧ページも共通テンプレートで統一</div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:8px;background:var(--bg);border-radius:4px;">UIの修正が全ページに一括適用される。バグ修正も1箇所で済む。</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card-title">🤖 AIがDBと直結している</div>
+          <div class="flow-step"><span class="step-icon">⚡</span><div class="step-text">料金・施術データがSupabaseにあるため、AIが常に最新データを参照</div></div>
+          <div class="flow-step"><span class="step-icon">⚡</span><div class="step-text">管理画面で料金更新 → チャットボットの回答も即更新。再学習コストゼロ</div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:8px;background:var(--bg);border-radius:4px;">通常のAIチャットボットは知識を再学習させる必要がある。このサイトはDBがそのまま知識ソース。</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card-title">📊 計測基盤が最初から組み込まれている</div>
+          <div class="flow-step"><span class="step-icon">📈</span><div class="step-text"><strong>conversion_events</strong>「どのページから予約ボタンを押したか」を自前蓄積</div></div>
+          <div class="flow-step"><span class="step-icon">📈</span><div class="step-text">GA4では取れない粒度のデータが積み上がり続ける</div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:8px;background:var(--bg);border-radius:4px;">後からダッシュボードを追加するだけでマーケ施策の精度が上がる。データは既に貯まっている。</div>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 </div>
 
@@ -380,64 +1086,133 @@
 // PAGE DATA
 // =====================================================
 const PAGES = [
+  // ── トップ ──
   { id:"top", name:"トップページ", url:"/", icon:"🏠", phase:1, cat:"top", cms:"static",
     sections:["Hero（全画面・角丸）","キャンペーンバナー","お悩みから探す（顔SVG）","施術名から探す（タブUI）","症例実績","実績・掲載歴","内観写真①（パララックス）","選ばれる理由（4項目）","院長メッセージ","Our Team（無限スクロール）","お知らせ","Instagram / YouTube","内観写真②","アクセス"],
     subpages:[], notes:"microCMS campaigns/news/cases を取得。Framer Motion パララックス。" },
-  { id:"mouth", name:"口元", url:"/mouth/", icon:"💋", phase:1, cat:"pillar", cms:"microcms",
-    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
-    subpages:["/mouth/corner-lip-lift/","/mouth/m-lip/","/mouth/philtrum/","/mouth/lip-reduction/","/mouth/gummy-smile/","/mouth/case/"],
-    notes:"施術詳細は Phase 2 で microCMS treatments から動的生成。" },
-  { id:"eye", name:"目元", url:"/eye/", icon:"👁", phase:1, cat:"pillar", cms:"microcms",
-    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
-    subpages:["/eye/double-eyelid/","/eye/ptosis/","/eye/brow-lift/","/eye/under-eye/","/eye/epicanthoplasty/","/eye/case/"], notes:"" },
-  { id:"nose", name:"鼻", url:"/nose/", icon:"👃", phase:1, cat:"pillar", cms:"microcms",
-    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
-    subpages:["/nose/implant/","/nose/tip/","/nose/alar/","/nose/septum/","/nose/case/"], notes:"" },
-  { id:"lift", name:"リフトアップ", url:"/lift/", icon:"✨", phase:1, cat:"pillar", cms:"microcms",
-    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
-    subpages:["/lift/thread/","/lift/sofwave/","/lift/hifu/","/lift/case/"], notes:"" },
-  { id:"skin", name:"美容皮膚科", url:"/skin/", icon:"💆", phase:1, cat:"pillar", cms:"microcms",
-    sections:["Hero・お悩みタグ","施術一覧カード","セットコース","シミュレーター（埋込）","院長のこだわり","症例写真","よくある質問","CTA"],
-    subpages:["/skin/potenza/","/skin/injection/","/skin/laser/","/skin/case/"], notes:"" },
-  { id:"treatment-detail", name:"施術詳細", url:"/[pillar]/[slug]/ 他", icon:"📄", phase:2, cat:"pillar", cms:"microcms",
-    sections:["施術説明・リスク・副作用","料金（price_options）","ダウンタイム","症例写真","よくある質問","関連キャンペーン（サイドバー sticky）","CTA"],
-    subpages:["/treatment/[slug]/（汎用）"], notes:"Phase 1 は 404 許容。Phase 2 で全実装。" },
-  { id:"case", name:"症例写真（総合）", url:"/case/", icon:"🖼", phase:1, cat:"content", cms:"microcms",
+
+  // ── ピラー（部位別） ──
+  { id:"mouth", name:"口元ピラー", url:"/mouth/", icon:"💋", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード（microCMS）","症例実績","よくある質問","CTA"],
+    subpages:["/mouth/gummy-smile/","/mouth/lip-augmentation/","/mouth/lip-reduction/","/mouth/lateral-lip-lift/","/mouth/lip-lift/","/mouth/peanut-lip/","/mouth/m-shaped-lip/","/mouth/corner-lip-lift/"],
+    notes:"getTreatmentsByPillar('mouth') で動的取得+フォールバック。施術詳細は TreatmentDetailTemplate で共通化。8施術。" },
+  { id:"eye", name:"目元ピラー", url:"/eye/", icon:"👁", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード（microCMS）","症例実績","よくある質問","CTA"],
+    subpages:["/eye/double-eyelid-suture/","/eye/double-eyelid-thread-removal/","/eye/double-eyelid-incision/","/eye/ptosis/","/eye/subbrow-incision/","/eye/epicanthoplasty/","/eye/upper-epicanthoplasty/","/eye/lower-eyelid-fat-removal/","/eye/upper-blepharoplasty/","/eye/lower-blepharoplasty/","/eye/lower-blepharoplasty-and-fat-removal/","/eye/fat-repositioning/","/eye/hamura/","/eye/transconjunctival-hamura/","/eye/lateral-canthoplasty/","/eye/glamorous-line/","/eye/epicanthoplasty-reversal/"],
+    notes:"getTreatmentsByPillar('eye') で動的取得+フォールバック。17施術。" },
+  { id:"nose", name:"鼻ピラー", url:"/nose/", icon:"👃", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード（microCMS）","症例実績","よくある質問","CTA"],
+    subpages:["/nose/prosthesis/","/nose/nasal-tip-plasty/","/nose/auricular-cartilage-graft/","/nose/strut-method/","/nose/septal-cartilage-graft/","/nose/costal-cartilage-graft/","/nose/septal-extension/","/nose/alar-reduction/","/nose/nostril-rim-lowering/","/nose/alar-lift/","/nose/nostril-rim-lift/","/nose/nasal-bone-osteotomy/","/nose/hump-removal/","/nose/alar-base-formation/","/nose/columellar-base-formation/","/nose/temporal-fascia-graft/","/nose/prosthesis-removal/"],
+    notes:"getTreatmentsByPillar('nose') で動的取得+フォールバック。17施術。" },
+  { id:"lift", name:"リフトアップピラー", url:"/lift/", icon:"✨", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード（microCMS）","症例実績","よくある質問","CTA"],
+    subpages:["/lift/eye-thread/","/lift/short-thread/","/lift/thread-lift/"],
+    notes:"getTreatmentsByPillar('lift') で動的取得+フォールバック。現在3施術。" },
+  { id:"skin", name:"美容皮膚科ピラー", url:"/skin/", icon:"💆", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・お悩みタグ","施術一覧カード（microCMS）","症例実績","よくある質問","CTA"],
+    subpages:["/skin/mole-wart-removal-excision/","/skin/mole-wart-removal-co2/","/skin/peeling/","/skin/fat-dissolving-injection/","/skin/skin-booster/","/skin/ko-light/","/skin/ipl-photofacial/","/skin/customized-laser/","/skin/therma-needle/","/skin/potenza/","/skin/therma-zi/","/skin/thermagen/","/skin/xerf/","/skin/ultracel-zi/","/skin/mesona-j/","/skin/blessing/","/skin/sofwave/","/skin/hyaluronic-acid/","/skin/botox/"],
+    notes:"getTreatmentsByPillar('skin') で動的取得+フォールバック。19施術。" },
+  { id:"treatment-detail", name:"施術詳細（共通テンプレート）", url:"/[pillar]/[slug]/", icon:"📄", phase:1, cat:"pillar", cms:"microcms",
+    sections:["Hero・パンくず","概要バー（部位・施術名・DT）","こんな方におすすめ","症例写真","目次","施術説明（richtext）","院長コメント（吹き出し）","施術の流れ","リスク・副作用","ダウンタイム","サイドバー（キャンペーン・料金・関連施術）","よくある質問（FAQ）","CTA"],
+    subpages:[], notes:"TreatmentDetailTemplate で5ピラー共通化。料金はSupabase price_items。FAQは lib/faq-data.ts（全48施術分）。" },
+
+  // ── コンテンツ ──
+  { id:"treatment-list", name:"施術一覧", url:"/treatment/", icon:"📋", phase:1, cat:"content", cms:"supabase",
+    sections:["タブナビ（皮膚科・外科・点滴・内服薬）","検索","セクション別テーブル","注意事項","CTA"],
+    subpages:[], notes:"Supabase treatment_items から取得（ISR 1時間）。" },
+  { id:"price", name:"料金一覧", url:"/price/", icon:"💴", phase:1, cat:"content", cms:"supabase",
+    sections:["タブナビ（6セクション）","検索","セクション別サブタブ/テーブル","注意事項","CTA"],
+    subpages:[], notes:"Supabase price_items から取得（ISR 1時間）。" },
+  { id:"simulator", name:"料金・DTシミュレーター", url:"/simulator/", icon:"🧮", phase:1, cat:"content", cms:"static",
+    sections:["料金シミュレーター","ダウンタイムカレンダー","CTA"],
+    subpages:[], notes:"react-day-picker + date-fns。" },
+  { id:"case", name:"症例写真総合", url:"/case/", icon:"🖼", phase:3, cat:"content", cms:"microcms",
     sections:["フィルター（部位・施術・年代・性別）","症例グリッド","CTA"],
-    subpages:[], notes:"フィルター完全実装は Phase 3。Phase 1 は全件表示。" },
-  { id:"doctor", name:"院長・スタッフ", url:"/doctor/", icon:"👨‍⚕️", phase:2, cat:"content", cms:"microcms",
-    sections:["クリニック紹介・理念","院長プロフィール・経歴・学会実績","スタッフ紹介","リクルートセクション（/recruit/へ誘導）","CTA"],
-    subpages:[], notes:"microCMS doctor / staff スキーマ。フッター + /doctor/ からリクルートページへ誘導。" },
-  { id:"recruit", name:"採用情報", url:"/recruit/", icon:"💼", phase:2, cat:"content", cms:"microcms",
-    sections:["Hero","募集職種一覧（カード形式）","クリニックで働く魅力","CTA（応募フォームへ）"],
-    subpages:["/recruit/[slug]/"], notes:"microCMS jobs スキーマ。職種ごとに記事コンテンツ。フッターと /doctor/ からリンク。" },
-  { id:"column", name:"コラム", url:"/column/", icon:"📰", phase:2, cat:"content", cms:"microcms",
+    subpages:["/[pillar]/case/"], notes:"Phase 3 でフィルター実装。" },
+  { id:"doctor", name:"院長・スタッフ紹介", url:"/doctor/", icon:"👨‍⚕️", phase:2, cat:"content", cms:"microcms",
+    sections:["クリニック紹介・理念","院長プロフィール","スタッフ紹介","CTA"],
+    subpages:[], notes:"microCMS doctor / staff スキーマ。" },
+  { id:"column", name:"美容コラム一覧", url:"/column/", icon:"📰", phase:2, cat:"content", cms:"microcms",
     sections:["記事カードグリッド","カテゴリフィルター"],
-    subpages:["/column/[slug]/","/column/faq/"], notes:"faqs スキーマと連動。" },
+    subpages:["/column/[slug]/"], notes:"microCMS columns API。ナビ表示名「美容コラム」。カテゴリ: skincare/beauty-goods/treatment-guide/lifestyle/column。Instagram Reelsのロングフォーム展開先。" },
+  { id:"faq", name:"よくある質問", url:"/column/faq/", icon:"❓", phase:1, cat:"content", cms:"static",
+    sections:["カテゴリナビ（Intersection Observer）","6カテゴリ別FaqAccordion"],
+    subpages:[], notes:"口元・目元・鼻・リフト・美容皮膚科・一般。ハードコード。" },
   { id:"news", name:"お知らせ", url:"/news/", icon:"📣", phase:1, cat:"content", cms:"microcms",
-    sections:["記事リスト"],
-    subpages:["/news/[slug]/"], notes:"" },
-  { id:"treatment-list", name:"施術一覧", url:"/treatment/", icon:"📋", phase:1, cat:"utility", cms:"microcms",
-    sections:["全施術をカテゴリ別横断表示","CTA"],
-    subpages:[], notes:"「施術名から探す」の /treatment/[slug]/ リンク先。" },
-  { id:"simulator", name:"シミュレーター", url:"/simulator/", icon:"🧮", phase:1, cat:"utility", cms:"static",
-    sections:["料金シミュレーター（複数選択→合計レンジ）","ダウンタイムシミュレーター（日付→カレンダー色分け）","CTA（LINE・Medicalforce）"],
-    subpages:[], notes:"react-day-picker + date-fns。各ピラーページにも埋込表示。" },
-  { id:"price", name:"料金一覧", url:"/price/", icon:"💴", phase:1, cat:"utility", cms:"microcms",
-    sections:["カテゴリ別料金表（税込総額）","注意事項・お支払い方法","医療費控除","CTA"],
-    subpages:[], notes:"treatments.price_options[] を集約表示。単一ソース。" },
-  { id:"contact", name:"お問い合わせ", url:"/contact/", icon:"✉️", phase:1, cat:"utility", cms:"supabase",
-    sections:["Web予約・LINE誘導","お問い合わせフォーム","→ Supabase inquiries に保存"],
-    subpages:[], notes:"自動返信メール有。Medicalforce / LINE へも誘導。" },
-  { id:"about", name:"クリニック紹介", url:"/about/", icon:"🏥", phase:2, cat:"utility", cms:"static",
+    sections:["最新記事ピックアップ","記事一覧リスト"],
+    subpages:["/news/news-0323-03/","/news/news-0323-02/","/news/news-0323-01/","/news/news-20251226/","/news/news-20251130/"],
+    notes:"microCMS news API。5件。" },
+  { id:"contact", name:"お問い合わせ", url:"/contact/", icon:"✉️", phase:1, cat:"content", cms:"supabase",
+    sections:["Web予約・LINE誘導","お問い合わせフォーム"],
+    subpages:[], notes:"Supabase inquiries に保存。" },
+  { id:"about", name:"クリニック紹介・アクセス", url:"/about/", icon:"🏥", phase:2, cat:"content", cms:"static",
     sections:["コンセプト・内観写真","アクセス・地図","診療時間・休診日"],
-    subpages:[], notes:"Google Maps CID: 11387186794925088261" },
-  { id:"sitemap", name:"サイトマップ", url:"/sitemap/", icon:"🗺", phase:1, cat:"utility", cms:"static",
-    sections:["全ページへのリンク一覧"], subpages:[], notes:"" },
-  { id:"admin", name:"管理画面", url:"/admin/", icon:"🔒", phase:1, cat:"admin", cms:"supabase",
-    sections:["ログイン（Supabase Auth）","問い合わせ一覧・ステータス管理","ナレッジ管理（P3）","プロンプト管理（P3）","会話ログ（P3）"],
-    subpages:["/admin/login/","/admin/inquiries/","/admin/chat/（P3）"],
-    notes:"Supabase Auth + RLS。管理者のみアクセス可。" },
+    subpages:[], notes:"未実装。" },
+  { id:"reservation", name:"予約ガイド", url:"/reservation/", icon:"📅", phase:1, cat:"content", cms:"static",
+    sections:["Web予約の手順","LINE予約の手順","電話予約","初診の流れ"],
+    subpages:[], notes:"Medicalforce への誘導。" },
+  { id:"first-visit", name:"初めての方へ", url:"/first-visit/", icon:"🔰", phase:2, cat:"content", cms:"static",
+    sections:["カウンセリングの流れ","注意事項"],
+    subpages:[], notes:"未実装。" },
+  { id:"payment", name:"お支払い方法", url:"/payment/", icon:"💳", phase:2, cat:"content", cms:"static",
+    sections:["クレジットカード","医療ローン詳細"],
+    subpages:[], notes:"未実装。" },
+  { id:"commitment", name:"当院のこだわり", url:"/commitment/", icon:"🏆", phase:2, cat:"content", cms:"static",
+    sections:["衛生管理","使用機器","麻酔方針"],
+    subpages:[], notes:"未実装。" },
+  { id:"aftercare", name:"アフターケアガイド", url:"/aftercare/", icon:"🩹", phase:2, cat:"content", cms:"static",
+    sections:["施術後の過ごし方","緊急連絡先"],
+    subpages:[], notes:"未実装。" },
+  { id:"comparison", name:"施術比較", url:"/comparison/", icon:"⚖️", phase:2, cat:"content", cms:"static",
+    sections:["埋没 vs 切開","糸リフト vs 切開リフト 等"],
+    subpages:[], notes:"未実装。" },
+  { id:"campaign", name:"キャンペーン一覧", url:"/campaign/", icon:"🏷", phase:2, cat:"content", cms:"microcms",
+    sections:["キャンペーンカード一覧"],
+    subpages:[], notes:"microCMS campaigns API。未実装。" },
+  { id:"monitor", name:"モニター募集", url:"/monitor/", icon:"📸", phase:2, cat:"content", cms:"static",
+    sections:["割引条件","対象施術","応募フォーム"],
+    subpages:[], notes:"未実装。" },
+  { id:"glossary", name:"美容医療用語集", url:"/glossary/", icon:"📖", phase:2, cat:"content", cms:"static",
+    sections:["用語一覧（SEOロングテール）"],
+    subpages:[], notes:"未実装。" },
+  { id:"machine", name:"医療機器一覧", url:"/machine/", icon:"🔬", phase:1, cat:"content", cms:"microcms",
+    sections:["フラットグリッド（3列）","6件/ページ ページネーション"],
+    subpages:["/machine/mesona-j/","/machine/ko-light/","/machine/xeo-v/","/machine/co2-laser/","/machine/q-plus-c/","/machine/therma-needle/","/machine/potenza/","/machine/thermagen/","/machine/xerf/","/machine/ultracel-zi/"],
+    notes:"microCMS machines API。10台。" },
+  { id:"medicine", name:"内服薬・処方薬一覧", url:"/medicine/", icon:"💊", phase:1, cat:"content", cms:"microcms",
+    sections:["カテゴリ別カードグリッド（6カテゴリ）","カテゴリはmicroCMSから動的取得"],
+    subpages:["/medicine/tranexamic-set/","/medicine/nb-x/","/medicine/vitamin-cd/","/medicine/zinc/","/medicine/cellactin/","/medicine/finasteride/","/medicine/minoxidil/","/medicine/rizaben/","/medicine/isotretinoin/","/medicine/aldactone/","/medicine/saireito/","/medicine/lumigan/"],
+    notes:"microCMS medicines API。12件。料金はSupabase findMedicinePriceRows()で取得。" },
+  { id:"recruit", name:"採用情報一覧", url:"/recruit/", icon:"💼", phase:1, cat:"content", cms:"static",
+    sections:["Hero","Mission","働く魅力カルーセル","求める人材像","募集職種アコーディオン（3職種）","福利厚生","選考フロー","CTA"],
+    subpages:["/recruit/entry/","/recruit/staff-blog/","/recruit/staff-blog/[slug]/"],
+    notes:"職種はハードコード（3つのみ）。" },
+  { id:"recruit-entry", name:"エントリーフォーム", url:"/recruit/entry/", icon:"📝", phase:1, cat:"content", cms:"static",
+    sections:["3職種タブ切替","応募フォーム"],
+    subpages:[], notes:"バックエンド未実装（TODO: Supabase）。" },
+  { id:"staff-blog", name:"スタッフブログ", url:"/recruit/staff-blog/", icon:"✏️", phase:1, cat:"content", cms:"microcms",
+    sections:["最新記事ピックアップ","ブログカードグリッド"],
+    subpages:["/recruit/staff-blog/test1/","/recruit/staff-blog/test2/","/recruit/staff-blog/test3/"],
+    notes:"microCMS staff_blog API。現在3件（テスト投稿）。" },
+
+  // ── ユーティリティ ──
+  { id:"search", name:"検索", url:"/search/", icon:"🔍", phase:1, cat:"utility", cms:"static",
+    sections:["検索バー","検索結果一覧"],
+    subpages:[], notes:"動的レンダリング。" },
+  { id:"privacy", name:"プライバシーポリシー", url:"/privacy", icon:"📜", phase:1, cat:"utility", cms:"static",
+    sections:["ポリシー本文"], subpages:[], notes:"" },
+  { id:"medical-guidelines", name:"医療広告ガイドライン", url:"/medical-guidelines", icon:"⚕️", phase:1, cat:"utility", cms:"static",
+    sections:["ガイドライン本文"], subpages:[], notes:"" },
+  { id:"cancel-policy", name:"キャンセルポリシー", url:"/cancel-policy", icon:"📜", phase:1, cat:"utility", cms:"static",
+    sections:["ポリシー本文"], subpages:[], notes:"" },
+  { id:"legal", name:"特定商取引法に基づく表示", url:"/legal", icon:"📜", phase:1, cat:"utility", cms:"static",
+    sections:["表示内容"], subpages:[], notes:"" },
+
+  // ── 管理画面 ──
+  { id:"admin", name:"管理画面（mpureju.admin）", url:"別リポジトリ", icon:"🔒", phase:1, cat:"admin", cms:"supabase",
+    sections:["ログイン（Supabase Auth）","ダッシュボード","施術一覧管理（CRUD）","料金管理（CRUD）","問い合わせ管理（TODO）","ナレッジ管理（P3）","プロンプト管理（P3）","会話ログ（P3）"],
+    subpages:["/login","/treatments","/prices"],
+    notes:"mpureju.site とは別リポジトリ。Supabase Auth + service_role_key（APIルート経由）でCRUD。" },
 ];
 
 const CAT_LABELS = { top:"トップページ", pillar:"ピラーページ（部位別）", content:"コンテンツ", utility:"ユーティリティ", admin:"管理画面（非公開）" };
@@ -447,15 +1222,19 @@ const CMS_LABELS = { microcms:"microCMS", supabase:"Supabase", static:"Static" }
 // microCMS SCHEMAS
 // =====================================================
 const SCHEMAS = [
-  { name:"treatments", label:"施術情報", icon:"💉", note:"施術詳細 + 料金の単一ソース",
+  { name:"treatments", label:"施術情報", icon:"💉", note:"施術詳細ページのコンテンツ管理（料金は Supabase で別管理）",
     fields:[
-      { name:"title / slug / category", type:"text" },
-      { name:"description / doctor_comment", type:"richtext" },
-      { name:"risks", type:"text" },
-      { name:"thumbnail", type:"image" },
-      { name:"price_options[]", type:"repeat", note:"name / price / note" },
+      { name:"title / slug", type:"text" },
+      { name:"pillar", type:"select", note:"mouth / eye / nose / lift / skin" },
+      { name:"catch_copy", type:"text", note:"カード表示用キャッチコピー" },
+      { name:"description", type:"richtext" },
+      { name:"recommended_for", type:"richtext", note:"こんな方におすすめ" },
+      { name:"procedure_flow", type:"richtext", note:"施術の流れ" },
+      { name:"doctor_comment", type:"textarea" },
+      { name:"hero_image", type:"image" },
+      { name:"risks", type:"richtext" },
       { name:"downtime_min_days / max_days", type:"number" },
-      { name:"downtime_milestones[]", type:"repeat", note:"label / days_after / description" },
+      { name:"sort_order", type:"number" },
     ]},
   { name:"cases", label:"症例記事", icon:"🖼", note:"Before/After + 記事本文",
     fields:[
@@ -463,8 +1242,7 @@ const SCHEMAS = [
       { name:"category / age_group / gender / concern", type:"select" },
       { name:"treatment", type:"relation", note:"→ treatments" },
       { name:"content", type:"richtext" },
-      { name:"before_photo", type:"image", note:"Before画像（個別フィールド）" },
-      { name:"after_photo",  type:"image", note:"After画像（個別フィールド）※結合画像NG" },
+      { name:"before_photo / after_photo", type:"image", note:"個別フィールド（結合画像NG）" },
       { name:"published_at", type:"date" },
     ]},
   { name:"news", label:"お知らせ", icon:"📣", note:"クリニックからのお知らせ",
@@ -473,7 +1251,7 @@ const SCHEMAS = [
       { name:"category", type:"select", note:"notice / explanation / price-change" },
       { name:"thumbnail / published_at", type:"text" },
     ]},
-  { name:"columns", label:"コラム記事", icon:"📰", note:"ブログ・読み物コンテンツ",
+  { name:"columns", label:"コラム記事", icon:"📰", note:"ブログ・読み物コンテンツ（未実装）",
     fields:[
       { name:"title / slug / content", type:"text" },
       { name:"category / tags[]", type:"select" },
@@ -490,13 +1268,13 @@ const SCHEMAS = [
   { name:"campaigns", label:"キャンペーン", icon:"🏷", note:"バナー + 施術ページサイドバー",
     fields:[
       { name:"title / image / link_url", type:"text" },
-      { name:"start_date / end_date / is_active", type:"text" },
-      { name:"related_treatments[]", type:"relation", note:"→ treatments（施術ページに自動表示）" },
+      { name:"start_at / is_active", type:"text" },
+      { name:"related_treatments[]", type:"relation", note:"→ treatments" },
     ]},
-  { name:"faqs", label:"よくある質問", icon:"❓", note:"ピラーページ・FAQページ共用",
+  { name:"faqs", label:"よくある質問", icon:"❓", note:"未使用（ピラーFAQはハードコード、施術FAQは lib/faq-data.ts）",
     fields:[
       { name:"question / answer", type:"text" },
-      { name:"category", type:"select", note:"mouth/eye/nose/lift/skin/general/price/booking" },
+      { name:"category", type:"select" },
       { name:"sort_order", type:"number" },
     ]},
   { name:"setcourses", label:"セットコース", icon:"🎁", note:"悩み別 施術組み合わせ提案",
@@ -505,8 +1283,7 @@ const SCHEMAS = [
       { name:"category", type:"select", note:"mouth/eye/nose/lift/skin" },
       { name:"treatments[]", type:"relation", note:"→ treatments" },
       { name:"is_same_day / is_popular", type:"bool" },
-      { name:"before_photo", type:"image", note:"個別フィールド（結合画像NG）" },
-      { name:"after_photo",  type:"image", note:"個別フィールド（結合画像NG）" },
+      { name:"before_photo / after_photo", type:"image" },
     ]},
   { name:"staff", label:"スタッフ", icon:"👥", note:"Team Slide の写真ソース",
     fields:[
@@ -523,15 +1300,32 @@ const SCHEMAS = [
       { name:"thumbnail", type:"image" },
       { name:"published_at", type:"date" },
     ]},
-  { name:"jobs", label:"求人情報", icon:"💼", note:"採用情報一覧・詳細ページのソース",
+  { name:"staff_blog", label:"スタッフブログ", icon:"✏️", note:"/recruit/staff-blog/ のコンテンツ",
     fields:[
       { name:"title / slug", type:"text" },
-      { name:"employment_type", type:"select", note:"正社員 / パート / 業務委託" },
-      { name:"description", type:"richtext", note:"仕事内容" },
-      { name:"requirements", type:"richtext", note:"応募条件" },
-      { name:"conditions", type:"richtext", note:"待遇・勤務条件" },
-      { name:"is_active", type:"select", note:"募集中フラグ" },
+      { name:"thumbnail", type:"image" },
+      { name:"body", type:"richtext" },
+      { name:"category", type:"select", note:"複数選択" },
       { name:"published_at", type:"date" },
+    ]},
+  { name:"machines", label:"医療機器", icon:"🔬", note:"/machine/ 一覧・詳細。フラットグリッド表示",
+    fields:[
+      { name:"name / name_en / slug", type:"text" },
+      { name:"thumbnail", type:"image" },
+      { name:"type", type:"text", note:"HIFU / RF / ニードルRF 等" },
+      { name:"catch_copy / target_concerns", type:"text" },
+      { name:"description", type:"richtext" },
+      { name:"sort_order", type:"number" },
+    ]},
+  { name:"medicines", label:"内服薬・処方薬", icon:"💊", note:"/medicine/ 一覧・詳細",
+    fields:[
+      { name:"name / slug", type:"text" },
+      { name:"category", type:"select", note:"美肌 / 頭皮 / AGA / ニキビ / DT軽減 / まつ毛" },
+      { name:"thumbnail", type:"image" },
+      { name:"catch_copy", type:"text" },
+      { name:"description", type:"richtext" },
+      { name:"usage / side_effects / contraindications", type:"text" },
+      { name:"sort_order", type:"number" },
     ]},
 ];
 
@@ -539,6 +1333,22 @@ const SCHEMAS = [
 // SUPABASE TABLES
 // =====================================================
 const TABLES = [
+  { name:"treatment_items", label:"施術一覧", icon:"💉", phase:"P1", note:"/treatment/ ページ + チャットボット。管理画面からCRUD",
+    cols:[
+      { name:"id", type:"bigint PK" },
+      { name:"section", type:"text", note:"皮膚科 / 外科 / 点滴 / 内服薬" },
+      { name:"sub_tab", type:"text nullable", note:"目 / 鼻 / 口 等（外科のみ）" },
+      { name:"name / description / risks", type:"text" },
+      { name:"sort_order", type:"int" },
+    ]},
+  { name:"price_items", label:"料金データ", icon:"💴", phase:"P1", note:"/price/ ページ + 施術詳細サイドバー + チャットボット。管理画面からCRUD",
+    cols:[
+      { name:"id", type:"bigint PK" },
+      { name:"section", type:"text", note:"皮膚科 / 外科 / 点滴 / 内服薬 / 化粧品 / その他" },
+      { name:"sub_tab", type:"text", note:"ヒアルロン酸 / ボトックス 等" },
+      { name:"category / option / price", type:"text" },
+      { name:"sort_order", type:"int" },
+    ]},
   { name:"inquiries", label:"問い合わせ管理", icon:"✉️", phase:"P1", note:"管理画面でステータス管理・担当割当",
     cols:[
       { name:"id", type:"UUID PK" },
@@ -594,12 +1404,12 @@ const REF_DOCS = [
       "料金は price-list.md に分離（このファイルには記載しない）",
     ]},
   { file:"docs/price-list.md", label:"料金一覧", icon:"💴",
-    note:"WordPressコードエディタ出力より整理。microCMS 投入データ。",
+    note:"WordPressコードエディタ出力より整理。Supabase 投入の参照元。",
     details:[
       "カテゴリ: 皮膚科 / 外科 / 点滴 / 内服薬 / 化粧品 / その他（麻酔・書類）",
-      "すべて税込総額。microCMS treatments.price_options[] と対応",
-      "price_options 構造: { name, option, price } の3列テーブル",
-      "⚠ microCMS 投入後は microCMS が正。このファイルは更新不要になる",
+      "すべて税込総額",
+      "Supabase price_items テーブルに投入済み（supabase/003_seed_price_items.sql）",
+      "⚠ Supabase 投入後は Supabase が正。変更は管理画面（mpureju.admin）から行う",
     ]},
   { file:"docs/codeediter", label:"WP コードエディタ出力（raw）", icon:"🗂",
     note:"参照・検証のみ。直接編集不可。",
@@ -761,13 +1571,31 @@ let currentTab = "pages";
 // =====================================================
 function switchTab(tab) {
   currentTab = tab;
-  ["pages","data","flow"].forEach(t => {
+  ["pages","data","flow","chatbot","db","scalability"].forEach(t => {
     document.getElementById(`tab-content-${t}`).style.display = t === tab ? "block" : "none";
     document.getElementById(`tab-${t}`).classList.toggle("active", t === tab);
   });
   document.getElementById("pages-toolbar").style.display = tab === "pages" ? "flex" : "none";
   if (tab === "data") renderData();
   if (tab === "flow") renderFlow();
+  if (tab === "chatbot" || tab === "db" || tab === "scalability") {
+    mermaid.run();
+    if (tab === "chatbot") switchChatTab("text");
+  }
+}
+
+function switchChatTab(sub) {
+  ["text","photo","data","knowledge"].forEach(s => {
+    const el = document.getElementById(`ctab-content-${s}`);
+    const btn = document.getElementById(`ctab-${s}`);
+    if (el) el.style.display = s === sub ? "block" : "none";
+    if (btn) {
+      btn.style.background = s === sub ? "var(--p3)" : "transparent";
+      btn.style.color = s === sub ? "#fff" : "var(--muted)";
+      btn.style.borderColor = s === sub ? "var(--p3)" : "var(--border)";
+    }
+  });
+  mermaid.run();
 }
 
 // =====================================================
@@ -1008,6 +1836,21 @@ function closePanel() {
 // =====================================================
 // INIT
 // =====================================================
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#1e293b',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#334155',
+    lineColor: '#4b5563',
+    secondaryColor: '#1e293b',
+    tertiaryColor: '#0f1117',
+    fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: '13px',
+  },
+  flowchart: { htmlLabels: true, curve: 'basis', padding: 16 },
+});
 render();
 </script>
 </body>

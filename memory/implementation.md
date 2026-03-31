@@ -65,7 +65,7 @@
   - `memory/implementation.md` — 本セクション追記
 
 ### 注意点
-- [ ] `/recruit/staff-blog/` 一覧ページが未実装（詳細ページのみ存在）
+- ~~`/recruit/staff-blog/` 一覧ページが未実装（詳細ページのみ存在）~~ → 実装済み（page.tsx + [slug]/page.tsx 両方存在確認）
 
 ---
 
@@ -173,3 +173,61 @@
 ### 次の作業
 - microCMS medicines APIにコンテンツ投入（ハードコードデータを移行）
 - フロント側を `getMedicineList()` / `getMedicineBySlug()` に切り替え
+
+---
+
+## 2026-03-30 / 当院についてページ新規作成
+
+### やったこと
+- `docs/scraping/about_mpureju_com.txt` — 旧サイト https://mpureju.com/about/ をスクレイピングしてコンテンツ収集
+- `app/about/page.tsx` — 新規作成（7セクション構成）
+  - Hero + コンセプト / 6つのこだわり / 内観写真 / 診療情報 / 院長簡略 / アクセス / CTA
+- `components/layout/Header.tsx` — PCナビ・モバイルメニューに「当院について」追加（院長紹介の隣）
+- `components/layout/Footer.tsx` — col1Links の「Access」→「About」(/about) に変更
+- `docs/REQUIREMENTS.md` — /about/ のステータスを ✅ に更新
+
+### 注意点
+- 内観写真は既存の `/public/toppage/clinicimage01.jpg` / `clinicimage02.jpg` を流用。実際の写真素材があれば差し替える
+- 6つのこだわりのテキストはスクレイピング結果をベースに新サイト向けに加筆。旧サイトの「行動指標」と同内容
+
+### 次の作業
+- `/doctor/` 院長・スタッフ紹介ページの実装
+
+---
+
+## 2026-03-27 / 施術詳細FAQ追加 + Supabase プロジェクト作成 + 料金・施術一覧DB化
+
+### やったこと
+
+**施術詳細ページ FAQ セクション追加:**
+- `lib/faq-data.ts` — 全48施術のFAQデータ（施術slug → Q&A配列のマッピング）を新規作成
+  - 既存16施術分は `docs/FAQ.txt` から移行
+  - 残り32施術分は既存トーンに合わせて新規作成（各5問、計約250問）
+- `components/pillar/TreatmentDetailTemplate.tsx` — `faqs` props追加、CTAセクション直上にFAQセクション表示（`SectionHeading` + `FaqAccordion`）
+- `app/{mouth,eye,nose,lift,skin}/[slug]/page.tsx` — `getFaqsBySlug(slug)` でFAQデータを取得し `faqs` propsとして渡す（全5ファイル）
+
+**チャットボット メニューUI改善:**
+- `components/chat/ChatBot.tsx` — メニューカードのデザインを刷新（ウェルカムヘッダー + アイコンボックス + サブテキスト + ポップアニメーション）
+- `app/globals.css` — `@keyframes menuPop` 追加
+
+**Supabase プロジェクト作成 + テーブル設計:**
+- Supabase プロジェクト `mpureju-site` を新規作成（org: maisonpureju, region: Tokyo）
+- `.env.local` に URL / anon key / service role key を設定
+- `supabase/001_create_tables.sql` — `treatment_items` + `price_items` テーブル作成 + RLS + updated_atトリガー
+- `supabase/002_seed_treatment_items.sql` — 施術一覧データ投入（72行）
+- `supabase/003_seed_price_items.sql` — 料金データ投入（約300行）
+- 3ファイルすべて Supabase SQL Editor で実行済み
+
+**ドキュメント更新:**
+- `CLAUDE.md` — Supabase SQL管理ルールを追加
+- `docs/REQUIREMENTS.md` — 料金管理方針を microCMS → Supabase に変更、テーブル設計追記、管理画面の分離方針追記
+
+### 注意点
+- [ ] `lib/price-data.ts`（ハードコード）→ Supabase 読み込みへの切り替えが未実施
+- [ ] `app/treatment/page.tsx`（ハードコード）→ Supabase 読み込みへの切り替えが未実施
+- [ ] `mpureju.admin`（管理画面）の開発は未着手。別リポジトリとして分離予定
+- [ ] FAQデータ（`lib/faq-data.ts`）は現状ハードコード。将来的にSupabase化も検討可
+
+### 次の作業
+- `mpureju.admin` リポジトリの初期セットアップ + 施術・料金 CRUD 画面
+- `mpureju.site` のページを Supabase 読み込みに切り替え（`/treatment/`, `/price/`, サイドバー料金パネル）

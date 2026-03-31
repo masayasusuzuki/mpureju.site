@@ -72,7 +72,7 @@ export interface Medicine {
   id: string;
   name: string;
   slug: string;
-  category: string;
+  category: string | string[];
   thumbnail?: MicroCMSImage;
   catch_copy: string;
   description: string;
@@ -80,6 +80,27 @@ export interface Medicine {
   side_effects: string;
   contraindications: string;
   sort_order?: number;
+}
+
+/** microCMS columns スキーマ */
+export type ColumnCategory =
+  | "施術ガイド"
+  | "肌悩み・ケア"
+  | "美容アイテム"
+  | "美容知識"
+  | "ライフスタイル";
+
+export interface Column {
+  id: string;
+  title: string;
+  slug: string;
+  category: ColumnCategory[]; // 複数選択可
+  thumbnail?: MicroCMSImage;
+  images?: MicroCMSImage[]; // サムネ以外の記事画像（複数）
+  tags?: string; // カンマ区切りテキスト（例: "ミラノリピール,ケミカルピーリング"）
+  content: string; // Markdownテキスト（microCMSフィールドタイプ: テキストエリア）
+  instagram_url?: string; // 元リール投稿URL（任意）
+  published_at: string;
 }
 
 /** microCMS clinic_calendar スキーマ（オブジェクト形式） */

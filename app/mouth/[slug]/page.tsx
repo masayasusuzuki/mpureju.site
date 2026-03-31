@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTreatmentBySlug, getTreatmentsByPillar, getCampaigns } from "@/lib/microcms/client";
 import { TreatmentDetailTemplate, type PillarInfo } from "@/components/pillar/TreatmentDetailTemplate";
 import { getFaqsBySlug } from "@/lib/faq-data";
+import { findPriceRowsByName } from "@/lib/supabase/queries";
 
 const PILLAR: PillarInfo = {
   slug: "mouth",
@@ -39,9 +40,10 @@ export default async function MouthTreatmentPage({
   const treatment = await getTreatmentBySlug(slug);
   if (!treatment) notFound();
 
-  const [all, campaigns] = await Promise.all([
+  const [all, campaigns, priceRows] = await Promise.all([
     getTreatmentsByPillar(PILLAR.slug),
     getCampaigns(),
+    findPriceRowsByName(treatment.title),
   ]);
   const otherTreatments = all.contents.filter((t) => t.slug !== slug);
   const faqs = getFaqsBySlug(slug);
@@ -53,6 +55,7 @@ export default async function MouthTreatmentPage({
       otherTreatments={otherTreatments}
       campaigns={campaigns}
       faqs={faqs}
+      priceRows={priceRows}
     />
   );
 }

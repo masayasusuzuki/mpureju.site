@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 type Position = {
@@ -13,6 +14,7 @@ type Position = {
   salary: string;
   requirements?: string[];
   preferred?: string[];
+  image?: string;
 };
 
 interface Props {
@@ -36,11 +38,11 @@ export function PositionAccordion({ positions }: Props) {
             <button
               type="button"
               onClick={() => toggle(pos.id)}
-              className="w-full flex items-center gap-4 md:gap-6 py-6 md:py-8 text-left group"
+              className="w-full flex items-center gap-4 md:gap-6 py-6 md:py-8 text-left group hover:bg-[var(--color-brand-cream)]/50 transition-colors rounded-sm px-2 -mx-2"
             >
               <span
                 className="font-en text-3xl md:text-4xl leading-none text-[var(--color-brand-gold)] shrink-0"
-                style={{ opacity: 0.25 }}
+                style={{ opacity: 0.4 }}
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -54,15 +56,17 @@ export function PositionAccordion({ positions }: Props) {
                   {pos.title}
                 </h3>
               </div>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                className={`shrink-0 text-[var(--color-brand-gold)] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-              >
-                <path d="M5 8L10 13L15 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <div className={`shrink-0 w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-[var(--color-brand-gold)] border-[var(--color-brand-gold)]" : "border-[var(--color-brand-gold)]/40 group-hover:border-[var(--color-brand-gold)]"}`}>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className={`transition-transform duration-300 ${isOpen ? "rotate-180 text-white" : "text-[var(--color-brand-gold)]"}`}
+                >
+                  <path d="M5 8L10 13L15 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </button>
 
             {/* コンテンツ */}
@@ -78,9 +82,20 @@ export function PositionAccordion({ positions }: Props) {
 
                   {/* 写真 */}
                   <div className="relative w-full aspect-[2/1] bg-[var(--color-brand-cream)] rounded-sm overflow-hidden mb-8">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
-                    </div>
+                    {pos.image ? (
+                      <Image
+                        src={pos.image}
+                        alt={pos.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,20,8,0.2) 0%, transparent 35%, transparent 65%, rgba(26,20,8,0.2) 100%), rgba(26,20,8,0.08)" }} />
                   </div>
 
                   {/* 詳細 */}

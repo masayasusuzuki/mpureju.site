@@ -30,7 +30,7 @@
 | 1 | 施術情報 | `treatments` | 施術詳細ページのコンテンツ管理 | title, slug, pillar, catch_copy, description, recommended_for, procedure_flow, doctor_comment, hero_image, risks, downtime_min_days, downtime_max_days ※全フィールド必須。**料金は別API `prices` で管理**（後述） |
 | 2 | 症例記事 | `cases` | 記事形式の症例コンテンツ。サムネ+本文で編集自由度を確保 | title, slug, thumbnail, category, treatment（relation）, age_group, gender, concern, content（richtext）, before_photo, after_photo, published_at |
 | 3 | お知らせ | `news` | クリニックからのお知らせ | title, content, category（notice/explanation/price-change）, thumbnail, published_at |
-| 4 | コラム記事 | `columns` | ブログ・読み物コンテンツ | title, slug, content, category, thumbnail, tags[], published_at |
+| 4 | コラム記事 | `columns` | ブログ・読み物コンテンツ。Instagramリールのロングフォーム展開先。**ナビゲーション表示名: 「美容コラム」**（英語の "Column" は使わない） | title, slug, content, category（**複数選択可**セレクト: treatment/skin-concern/beauty-goods/knowledge/lifestyle）, thumbnail, tags[], instagram_url（任意・元リールURL）, published_at |
 | 5 | 院長プロフィール | `doctor` | 院長紹介ページ・Message セクション | name, title, photo, profile, message, career, qualifications[], media_appearances[], kol_activities |
 | 6 | キャンペーン | `campaigns` | Campaign Bannerの管理 + 施術ページのサイドバー表示 | title, image, link_url, start_date, end_date, is_active, **related_treatments[]**（treatmentsへのリレーション） |
 | 7 | よくある質問 | `faqs` | サイト表示用FAQ（ピラーページ・FAQページ） | question, answer, category（mouth/eye/nose/lift/skin/general/price/booking/recruit）, sort_order |
@@ -44,15 +44,30 @@
 | 15 | サイト画像 | `site_images` | **未実装（予定）** — サイト各所の固定画像（ヒーロー・背景等）を一元管理。現在は `/public/` にハードコード | page_section（**セレクト**: top_fv / top_clinic_1 / top_clinic_2 / top_choose_1〜4 / top_doctor / persona_20s / persona_30s / persona_50s / persona_mens / pillar_mouth / pillar_eye / pillar_nose / pillar_lift / pillar_skin）, image, alt, sort_order |
 | 16 | 営業カレンダー | `clinic_calendar` | **未実装（予定）** — 休診日管理。**オブジェクト形式**（1レコード）。詳細は下記参照 | regular_holidays（セレクト複数）, extra_holidays（テキストエリア）, cancel_holidays（テキストエリア） |
 
-> **⚠️ 料金の管理方針（重要・設計変更）：**
-> 料金は `treatments` 内の繰り返しフィールドではなく、**独立した microCMS API `prices`（予定）で管理する**。
-> - `prices` API から treatments へコンテンツ参照でリレーション（1施術 : N料金プラン）
-> - `/price/` ページ → `prices` API を直接取得
-> - 施術詳細ページ → 該当 treatment に紐づく prices を取得（2回のAPI呼び出し）
-> - 施術一覧・ピラーページ → 必要に応じて prices を取得
-> - **料金の更新は `prices` API のみで完結**する（treatments を編集する必要なし）
+> **⚠️ 料金・施術一覧の管理方針（重要・設計変更 2026-03-27）：**
+> 料金データ・施術一覧データは **microCMS ではなく Supabase で管理する**方針に変更。
+> - **理由①：** AIチャットボット（Phase 3）が料金・施術データを直接参照するため、Supabase に一元化する方が同期不要で効率的
+> - **理由②：** 構造化された表形式データで microCMS のリッチエディタ向きではない
+> - **理由③：** 管理画面（`mpureju.admin`）から直接 CRUD できる
 >
-> ※ `prices` API のスキーマ設計は未確定。確定次第このドキュメントを更新すること。
+> **Supabase テーブル：**
+> - `price_items` — 料金一覧ページ + 施術詳細サイドバー料金表示（旧 `lib/price-data.ts` のハードコードを置き換え）
+> - `treatment_items` — 施術一覧ページ（旧 `app/treatment/page.tsx` のハードコードを置き換え）
+>
+> **データフロー：**
+> ```
+> Supabase price_items → /price/ ページ（ISR）
+>                      → 施術詳細サイドバー（category 検索）
+>                      → AIチャットボット（直接クエリ）
+>
+> Supabase treatment_items → /treatment/ ページ（ISR）
+>                          → AIチャットボット（直接クエリ）
+> ```
+>
+> **管理画面：** `mpureju.admin`（別リポジトリ）で CRUD。Supabase Auth で認証。
+>
+> ※ microCMS の `treatments` API は施術詳細記事ページ（`/mouth/[slug]/` 等）用。役割が異なるため共存する。
+> ※ 旧方針の microCMS `prices` API 構想は廃止。
 >
 > **症例写真の管理方針：** `cases` の `before_photo` と `after_photo` は結合済み画像ではなく**別フィールドで個別管理**する。理由：①画像編集ソフト不要でそのままアップロード可能、②片方だけの差し替えが容易、③フロント側でホバー切替・左右スライダー比較など表示パターンを柔軟に変えられる。`setcourses` の before/after も同様。
 >
@@ -176,14 +191,16 @@
 現行WordPress（ブロックエディタ）
   ↓ 手動抽出
 docs/price-list.md（開発参照ドキュメント）
-  ↓ microCMS 投入時に参照
-microCMS prices API（本番単一ソース）← treatments へコンテンツ参照でリレーション
-  ↓ API取得
-/price/ ページ（prices 直接取得）
-施術詳細ページ（treatments + 紐づく prices を取得）
+  ↓ Supabase 投入時に参照（supabase/003_seed_price_items.sql）
+Supabase price_items テーブル（本番単一ソース）
+  ↓ Supabase API取得（ISR）
+/price/ ページ（price_items 直接取得）
+施術詳細ページ サイドバー（category 検索で該当行を取得）
+AIチャットボット（直接クエリ）
 ```
 
-> **注意:** `docs/price-list.md` はあくまで開発用の中間ドキュメント。microCMS 投入後は microCMS が正となる。料金変更は `prices` API のみを更新すること。
+> **注意:** 料金変更は Supabase の `price_items` テーブルのみを更新すること。管理画面（`mpureju.admin`）から CRUD 操作する。
+> `lib/price-data.ts`（ハードコード）は Supabase 移行完了後に廃止予定。
 
 ---
 
@@ -248,12 +265,44 @@ microCMS リッチエディタの `<table>` を `RichContent` コンポーネン
 
 ### 役割分担
 ```
-microCMS  → 施術情報・症例・コラム等（コンテンツ管理）
-Supabase  → 問い合わせ・ログ・管理機能（アプリケーションデータ）
+microCMS  → 施術詳細記事・症例・コラム等（リッチコンテンツ管理）
+Supabase  → 料金・施術一覧・問い合わせ・ログ・管理機能（構造化データ + アプリケーションデータ）
 GA4       → PV・セッション等の基本アクセス解析
 ```
 
 ### テーブル設計
+
+#### `treatment_items`（施術一覧ページ用）
+> 追加: 2026-03-27。SQL: `supabase/001_create_tables.sql` + `supabase/002_seed_treatment_items.sql`
+
+| カラム | 型 | 説明 |
+|--------|----|------|
+| id | bigint (identity) | PK |
+| section | text | 皮膚科 / 外科 / 点滴 / 内服薬 |
+| sub_tab | text nullable | 目 / 鼻 / 口 等（外科のみ。他はnull） |
+| name | text | 施術名 |
+| description | text | 概要 |
+| risks | text | リスク・副作用 |
+| sort_order | int | 表示順 |
+| created_at | timestamptz | |
+| updated_at | timestamptz | トリガーで自動更新 |
+
+#### `price_items`（料金一覧ページ + 施術詳細サイドバー用）
+> 追加: 2026-03-27。SQL: `supabase/001_create_tables.sql` + `supabase/003_seed_price_items.sql`
+
+| カラム | 型 | 説明 |
+|--------|----|------|
+| id | bigint (identity) | PK |
+| section | text | 皮膚科 / 外科 / 点滴 / 内服薬 / 化粧品 / その他 |
+| sub_tab | text | ヒアルロン酸 / ボトックス 等 |
+| category | text | 施術名/グループ名（空文字＝前行の継続） |
+| option | text nullable | オプション（1本, 2本 等） |
+| price | text | 税込価格（例: ¥99,000） |
+| sort_order | int | 表示順 |
+| created_at | timestamptz | |
+| updated_at | timestamptz | トリガーで自動更新 |
+
+> **RLSポリシー:** 両テーブルとも `SELECT` は全公開、`INSERT/UPDATE/DELETE` は `service_role_key` のみ（管理画面経由）
 
 #### `inquiries`（問い合わせ管理）
 | カラム | 型 | 説明 |
@@ -328,29 +377,96 @@ GA4       → PV・セッション等の基本アクセス解析
 | embedding | vector(1536) | ベクトル（pgvector拡張） |
 | updated_at | timestamp | knowledge更新時に自動再生成 |
 
-### チャットボットRAGアーキテクチャ（Phase 3）
-```
-【ナレッジ登録フロー】
-管理画面でchatbot_knowledgeを追加・編集
-  ↓ 保存時にSupabase Edge Functionをトリガー
-  ↓ Embedding APIでベクトル化
-knowledge_embeddings テーブルにupsert
+### チャットボットアーキテクチャ（Phase 3）
 
-【応答フロー】
-ユーザーの質問
-  ↓ ベクトル化
-pgvectorで類似度検索（Supabase）
-  ↓ 関連チャンク上位N件 + chatbot_prompts（active）を取得
-DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
-  ↓
-回答 → chat_messagesテーブルに保存
+> **設計方針（2026-03-27確定）：ハイブリッド検索 + LLM応答生成**
+> - **構造化データ**（料金・施術一覧）→ TypeScript で Supabase SQL 検索（正確性を担保）
+> - **非構造化データ**（施術の詳しい説明・コラム記事等）→ pgvector RAG（意味検索）
+> - LLM は「意図分類」と「応答生成」に専念。データ検索自体は行わない
+>
+> **理由：** 料金や施術名をLLMに丸投げすると幻覚リスクがある。構造化データはSQL検索で正確に引き、LLMは自然言語の理解と応答文の生成に使う。
+
+#### Tool Use（Function Calling）設計
+
+LLM に以下のツール（関数）を定義し、必要に応じて呼び出させる：
+
+| ツール名 | 引数 | 処理 | データソース |
+|----------|------|------|-------------|
+| `searchPrice` | keyword: string | 施術名で料金を検索 | `price_items`（SQL ILIKE） |
+| `searchTreatment` | keyword: string | 施術の概要・リスクを検索 | `treatment_items`（SQL ILIKE） |
+| `searchFaq` | keyword: string | FAQを検索 | `faq_items` or ハードコード |
+| `searchKnowledge` | query: string | 自由文で関連ナレッジを検索 | `knowledge_embeddings`（pgvector） |
+
+#### 応答フロー図
+
+```mermaid
+flowchart TD
+    U["👤 ユーザー質問"] --> API["Next.js API Route\n/api/chat"]
+    API --> LLM1["🤖 LLM（1回目）\n意図分類 + ツール選択"]
+
+    LLM1 -->|"料金問い合わせ"| SP["searchPrice(keyword)\nSupabase SQL ILIKE"]
+    LLM1 -->|"施術内容の質問"| ST["searchTreatment(keyword)\nSupabase SQL ILIKE"]
+    LLM1 -->|"よくある質問"| SF["searchFaq(keyword)\nキーワード検索"]
+    LLM1 -->|"詳細・コラム等"| SK["searchKnowledge(query)\npgvector 類似度検索"]
+    LLM1 -->|"一般的な挨拶等"| SKIP["ツール不要\nそのまま応答"]
+
+    SP --> DATA["📊 検索結果データ"]
+    ST --> DATA
+    SF --> DATA
+    SK --> DATA
+
+    DATA --> LLM2["🤖 LLM（2回目）\n応答生成"]
+    SKIP --> LLM2
+
+    LLM2 --> |"システムプロンプト\n+ 医療広告ガイドライン\n+ 検索結果"| RES["💬 応答テキスト"]
+    RES --> SAVE["chat_messages に保存"]
+    SAVE --> U
 ```
+
+```mermaid
+flowchart TD
+    subgraph "構造化データ（SQL検索）"
+        PI[("price_items\n料金テーブル")]
+        TI[("treatment_items\n施術一覧テーブル")]
+    end
+
+    subgraph "非構造化データ（RAG）"
+        CK[("chatbot_knowledge\nナレッジ")]
+        KE[("knowledge_embeddings\nベクトルDB")]
+    end
+
+    subgraph "管理"
+        CP[("chatbot_prompts\nシステムプロンプト")]
+        ADMIN["mpureju.admin\n管理画面"]
+    end
+
+    ADMIN -->|CRUD| PI
+    ADMIN -->|CRUD| TI
+    ADMIN -->|CRUD| CK
+    ADMIN -->|編集| CP
+    CK -->|"Edge Function\nOpenAI Embedding"| KE
+```
+
+#### ナレッジ登録フロー（RAG用）
+
+```mermaid
+flowchart LR
+    A["管理画面で\nナレッジ追加・編集"] --> B["Supabase\nchatbot_knowledge\nに保存"]
+    B -->|"トリガー"| C["Edge Function"]
+    C --> D["OpenAI\nEmbedding API"]
+    D --> E["knowledge_embeddings\nにupsert"]
+```
+
 > microCMSは一切介在しない。すべてSupabase + 管理画面で完結。
 
-### 管理画面（Next.js内 `/admin/`）
+### 管理画面（`mpureju.admin` — 別リポジトリ）
+
+> **設計変更（2026-03-27）：** 管理画面を `mpureju.site` 内の `/admin/` から独立リポジトリ `mpureju.admin` に分離。フロントサイトとの依存を切り、独立してデプロイ・開発できるようにする。
 
 **Phase 1から実装：**
 - **認証：** Supabase Auth（メール＋パスワード）
+- **施術一覧管理：** `treatment_items` の CRUD・並び替え
+- **料金管理：** `price_items` の CRUD・並び替え
 - **問い合わせ一覧：** ステータス管理・担当割り当て
 
 **Phase 3で追加：**
@@ -539,6 +655,8 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 
 ## フェーズ計画
 
+最終更新: 2026-03-30
+
 ### Phase 1（現在のスコープ）
 
 **実装済み:**
@@ -547,55 +665,69 @@ DeepSeek APIへ（システムプロンプト + コンテキスト + 質問）
 - [x] 共通レイアウト（Header・Footer・スマホ固定フッター）
 - [x] グローバルナビゲーション（メガメニュー）
 - [x] トップページ（`/`）
-- [x] 口元ピラーページ（`/mouth/`）
-- [x] 目元ピラーページ（`/eye/`）
-- [x] 鼻ピラーページ（`/nose/`）
-- [x] リフトアップピラーページ（`/lift/`）
-- [x] 美容皮膚科ピラーページ（`/skin/`）
-- [x] 施術一覧ページ（`/treatment/`）
-- [x] シミュレーターページ（`/simulator/`）
-- [x] 料金一覧ページ（`/price/`）
-- [x] お問い合わせページ（`/contact/`）
+- [x] 口元ピラーページ（`/mouth/`）— microCMS 動的取得 + フォールバック
+- [x] 目元ピラーページ（`/eye/`）— 同上
+- [x] 鼻ピラーページ（`/nose/`）— 同上
+- [x] リフトアップピラーページ（`/lift/`）— 同上
+- [x] 美容皮膚科ピラーページ（`/skin/`）— 同上
+- [x] 施術詳細ページ（`/[pillar]/[slug]/`）— 全5ピラー・`TreatmentDetailTemplate` 共通テンプレート
+- [x] 施術詳細 FAQ セクション（`lib/faq-data.ts`・48施術 × 5問）
+- [x] 医療機器一覧（`/machine/`）— フラットグリッド・6件/ページネーション
+- [x] 医療機器詳細（`/machine/[slug]/`）— キャンペーンサイドバー対応
+- [x] 内服薬一覧（`/medicine/`）— カテゴリ別カードグリッド ※microCMS未接続・ハードコード運用中
+- [x] 内服薬詳細（`/medicine/[slug]/`）— ※同上
+- [x] 施術一覧ページ（`/treatment/`）※Supabase未接続・ハードコード運用中
+- [x] シミュレーターページ（`/simulator/`）— react-day-picker + date-fns
+- [x] 料金一覧ページ（`/price/`）※Supabase未接続・ハードコード運用中
+- [x] お問い合わせページ（`/contact/`）— UI完了 ※Supabase送信未実装
 - [x] お知らせ一覧（`/news/`）・詳細（`/news/[slug]/`）
 - [x] 検索ページ（`/search/`）
 - [x] 採用情報（`/recruit/`）※職種はハードコード運用
-- [x] エントリーフォーム（`/recruit/entry/`）
-- [x] スタッフブログ一覧・詳細（`/recruit/staff-blog/`）
-- [x] よくあるご質問（`/column/faq/`）
+- [x] エントリーフォーム（`/recruit/entry/`）— UI完了 ※Supabase送信未実装
+- [x] スタッフブログ詳細（`/recruit/staff-blog/[slug]/`）
+- [x] よくあるご質問（`/column/faq/`）— ハードコード運用中
+- [x] 予約・ご来院の流れ（`/reservation/`）— 基本構造完了 ※営業カレンダーウィジェット未実装
 - [x] プライバシーポリシー（`/privacy`）
 - [x] 医療広告ガイドライン（`/medical-guidelines`）
 - [x] キャンセルポリシー（`/cancel-policy`）
 - [x] 特定商取引法（`/legal`）
+- [x] Supabase プロジェクト作成・`treatment_items` / `price_items` テーブル設計・データ投入
+- [x] チャットボット UI 枠（`ChatBot.tsx`）— Phase 3 先行実装・バックエンド未接続
 
-**未実装:**
-- [ ] 管理画面ベース（`/admin/`）認証 + 問い合わせ管理
-- [ ] Supabase inquiries 連携（お問い合わせ・エントリーフォーム）
+**未実装（Phase 1 残タスク）:**
+- [ ] スタッフブログ一覧（`/recruit/staff-blog/`）— 詳細のみ存在
+- [ ] 管理画面ベース（`/admin/`）— Supabase Auth 認証 + 問い合わせ管理
+- [ ] Supabase inquiries 連携（お問い合わせ・エントリーフォーム送信）
+- [ ] 料金・施術一覧の Supabase 読み込み切り替え（`/price/`・`/treatment/`）
+- [ ] 内服薬の microCMS `medicines` API 接続（コンテンツ投入 → ハードコード廃止）
+- [ ] 予約ページ 営業カレンダーウィジェット（microCMS `clinic_calendar` API）
 
-### Phase 1.5（追加ページ — ハードコードで先行実装）
+### Phase 1.5（追加コンテンツページ — 未着手）
 
-| ページ | 優先度 | 内容 |
-|--------|--------|------|
-| `/about/` | 高 | クリニック紹介・アクセス（院内写真、地図、理念） |
-| `/doctor/` | 高 | 院長・スタッフ紹介（経歴、資格、メッセージ） |
-| `/reservation/` | 高 | 予約ガイド（Web予約・LINE予約・電話の手順、初診の流れ、持ち物） |
-| `/first-visit/` | 高 | 初めての方へ（カウンセリングの流れ、当日の流れ、所要時間、注意事項） |
-| `/payment/` | 中 | お支払い方法（クレジット・医療ローン詳細・分割シミュレーション） |
-| `/commitment/` | 中 | 当院のこだわり（衛生管理・使用機器・麻酔方針） |
-| `/aftercare/` | 中 | アフターケアガイド（施術後の過ごし方・緊急連絡先） |
-| `/comparison/` | 中 | 施術比較（埋没 vs 切開、糸リフト vs 切開リフト等） |
-| `/campaign/` | 中 | キャンペーン一覧 |
-| `/monitor/` | 低 | モニター募集（割引条件・対象施術・応募フォーム） |
-| `/glossary/` | 低 | 美容医療用語集（SEOロングテール狙い） |
+`/first-visit/` は `/reservation/` に統合済み（設計変更）。
+
+| ページ | 優先度 | 状態 | 内容 |
+|--------|--------|------|------|
+| `/about/` | 高 | ✅ | 当院について（6つのこだわり・内観写真・診療情報・院長簡略・アクセス）。ヘッダーナビ「当院について」・フッター「About」から導線あり。参考: `docs/scraping/about_mpureju_com.txt` |
+| `/doctor/` | 高 | ⬜ | 院長・スタッフ紹介（経歴、資格、メッセージ） |
+| `/payment/` | 中 | ⬜ | お支払い方法（クレジット・医療ローン詳細・分割シミュレーション） |
+| `/commitment/` | 中 | ⬜ | 当院のこだわり（衛生管理・使用機器・麻酔方針） |
+| `/aftercare/` | 中 | ⬜ | アフターケアガイド（施術後の過ごし方・緊急連絡先） |
+| `/comparison/` | 中 | ⬜ | 施術比較（埋没 vs 切開、糸リフト vs 切開リフト等） |
+| `/campaign/` | 中 | ⬜ | キャンペーン一覧（microCMS `campaigns` API は存在） |
+| `/monitor/` | 低 | ⬜ | モニター募集（割引条件・対象施術・応募フォーム） |
+| `/glossary/` | 低 | ⬜ | 美容医療用語集（SEOロングテール狙い） |
 
 ### Phase 2
-- [ ] 施術詳細ページ（`/mouth/[slug]/` 全ピラー展開）
-- [ ] コラム一覧・記事（`/column/`）
+- [x] 施術詳細ページ（`/[pillar]/[slug]/` 全5ピラー展開）— Phase 1 内で前倒し完了
+- [ ] コラム一覧・記事（`/column/`）— microCMS `columns` API（スキーマ未作成）
+- [ ] 症例写真一覧（`/case/`）・部位別症例（`/[pillar]/case/`）— microCMS `cases` API
 - [ ] microCMS `faqs` API 移行（ハードコード → CMS管理）
 
 ### Phase 3
-- [ ] 症例写真フィルター機能（`/case/`・`/[pillar]/case/`）
-- [ ] AIチャットボット（DeepSeek API + Supabase pgvector）
-- [ ] 管理画面（`/admin/`）チャットボットFAQ・会話ログ
+- [ ] AI チャットボット バックエンド（DeepSeek API + Supabase pgvector RAG）
+- [ ] 症例写真フィルター機能（`/case/`）
+- [ ] 管理画面拡張（`/admin/`）— チャットボット FAQ・会話ログ・ナレッジ管理
 
 ---
 

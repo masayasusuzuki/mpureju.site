@@ -29,6 +29,7 @@ const POSITIONS = [
     ],
     hours: "9:45〜18:45（休憩1h、固定残業代：なし）",
     salary: "35万円〜 ※前職給与も含め総合判断します（試用期間6ヶ月、条件別途）",
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/55514503dc084e8a9a8bda7b4ab71aeb/12.jpg?w=1400&auto=compress",
   },
   {
     id: "receptionist",
@@ -43,6 +44,7 @@ const POSITIONS = [
     ],
     hours: "9:45〜18:45（休憩1h、固定残業代：なし）",
     salary: "26万円〜 ※前職給与も含め総合判断します（試用期間6ヶ月、条件別途）",
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/ffb9f7fcd7564530a3cca96c20a5ea59/08.jpg?w=1400&auto=compress",
   },
   {
     id: "pr-creator",
@@ -67,6 +69,7 @@ const POSITIONS = [
       "SNS運用経験（YouTube、Instagram、TikTok）",
       "ライティング能力",
     ],
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/430f3db22d464f7fbb08741f15fdaca1/17.jpeg?w=1400&auto=compress",
   },
 ];
 
@@ -76,16 +79,19 @@ const VALUES = [
     title: "患者様の人生が変わる瞬間に立ち会える",
     description:
       "美容医療は見た目だけでなく、患者様の自信や生き方まで変えていく仕事です。「来てよかった」の一言が、日々のやりがいになります。",
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/cb90a99963034b009ead39244a680f8b/%E5%83%8D%E3%81%8F%E9%AD%85%E5%8A%9B1.jpeg?w=1400&auto=compress",
   },
   {
     title: "専門医のそばで日々成長を実感できる",
     description:
       "形成外科専門医である院長のすぐ近くで働くからこそ、技術や知識が自然と身についていく。自分自身の成長を毎日感じられる環境です。",
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/9e0c3407b90a405c88fced35636e5c7c/%E5%83%8D%E3%81%8F%E9%AD%85%E5%8A%9B2.jpeg?w=1400&auto=compress",
   },
   {
     title: "働きながら、自分自身もキレイになれる",
     description:
       "毎月5万円の美容施術手当に加え、施術や化粧品の社員割引も。自分自身が美容医療を体験できるから、患者様へのご案内にも説得力が生まれます。",
+    image: "https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/e245c37c9335492fa94ad28b51d652b9/%E5%83%8D%E3%81%8F%E9%AD%85%E5%8A%9B3.jpeg?w=1400&auto=compress",
   },
 ];
 
@@ -362,9 +368,14 @@ export default async function RecruitPage() {
                 className="relative w-full md:w-5/12 aspect-square shrink-0 overflow-hidden bg-[var(--color-brand-cream)]"
                 style={{ clipPath: "polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 0 100%)" }}
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
-                </div>
+                <Image
+                  src="https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/5a46877ad4354eabb9780de8c1ec5250/mission.png?w=1400&auto=compress"
+                  alt="Maison PUREJU ミッション"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(26,20,8,0.2) 0%, transparent 35%, transparent 65%, rgba(26,20,8,0.2) 100%), rgba(26,20,8,0.08)" }} />
               </div>
 
               <div className="flex-1 flex flex-col justify-center py-10 md:py-14 md:pl-12 lg:pl-16">
@@ -434,6 +445,7 @@ export default async function RecruitPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
+                      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,20,8,0.2) 0%, transparent 35%, transparent 65%, rgba(26,20,8,0.2) 100%), rgba(26,20,8,0.08)" }} />
                     </div>
                     <div className="px-5 py-4">
                       <p className="font-serif text-sm text-[var(--color-brand-dark)] leading-relaxed line-clamp-2 group-hover:text-[var(--color-brand-gold)] transition-colors">

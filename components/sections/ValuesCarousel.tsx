@@ -1,6 +1,7 @@
 type ValueItem = {
   title: string;
   description: string;
+  image?: string;
 };
 
 interface Props {
@@ -20,13 +21,30 @@ export function ValuesCarousel({ items }: Props) {
               key={item.title}
               className="w-[80vw] md:w-[55vw] lg:w-[45vw] shrink-0"
             >
-              <div className="bg-white border border-[var(--color-brand-brown)]/10 rounded-2xl overflow-hidden h-full shadow-sm">
-                <div className="flex flex-col sm:flex-row h-full">
+              <div className="bg-white border border-[var(--color-brand-brown)]/10 rounded-2xl overflow-hidden shadow-sm">
+                <div className="flex flex-col sm:flex-row">
                   {/* 左: 写真エリア */}
-                  <div className="relative w-full sm:w-1/2 aspect-[4/3] sm:aspect-auto sm:min-h-[360px] shrink-0 bg-[var(--color-brand-cream)]">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
-                    </div>
+                  <div className="relative w-full sm:w-1/2 aspect-square sm:aspect-auto sm:min-h-[360px] shrink-0 bg-[var(--color-brand-cream)] overflow-hidden">
+                    {item.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-[var(--color-text-secondary)]/25 text-xs tracking-[0.25em]">PHOTO</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,20,8,0.2) 0%, transparent 35%, transparent 65%, rgba(26,20,8,0.2) 100%), rgba(26,20,8,0.08)" }} />
                   </div>
 
                   {/* 右: テキスト */}

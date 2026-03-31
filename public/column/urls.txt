@@ -1,0 +1,70 @@
+# Instagram URL リスト
+# ============================================================
+# URLを1行1件で貼り付けるだけでOK
+# 番号は public/column/ の空ディレクトリに上から順に自動で割り当てられる
+# 処理済みの行は先頭に # を付けてコメントアウト
+# ============================================================
+
+
+https://www.instagram.com/p/C5VczIMSJuf/?img_index=1
+https://www.instagram.com/p/C57-8xIuo2w/?img_index=1
+https://www.instagram.com/p/C6OBaK0Sgyz/?img_index=1
+https://www.instagram.com/p/C6S_XQqyI__/?img_index=1
+https://www.instagram.com/p/C6sy3ykOA2W/?img_index=1
+https://www.instagram.com/p/C7RAVYfu-lV/?img_index=1
+https://www.instagram.com/p/C78v2KASlP4/?img_index=1
+https://www.instagram.com/p/C8EYewSOYf3/?img_index=1
+https://www.instagram.com/p/C8RLPRSyUsc/?img_index=1
+https://www.instagram.com/p/C8oVDlOSPjO/?img_index=1
+https://www.instagram.com/p/C89IefLyqve/?img_index=1
+https://www.instagram.com/p/C9MKol2SPFX/?img_index=1
+https://www.instagram.com/p/C9Rkd5Yy7GY/?img_index=1
+https://www.instagram.com/p/C91v3JsSVRn/?img_index=1
+https://www.instagram.com/p/C99T69kS4U4/?img_index=1
+https://www.instagram.com/p/C-yyrQXSq1Z/?img_index=1
+https://www.instagram.com/p/C-9vWATyTmk/?img_index=1
+https://www.instagram.com/p/C_CwOdRyUDo/?img_index=1
+https://www.instagram.com/p/C_NXu-ky-iB/?img_index=1
+https://www.instagram.com/p/C_pN031ycAj/?img_index=1
+https://www.instagram.com/p/DADIxA-yG5l/?img_index=1
+https://www.instagram.com/p/DAniAYQyEXq/?img_index=1
+https://www.instagram.com/p/DBBTFajzJB-/?img_index=1
+https://www.instagram.com/p/DBs_rcWTlBv/?img_index=1
+https://www.instagram.com/p/DByX1IYzUjR/?img_index=1
+https://www.instagram.com/p/DCI3GaiyG_2/?img_index=1
+https://www.instagram.com/p/DC6NrPVSmD_/?img_index=1
+https://www.instagram.com/p/DEE-Ti9S__W/?img_index=1
+https://www.instagram.com/p/DFPZdhvSRWl/?img_index=1
+https://www.instagram.com/p/DGh9GhoSgeq/?img_index=1
+https://www.instagram.com/p/DIn2v7_TDKf/?img_index=1
+https://www.instagram.com/p/DJoQKlzzpTi/?img_index=1
+https://www.instagram.com/p/DKmAHCeSd3L/?img_index=1
+https://www.instagram.com/p/DKooQzTy40c/?img_index=1
+https://www.instagram.com/p/DKttF2eyMBD/?img_index=1
+https://www.instagram.com/p/DK_yVjqz2F7/?img_index=1
+https://www.instagram.com/p/DLHkBfJzdu8/?img_index=1
+https://www.instagram.com/p/DLZfMtEzCvH/?img_index=1
+https://www.instagram.com/p/DLo8v5_yLb2/?img_index=1
+https://www.instagram.com/p/DLuI9ygzsOB/?img_index=1
+https://www.instagram.com/p/DLymuR0y5fB/?img_index=1
+https://www.instagram.com/p/DMHhrCoz97x/?img_index=1
+https://www.instagram.com/p/DMKbDoryiIw/?img_index=1
+https://www.instagram.com/p/DMcgsVUS1sw/?img_index=1
+https://www.instagram.com/p/DMoreFRSHMg/?img_index=1
+https://www.instagram.com/p/DMufZiJSjT9/?img_index=1
+https://www.instagram.com/p/DNAm5CLSywl/?img_index=1
+https://www.instagram.com/p/DNFuqaSSInK/?img_index=1
+https://www.instagram.com/p/DNShgk7yMQq/?img_index=1
+https://www.instagram.com/p/DNZl73jyOA0/?img_index=1
+https://www.instagram.com/p/DNu_PsAZpnJ/?img_index=1
+https://www.instagram.com/p/DN-S2VAkmp6/?img_index=1
+https://www.instagram.com/p/DOS6GAAkvuv/?img_index=1
+https://www.instagram.com/p/DOiUWCFEhOK/?img_index=1
+https://www.instagram.com/p/DPV9F87EsYn/?img_index=1
+https://www.instagram.com/p/DP_ASwRElWM/?img_index=1
+https://www.instagram.com/p/DQYrl1UEjlg/?img_index=1
+https://www.instagram.com/p/DRWhTLfkpfZ/?img_index=1
+https://www.instagram.com/p/DRy0lAYkt6P/?img_index=1
+https://www.instagram.com/p/DSmYCEXkqf-/?img_index=1
+https://www.instagram.com/p/DTM30OqEkl6/?img_index=1
+https://www.instagram.com/p/DUc2TVYEjfB/?img_index=1

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMedicineList, getMedicineBySlug } from "@/lib/microcms/client";
+import { getMedicineList, getMedicineBySlug, getCampaigns } from "@/lib/microcms/client";
+import { findMedicinePriceRows } from "@/lib/supabase/queries";
+import { SidebarCampaign } from "@/components/sections/SidebarCampaign";
+import { InlinePricePanel } from "@/components/sections/InlinePricePanel";
 
 /* ── フォールバック（microCMS未投入時） ── */
 type FallbackMedicine = {
   slug: string;
   name: string;
-  category: string;
+  category: string | string[];
   catch_copy: string;
   description: string;
   usage: string;
@@ -180,8 +183,11 @@ export default async function MedicineDetailPage({
   const data = medicine ?? fallback;
   if (!data) notFound();
 
-  // サイドバー用: 他の内服薬
-  const { contents: allMedicines } = await getMedicineList();
+  const [{ contents: allMedicines }, campaigns, priceRows] = await Promise.all([
+    getMedicineList(),
+    getCampaigns(),
+    findMedicinePriceRows(data.name),
+  ]);
   const otherList = allMedicines.length > 0
     ? allMedicines.filter((m) => m.slug !== slug)
     : FALLBACK_MEDICINES.filter((m) => m.slug !== slug);
@@ -200,7 +206,7 @@ export default async function MedicineDetailPage({
               <span className="text-[var(--color-brand-dark)]/80">{data.name}</span>
             </nav>
             <p className="text-xs tracking-[0.2em] text-[var(--color-brand-gold)] mb-2">
-              {data.category}
+              {Array.isArray(data.category) ? data.category[0] : data.category}
             </p>
             <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[var(--color-brand-dark)] tracking-wide">
               {data.name}
@@ -288,24 +294,11 @@ export default async function MedicineDetailPage({
           <aside className="w-full lg:w-72 xl:w-80 shrink-0">
             <div className="lg:sticky lg:top-24 space-y-6">
 
-              {/* キャンペーン枠 */}
-              <div className="border border-[var(--color-brand-gold)]/30 rounded-sm overflow-hidden">
-                <div className="bg-[var(--color-brand-gold)]/10 px-4 py-3">
-                  <p className="text-xs tracking-[0.15em] text-[var(--color-brand-gold)] font-medium">
-                    CAMPAIGN
-                  </p>
-                </div>
-                <div className="p-4">
-                  <div className="aspect-video bg-[var(--color-brand-cream)] flex items-center justify-center mb-4 rounded-sm">
-                    <span className="text-xs text-[var(--color-text-secondary)]/40 tracking-widest">
-                      COMING SOON
-                    </span>
-                  </div>
-                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                    キャンペーン情報は準備中です
-                  </p>
-                </div>
-              </div>
+              {/* キャンペーン */}
+              <SidebarCampaign campaigns={campaigns} />
+
+              {/* 料金 */}
+              <InlinePricePanel title={data.name} rows={priceRows} />
 
               {/* その他の内服薬 */}
               {otherList.length > 0 && (

@@ -15,6 +15,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## Instagram 参考投稿 URL の管理
+
+Instagram投稿URLは `docs/TODO.md` の冒頭「Instagram 参考投稿 URL」セクションにまとめて管理している。
+microCMS `media` APIへの登録素材やコンテンツ作成の参考として使用する。
+新しいURLが出てきたら必ずこのセクションに追記すること。
+
+---
+
+## Supabase SQL 管理ルール
+
+- SQLファイルは `supabase/` ディレクトリに保存する
+- ファイル名は `001_create_tables.sql`, `002_seed_data.sql` のように連番プレフィックスで管理
+- 各ファイルの冒頭にコメントで目的を記載する
+- Supabase ダッシュボードの SQL Editor で実行した内容は必ずこのディレクトリにも保存し、実行履歴を追えるようにする
+- テーブル変更（ALTER）やデータ投入（INSERT）も個別ファイルとして記録する
+
+---
+
 ## Operator Rules (Must Follow)
 
 - **git コマンドは一切実行しない** — commit, push, add, reset 等すべてユーザーが行う

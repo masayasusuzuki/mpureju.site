@@ -1,6 +1,20 @@
 # Maison PUREJU サイト全体 TODO リスト
 
-最終更新: 2026-03-26
+最終更新: 2026-03-30
+
+---
+
+## Instagram 参考投稿 URL
+
+microCMS `media` API への登録や、コンテンツ作成時の参考素材として使用するInstagram投稿URL。
+
+| タイトル | URL |
+|---|---|
+| 参考素材（予約ページ） | https://www.instagram.com/p/C5SyPunSTfy |
+| 人気治療 | https://www.instagram.com/p/DDwVlvvSgq2/?img_index=1 |
+| 乾燥肌におすすめ高湿コスメ | https://www.instagram.com/p/DEE-Ti9S__W/?img_index=1 |
+| セレックVの魅力 | https://www.instagram.com/p/DC6NrPVSmD_/?img_index=1 |
+| スタッフ推し | https://www.instagram.com/p/C_pN031ycAj/?img_index=1 |
 
 ---
 
@@ -19,7 +33,7 @@
 | ページ | URL | 状態 | 備考 |
 |--------|-----|------|------|
 | トップページ | `/` | ✅ | FV・選ばれる理由・年代別メニュー・院長メッセージ・キャンペーン・メディア・ニュース |
-| ヘッダー | — | ✅ | メガメニュー・予約ドロップダウン |
+| ヘッダー | — | 🔧 | メガメニュー・予約ドロップダウン。「美容コラム」リンク未追加（`/column/` 実装時に追加） |
 | フッター | — | ✅ | |
 | 検索 | `/search` | ✅ | 施術横断検索 |
 
@@ -75,8 +89,8 @@
 |--------|-----|------|-------|------|
 | 院長・スタッフ紹介 | `/doctor/` | ⬜ | 1 | microCMS `doctor` + `staff` API から取得 |
 | クリニック紹介・アクセス | `/about/` | ⬜ | 2 | Google Maps 埋め込み、内観写真 |
-| コラム一覧 | `/column/` | ⬜ | 2 | microCMS `columns` API |
-| コラム詳細 | `/column/[slug]/` | ⬜ | 2 | |
+| 美容コラム一覧 | `/column/` | ⬜ | 2 | microCMS `columns` API。ヘッダーナビ表示名「美容コラム」 |
+| 美容コラム詳細 | `/column/[slug]/` | ⬜ | 2 | |
 | 症例写真（全体） | `/case/` | ⬜ | 2 | microCMS `cases` API、フィルター |
 | 部位別症例 | `/[pillar]/case/` | ⬜ | 2 | 5ページ（mouth/eye/nose/lift/skin） |
 | 予約・ご来院の流れ | `/reservation/` | 🔧 | 1 | 基本構造完了。営業カレンダーウィジェット未実装。**設計変更あり（下記参照）** |
@@ -115,7 +129,7 @@
 | 施術情報 | `treatments` | ✅ | ✅ 全ピラー投入済み | ✅ |
 | 症例記事 | `cases` | ✅ | ⬜ | ⬜ |
 | お知らせ | `news` | ✅ | ✅ | ✅ |
-| コラム記事 | `columns` | ⬜ | ⬜ | ⬜ |
+| コラム記事 | `columns` | ⬜ | ⬜ | ⬜ | カテゴリ: skincare/beauty-goods/treatment-guide/lifestyle/column |
 | 院長プロフィール | `doctor` | ⬜ | ⬜ | ⬜ |
 | キャンペーン | `campaigns` | ✅ | ✅ | ✅ トップ + サイドバー |
 | よくある質問 | `faqs` | ⬜ | ⬜ | ⬜（ハードコード中） |

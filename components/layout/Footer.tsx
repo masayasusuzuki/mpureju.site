@@ -5,7 +5,7 @@ const col1Links = [
   { label: "Doctor", href: "/doctor" },
   { label: "Price", href: "/price" },
   { label: "Case", href: "/case" },
-  { label: "Access", href: "/about#access" },
+  { label: "About", href: "/about" },
   { label: "Column", href: "/column" },
   { label: "Simulator", href: "/simulator" },
 ];

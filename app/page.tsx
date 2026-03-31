@@ -6,8 +6,9 @@ export const metadata: Metadata = {
     "銀座の美容外科・美容皮膚科クリニック。形成外科専門医が担当する目元・鼻・口元・リフトアップ・美容皮膚科の施術。",
 };
 
+import Link from "next/link";
 import { MediaSection } from "@/components/sections/MediaSection";
-import { getCampaigns, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
+import { getCampaigns, getColumnList, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
 import type { News } from "@/types/microcms";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,12 +25,14 @@ export default async function TopPage() {
   const hasCategory = (item: News, cat: string) =>
     Array.isArray(item.category) ? item.category.includes(cat) : item.category === cat;
 
-  const [mediaData, teamPhotoData, newsData, campaigns] = await Promise.all([
+  const [mediaData, teamPhotoData, newsData, campaigns, columnData] = await Promise.all([
     getMediaList(),
     getTeamPhotos(),
     getNewsList(),
     getCampaigns(),
+    getColumnList({ limit: 3 }),
   ]);
+  const latestColumns = columnData.contents;
   const teamPhotos = teamPhotoData.contents.map((t) => t.photo.url);
   const newsItems = newsData.contents.filter((n) => hasCategory(n, "お知らせ")).slice(0, 3);
   const credentialItems = newsData.contents.filter((n) => hasCategory(n, "実績・掲載歴"));
@@ -85,7 +88,7 @@ export default async function TopPage() {
               className="text-sm md:text-lg text-white/80 tracking-widest drop-shadow"
               style={{ animation: "hero-fade-in 0.9s ease-out both", animationDelay: "1.0s" }}
             >
-              あなたの人生を豊かにする美容医療
+              自信と輝きを、あなたの日常へ。
             </p>
           </div>
         </div>
@@ -165,10 +168,73 @@ export default async function TopPage() {
         </div>
       </section>
 
+      {/* 美容コラム */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="section-container">
+          <div className="flex items-end justify-between mb-12">
+            <SectionHeading number="03" en="Beauty Column" ja="美容コラム" />
+            <Link
+              href="/column"
+              className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] transition-colors shrink-0"
+            >
+              もっと見る →
+            </Link>
+          </div>
+
+          {latestColumns.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+              {latestColumns.map((col) => (
+                <Link
+                  key={col.id}
+                  href={`/column/${col.slug}`}
+                  className="group block"
+                >
+                  <div className="relative aspect-video bg-[var(--color-brand-cream)] overflow-hidden mb-4">
+                    {col.thumbnail ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={col.thumbnail.url}
+                        alt={col.title}
+                        className="absolute inset-0 w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="font-en text-[0.6rem] tracking-[0.3em] text-[var(--color-brand-gold)]/30">PHOTO</span>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <span className="text-[0.6rem] tracking-[0.15em] text-[var(--color-brand-gold)]">
+                        {col.category[0]}
+                      </span>
+                      <time className="text-[0.6rem] text-[var(--color-text-secondary)]/50 tracking-wider">
+                        {new Date(col.published_at).toLocaleDateString("ja-JP", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                        }).replace(/\//g, ".")}
+                      </time>
+                    </div>
+                    <p className="text-sm font-light text-[var(--color-brand-dark)] leading-relaxed tracking-wide group-hover:text-[var(--color-brand-gold)] transition-colors line-clamp-2">
+                      {col.title}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--color-text-secondary)] py-8 text-center">
+              準備中です
+            </p>
+          )}
+        </div>
+      </section>
+
       {/* Section 5: 症例実績 */}
       <section className="py-16 md:py-24 bg-white overflow-hidden">
         <div className="section-container mb-10">
-          <SectionHeading number="03" en="Case Results" ja="症例実績" />
+          <SectionHeading number="04" en="Case Results" ja="症例実績" />
         </div>
         <CaseCarousel />
         <div className="text-center mt-10">
@@ -184,7 +250,7 @@ export default async function TopPage() {
       {/* Section 6: Credentials */}
       <section className="py-16 md:py-24 bg-[var(--color-brand-cream)]">
         <div className="section-container">
-          <SectionHeading number="04" en="Credentials" ja="実績・掲載歴" className="mb-12" />
+          <SectionHeading number="05" en="Credentials" ja="実績・掲載歴" className="mb-12" />
           {credentialItems.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {credentialItems.map((item) => (
@@ -228,7 +294,7 @@ export default async function TopPage() {
       {/* Section 8: Value - 選ばれる理由 */}
       <section className="py-16 md:py-24 bg-white">
         <div className="section-container">
-          <SectionHeading number="05" en="Why Choose Us" ja="選ばれる理由" className="mb-14" />
+          <SectionHeading number="06" en="Why Choose Us" ja="選ばれる理由" className="mb-14" />
 
           <div className="divide-y divide-[var(--color-brand-brown)]/10">
             {[

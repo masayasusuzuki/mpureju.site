@@ -28,48 +28,76 @@ export function ChatBot() {
     <>
       {/* ══════ ウェルカムカード（高さ auto） ══════ */}
       {isOpen && view === "menu" && (
-        <div className={WINDOW_BASE}>
-          <div className="px-4 pt-4 pb-1 flex items-center justify-between">
-            <p className="text-sm font-medium text-[var(--color-brand-dark)] tracking-wide">AIサポート</p>
+        <div className="fixed z-[60] right-4 bottom-20 lg:right-8 lg:bottom-24 w-[280px] bg-white rounded-2xl shadow-2xl border border-[var(--color-brand-brown)]/10 overflow-hidden animate-[menuPop_0.25s_ease-out]">
+          {/* ヘッダー：挨拶 + 閉じるボタン */}
+          <div className="relative px-5 pt-5 pb-3 bg-gradient-to-br from-[var(--color-brand-cream)] to-white">
             <button
               onClick={handleClose}
-              className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[var(--color-brand-cream)] transition-colors text-[var(--color-brand-brown)]/40"
+              className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/80 transition-colors text-[var(--color-brand-brown)]/40"
               aria-label="閉じる"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+            <div className="flex items-center gap-2.5 mb-2">
+              <span className="w-8 h-8 rounded-full bg-[var(--color-brand-gold)] flex items-center justify-center shadow-sm">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+              </span>
+              <div>
+                <p className="text-[13px] font-medium text-[var(--color-brand-dark)] tracking-wide leading-tight">こんにちは!</p>
+                <p className="text-[11px] text-[var(--color-brand-brown)]/50 mt-0.5">お気軽にご相談ください</p>
+              </div>
+            </div>
           </div>
-          <div className="p-2">
+
+          {/* メニュー項目 */}
+          <div className="p-2.5 space-y-1">
             <button
               onClick={() => setView("chat")}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--color-brand-cream)]/50 transition-colors text-left"
+              className="group w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-[var(--color-brand-cream)]/60 transition-all text-left"
             >
-              <svg className="w-5 h-5 text-[var(--color-brand-gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-              </svg>
-              <span className="text-sm text-[var(--color-brand-dark)]">テキストで相談する</span>
+              <span className="w-9 h-9 rounded-lg bg-[var(--color-brand-gold)]/10 flex items-center justify-center group-hover:bg-[var(--color-brand-gold)]/20 transition-colors shrink-0">
+                <svg className="w-[18px] h-[18px] text-[var(--color-brand-gold)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                </svg>
+              </span>
+              <div>
+                <span className="text-[13px] font-medium text-[var(--color-brand-dark)] block leading-tight">テキストで相談する</span>
+                <span className="text-[10px] text-[var(--color-brand-brown)]/40 mt-0.5 block">施術・料金のご質問に回答</span>
+              </div>
             </button>
             <button
               onClick={() => setView("photo")}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--color-brand-cream)]/50 transition-colors text-left"
+              className="group w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-[var(--color-brand-cream)]/60 transition-all text-left"
             >
-              <svg className="w-5 h-5 text-[var(--color-brand-gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
-              </svg>
-              <span className="text-sm text-[var(--color-brand-dark)]">写真でおすすめ診断</span>
+              <span className="w-9 h-9 rounded-lg bg-[var(--color-brand-gold)]/10 flex items-center justify-center group-hover:bg-[var(--color-brand-gold)]/20 transition-colors shrink-0">
+                <svg className="w-[18px] h-[18px] text-[var(--color-brand-gold)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+                </svg>
+              </span>
+              <div>
+                <span className="text-[13px] font-medium text-[var(--color-brand-dark)] block leading-tight">写真でおすすめ診断</span>
+                <span className="text-[10px] text-[var(--color-brand-brown)]/40 mt-0.5 block">AIが最適な施術をご提案</span>
+              </div>
             </button>
             <Link
               href="/column/faq/"
               onClick={handleClose}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--color-brand-cream)]/50 transition-colors"
+              className="group w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-[var(--color-brand-cream)]/60 transition-all"
             >
-              <svg className="w-5 h-5 text-[var(--color-brand-gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-              </svg>
-              <span className="text-sm text-[var(--color-brand-dark)]">よくある質問</span>
+              <span className="w-9 h-9 rounded-lg bg-[var(--color-brand-gold)]/10 flex items-center justify-center group-hover:bg-[var(--color-brand-gold)]/20 transition-colors shrink-0">
+                <svg className="w-[18px] h-[18px] text-[var(--color-brand-gold)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                </svg>
+              </span>
+              <div>
+                <span className="text-[13px] font-medium text-[var(--color-brand-dark)] block leading-tight">よくある質問</span>
+                <span className="text-[10px] text-[var(--color-brand-brown)]/40 mt-0.5 block">FAQ一覧を見る</span>
+              </div>
             </Link>
           </div>
         </div>

@@ -83,6 +83,18 @@ html {
   to   { transform: translateX(-50%); }
 }
 
+@layer utilities {
+  .animate-clinic-marquee {
+    animation: marquee-scroll 60s linear infinite;
+  }
+}
+
+/* Chat menu pop-in */
+@keyframes menuPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 /* ── react-day-picker v9 ブランドスタイル ────────────────────────────────── */
 .rdp-root {
   --rdp-accent-color: #c9a96e;

@@ -5,14 +5,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PriceSubTabs } from "@/components/sections/PriceSubTabs";
 import { PriceNav, type SearchRow } from "@/components/sections/PriceNav";
 import type { PriceRow, SubTab } from "@/lib/price-data";
-import {
-  HIFUKA_TABS,
-  GEKA_TABS,
-  TENTEKI_ROWS,
-  NAIFUKU_ROWS,
-  KESHOUHIN_TABS,
-  SONOTA_TABS,
-} from "@/lib/price-data";
+import { getPriceSubTabs, getPriceRows } from "@/lib/supabase/queries";
+
+export const revalidate = 3600; // 1時間キャッシュ
 
 export const metadata: Metadata = {
   title: "料金一覧｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -45,14 +40,7 @@ function flattenRows(section: string, sourceRows: PriceRow[]): SearchRow[] {
   });
 }
 
-const ALL_ROWS: SearchRow[] = [
-  ...flattenTabs("皮膚科", HIFUKA_TABS),
-  ...flattenTabs("外科", GEKA_TABS),
-  ...flattenRows("点滴", TENTEKI_ROWS),
-  ...flattenRows("内服薬", NAIFUKU_ROWS),
-  ...flattenTabs("化粧品", KESHOUHIN_TABS),
-  ...flattenTabs("その他", SONOTA_TABS),
-];
+// ALL_ROWS はページコンポーネント内で動的に構築
 
 // ============================================================
 // SIMPLE TABLE COMPONENT（サーバーサイドレンダリング可）
@@ -107,7 +95,26 @@ function SimpleTable({ rows }: { rows: PriceRow[] }) {
 // ============================================================
 // PAGE
 // ============================================================
-export default function PricePage() {
+export default async function PricePage() {
+  const [hifukaTabs, gekaTabs, tentekiRows, naifukuRows, keshouhinTabs, sonotaTabs] =
+    await Promise.all([
+      getPriceSubTabs("皮膚科"),
+      getPriceSubTabs("外科"),
+      getPriceRows("点滴"),
+      getPriceRows("内服薬"),
+      getPriceSubTabs("化粧品"),
+      getPriceSubTabs("その他"),
+    ]);
+
+  const ALL_ROWS: SearchRow[] = [
+    ...flattenTabs("皮膚科", hifukaTabs),
+    ...flattenTabs("外科", gekaTabs),
+    ...flattenRows("点滴", tentekiRows),
+    ...flattenRows("内服薬", naifukuRows),
+    ...flattenTabs("化粧品", keshouhinTabs),
+    ...flattenTabs("その他", sonotaTabs),
+  ];
+
   return (
     <>
       {/* ===== Hero ===== */}
@@ -152,7 +159,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="01" en="Dermatology" ja="皮膚科" />
           <div className="mt-10">
-            <PriceSubTabs tabs={HIFUKA_TABS} />
+            <PriceSubTabs tabs={hifukaTabs} />
           </div>
         </div>
       </section>
@@ -166,7 +173,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="02" en="Surgery" ja="外科" />
           <div className="mt-10">
-            <PriceSubTabs tabs={GEKA_TABS} />
+            <PriceSubTabs tabs={gekaTabs} />
           </div>
         </div>
       </section>
@@ -180,7 +187,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="03" en="IV Drip" ja="点滴" />
           <div className="mt-10">
-            <SimpleTable rows={TENTEKI_ROWS} />
+            <SimpleTable rows={tentekiRows} />
           </div>
         </div>
       </section>
@@ -194,7 +201,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="04" en="Oral Medication" ja="内服薬" />
           <div className="mt-10">
-            <SimpleTable rows={NAIFUKU_ROWS} />
+            <SimpleTable rows={naifukuRows} />
           </div>
         </div>
       </section>
@@ -208,7 +215,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="05" en="Cosmetics" ja="化粧品" />
           <div className="mt-10">
-            <PriceSubTabs tabs={KESHOUHIN_TABS} />
+            <PriceSubTabs tabs={keshouhinTabs} />
           </div>
         </div>
       </section>
@@ -222,7 +229,7 @@ export default function PricePage() {
         <div className="section-container">
           <SectionHeading number="06" en="Others" ja="その他" />
           <div className="mt-10">
-            <PriceSubTabs tabs={SONOTA_TABS} />
+            <PriceSubTabs tabs={sonotaTabs} />
           </div>
         </div>
       </section>

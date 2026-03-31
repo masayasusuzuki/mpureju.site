@@ -10,15 +10,6 @@ export const metadata: Metadata = {
     "美肌・シミ対策、AGA治療、ニキビ改善、ダウンタイム軽減など、医師が処方する内服薬・外用薬のご案内。",
 };
 
-const CATEGORIES = [
-  "美肌・シミ対策",
-  "頭皮・毛髪ケア",
-  "AGA治療",
-  "ニキビ・肌荒れ",
-  "ダウンタイム軽減",
-  "まつ毛育成",
-] as const;
-
 const CATEGORY_EN: Record<string, string> = {
   "美肌・シミ対策": "SKIN BRIGHTENING",
   "頭皮・毛髪ケア": "HAIR CARE",
@@ -44,14 +35,19 @@ const FALLBACK: Medicine[] = [
   { id: "12", name: "ルミガン", slug: "lumigan", catch_copy: "毛周期の成長期を伸ばすことで、まつ毛を太く長くする効果が期待できる外用薬です。", category: "まつ毛育成", description: "", usage: "", side_effects: "", contraindications: "" },
 ];
 
+function normalizeCategory(category: string | string[]): string {
+  return Array.isArray(category) ? category[0] ?? "" : category;
+}
+
 function groupByCategory(medicines: Medicine[]) {
   const map = new Map<string, Medicine[]>();
   for (const m of medicines) {
-    const list = map.get(m.category) ?? [];
+    const cat = normalizeCategory(m.category);
+    const list = map.get(cat) ?? [];
     list.push(m);
-    map.set(m.category, list);
+    map.set(cat, list);
   }
-  return CATEGORIES.map((cat) => [cat, map.get(cat) ?? []] as const);
+  return Array.from(map.entries());
 }
 
 export default async function MedicinePage() {
@@ -130,7 +126,7 @@ export default async function MedicinePage() {
                       />
                     ) : (
                       <span className="font-serif text-sm text-[var(--color-brand-dark)]/30 tracking-widest">
-                        {m.category}
+                        {normalizeCategory(m.category)}
                       </span>
                     )}
                   </div>
