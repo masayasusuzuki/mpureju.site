@@ -137,6 +137,51 @@ export async function findMedicinePriceRows(name: string): Promise<PriceRow[]> {
     }));
 }
 
+// ── 検索用 ──────────────────────────────────────────────────
+
+export type PriceSearchResult = {
+  section: string;
+  sub_tab: string;
+  category: string;
+  option: string | null;
+  price: string;
+};
+
+/** キーワードで料金データを全文検索（検索ページ用） */
+export async function searchPriceItems(keyword: string): Promise<PriceSearchResult[]> {
+  const supabase = await createSupabaseAdminClient();
+
+  // sub_tab にキーワードが含まれる行（そのsub_tab内の全行）を取得
+  const { data: subTabData } = await supabase
+    .from("price_items")
+    .select("section, sub_tab, category, option, price")
+    .ilike("sub_tab", `%${keyword}%`)
+    .order("section")
+    .order("sort_order");
+
+  // category にキーワードが含まれる行を取得
+  const { data: categoryData } = await supabase
+    .from("price_items")
+    .select("section, sub_tab, category, option, price")
+    .ilike("category", `%${keyword}%`)
+    .neq("category", "")
+    .order("section")
+    .order("sort_order");
+
+  // マージして重複排除
+  const seen = new Set<string>();
+  const results: PriceSearchResult[] = [];
+  for (const row of [...(subTabData ?? []), ...(categoryData ?? [])]) {
+    const key = `${row.section}|${row.sub_tab}|${row.category}|${row.price}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      results.push(row);
+    }
+  }
+
+  return results.slice(0, 30);
+}
+
 /** 施術名で料金データを検索（サイドバー用、findPriceRowsByTitle の Supabase 版） */
 export async function findPriceRowsByName(title: string): Promise<PriceRow[]> {
   const supabase = await createSupabaseAdminClient();

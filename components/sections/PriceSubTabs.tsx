@@ -3,8 +3,12 @@
 import { useState } from "react";
 import type { PriceRow, SubTab } from "@/lib/price-data";
 
-export function PriceSubTabs({ tabs }: { tabs: SubTab[] }) {
-  const [activeIdx, setActiveIdx] = useState(0);
+export function PriceSubTabs({ tabs, initialTab }: { tabs: SubTab[]; initialTab?: string }) {
+  const [activeIdx, setActiveIdx] = useState(() => {
+    if (!initialTab) return 0;
+    const idx = tabs.findIndex((t) => t.label === initialTab);
+    return idx >= 0 ? idx : 0;
+  });
   const current = tabs[activeIdx];
   const hasOption = current.rows.some((r) => r.option);
 

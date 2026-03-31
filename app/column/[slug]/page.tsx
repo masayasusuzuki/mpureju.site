@@ -68,37 +68,35 @@ export default async function ColumnDetailPage({
   return (
     <article>
       {/* ===== Hero ===== */}
-      <section className="relative w-full min-h-[200px] md:min-h-[260px] bg-[var(--color-brand-cream)]">
+      <section className="relative w-full bg-[var(--color-brand-cream)] pt-24 md:pt-28 pb-10 md:pb-12">
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at 90% 10%, rgba(201,169,110,0.12) 0%, transparent 55%)" }}
         />
-        <div className="absolute inset-0 flex flex-col justify-end pb-10 md:pb-12">
-          <div style={{ paddingLeft: "max(1.5rem, calc((100vw - 1200px) / 2 + 2rem))", paddingRight: "max(1.5rem, calc((100vw - 1200px) / 2 + 2rem))" }}>
-            <nav className="flex items-center gap-2 text-xs text-[var(--color-brand-dark)]/50 mb-4 tracking-wider">
+        <div style={{ paddingLeft: "max(1.5rem, calc((100vw - 1200px) / 2 + 2rem))", paddingRight: "max(1.5rem, calc((100vw - 1200px) / 2 + 2rem))" }}>
+          <nav className="flex items-center gap-2 text-xs text-[var(--color-brand-dark)]/50 mb-4 tracking-wider">
               <Link href="/" className="hover:text-[var(--color-brand-dark)] transition-colors">HOME</Link>
               <span>/</span>
               <Link href="/column" className="hover:text-[var(--color-brand-dark)] transition-colors">美容コラム</Link>
               <span>/</span>
               <span className="text-[var(--color-brand-dark)]/80 line-clamp-1">{col.title}</span>
-            </nav>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              {col.category.map((cat) => (
-                <Link
-                  key={cat}
-                  href={`/column?category=${encodeURIComponent(cat)}`}
-                  className="text-[0.6rem] tracking-[0.2em] text-[var(--color-brand-gold)] border border-[var(--color-brand-gold)]/40 px-2.5 py-1 hover:bg-[var(--color-brand-gold)]/10 transition-colors"
-                >
-                  {cat}
-                </Link>
-              ))}
-              <time className="text-[0.65rem] text-[var(--color-text-secondary)]/50 tracking-wider ml-1">
-                {formattedDate}
-              </time>
-            </div>
-            <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[var(--color-brand-dark)] tracking-wide leading-relaxed max-w-3xl">
-              {col.title}
-            </h1>
+          </nav>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            {col.category.map((cat) => (
+              <Link
+                key={cat}
+                href={`/column?category=${encodeURIComponent(cat)}`}
+                className="text-[0.6rem] tracking-[0.2em] text-[var(--color-brand-gold)] border border-[var(--color-brand-gold)]/40 px-2.5 py-1 hover:bg-[var(--color-brand-gold)]/10 transition-colors"
+              >
+                {cat}
+              </Link>
+            ))}
+            <time className="text-[0.65rem] text-[var(--color-text-secondary)]/50 tracking-wider ml-1">
+              {formattedDate}
+            </time>
           </div>
+          <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[var(--color-brand-dark)] tracking-wide leading-relaxed max-w-3xl">
+            {col.title}
+          </h1>
         </div>
       </section>
 

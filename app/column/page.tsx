@@ -192,7 +192,7 @@ export default async function ColumnPage({
                       className="group block bg-white border border-[var(--color-brand-brown)]/10 overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
                     >
                       {/* サムネイル */}
-                      <div className="relative aspect-[16/10] bg-[var(--color-brand-cream)] overflow-hidden">
+                      <div className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden">
                         {col.thumbnail ? (
                           <Image
                             src={col.thumbnail.url}

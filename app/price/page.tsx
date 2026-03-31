@@ -95,7 +95,12 @@ function SimpleTable({ rows }: { rows: PriceRow[] }) {
 // ============================================================
 // PAGE
 // ============================================================
-export default async function PricePage() {
+export default async function PricePage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ tab?: string }>;
+}) {
+  const tab = (await searchParams)?.tab ?? "";
   const [hifukaTabs, gekaTabs, tentekiRows, naifukuRows, keshouhinTabs, sonotaTabs] =
     await Promise.all([
       getPriceSubTabs("皮膚科"),
@@ -159,7 +164,7 @@ export default async function PricePage() {
         <div className="section-container">
           <SectionHeading number="01" en="Dermatology" ja="皮膚科" />
           <div className="mt-10">
-            <PriceSubTabs tabs={hifukaTabs} />
+            <PriceSubTabs tabs={hifukaTabs} initialTab={tab} />
           </div>
         </div>
       </section>
@@ -173,7 +178,7 @@ export default async function PricePage() {
         <div className="section-container">
           <SectionHeading number="02" en="Surgery" ja="外科" />
           <div className="mt-10">
-            <PriceSubTabs tabs={gekaTabs} />
+            <PriceSubTabs tabs={gekaTabs} initialTab={tab} />
           </div>
         </div>
       </section>
@@ -215,7 +220,7 @@ export default async function PricePage() {
         <div className="section-container">
           <SectionHeading number="05" en="Cosmetics" ja="化粧品" />
           <div className="mt-10">
-            <PriceSubTabs tabs={keshouhinTabs} />
+            <PriceSubTabs tabs={keshouhinTabs} initialTab={tab} />
           </div>
         </div>
       </section>
@@ -229,7 +234,7 @@ export default async function PricePage() {
         <div className="section-container">
           <SectionHeading number="06" en="Others" ja="その他" />
           <div className="mt-10">
-            <PriceSubTabs tabs={sonotaTabs} />
+            <PriceSubTabs tabs={sonotaTabs} initialTab={tab} />
           </div>
         </div>
       </section>

@@ -535,3 +535,23 @@ const FAQ_MAP: Record<string, FaqItem[]> = {
 export function getFaqsBySlug(slug: string): FaqItem[] {
   return FAQ_MAP[slug] ?? [];
 }
+
+export type FaqSearchResult = {
+  slug: string;
+  q: string;
+  a: string;
+};
+
+/** キーワードで全FAQを検索 */
+export function searchFaqs(keyword: string): FaqSearchResult[] {
+  const kw = keyword.toLowerCase();
+  const results: FaqSearchResult[] = [];
+  for (const [slug, items] of Object.entries(FAQ_MAP)) {
+    for (const item of items) {
+      if (item.q.toLowerCase().includes(kw) || item.a.toLowerCase().includes(kw)) {
+        results.push({ slug, q: item.q, a: item.a });
+      }
+    }
+  }
+  return results.slice(0, 10);
+}

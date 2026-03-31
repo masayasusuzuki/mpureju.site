@@ -189,7 +189,7 @@ export default async function TopPage() {
                   href={`/column/${col.slug}`}
                   className="group block"
                 >
-                  <div className="relative aspect-video bg-[var(--color-brand-cream)] overflow-hidden mb-4">
+                  <div className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden mb-4">
                     {col.thumbnail ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img

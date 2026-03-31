@@ -44,15 +44,30 @@ export async function getTreatmentsByPillar(pillar: string) {
 
 // ── treatments search ─────────────────────────
 
-/** キーワードで施術を検索 */
+/** キーワードで施術を検索（title・catch_copy に絞る） */
 export async function searchTreatments(keyword: string) {
   return microcms.getList<Treatment>({
     endpoint: "treatments",
     queries: {
-      q: keyword,
+      filters: `title[contains]${keyword}`,
       limit: 20,
     },
   });
+}
+
+/** キーワードでコラムを検索 */
+export async function searchColumns(keyword: string) {
+  try {
+    return await microcms.getList<Column>({
+      endpoint: "columns",
+      queries: {
+        q: keyword,
+        limit: 10,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 10 };
+  }
 }
 
 // ── campaigns ─────────────────────────────────
