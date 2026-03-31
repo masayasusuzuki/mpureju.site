@@ -219,7 +219,7 @@ export default async function SearchPage({
                     {faqResults.map((item, i) => (
                       <Link
                         key={i}
-                        href={`/column/faq#faq-${item.catId}-${item.itemIndex}`}
+                        href={`/faq#faq-${item.catId}-${item.itemIndex}`}
                         className="group block border border-[var(--color-brand-brown)]/10 p-5 hover:border-[var(--color-brand-gold)]/30 transition-colors"
                       >
                         <p className="text-sm font-medium text-[var(--color-brand-dark)] mb-2 group-hover:text-[var(--color-brand-gold)] transition-colors">

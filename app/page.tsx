@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     "銀座の美容外科・美容皮膚科クリニック。形成外科専門医が担当する目元・鼻・口元・リフトアップ・美容皮膚科の施術。",
 };
 
+import Image from "next/image";
 import Link from "next/link";
 import { MediaSection } from "@/components/sections/MediaSection";
 import { getCampaigns, getColumnList, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
@@ -68,21 +69,41 @@ export default async function TopPage() {
             className="absolute inset-0 w-full h-full object-cover object-center"
             style={{ animation: "hero-zoom-out 5s ease-out forwards" }}
           />
-          {/* オーバーレイ */}
-          <div className="absolute inset-0 bg-black/10" />
+          {/* シネマティックオーバーレイ */}
+          {/* 1. 上下グラデーション */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(180deg, rgba(12,6,2,0.48) 0%, rgba(12,6,2,0.08) 30%, rgba(12,6,2,0.08) 60%, rgba(12,6,2,0.44) 100%)",
+            }}
+          />
+          {/* 2. ビネット（控えめ） */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(ellipse 140% 110% at 50% 50%, transparent 40%, rgba(8,4,1,0.28) 100%)",
+            }}
+          />
           {/* テキスト - 各要素を時差フェードイン */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pt-16 md:pt-20 text-center px-6">
             <p
-              className="font-en text-sm md:text-base tracking-[0.35em] text-white/80 mb-5 drop-shadow"
+              className="font-en text-base md:text-xl tracking-[0.3em] text-white/90 mb-5 drop-shadow font-medium"
               style={{ animation: "hero-fade-in 0.9s ease-out both", animationDelay: "0.3s" }}
             >
               Ginza Cosmetic Surgery &amp; Dermatology
             </p>
             <h1
-              className="font-en text-5xl md:text-7xl lg:text-8xl tracking-widest text-white mb-8 drop-shadow-lg"
+              className="mb-8"
               style={{ animation: "hero-fade-in 0.9s ease-out both", animationDelay: "0.6s" }}
             >
-              Maison PUREJU
+              <Image
+                src="https://images.microcms-assets.io/assets/e0edb1da60cb4aca82ba53064009bd74/66ad4fa0d6724307a1f8d3b8d9be0bb3/logo.png"
+                alt="Maison PUREJU"
+                width={640}
+                height={160}
+                className="drop-shadow-lg"
+                priority
+              />
             </h1>
             <p
               className="text-sm md:text-lg text-white/80 tracking-widest drop-shadow"

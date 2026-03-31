@@ -300,7 +300,7 @@
       <div class="sidebar-section-title">サマリー</div>
       <div class="stats">
         <div class="stat-box"><div class="num" id="stat-pages">-</div><div class="lbl">総URL数</div></div>
-        <div class="stat-box"><div class="num" style="color:var(--green)">115</div><div class="lbl">実装済み(200)</div></div>
+        <div class="stat-box"><div class="num" style="color:var(--green)">210+</div><div class="lbl">実装済み(200)</div></div>
         <div class="stat-box"><div class="num">13</div><div class="lbl">CMS スキーマ</div></div>
         <div class="stat-box"><div class="num">3</div><div class="lbl">Phase</div></div>
       </div>
@@ -308,8 +308,8 @@
 
     <div class="sidebar-section" style="font-size:11px; color:var(--muted); line-height:2;">
       <div class="sidebar-section-title">凡例</div>
-      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase1">P1</span> 基本ページ（開発中）</div>
-      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase2">P2</span> 施術詳細・院長ほか</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase1">P1</span> 基本ページ（実装済み）</div>
+      <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase2">P2</span> 未実装ページ（今後対応）</div>
       <div style="display:flex;align-items:center;gap:6px;"><span class="phase-badge phase3">P3</span> AI・症例フィルター</div>
     </div>
   </aside>
@@ -1129,12 +1129,12 @@ const PAGES = [
   { id:"case", name:"症例写真総合", url:"/case/", icon:"🖼", phase:3, cat:"content", cms:"microcms",
     sections:["フィルター（部位・施術・年代・性別）","症例グリッド","CTA"],
     subpages:["/[pillar]/case/"], notes:"Phase 3 でフィルター実装。" },
-  { id:"doctor", name:"院長・スタッフ紹介", url:"/doctor/", icon:"👨‍⚕️", phase:2, cat:"content", cms:"microcms",
-    sections:["クリニック紹介・理念","院長プロフィール","スタッフ紹介","CTA"],
-    subpages:[], notes:"microCMS doctor / staff スキーマ。" },
-  { id:"column", name:"美容コラム一覧", url:"/column/", icon:"📰", phase:2, cat:"content", cms:"microcms",
-    sections:["記事カードグリッド","カテゴリフィルター"],
-    subpages:["/column/[slug]/"], notes:"microCMS columns API。ナビ表示名「美容コラム」。カテゴリ: skincare/beauty-goods/treatment-guide/lifestyle/column。Instagram Reelsのロングフォーム展開先。" },
+  { id:"doctor", name:"院長・スタッフ紹介", url:"/doctor/", icon:"👨‍⚕️", phase:1, cat:"content", cms:"microcms",
+    sections:["院長プロフィール・資格・認定医","経歴タイムライン","所属学会","講演・学術活動（microCMS news）","CTA"],
+    subpages:[], notes:"経歴・資格・所属学会はハードコード。講演情報は getNewsList() で category=lecture フィルター取得。" },
+  { id:"column", name:"美容コラム一覧", url:"/column/", icon:"📰", phase:1, cat:"content", cms:"microcms",
+    sections:["Hero・キャッチコピー","カテゴリフィルター（5カテゴリ）","注目記事ピックアップ（1件）","記事カードグリッド（3列）","ページネーション（9件/ページ）"],
+    subpages:["/column/[slug]/","/column/faq/"], notes:"microCMS columns API。記事95件。カテゴリ: 施術ガイド/肌悩み・ケア/美容アイテム/美容知識/ライフスタイル。Instagram Reelsのロングフォーム展開先。" },
   { id:"faq", name:"よくある質問", url:"/column/faq/", icon:"❓", phase:1, cat:"content", cms:"static",
     sections:["カテゴリナビ（Intersection Observer）","6カテゴリ別FaqAccordion"],
     subpages:[], notes:"口元・目元・鼻・リフト・美容皮膚科・一般。ハードコード。" },
@@ -1145,9 +1145,9 @@ const PAGES = [
   { id:"contact", name:"お問い合わせ", url:"/contact/", icon:"✉️", phase:1, cat:"content", cms:"supabase",
     sections:["Web予約・LINE誘導","お問い合わせフォーム"],
     subpages:[], notes:"Supabase inquiries に保存。" },
-  { id:"about", name:"クリニック紹介・アクセス", url:"/about/", icon:"🏥", phase:2, cat:"content", cms:"static",
-    sections:["コンセプト・内観写真","アクセス・地図","診療時間・休診日"],
-    subpages:[], notes:"未実装。" },
+  { id:"about", name:"クリニック紹介・アクセス", url:"/about/", icon:"🏥", phase:1, cat:"content", cms:"microcms",
+    sections:["コンセプト・こだわり6項目（技術/知識/カウンセリング/プライバシー/アフターケア/安全性）","院内スライドショー（ClinicSlideshow）","診療カレンダー（microCMS clinic_calendar）","アクセス・地図・診療時間"],
+    subpages:[], notes:"こだわり6項目はハードコード。診療カレンダーは getClinicCalendar() で microCMS から取得。" },
   { id:"reservation", name:"予約ガイド", url:"/reservation/", icon:"📅", phase:1, cat:"content", cms:"static",
     sections:["Web予約の手順","LINE予約の手順","電話予約","初診の流れ"],
     subpages:[], notes:"Medicalforce への誘導。" },
@@ -1251,10 +1251,11 @@ const SCHEMAS = [
       { name:"category", type:"select", note:"notice / explanation / price-change" },
       { name:"thumbnail / published_at", type:"text" },
     ]},
-  { name:"columns", label:"コラム記事", icon:"📰", note:"ブログ・読み物コンテンツ（未実装）",
+  { name:"columns", label:"コラム記事", icon:"📰", note:"/column/ 一覧・詳細。Instagram Reels のロングフォーム展開先",
     fields:[
-      { name:"title / slug / content", type:"text" },
-      { name:"category / tags[]", type:"select" },
+      { name:"title / slug", type:"text" },
+      { name:"content", type:"richtext" },
+      { name:"category", type:"select", note:"施術ガイド / 肌悩み・ケア / 美容アイテム / 美容知識 / ライフスタイル" },
       { name:"thumbnail / published_at", type:"text" },
     ]},
   { name:"doctor", label:"院長プロフィール", icon:"👨‍⚕️", note:"トップ Message セクションにも使用",

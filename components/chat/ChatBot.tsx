@@ -85,7 +85,7 @@ export function ChatBot() {
               </div>
             </button>
             <Link
-              href="/column/faq/"
+              href="/faq/"
               onClick={handleClose}
               className="group w-full flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-[var(--color-brand-cream)]/60 transition-all"
             >

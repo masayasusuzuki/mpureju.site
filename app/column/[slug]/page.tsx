@@ -253,9 +253,31 @@ export default async function ColumnDetailPage({
                       <li key={c.id}>
                         <Link
                           href={`/column/${c.slug}`}
-                          className="block px-4 py-3 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-cream)]/50 transition-colors line-clamp-2"
+                          className="flex gap-3 px-4 py-3 hover:bg-[var(--color-brand-cream)]/50 transition-colors group"
                         >
-                          {c.title}
+                          <div className="relative w-14 h-14 shrink-0 bg-[var(--color-brand-cream)] overflow-hidden">
+                            {c.thumbnail ? (
+                              <Image
+                                src={c.thumbnail.url}
+                                alt={c.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                sizes="56px"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-[0.5rem] text-[var(--color-brand-gold)]/30">PHOTO</span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[0.6rem] text-[var(--color-brand-gold)] tracking-wider mb-1">
+                              {c.category[0]}
+                            </p>
+                            <p className="text-xs text-[var(--color-brand-dark)] leading-relaxed line-clamp-2 group-hover:text-[var(--color-brand-gold)] transition-colors">
+                              {c.title}
+                            </p>
+                          </div>
                         </Link>
                       </li>
                     ))}

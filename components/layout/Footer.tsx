@@ -29,7 +29,7 @@ const treatmentLinks = [
 ];
 
 const col3Links = [
-  { label: "Faq", href: "/column/faq" },
+  { label: "Faq", href: "/faq" },
   { label: "Reservation", href: "https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d", external: true },
   { label: "Contact", href: "/contact" },
 ];
