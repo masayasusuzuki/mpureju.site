@@ -150,32 +150,47 @@ export type PriceSearchResult = {
 /** キーワードで料金データを全文検索（検索ページ用） */
 export async function searchPriceItems(keyword: string): Promise<PriceSearchResult[]> {
   const supabase = await createSupabaseAdminClient();
+  const kw = keyword.toLowerCase();
 
-  // sub_tab にキーワードが含まれる行（そのsub_tab内の全行）を取得
-  const { data: subTabData } = await supabase
+  // 全データを取得してJS側でフィルタリング（capturing パターンで空category行も取得）
+  const { data: allData } = await supabase
     .from("price_items")
     .select("section, sub_tab, category, option, price")
-    .ilike("sub_tab", `%${keyword}%`)
     .order("section")
+    .order("sub_tab")
     .order("sort_order");
 
-  // category にキーワードが含まれる行を取得
-  const { data: categoryData } = await supabase
-    .from("price_items")
-    .select("section, sub_tab, category, option, price")
-    .ilike("category", `%${keyword}%`)
-    .neq("category", "")
-    .order("section")
-    .order("sort_order");
+  if (!allData) return [];
 
-  // マージして重複排除
-  const seen = new Set<string>();
+  // sub_tab にキーワードが含まれるキーを収集
+  const matchedSubTabKeys = new Set<string>();
+  for (const row of allData) {
+    if ((row.sub_tab ?? "").toLowerCase().includes(kw)) {
+      matchedSubTabKeys.add(`${row.section}|${row.sub_tab}`);
+    }
+  }
+
   const results: PriceSearchResult[] = [];
-  for (const row of [...(subTabData ?? []), ...(categoryData ?? [])]) {
-    const key = `${row.section}|${row.sub_tab}|${row.category}|${row.price}`;
-    if (!seen.has(key)) {
-      seen.add(key);
+  let capturing = false;
+
+  for (const row of allData) {
+    const subTabKey = `${row.section}|${row.sub_tab}`;
+
+    // sub_tab がマッチ → そのsub_tab内の全行を含める
+    if (matchedSubTabKeys.has(subTabKey)) {
       results.push(row);
+      continue;
+    }
+
+    // category がキーワードにマッチ → capturing 開始
+    if (row.category && row.category.toLowerCase().includes(kw)) {
+      capturing = true;
+      results.push(row);
+    } else if (capturing && row.category === "") {
+      // 直前のマッチしたcategoryに属するoption行も含める
+      results.push(row);
+    } else {
+      if (row.category !== "") capturing = false;
     }
   }
 
