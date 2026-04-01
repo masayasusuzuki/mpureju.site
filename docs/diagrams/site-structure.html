@@ -300,8 +300,8 @@
       <div class="sidebar-section-title">サマリー</div>
       <div class="stats">
         <div class="stat-box"><div class="num" id="stat-pages">-</div><div class="lbl">総URL数</div></div>
-        <div class="stat-box"><div class="num" style="color:var(--green)">210+</div><div class="lbl">実装済み(200)</div></div>
-        <div class="stat-box"><div class="num">13</div><div class="lbl">CMS スキーマ</div></div>
+        <div class="stat-box"><div class="num" style="color:var(--green)">357+</div><div class="lbl">実装済みURL数</div></div>
+        <div class="stat-box"><div class="num">14</div><div class="lbl">CMS スキーマ</div></div>
         <div class="stat-box"><div class="num">3</div><div class="lbl">Phase</div></div>
       </div>
     </div>
@@ -320,6 +320,7 @@
     <!-- タブバー -->
     <div class="tab-bar">
       <button class="tab-btn active" id="tab-pages" onclick="switchTab('pages')">📄 ページ構成</button>
+      <button class="tab-btn" id="tab-urls" onclick="switchTab('urls')">📊 URL内訳</button>
       <button class="tab-btn" id="tab-data" onclick="switchTab('data')">🗄 データ設計</button>
       <button class="tab-btn" id="tab-flow" onclick="switchTab('flow')">🔀 導線・設計</button>
       <button class="tab-btn" id="tab-chatbot" onclick="switchTab('chatbot')">🤖 チャットボット</button>
@@ -341,10 +342,477 @@
       <div id="view-tree" style="display:none"><div id="tree-content"></div></div>
     </div>
 
+    <!-- URL内訳 -->
+    <div class="scroll-area" id="tab-content-urls" style="display:none">
+      <div class="group-label" style="margin-top:0">
+        <span class="group-label-text">実装済みURL総数：357+</span>
+        <span class="group-label-line"></span>
+      </div>
+
+      <!-- サマリーバー -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;">
+        <div style="background:var(--surface);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:28px;font-weight:700;color:var(--green);">138</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">症例記事</div>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:28px;font-weight:700;color:var(--text);">95</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">コラム記事</div>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:28px;font-weight:700;color:var(--text);">64</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">施術詳細</div>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:28px;font-weight:700;color:var(--muted);">約30</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">静的ページ</div>
+        </div>
+      </div>
+
+      <!-- 詳細テーブル -->
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.12);">
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;">URL パターン</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;">ページ名</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;">データソース</th>
+            <th style="text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;">内訳・備考</th>
+            <th style="text-align:right;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;">件数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 静的ページ -->
+          <tr style="background:rgba(255,255,255,0.02);">
+            <td colspan="5" style="padding:8px 14px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">静的ページ（約30件）</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/</td>
+            <td style="padding:9px 14px;color:var(--text);">トップページ</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">Hero・5ピラー・症例カルーセル・コラム・CTA</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/mouth/ /eye/ /nose/ /lift/ /skin/</td>
+            <td style="padding:9px 14px;color:var(--text);">5ピラー一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS + Supabase</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">施術一覧・料金・セットコース・症例カルーセル・シミュレーター</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">5</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/treatment/</td>
+            <td style="padding:9px 14px;color:var(--text);">施術一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-supabase" style="font-size:10px;">Supabase</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">treatment_items 全施術横断。タブ + 検索</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/price/</td>
+            <td style="padding:9px 14px;color:var(--text);">料金一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-supabase" style="font-size:10px;">Supabase</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">price_items 全料金。6セクション・サブタブ</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/simulator/</td>
+            <td style="padding:9px 14px;color:var(--text);">料金・DTシミュレーター</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-local" style="font-size:10px;">Static</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">react-day-picker + date-fns</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/case/</td>
+            <td style="padding:9px 14px;color:var(--text);">症例写真一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">カテゴリフィルター + EmblaCarousel</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/column/</td>
+            <td style="padding:9px 14px;color:var(--text);">美容コラム一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">5カテゴリ・ページネーション（9件/p）</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/column/faq/</td>
+            <td style="padding:9px 14px;color:var(--text);">よくある質問</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-local" style="font-size:10px;">Static</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">6カテゴリ・FaqAccordion。ハードコード</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/doctor/</td>
+            <td style="padding:9px 14px;color:var(--text);">院長・スタッフ紹介</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">経歴・資格はハードコード。講演情報はnews API</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/about/</td>
+            <td style="padding:9px 14px;color:var(--text);">クリニック紹介・アクセス</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">診療カレンダー（clinic_calendar API）・地図</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/news/</td>
+            <td style="padding:9px 14px;color:var(--text);">お知らせ一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/contact/</td>
+            <td style="padding:9px 14px;color:var(--text);">お問い合わせ</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-supabase" style="font-size:10px;">Supabase</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">inquiries テーブルに保存</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/reservation/</td>
+            <td style="padding:9px 14px;color:var(--text);">予約ガイド</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-local" style="font-size:10px;">Static</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">Medicalforce 外部リンク誘導</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/machine/ /medicine/</td>
+            <td style="padding:9px 14px;color:var(--text);">医療機器・内服薬 一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">2</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/recruit/ /recruit/staff-blog/</td>
+            <td style="padding:9px 14px;color:var(--text);">採用・スタッフブログ一覧</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-local" style="font-size:10px;">Static</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">2</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/privacy /legal /cancel-policy /medical-guidelines</td>
+            <td style="padding:9px 14px;color:var(--text);">法的・ポリシーページ</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-local" style="font-size:10px;">Static</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">4</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/admin/</td>
+            <td style="padding:9px 14px;color:var(--text);">管理画面</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-supabase" style="font-size:10px;">Supabase</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">Supabase Auth 認証。施術・料金CRUD</td>
+            <td style="padding:9px 14px;text-align:right;color:var(--text);">1+</td>
+          </tr>
+
+          <!-- 動的ページ -->
+          <tr style="background:rgba(255,255,255,0.02);">
+            <td colspan="5" style="padding:8px 14px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">動的ページ（CMS連携）</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--green);font-family:monospace;font-size:12px;">/case/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">症例記事 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS cases</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">mouth:53 / eye:36 / nose:1 / lift:8 / skin:36。InlinePricePanel（Supabase料金連携）</td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--green);">138</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/column/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">美容コラム 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS columns</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">施術ガイド:48 / 肌悩み・ケア:11 / 美容アイテム:16 / 美容知識:10 / ライフスタイル:10</td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">95</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/[pillar]/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">施術詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS treatments</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">5ピラー共通テンプレート（TreatmentDetailTemplate）。料金はSupabase</td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">64</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/medicine/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">内服薬 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS medicines</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;">料金は Supabase findMedicinePriceRows() で取得</td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">12</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/machine/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">医療機器 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS machines</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">10</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/news/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">お知らせ 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS news</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">5</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:9px 14px;color:var(--p1);font-family:monospace;font-size:12px;">/recruit/staff-blog/[slug]/</td>
+            <td style="padding:9px 14px;color:var(--text);">スタッフブログ 詳細</td>
+            <td style="padding:9px 14px;"><span class="db-badge db-microcms" style="font-size:10px;">microCMS staff_blog</span></td>
+            <td style="padding:9px 14px;color:var(--muted);font-size:12px;"></td>
+            <td style="padding:9px 14px;text-align:right;font-weight:700;color:var(--text);">3</td>
+          </tr>
+
+          <!-- 合計 -->
+          <tr style="background:rgba(255,255,255,0.04);border-top:2px solid rgba(255,255,255,0.15);">
+            <td colspan="4" style="padding:12px 14px;font-weight:700;color:var(--text);font-size:14px;">合計</td>
+            <td style="padding:12px 14px;text-align:right;font-weight:700;color:var(--green);font-size:18px;">357+</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- サイト階層ツリー -->
+      <div class="group-label" style="margin-top:32px;">
+        <span class="group-label-text">サイト階層ツリー</span>
+        <span class="group-label-line"></span>
+      </div>
+      <style>
+        .st details { }
+        .st .st-ch { padding-left:16px; border-left:1px solid rgba(255,255,255,0.08); margin-left:10px; }
+        .st summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:8px; padding:5px 8px; border-radius:5px; }
+        .st summary:hover { background:rgba(255,255,255,0.04); }
+        .st summary::-webkit-details-marker { display:none; }
+        .st .toggle { font-size:9px; color:var(--muted); transition:transform 0.15s; display:inline-block; flex-shrink:0; }
+        .st details[open] > summary .toggle { transform:rotate(90deg); }
+        .st .node-leaf { display:flex; align-items:center; gap:8px; padding:5px 8px; border-radius:5px; }
+        .st .node-leaf:hover { background:rgba(255,255,255,0.03); }
+        .st .url { font-family:monospace; font-size:12px; color:var(--text); white-space:nowrap; }
+        .st .lbl { color:var(--muted); font-size:12px; }
+        .st .cnt { background:rgba(16,185,129,0.15); color:var(--green); padding:1px 8px; border-radius:20px; font-size:10px; font-weight:600; white-space:nowrap; }
+        .st .bdg { padding:1px 7px; border-radius:20px; font-size:10px; white-space:nowrap; }
+        .st .b-static { background:rgba(255,255,255,0.07); color:var(--muted); }
+        .st .b-cms { background:rgba(139,92,246,0.2); color:#c4b5fd; }
+        .st .b-db { background:rgba(59,130,246,0.2); color:#93c5fd; }
+        .st .b-hybrid { background:rgba(245,158,11,0.15); color:var(--p1); }
+        .st .c-root { color:#fff; font-weight:700; }
+        .st .c-pillar { color:var(--p1); }
+        .st .c-dyn { color:var(--green); }
+      </style>
+      <div class="st" style="padding:8px 0 32px;">
+        <details open>
+          <summary>
+            <span class="toggle">▶</span>
+            <span class="url c-root">/</span>
+            <span class="lbl">トップページ</span>
+            <span class="bdg b-cms">microCMS</span>
+          </summary>
+          <div class="st-ch">
+
+            <!-- 5ピラー -->
+            <details open>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url c-pillar">/mouth/&nbsp; /eye/&nbsp; /nose/&nbsp; /lift/&nbsp; /skin/</span>
+                <span class="lbl">5ピラー一覧</span>
+                <span class="bdg b-hybrid">microCMS + Supabase</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url c-dyn">/[pillar]/[slug]/</span>
+                  <span class="lbl">施術詳細（TreatmentDetailTemplate 共通・料金はSupabase）</span>
+                  <span class="cnt">×64</span>
+                  <span class="bdg b-cms">microCMS treatments</span>
+                </div>
+              </div>
+            </details>
+
+            <div class="node-leaf">
+              <span class="url">/treatment/</span>
+              <span class="lbl">施術一覧（全ピラー横断）</span>
+              <span class="bdg b-db">Supabase</span>
+            </div>
+            <div class="node-leaf">
+              <span class="url">/price/</span>
+              <span class="lbl">料金一覧</span>
+              <span class="bdg b-db">Supabase</span>
+            </div>
+            <div class="node-leaf">
+              <span class="url">/simulator/</span>
+              <span class="lbl">料金・ダウンタイムシミュレーター</span>
+              <span class="bdg b-static">Static</span>
+            </div>
+
+            <!-- 症例 -->
+            <details open>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/case/</span>
+                <span class="lbl">症例写真一覧</span>
+                <span class="bdg b-cms">microCMS cases</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url c-dyn">/case/[slug]/</span>
+                  <span class="lbl">症例詳細（mouth:53 / eye:36 / nose:1 / lift:8 / skin:36）+ Supabase料金連携</span>
+                  <span class="cnt">×138</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- コラム -->
+            <details open>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/column/</span>
+                <span class="lbl">美容コラム一覧</span>
+                <span class="bdg b-cms">microCMS columns</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url">/column/faq/</span>
+                  <span class="lbl">よくある質問</span>
+                  <span class="bdg b-static">Static</span>
+                </div>
+                <div class="node-leaf">
+                  <span class="url c-dyn">/column/[slug]/</span>
+                  <span class="lbl">コラム詳細（施術ガイド:48 / 肌悩み:11 / アイテム:16 / 知識:10 / ライフ:10）</span>
+                  <span class="cnt">×95</span>
+                </div>
+              </div>
+            </details>
+
+            <div class="node-leaf">
+              <span class="url">/doctor/</span>
+              <span class="lbl">院長・スタッフ紹介</span>
+              <span class="bdg b-cms">microCMS</span>
+            </div>
+            <div class="node-leaf">
+              <span class="url">/about/</span>
+              <span class="lbl">クリニック紹介・アクセス</span>
+              <span class="bdg b-cms">microCMS clinic_calendar</span>
+            </div>
+
+            <!-- お知らせ -->
+            <details>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/news/</span>
+                <span class="lbl">お知らせ一覧</span>
+                <span class="bdg b-cms">microCMS news</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url c-dyn">/news/[slug]/</span>
+                  <span class="lbl">お知らせ詳細</span>
+                  <span class="cnt">×5</span>
+                </div>
+              </div>
+            </details>
+
+            <div class="node-leaf">
+              <span class="url">/contact/</span>
+              <span class="lbl">お問い合わせ</span>
+              <span class="bdg b-db">Supabase inquiries</span>
+            </div>
+            <div class="node-leaf">
+              <span class="url">/reservation/</span>
+              <span class="lbl">予約ガイド（Medicalforce 外部リンク）</span>
+              <span class="bdg b-static">Static</span>
+            </div>
+
+            <!-- 機器 -->
+            <details>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/machine/</span>
+                <span class="lbl">医療機器一覧</span>
+                <span class="bdg b-cms">microCMS machines</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url c-dyn">/machine/[slug]/</span>
+                  <span class="lbl">機器詳細</span>
+                  <span class="cnt">×10</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 薬 -->
+            <details>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/medicine/</span>
+                <span class="lbl">内服薬一覧</span>
+                <span class="bdg b-cms">microCMS medicines</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url c-dyn">/medicine/[slug]/</span>
+                  <span class="lbl">薬詳細（料金はSupabase findMedicinePriceRows）</span>
+                  <span class="cnt">×12</span>
+                </div>
+              </div>
+            </details>
+
+            <!-- 採用 -->
+            <details>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">/recruit/</span>
+                <span class="lbl">採用情報一覧</span>
+                <span class="bdg b-static">Static</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf">
+                  <span class="url">/recruit/entry/</span>
+                  <span class="lbl">エントリーフォーム</span>
+                  <span class="bdg b-static">Static</span>
+                </div>
+                <details>
+                  <summary>
+                    <span class="toggle">▶</span>
+                    <span class="url">/recruit/staff-blog/</span>
+                    <span class="lbl">スタッフブログ一覧</span>
+                    <span class="bdg b-cms">microCMS staff_blog</span>
+                  </summary>
+                  <div class="st-ch">
+                    <div class="node-leaf">
+                      <span class="url c-dyn">/recruit/staff-blog/[slug]/</span>
+                      <span class="lbl">ブログ詳細</span>
+                      <span class="cnt">×3</span>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </details>
+
+            <div class="node-leaf">
+              <span class="url">/admin/</span>
+              <span class="lbl">管理画面（Supabase Auth 認証）</span>
+              <span class="bdg b-db">Supabase</span>
+            </div>
+
+            <!-- ポリシー -->
+            <details>
+              <summary>
+                <span class="toggle">▶</span>
+                <span class="url">ポリシー系</span>
+                <span class="lbl">法的・規約ページ</span>
+                <span class="bdg b-static">Static</span>
+              </summary>
+              <div class="st-ch">
+                <div class="node-leaf"><span class="url">/privacy</span><span class="lbl">プライバシーポリシー</span></div>
+                <div class="node-leaf"><span class="url">/legal</span><span class="lbl">特定商取引法に基づく表示</span></div>
+                <div class="node-leaf"><span class="url">/cancel-policy</span><span class="lbl">キャンセルポリシー</span></div>
+                <div class="node-leaf"><span class="url">/medical-guidelines</span><span class="lbl">医療広告ガイドライン</span></div>
+              </div>
+            </details>
+
+          </div>
+        </details>
+      </div>
+    </div>
+
     <!-- データ設計 -->
     <div class="scroll-area" id="tab-content-data" style="display:none">
       <div class="group-label" style="margin-top:0">
-        <span class="group-label-text">microCMS スキーマ（13）</span>
+        <span class="group-label-text">microCMS スキーマ（14）</span>
         <span class="group-label-line"></span>
         <span class="db-badge db-microcms">microCMS</span>
       </div>
@@ -1006,7 +1474,7 @@ flowchart LR
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
         <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:16px;">
-          <div style="font-size:11px;font-weight:700;color:var(--p1);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 1（完了 / 進行中）</div>
+          <div style="font-size:11px;font-weight:700;color:var(--p1);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 1（完了）</div>
           <ul class="section-list" style="gap:5px;">
             <li>5ピラー + 全施術詳細ページ</li>
             <li>料金・施術一覧（Supabase SSOT）</li>
@@ -1014,15 +1482,19 @@ flowchart LR
             <li>採用ページ・スタッフブログ</li>
             <li>管理画面（施術・料金CRUD）</li>
             <li>CVイベント計測基盤</li>
+            <li>症例写真138件（microCMS cases）</li>
+            <li>コラム95件（microCMS columns）</li>
+            <li>院長・スタッフ紹介・about</li>
+            <li>医療機器・内服薬ページ</li>
           </ul>
         </div>
         <div style="background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px;">
           <div style="font-size:11px;font-weight:700;color:var(--p2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Phase 2（次期）</div>
           <ul class="section-list" style="gap:5px;">
-            <li>院長・スタッフ紹介ページ</li>
-            <li>コラム・about・初診ガイド</li>
-            <li>施術比較・キャンペーン</li>
-            <li>症例写真総合ページ</li>
+            <li>初診ガイド・初めての方へ</li>
+            <li>施術比較ページ</li>
+            <li>キャンペーン一覧</li>
+            <li>お支払い方法・医療ローン</li>
             <li>問い合わせ管理（ステータス）</li>
           </ul>
         </div>
@@ -1114,7 +1586,7 @@ const PAGES = [
     notes:"getTreatmentsByPillar('skin') で動的取得+フォールバック。19施術。" },
   { id:"treatment-detail", name:"施術詳細（共通テンプレート）", url:"/[pillar]/[slug]/", icon:"📄", phase:1, cat:"pillar", cms:"microcms",
     sections:["Hero・パンくず","概要バー（部位・施術名・DT）","こんな方におすすめ","症例写真","目次","施術説明（richtext）","院長コメント（吹き出し）","施術の流れ","リスク・副作用","ダウンタイム","サイドバー（キャンペーン・料金・関連施術）","よくある質問（FAQ）","CTA"],
-    subpages:[], notes:"TreatmentDetailTemplate で5ピラー共通化。料金はSupabase price_items。FAQは lib/faq-data.ts（全48施術分）。" },
+    subpages:[], notes:"TreatmentDetailTemplate で5ピラー共通化。64施術。料金はSupabase price_items。FAQは lib/faq-data.ts（全48施術分）。" },
 
   // ── コンテンツ ──
   { id:"treatment-list", name:"施術一覧", url:"/treatment/", icon:"📋", phase:1, cat:"content", cms:"supabase",
@@ -1126,9 +1598,9 @@ const PAGES = [
   { id:"simulator", name:"料金・DTシミュレーター", url:"/simulator/", icon:"🧮", phase:1, cat:"content", cms:"static",
     sections:["料金シミュレーター","ダウンタイムカレンダー","CTA"],
     subpages:[], notes:"react-day-picker + date-fns。" },
-  { id:"case", name:"症例写真総合", url:"/case/", icon:"🖼", phase:3, cat:"content", cms:"microcms",
-    sections:["フィルター（部位・施術・年代・性別）","症例グリッド","CTA"],
-    subpages:["/[pillar]/case/"], notes:"Phase 3 でフィルター実装。" },
+  { id:"case", name:"症例写真総合", url:"/case/", icon:"🖼", phase:1, cat:"content", cms:"microcms",
+    sections:["カテゴリフィルター（すべて/目元/鼻/口元/リフトアップ/美容皮膚科）","症例カルーセル（EmblaCarousel）","症例詳細ページ（/case/[slug]/）"],
+    subpages:["/case/[slug]/"], notes:"microCMS cases API。138件実装済み（mouth:53/eye:36/nose:1/lift:8/skin:36）。症例詳細にInlinePricePanel（Supabase料金連携）実装済み。" },
   { id:"doctor", name:"院長・スタッフ紹介", url:"/doctor/", icon:"👨‍⚕️", phase:1, cat:"content", cms:"microcms",
     sections:["院長プロフィール・資格・認定医","経歴タイムライン","所属学会","講演・学術活動（microCMS news）","CTA"],
     subpages:[], notes:"経歴・資格・所属学会はハードコード。講演情報は getNewsList() で category=lecture フィルター取得。" },
@@ -1236,13 +1708,18 @@ const SCHEMAS = [
       { name:"downtime_min_days / max_days", type:"number" },
       { name:"sort_order", type:"number" },
     ]},
-  { name:"cases", label:"症例記事", icon:"🖼", note:"Before/After + 記事本文",
+  { name:"cases", label:"症例記事", icon:"🖼", note:"138件（mouth:53/eye:36/nose:1/lift:8/skin:36）。InlinePricePanel でSupabase料金連携",
     fields:[
-      { name:"title / slug / thumbnail", type:"text" },
-      { name:"category / age_group / gender / concern", type:"select" },
-      { name:"treatment", type:"relation", note:"→ treatments" },
-      { name:"content", type:"richtext" },
-      { name:"before_photo / after_photo", type:"image", note:"個別フィールド（結合画像NG）" },
+      { name:"title / slug", type:"text" },
+      { name:"pillar[]", type:"select", note:"口元/目元/鼻/リフトアップ/美容皮膚科" },
+      { name:"treatment_label", type:"text", note:"正式施術名（Supabaseマッチング用）" },
+      { name:"timing", type:"text", note:"経過（直後/1週間後/1ヶ月後 等）" },
+      { name:"concern", type:"text", note:"お悩みキーワード（カンマ区切り）" },
+      { name:"risks", type:"text", note:"リスク・副作用（医療広告GL必須）" },
+      { name:"tags", type:"text", note:"検索用タグ（カンマ区切り）" },
+      { name:"thumbnail", type:"image" },
+      { name:"content", type:"richtext", note:"記事本文（Markdown→HTML）" },
+      { name:"instagram_url", type:"text", note:"元のInstagram投稿URL" },
       { name:"published_at", type:"date" },
     ]},
   { name:"news", label:"お知らせ", icon:"📣", note:"クリニックからのお知らせ",
@@ -1572,7 +2049,7 @@ let currentTab = "pages";
 // =====================================================
 function switchTab(tab) {
   currentTab = tab;
-  ["pages","data","flow","chatbot","db","scalability"].forEach(t => {
+  ["pages","urls","data","flow","chatbot","db","scalability"].forEach(t => {
     document.getElementById(`tab-content-${t}`).style.display = t === tab ? "block" : "none";
     document.getElementById(`tab-${t}`).classList.toggle("active", t === tab);
   });
