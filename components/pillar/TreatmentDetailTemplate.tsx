@@ -7,7 +7,7 @@ import { FaqAccordion, type FaqItem } from "@/components/sections/FaqAccordion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RichContent } from "@/components/ui/RichContent";
 import type { Treatment } from "@/lib/microcms/types";
-import type { Campaign } from "@/types/microcms";
+import type { Campaign, Case } from "@/types/microcms";
 
 const PROSE_STYLE =
   "prose prose-neutral max-w-none prose-headings:font-light prose-headings:tracking-wide prose-headings:text-[var(--color-brand-dark)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.9] prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--color-brand-dark)]";
@@ -34,9 +34,10 @@ interface Props {
   campaigns?: Campaign[];
   faqs?: FaqItem[];
   priceRows?: PriceRow[];
+  cases?: Case[];
 }
 
-export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [], faqs = [], priceRows = [] }: Props) {
+export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, campaigns = [], faqs = [], priceRows = [], cases = [] }: Props) {
 
   return (
     <article>
@@ -127,11 +128,37 @@ export function TreatmentDetailTemplate({ pillar, treatment, otherTreatments, ca
                   BEFORE &amp; AFTER
                 </p>
               </div>
-              <div className="bg-[var(--color-brand-cream)] p-6 text-center rounded-sm">
-                <p className="text-sm text-[var(--color-text-secondary)] font-light">
-                  症例写真は準備中です
-                </p>
-              </div>
+              {cases.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {cases.slice(0, 3).map((c) => (
+                    <Link key={c.id} href={`/case/${c.slug}`} className="group">
+                      <div className="bg-white border border-[var(--color-brand-brown)]/10 overflow-hidden">
+                        <div className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden">
+                          <Image
+                            src={c.thumbnail.url}
+                            alt={c.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 50vw, 200px"
+                          />
+                        </div>
+                        <div className="px-3 py-2.5">
+                          <p className="text-xs text-[var(--color-brand-dark)] font-light">{c.treatment_label}</p>
+                          {c.timing && (
+                            <p className="text-[10px] text-[var(--color-text-secondary)] font-light mt-0.5">{c.timing}</p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-[var(--color-brand-cream)] p-6 text-center rounded-sm">
+                  <p className="text-sm text-[var(--color-text-secondary)] font-light">
+                    症例写真は準備中です
+                  </p>
+                </div>
+              )}
               <div className="mt-6 text-center">
                 <Link
                   href={`/${pillar.slug}/case`}

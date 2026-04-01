@@ -231,3 +231,42 @@
 ### 次の作業
 - `mpureju.admin` リポジトリの初期セットアップ + 施術・料金 CRUD 画面
 - `mpureju.site` のページを Supabase 読み込みに切り替え（`/treatment/`, `/price/`, サイドバー料金パネル）
+
+---
+
+## 2026-04-01 / 症例記事（cases）パイプライン構築 + 全ページ実データ接続
+
+### やったこと
+
+**microCMS cases スキーマ運用開始:**
+- `scripts/microcms-case-post.js` — article.md → microCMS cases API 自動投稿スクリプト作成
+- テスト投稿1件完了（skin-001: ヒアルロン酸注射の症例）
+- `public/case/urls.txt` — Instagram症例URL管理ファイル作成（約150件登録済み）
+- `public/case/CASE_INDEX.md` — pillar別slug採番管理ファイル作成
+
+**case-article-creator スキル作成:**
+- `.claude/skills/case-article-creator/SKILL.md` — 症例記事生成スキル新規作成
+- pillar判定は施術名→マッピング表で行う（施術部位で推測しない）ルールを明記
+- microCMS treatments の全64施術の正式なpillarマッピングを組み込み
+- urls.txt管理・完了マーク運用を統合
+
+**全ページの症例実データ接続:**
+- `components/sections/CaseCarousel.tsx` — モックデータ→props（CaseItem[]）受け取り方式に書き換え。サムネ1枚・1:1アスペクト比
+- `app/page.tsx`（トップ）— `getCaseList()` で取得しCaseCarouselに渡す
+- `app/{mouth,eye,nose,lift,skin}/page.tsx`（ピラー）— `getCasesByPillar()` で取得しconfigに注入
+- `app/{mouth,eye,nose,lift,skin}/[slug]/page.tsx`（施術詳細）— `getCasesByTreatment()` で取得。症例0件時は「準備中」表示を維持
+- `components/pillar/TreatmentDetailTemplate.tsx` — cases props追加。症例があれば1:1サムネグリッド表示
+- `app/case/[slug]/page.tsx` — 症例詳細ページ新規作成（コラム詳細と同じ2カラムレイアウト）
+  - サイドバー: SidebarCampaign + InlinePricePanel（DB料金）+ 施術情報 + 関連症例 + CTA
+  - 本文: MarkdownContent（markedライブラリ）でテーブル含む正しいレンダリング
+- `CaseCarousel` のcaseCategory: 英語値（"skin"等）→ 日本語値（"美容皮膚科"等）に修正（カテゴリフィルターの不一致解消）
+
+### 注意点
+- treatment_labelはmicroCMS treatmentsの正式名称に必ず揃える（例: ×「ヒアルロン酸」→ ○「ヒアルロン酸注射」）。不一致だと施術詳細ページで症例が表示されない
+- [ ] `/case/` 一覧ページ（app/case/page.tsx）は未作成。フィルター付きグリッドで実装予定
+- [ ] 症例記事の量産（case-test/002以降）は未着手。urls.txtに約150件のURLが登録済み
+
+### 次の作業
+- `/case/` 一覧ページの作成
+- case-article-creator スキルを使って症例記事を量産
+- Instagram DL → 記事生成 → CMS投稿のパイプライン自動化

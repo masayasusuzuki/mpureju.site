@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, ClinicCalendar, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Case, ClinicCalendar, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -261,6 +261,72 @@ export async function getColumnBySlug(slug: string) {
     return data.contents[0] ?? null;
   } catch {
     return null;
+  }
+}
+
+// ── cases ───────────────────────────────────────
+
+/** 症例一覧を取得 */
+export async function getCaseList(queries?: MicroCMSQueries) {
+  try {
+    return await microcms.getList<Case>({
+      endpoint: "cases",
+      queries: {
+        orders: "-published_at",
+        limit: 12,
+        ...queries,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 12 };
+  }
+}
+
+/** slugで症例を1件取得 */
+export async function getCaseBySlug(slug: string) {
+  try {
+    const data = await microcms.getList<Case>({
+      endpoint: "cases",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+    return data.contents[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** 部位（pillar）で症例を取得（トップページ・部位ページ用） */
+export async function getCasesByPillar(pillar: string) {
+  try {
+    return await microcms.getList<Case>({
+      endpoint: "cases",
+      queries: {
+        filters: `pillar[contains]${pillar}`,
+        orders: "-published_at",
+        limit: 6,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 6 };
+  }
+}
+
+/** 施術名で症例を取得（施術詳細ページ用） */
+export async function getCasesByTreatment(treatmentName: string) {
+  try {
+    return await microcms.getList<Case>({
+      endpoint: "cases",
+      queries: {
+        filters: `treatment_label[contains]${treatmentName}`,
+        orders: "-published_at",
+        limit: 6,
+      },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit: 6 };
   }
 }
 

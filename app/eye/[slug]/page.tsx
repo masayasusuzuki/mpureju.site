@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getTreatmentBySlug, getTreatmentsByPillar, getCampaigns } from "@/lib/microcms/client";
+import { getTreatmentBySlug, getTreatmentsByPillar, getCampaigns, getCasesByTreatment } from "@/lib/microcms/client";
 import { TreatmentDetailTemplate, type PillarInfo } from "@/components/pillar/TreatmentDetailTemplate";
 import { getFaqsBySlug } from "@/lib/faq-data";
 import { findPriceRowsByName } from "@/lib/supabase/queries";
@@ -40,10 +40,11 @@ export default async function EyeTreatmentPage({
   const treatment = await getTreatmentBySlug(slug);
   if (!treatment) notFound();
 
-  const [all, campaigns, priceRows] = await Promise.all([
+  const [all, campaigns, priceRows, caseData] = await Promise.all([
     getTreatmentsByPillar(PILLAR.slug),
     getCampaigns(),
     findPriceRowsByName(treatment.title),
+    getCasesByTreatment(treatment.title),
   ]);
   const otherTreatments = all.contents.filter((t) => t.slug !== slug);
   const faqs = getFaqsBySlug(slug);
@@ -56,6 +57,7 @@ export default async function EyeTreatmentPage({
       campaigns={campaigns}
       faqs={faqs}
       priceRows={priceRows}
+      cases={caseData.contents}
     />
   );
 }

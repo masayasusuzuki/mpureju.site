@@ -197,44 +197,69 @@ export async function searchPriceItems(keyword: string): Promise<PriceSearchResu
   return results.slice(0, 30);
 }
 
-/** 施術名で料金データを検索（サイドバー用、findPriceRowsByTitle の Supabase 版） */
+/** 施術名で料金データを検索（サイドバー用）
+ * - カンマ・読点区切りで複数施術に対応
+ * - 双方向マッチ: keyword→DB、DB→keyword どちらでもヒット（例: "ヒアルロン酸注射"→"ヒアルロン酸"）
+ * - category でヒットしない場合は sub_tab でフォールバック（例: "ボトックス"）
+ */
 export async function findPriceRowsByName(title: string): Promise<PriceRow[]> {
+  const keywords = title
+    .split(/[,、，]/)
+    .map(s => s.replace(/[【（[(][^】）\])]*[】）\])]/g, "").trim())
+    .filter(s => s.length >= 2);
+
+  if (keywords.length === 0) return [];
+
   const supabase = await createSupabaseAdminClient();
-
-  // category が title を含む行を検索
-  const { data } = await supabase
-    .from("price_items")
-    .select("id, category, option, price, sort_order")
-    .ilike("category", `%${title}%`)
-    .order("section")
-    .order("sub_tab")
-    .order("sort_order");
-
-  if (!data || data.length === 0) return [];
-
-  // マッチした行の直後にある category 空文字の行（option行）も取得する
-  const results: PriceRow[] = [];
-  const matchedIds = new Set(data.map((r) => r.id));
-
-  // 全データから前後関係を見てoption行を拾う必要があるため、
-  // マッチしたsub_tabごとに全行を取得
-  const matchedSubTabs = new Set<string>();
   const { data: allData } = await supabase
     .from("price_items")
-    .select("category, option, price, sort_order")
+    .select("sub_tab, category, option, price, sort_order")
     .order("section")
     .order("sub_tab")
     .order("sort_order");
 
-  let capturing = false;
-  for (const row of allData ?? []) {
-    if (row.category && row.category.includes(title)) {
-      capturing = true;
-      results.push({ category: row.category, option: row.option ?? undefined, price: row.price });
-    } else if (capturing && row.category === "") {
-      results.push({ category: row.category, option: row.option ?? undefined, price: row.price });
-    } else {
-      capturing = false;
+  if (!allData) return [];
+
+  // 双方向マッチ（keywordがDB値を含む、またはDB値がkeywordを含む）
+  const flexMatch = (keyword: string, dbTerm: string): boolean => {
+    if (!dbTerm || dbTerm.length < 2) return false;
+    return keyword.includes(dbTerm) || dbTerm.includes(keyword);
+  };
+
+  const collectedIds = new Set<string>();
+  const results: PriceRow[] = [];
+
+  const addRow = (row: { sub_tab: string; category: string; option: string | null; price: string; sort_order: number }) => {
+    const id = `${row.sub_tab}__${row.sort_order}`;
+    if (!collectedIds.has(id)) {
+      collectedIds.add(id);
+      results.push({ category: row.category ?? "", option: row.option ?? undefined, price: row.price });
+    }
+  };
+
+  for (const keyword of keywords) {
+    // 1. category でマッチ（連続する空 category 行も取り込む）
+    let foundByCategory = false;
+    let capturing = false;
+    for (const row of allData) {
+      if (row.category && flexMatch(keyword, row.category)) {
+        capturing = true;
+        foundByCategory = true;
+        addRow(row);
+      } else if (capturing && !row.category) {
+        addRow(row);
+      } else {
+        capturing = false;
+      }
+    }
+
+    // 2. category でヒットしなければ sub_tab 全体をフォールバック
+    if (!foundByCategory) {
+      for (const row of allData) {
+        if (row.sub_tab && flexMatch(keyword, row.sub_tab)) {
+          addRow(row);
+        }
+      }
     }
   }
 

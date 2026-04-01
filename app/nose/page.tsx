@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PillarTemplate, type PillarConfig, type Treatment } from "@/components/pillar/PillarTemplate";
-import { getTreatmentsByPillar } from "@/lib/microcms/client";
+import { getCasesByPillar, getTreatmentsByPillar } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "鼻の整形｜Maison PUREJU 銀座の美容外科",
@@ -30,7 +30,10 @@ const FALLBACK_TREATMENTS: Treatment[] = [
 ];
 
 export default async function NosePage() {
-  const data = await getTreatmentsByPillar("nose");
+  const [data, caseData] = await Promise.all([
+    getTreatmentsByPillar("nose"),
+    getCasesByPillar("鼻"),
+  ]);
 
   const treatments: Treatment[] =
     data.contents.length > 0
@@ -65,7 +68,12 @@ export default async function NosePage() {
       { q: "自分の軟骨と人工のプロテーゼ、どちらが良いですか？", a: "自家軟骨は拒絶反応がなく自然な感触ですが、採取部位への負担があります。シリコンプロテーゼは形の調整がしやすく実績も豊富です。ご希望や状態によって最適な方法をご提案します。" },
       { q: "鼻手術の傷跡は目立ちますか？", a: "多くの術式は鼻腔内から切開するため、外から傷跡が見えません。鼻翼縮小など一部の術式では鼻翼周囲に小さな傷跡が残りますが、時間の経過とともに目立たなくなります。" },
     ],
-    caseCategory: "nose",
+    caseCategory: "鼻",
+    cases: caseData.contents.map(c => ({
+      id: c.id, slug: c.slug, title: c.title, pillar: c.pillar,
+      treatment_label: c.treatment_label, timing: c.timing, concern: c.concern,
+      thumbnail: c.thumbnail,
+    })),
   };
 
   return <PillarTemplate config={config} />;

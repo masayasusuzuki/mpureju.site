@@ -28,7 +28,7 @@
 | # | API名（日本語） | エンドポイント | 用途 | 主なフィールド |
 |---|----------------|--------------|------|----------------|
 | 1 | 施術情報 | `treatments` | 施術詳細ページのコンテンツ管理 | title, slug, pillar, catch_copy, description, recommended_for, procedure_flow, doctor_comment, hero_image, risks, downtime_min_days, downtime_max_days ※全フィールド必須。**料金は別API `prices` で管理**（後述） |
-| 2 | 症例記事 | `cases` | 記事形式の症例コンテンツ。サムネ+本文で編集自由度を確保 | title, slug, thumbnail, category, treatment（relation）, age_group, gender, concern, content（richtext）, before_photo, after_photo, published_at |
+| 2 | 症例記事 | `cases` | 記事形式の症例コンテンツ。Instagram症例投稿から自動生成パイプラインでインポート。コラム記事と同じターミナル完結運用 | title, slug, pillar（セレクト）, treatment_label, timing, concern, risks, tags, thumbnail, images[], content（テキストエリア・Markdown）, instagram_url, published_at ※詳細は下記「cases 詳細スキーマ」参照 |
 | 3 | お知らせ | `news` | クリニックからのお知らせ | title, content, category（notice/explanation/price-change）, thumbnail, published_at |
 | 4 | コラム記事 | `columns` | ブログ・読み物コンテンツ。Instagramリールのロングフォーム展開先。**ナビゲーション表示名: 「美容コラム」**（英語の "Column" は使わない） | title, slug, content, category（**複数選択可**セレクト: treatment/skin-concern/beauty-goods/knowledge/lifestyle）, thumbnail, tags[], instagram_url（任意・元リールURL）, published_at |
 | 5 | 院長プロフィール | `doctor` | 院長紹介ページ・Message セクション | name, title, photo, profile, message, career, qualifications[], media_appearances[], kol_activities |
@@ -69,7 +69,11 @@
 > ※ microCMS の `treatments` API は施術詳細記事ページ（`/mouth/[slug]/` 等）用。役割が異なるため共存する。
 > ※ 旧方針の microCMS `prices` API 構想は廃止。
 >
-> **症例写真の管理方針：** `cases` の `before_photo` と `after_photo` は結合済み画像ではなく**別フィールドで個別管理**する。理由：①画像編集ソフト不要でそのままアップロード可能、②片方だけの差し替えが容易、③フロント側でホバー切替・左右スライダー比較など表示パターンを柔軟に変えられる。`setcourses` の before/after も同様。
+> **症例写真の管理方針（設計変更 2026-04-01）：** `cases` の Before/After 写真は `before_photo` / `after_photo` の個別管理を**廃止**。Instagram投稿の画像がすでにBefore/After結合済みのため、`thumbnail`（サムネ用結合画像）+ `images[]`（解説画像等）で管理する。コラム記事と同じ画像管理構造。`setcourses` の before/after は従来通り。
+>
+> **症例記事の本文は `content`（テキストエリア・Markdown）で管理。** リッチエディタは使わない。理由：Instagram投稿からの自動生成パイプライン（ターミナル完結）で運用するため。コラム記事と同じ方針。
+>
+> **料金情報は症例記事に含めない。** SSOT原則により料金は Supabase `price_items` のみで管理。症例記事のキャプションに料金が含まれていても、記事生成時に除外する。
 >
 > **チャットボットのプロンプト・RAGナレッジはmicroCMSで管理しない。** Supabaseテーブルで直接管理し、管理画面からCRUD操作する。
 
@@ -172,6 +176,142 @@
 - トップページやフッター等にも埋め込み可能（コンポーネント化）
 - 当月 + 翌月の2ヶ月表示
 - 休診日はグレーアウト or ピンク背景で表示
+
+### cases 詳細スキーマ
+
+> **設計確定: 2026-04-01**
+> Instagram症例投稿を元に記事を自動生成し、microCMS に投稿するパイプラインで運用。コラム記事（`columns`）と同一の運用フローを採用。
+
+| # | フィールドID | 表示名 | 種類 | 必須 | 備考 |
+|---|---|---|---|---|---|
+| 1 | `title` | タイトル | テキストフィールド | ✅ | 30-60字。SEO意識。例: `ヒアルロン酸注入で整える横顔｜あご+唇で小顔効果` |
+| 2 | `slug` | スラッグ | テキストフィールド | ✅ | 形式: `{pillar}-{3桁連番}`。例: `mouth-001`, `eye-003` |
+| 3 | `pillar` | 部位カテゴリ | セレクトフィールド（**複数選択可**） | ✅ | 選択肢（表示名）: `口元` / `目元` / `鼻` / `リフトアップ` / `美容皮膚科`。コンビネーション治療など複数部位にまたがる症例に対応 |
+| 4 | `treatment_label` | 施術名 | テキストフィールド | ✅ | カンマ区切り。例: `糸リフト,サーマジェン,ヒアルロン酸`。施術詳細ページからの逆引きフィルターキー（`treatment_label[contains]施術名` で検索） |
+| 5 | `timing` | 経過タイミング | テキストフィールド | ❌ | 例: `直後` / `1週間後` / `1ヶ月後`。キャプションに記載がない場合は空 |
+| 6 | `concern` | お悩み・改善ポイント | テキストフィールド | ✅ | カンマ区切り。例: `口元の突出感,人中の長さ,Eライン` |
+| 7 | `risks` | リスク・副作用 | テキストフィールド | ✅ | 医療広告ガイドライン必須。例: `腫れ、内出血、左右差、血流障害` |
+| 8 | `tags` | タグ | テキストフィールド | ❌ | カンマ区切り。検索・SEO用 |
+| 9 | `thumbnail` | サムネイル | 画像 | ✅ | Before/After結合画像（一覧カード表示用） |
+| 10 | `images` | 症例画像 | 複数画像 | ❌ | サムネ以外の解説画像 |
+| 11 | `content` | 本文 | テキストエリア | ✅ | Markdown形式。料金情報は含めない（SSOT: Supabase管理） |
+| 12 | `instagram_url` | Instagram URL | テキストフィールド | ❌ | 元投稿URL |
+| 13 | `published_at` | 公開日 | 日時 | ✅ | |
+
+#### フロントエンド表示箇所と取得ロジック
+
+| 表示箇所 | ページ例 | フィルター条件 | 取得関数 |
+|---|---|---|---|
+| トップページ 症例実績セクション | `/` | pillar タブ切替 | `getCasesByPillar(pillar)` → `pillar[contains]{表示名}` |
+| 部位ページ 症例実績セクション | `/mouth/` | pillar 固定（ページに紐づく） | `getCasesByPillar("口元")` → `pillar[contains]口元` |
+| 施術詳細ページ 症例写真セクション | `/mouth/corner-lip-lift/` | 施術名で部分一致 | `getCasesByTreatment("口角挙上")` → `treatment_label[contains]口角挙上` |
+| 症例一覧ページ | `/case/` | pillar タブ + 全件 | `getCaseList()` + フロントフィルター |
+
+> **`treatment_label` のマッチング方式：** microCMS の `[contains]` フィルターで部分一致検索。`treatment_label` が `M字リップ,口角挙上` の場合、「M字リップ」でも「口角挙上」でもヒットする。表記は treatments API の `title` に揃えること。
+
+#### slug 命名規則
+
+| pillar（表示名） | slug prefix | 例 |
+|---|---|---|
+| 口元 | `mouth-` | `mouth-001`, `mouth-002` |
+| 目元 | `eye-` | `eye-001` |
+| 鼻 | `nose-` | `nose-001` |
+| リフトアップ | `lift-` | `lift-001` |
+| 美容皮膚科 | `skin-` | `skin-001` |
+
+`public/case/CASE_INDEX.md` で各カテゴリの採番を管理（コラムの `COLUMN_INDEX.md` と同じ運用）。
+
+#### 記事コンテンツテンプレート（article.md の本文構造）
+
+すべての症例記事は以下のセクション構成に統一する。スキルによる自動生成時もこの順序・構造を守ること。
+
+```markdown
+---
+title: "タイトル"
+slug: "mouth-001"
+pillar:
+  - "口元"
+treatment_label: "M字リップ,口角挙上"
+timing: "1週間後"
+concern: "上唇の厚み,口角の形,笑いやすさ"
+risks: "腫れ、内出血、左右差、傷痕、硬結、後戻り、血流障害"
+tags: "口角挙上,M字リップ,唇整形,口元"
+thumbnail: "image_1.jpg"
+instagram_url: ""
+published_at: "2026-04-01"
+---
+
+## この症例について
+
+施術の概要を2-3文で説明。
+何を目的に、どの施術を行ったかを簡潔に。
+
+## 施術のポイント
+
+この症例で特に注目すべき点を解説。
+- なぜこの施術（組合せ）を選んだか
+- どこがどう変化したか
+- 画像内の注釈テキストがあればそれを文章で補足
+
+## 施術詳細
+
+| 施術内容 | 詳細 |
+|---------|------|
+| 施術名 | （例: M字リップ + 口角挙上） |
+| 施術部位 | （例: 上唇・口角） |
+| 経過 | （例: 1週間後 ※腫れあり） |
+
+## こんな方に向いています
+
+- 箇条書きで対象者を列挙
+- キャプションの内容を元に
+（※ キャプションに該当情報がない場合は省略可）
+
+## 注意事項
+
+経過写真についての補足（腫れが残っている、今後馴染む等）。
+ダウンタイムに関する事実ベースの情報。
+（※ 経過写真でない場合は省略可）
+```
+
+**コンテンツテンプレート ルール:**
+
+1. **セクション順序は固定** — 上記の順番を必ず守る
+2. **「この症例について」は必須** — 最低2文
+3. **「施術のポイント」は必須** — 画像に注釈テキストがある場合はそれを反映
+4. **「施術詳細」テーブルは必須** — 施術名・施術部位・経過の3行は固定
+5. **「こんな方に向いています」は条件付き** — キャプションに該当情報がある場合のみ記載。なければセクションごと省略
+6. **「注意事項」は条件付き** — 経過写真の場合のみ（「まだ腫れています」等）。なければセクションごと省略
+7. **料金情報は絶対に書かない** — SSOT原則。キャプションの【価格】セクションは完全に無視する
+8. **リスク・副作用は本文に書かない** — frontmatter の `risks` フィールドで管理し、フロント側で定型表示する
+9. **断定表現・効果保証表現の禁止** — 医療広告ガイドライン準拠（「〜できます」ではなく「〜が期待できます」）
+10. **句点で改行** — コラム記事と同じ表記ルール
+
+#### パイプライン（コラムと同一構造）
+
+```
+public/case/urls.txt             ← Instagram URL リスト
+  ↓
+scripts/instagram-dl.sh          ← 画像 + caption.txt ダウンロード
+  ↓
+case-article-creator スキル       ← caption.txt + 画像から article.md 自動生成
+  ├── pillar / treatment_label / timing / concern / risks を自動抽出
+  ├── 料金情報（【価格】セクション）は除外
+  └── slug は CASE_INDEX.md で採番管理
+  ↓
+scripts/microcms-case-post.js    ← cases API に投稿
+  ├── thumbnail + images アップロード
+  ├── urls.txt に完了マーク
+  └── CASE_INDEX.md 更新
+```
+
+#### 既存コンポーネントへの影響
+
+| コンポーネント | 現状 | 変更内容 |
+|---|---|---|
+| `CaseCarousel.tsx` | ハードコードのモックデータ（10件） | microCMS `cases` API から動的取得に切替。`pillar` フィルター対応 |
+| `TreatmentDetailTemplate.tsx` | 「症例写真は準備中です」表示 | `getCasesByTreatment(施術名)` で `treatment_label` 部分一致検索し関連症例カードを表示 |
+| `PillarTemplate.tsx` | CaseCarousel をモックで呼出 | Server Component 側で `getCasesByPillar()` 取得 → props で渡す |
 
 ---
 
@@ -721,7 +861,7 @@ flowchart LR
 ### Phase 2
 - [x] 施術詳細ページ（`/[pillar]/[slug]/` 全5ピラー展開）— Phase 1 内で前倒し完了
 - [ ] コラム一覧・記事（`/column/`）— microCMS `columns` API（スキーマ未作成）
-- [ ] 症例写真一覧（`/case/`）・部位別症例（`/[pillar]/case/`）— microCMS `cases` API
+- [ ] 症例写真一覧（`/case/`）・部位別症例（`/[pillar]/case/`）— microCMS `cases` API（スキーマ確定済み・2026-04-01）
 - [ ] microCMS `faqs` API 移行（ハードコード → CMS管理）
 
 ### Phase 3

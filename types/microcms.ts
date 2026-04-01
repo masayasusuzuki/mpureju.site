@@ -103,6 +103,26 @@ export interface Column {
   published_at: string;
 }
 
+/** microCMS cases スキーマ */
+export type CasePillar = "口元" | "目元" | "鼻" | "リフトアップ" | "美容皮膚科";
+
+export interface Case {
+  id: string;
+  title: string;
+  slug: string;
+  pillar: CasePillar[]; // 複数選択可
+  treatment_label: string; // カンマ区切り（例: "糸リフト,サーマジェン"）
+  timing?: string; // 経過タイミング（例: "1週間後"）。任意
+  concern: string; // カンマ区切り（例: "口元の突出感,人中の長さ"）
+  risks: string; // リスク・副作用（医療広告GL必須）
+  tags?: string; // カンマ区切り。検索用
+  thumbnail: MicroCMSImage;
+  images?: MicroCMSImage[]; // サムネ以外の解説画像
+  content: string; // Markdown（テキストエリア）
+  instagram_url?: string;
+  published_at: string;
+}
+
 /** microCMS clinic_calendar スキーマ（オブジェクト形式） */
 export interface ClinicCalendar {
   regular_holidays: string[];

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PillarTemplate, type PillarConfig, type Treatment } from "@/components/pillar/PillarTemplate";
-import { getTreatmentsByPillar } from "@/lib/microcms/client";
+import { getCasesByPillar, getTreatmentsByPillar } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "リフトアップ｜Maison PUREJU 銀座の美容外科",
@@ -24,7 +24,10 @@ const FALLBACK_TREATMENTS: Treatment[] = [
 ];
 
 export default async function LiftPage() {
-  const data = await getTreatmentsByPillar("lift");
+  const [data, caseData] = await Promise.all([
+    getTreatmentsByPillar("lift"),
+    getCasesByPillar("リフトアップ"),
+  ]);
 
   const treatments: Treatment[] =
     data.contents.length > 0
@@ -59,7 +62,12 @@ export default async function LiftPage() {
       { q: "バッカルファット除去は将来たるみに影響しますか？", a: "バッカルファットは加齢とともに垂れ下がる脂肪のため、早期に除去することでたるみ予防効果が期待できます。ただし過剰な除去は頬こけの原因となるため、適切な量の見極めが重要です。" },
       { q: "脂肪注入はどのくらい生着しますか？", a: "注入した脂肪の定着率は概ね30〜60%とされています。一度定着した脂肪は長期間持続するとされています。当院ではナノリッチ法により細かく精製した脂肪を注入し、より高い生着率を目指しています。" },
     ],
-    caseCategory: "lift",
+    caseCategory: "リフトアップ",
+    cases: caseData.contents.map(c => ({
+      id: c.id, slug: c.slug, title: c.title, pillar: c.pillar,
+      treatment_label: c.treatment_label, timing: c.timing, concern: c.concern,
+      thumbnail: c.thumbnail,
+    })),
   };
 
   return <PillarTemplate config={config} />;

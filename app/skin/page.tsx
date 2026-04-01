@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PillarTemplate, type PillarConfig, type Treatment } from "@/components/pillar/PillarTemplate";
-import { getTreatmentsByPillar } from "@/lib/microcms/client";
+import { getCasesByPillar, getTreatmentsByPillar } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "美容皮膚科",
@@ -73,7 +73,10 @@ const FALLBACK_TREATMENTS: Treatment[] = [
 ];
 
 export default async function SkinPage() {
-  const data = await getTreatmentsByPillar("skin");
+  const [data, caseData] = await Promise.all([
+    getTreatmentsByPillar("skin"),
+    getCasesByPillar("美容皮膚科"),
+  ]);
 
   const treatments: Treatment[] =
     data.contents.length > 0
@@ -124,7 +127,12 @@ export default async function SkinPage() {
         a: "敏感肌の方でも受けられる施術は多くありますが、事前にパッチテストが必要な場合があります。カウンセリングにて肌の状態をご確認のうえご提案いたします。",
       },
     ],
-    caseCategory: "skin",
+    caseCategory: "美容皮膚科",
+    cases: caseData.contents.map(c => ({
+      id: c.id, slug: c.slug, title: c.title, pillar: c.pillar,
+      treatment_label: c.treatment_label, timing: c.timing, concern: c.concern,
+      thumbnail: c.thumbnail,
+    })),
   };
 
   return <PillarTemplate config={config} />;

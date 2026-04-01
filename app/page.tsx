@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 import Image from "next/image";
 import Link from "next/link";
 import { MediaSection } from "@/components/sections/MediaSection";
-import { getCampaigns, getColumnList, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
+import { getCampaigns, getCaseList, getColumnList, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
 import type { News } from "@/types/microcms";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -26,12 +26,13 @@ export default async function TopPage() {
   const hasCategory = (item: News, cat: string) =>
     Array.isArray(item.category) ? item.category.includes(cat) : item.category === cat;
 
-  const [mediaData, teamPhotoData, newsData, campaigns, columnData] = await Promise.all([
+  const [mediaData, teamPhotoData, newsData, campaigns, columnData, caseData] = await Promise.all([
     getMediaList(),
     getTeamPhotos(),
     getNewsList(),
     getCampaigns(),
     getColumnList({ limit: 3 }),
+    getCaseList({ limit: 20 }),
   ]);
   const latestColumns = columnData.contents;
   const teamPhotos = teamPhotoData.contents.map((t) => t.photo.url);
@@ -257,7 +258,16 @@ export default async function TopPage() {
         <div className="section-container mb-10">
           <SectionHeading number="04" en="Case Results" ja="症例実績" />
         </div>
-        <CaseCarousel />
+        <CaseCarousel cases={caseData.contents.map(c => ({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          pillar: c.pillar,
+          treatment_label: c.treatment_label,
+          timing: c.timing,
+          concern: c.concern,
+          thumbnail: c.thumbnail,
+        }))} />
         <div className="text-center mt-10">
           <a
             href="/case"

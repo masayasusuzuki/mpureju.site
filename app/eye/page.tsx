@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PillarTemplate, type PillarConfig, type Treatment } from "@/components/pillar/PillarTemplate";
-import { getTreatmentsByPillar } from "@/lib/microcms/client";
+import { getCasesByPillar, getTreatmentsByPillar } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "目・目元の整形｜Maison PUREJU 銀座の美容外科",
@@ -98,7 +98,10 @@ const FALLBACK_TREATMENTS: Treatment[] = [
 ];
 
 export default async function EyePage() {
-  const data = await getTreatmentsByPillar("eye");
+  const [data, caseData] = await Promise.all([
+    getTreatmentsByPillar("eye"),
+    getCasesByPillar("目元"),
+  ]);
 
   const treatments: Treatment[] =
     data.contents.length > 0
@@ -148,7 +151,12 @@ export default async function EyePage() {
         a: "他院修正にも対応しております。過去の施術内容によって対応方法が異なるため、カウンセリングにて詳しくご確認ください。",
       },
     ],
-    caseCategory: "eye",
+    caseCategory: "目元",
+    cases: caseData.contents.map(c => ({
+      id: c.id, slug: c.slug, title: c.title, pillar: c.pillar,
+      treatment_label: c.treatment_label, timing: c.timing, concern: c.concern,
+      thumbnail: c.thumbnail,
+    })),
   };
 
   return <PillarTemplate config={config} />;

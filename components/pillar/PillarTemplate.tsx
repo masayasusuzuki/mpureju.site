@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
-import { CaseCarousel } from "@/components/sections/CaseCarousel";
+import { CaseCarousel, type CaseItem } from "@/components/sections/CaseCarousel";
 import { FaqAccordion, type FaqItem } from "@/components/sections/FaqAccordion";
 
 export type Treatment = {
@@ -22,6 +22,7 @@ export type PillarConfig = {
   treatments: Treatment[];
   faqs: FaqItem[];
   caseCategory: string;
+  cases?: CaseItem[];
 };
 
 export function PillarTemplate({ config }: { config: PillarConfig }) {
@@ -137,7 +138,7 @@ export function PillarTemplate({ config }: { config: PillarConfig }) {
         <div className="section-container mb-10">
           <SectionHeading en="Case Results" ja="症例実績" />
         </div>
-        <CaseCarousel defaultCategory={config.caseCategory} />
+        <CaseCarousel cases={config.cases} defaultCategory={config.caseCategory} />
         <div className="text-center mt-10">
           <Link
             href="/case"
