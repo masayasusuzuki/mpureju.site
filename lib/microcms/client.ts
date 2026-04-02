@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, Case, ClinicCalendar, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Case, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -339,15 +339,3 @@ export async function getCasesByTreatment(treatmentName: string) {
   }
 }
 
-// ── clinic_calendar ─────────────────────────────
-
-/** 営業カレンダー設定を取得（オブジェクト形式） */
-export async function getClinicCalendar() {
-  try {
-    return await microcms.getObject<ClinicCalendar>({
-      endpoint: "clinic_calendar",
-    });
-  } catch {
-    return null;
-  }
-}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ReservationFlow } from "./ReservationFlow";
-import { getClinicCalendar } from "@/lib/microcms/client";
+import { getClinicCalendar } from "@/lib/supabase/queries";
 import { ClinicCalendarWidget } from "@/components/ui/ClinicCalendarWidget";
 
 export const metadata: Metadata = {
@@ -217,13 +217,9 @@ export default async function ReservationPage() {
             </div>
             <div className="bg-white rounded-lg border border-[var(--color-brand-brown)]/8 px-5 py-6 md:px-8 md:py-8">
               <ClinicCalendarWidget
-                regularHolidays={calendar.regular_holidays ?? []}
-                extraHolidays={calendar.extra_holidays
-                  ? calendar.extra_holidays.split("\n").map((s: string) => s.trim()).filter(Boolean)
-                  : []}
-                cancelHolidays={calendar.cancel_holidays
-                  ? calendar.cancel_holidays.split("\n").map((s: string) => s.trim()).filter(Boolean)
-                  : []}
+                regularHolidays={calendar.regularHolidays}
+                extraHolidays={calendar.extraHolidays}
+                cancelHolidays={calendar.cancelHolidays}
               />
             </div>
           </div>

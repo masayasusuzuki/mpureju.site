@@ -197,6 +197,32 @@ export async function searchPriceItems(keyword: string): Promise<PriceSearchResu
   return results.slice(0, 30);
 }
 
+// ============================================================
+// Clinic Calendar（営業カレンダー）
+// ============================================================
+
+export type ClinicCalendarData = {
+  regularHolidays: string[];
+  extraHolidays: string[];
+  cancelHolidays: string[];
+};
+
+/** 営業カレンダーデータを取得 */
+export async function getClinicCalendar(): Promise<ClinicCalendarData> {
+  const supabase = await createSupabaseAdminClient();
+
+  const [{ data: holidays }, { data: overrides }] = await Promise.all([
+    supabase.from("clinic_regular_holidays").select("label").order("day_of_week"),
+    supabase.from("clinic_holiday_overrides").select("date, type"),
+  ]);
+
+  return {
+    regularHolidays: (holidays ?? []).map((h) => h.label),
+    extraHolidays: (overrides ?? []).filter((o) => o.type === "extra").map((o) => o.date),
+    cancelHolidays: (overrides ?? []).filter((o) => o.type === "cancel").map((o) => o.date),
+  };
+}
+
 /** 施術名で料金データを検索（サイドバー用）
  * - カンマ・読点区切りで複数施術に対応
  * - 双方向マッチ: keyword→DB、DB→keyword どちらでもヒット（例: "ヒアルロン酸注射"→"ヒアルロン酸"）

@@ -97,20 +97,42 @@ export default async function CaseDetailPage({ params }: Props) {
               />
             </div>
 
-            {/* 追加画像 */}
+            {/* 追加画像カルーセル */}
             {caseItem.images && caseItem.images.length > 0 && (
-              <div className="grid grid-cols-2 gap-3">
-                {caseItem.images.map((img, i) => (
-                  <div key={i} className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden">
-                    <Image
-                      src={img.url}
-                      alt={`${caseItem.title} ${i + 2}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 50vw, 300px"
+              <div>
+                <div
+                  className="flex overflow-x-auto gap-2.5"
+                  style={{
+                    scrollSnapType: "x mandatory",
+                    WebkitOverflowScrolling: "touch",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
+                  }}
+                >
+                  {caseItem.images.map((img, i) => (
+                    <div
+                      key={i}
+                      className="relative shrink-0 aspect-square overflow-hidden bg-[var(--color-brand-cream)]"
+                      style={{ scrollSnapAlign: "start", width: "65%" }}
+                    >
+                      <Image
+                        src={img.url}
+                        alt={`${caseItem.title} ${i + 2}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 65vw, 500px"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-center items-center gap-2 mt-3">
+                  {caseItem.images.map((_, i) => (
+                    <span
+                      key={i}
+                      className="block w-1.5 h-1.5 rounded-full bg-[var(--color-brand-gold)]/30"
                     />
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             )}
 

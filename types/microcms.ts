@@ -123,10 +123,4 @@ export interface Case {
   published_at: string;
 }
 
-/** microCMS clinic_calendar スキーマ（オブジェクト形式） */
-export interface ClinicCalendar {
-  regular_holidays: string[];
-  extra_holidays?: string;
-  cancel_holidays?: string;
-}
 
