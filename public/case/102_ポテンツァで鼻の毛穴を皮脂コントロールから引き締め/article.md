@@ -9,7 +9,7 @@ concern: "鼻の毛穴が目立つ,皮脂が多い,オイリー肌"
 risks: "腫れ、痛み、点状出血、赤み、色素沈着"
 tags: "ポテンツァ,毛穴治療,鼻の毛穴,皮脂コントロール"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DITSYYTzH6I/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DJL0rF6zx6h/"
 published_at: "2026-04-02"
 ---
 

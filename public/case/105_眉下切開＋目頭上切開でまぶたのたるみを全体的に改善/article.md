@@ -9,7 +9,7 @@ concern: "まぶたのたるみで二重が見えない,斜めから見た時の
 risks: "腫れ、内出血、左右差、傷跡、ひきつれなど"
 tags: "眉下切開,目頭上切開,まぶたのたるみ,斜め方向"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DIn-V7MTREq/"
+instagram_url: "https://www.instagram.com/p/DJlwUndzxT_/"
 published_at: "2026-04-02"
 ---
 

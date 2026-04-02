@@ -9,7 +9,7 @@ concern: "目周りの小じわが気になる,目元の印象を若々しくし
 risks: "赤み、熱傷（稀）、むくみなど"
 tags: "ソフウェーブ,目周りの小じわ,小じわ改善,目元"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DM2LTKAuofx/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DN2srwkZnkm/?img_index=1"
 published_at: "2026-04-02"
 ---
 

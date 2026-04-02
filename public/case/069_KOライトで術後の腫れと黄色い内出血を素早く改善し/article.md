@@ -9,7 +9,7 @@ concern: "ダウンタイムを短縮したい,黄色い内出血を早く引か
 risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,腫れ改善"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C-xFGQ5y24Y/?img_index=1"
+instagram_url: "https://www.instagram.com/p/C_FnZaFS8eo/?img_index=1"
 published_at: "2026-04-02"
 ---
 

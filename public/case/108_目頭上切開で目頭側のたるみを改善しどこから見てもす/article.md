@@ -9,7 +9,7 @@ concern: "目頭側のたるみが気になる,斜めから見るとかぶさり
 risks: "腫れ、内出血、傷跡、左右差、あと戻りなど"
 tags: "目頭上切開,目上切開,平行二重,まぶたをすっきりさせたい"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DJOmeKPTmi_/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DKRdvHtzkpu/?img_index=1"
 published_at: "2026-04-02"
 ---
 

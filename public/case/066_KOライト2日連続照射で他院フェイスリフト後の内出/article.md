@@ -9,7 +9,7 @@ concern: "他院手術後の腫れと内出血,ダウンタイムが長引いて
 risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,フェイスリフト後"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C-SAoKESu8p/?img_index=1"
+instagram_url: "https://www.instagram.com/p/C-ziTlOSs-4/?img_index=1"
 published_at: "2026-04-02"
 ---
 

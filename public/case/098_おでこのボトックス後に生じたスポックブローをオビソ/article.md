@@ -9,7 +9,7 @@ concern: "ボトックス後に眉の形が変わってしまった,スポック
 risks: "腫れ、内出血、効果のばらつき、眉形の変化など"
 tags: "ボトックス,おでこ,スポックブロー,オビソート"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DHQTMF5Shfx/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DIa7IH_T5zb/?img_index=1"
 published_at: "2026-04-02"
 ---
 

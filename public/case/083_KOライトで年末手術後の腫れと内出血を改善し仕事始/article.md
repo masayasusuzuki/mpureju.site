@@ -9,7 +9,7 @@ concern: "年末手術後のダウンタイムが長引いている,仕事始め
 risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,年末年始"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DCyno_Py5ax/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DET3lYNyLnp/"
 published_at: "2026-04-02"
 ---
 

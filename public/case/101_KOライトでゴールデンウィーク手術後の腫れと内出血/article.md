@@ -9,7 +9,7 @@ concern: "連休中に手術を受けたがダウンタイムを短くしたい,
 risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,ゴールデンウィーク"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DIOIqr8TYri/"
+instagram_url: "https://www.instagram.com/p/DJBsUEkTcqx/?img_index=1"
 published_at: "2026-04-02"
 ---
 

@@ -9,7 +9,7 @@ concern: "口角のつっぱりで笑いにくい,笑顔の印象を良くした
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,ヒアルロン酸,笑顔,6ヶ月後"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DJL0rF6zx6h/"
+instagram_url: "https://www.instagram.com/p/DJ_bA4HT1lC/?img_index=1"
 published_at: "2026-04-02"
 ---
 

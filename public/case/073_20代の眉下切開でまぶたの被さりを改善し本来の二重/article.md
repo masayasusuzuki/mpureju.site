@@ -9,7 +9,7 @@ concern: "二重ラインが見えにくい,まぶたの被さりが気になる
 risks: "腫れ、内出血、左右差、傷跡、ひきつれなど"
 tags: "眉下切開,眉下リフト,まぶたのたるみ,20代,二重ライン"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C_FnZaFS8eo/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DAdLXimSZ-n/?img_index=1"
 published_at: "2026-04-02"
 ---
 

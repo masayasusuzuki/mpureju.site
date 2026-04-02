@@ -9,7 +9,7 @@ concern: "目を大きく見せたい,目と目の距離を近づけたくない
 risks: "腫れ、内出血、傷跡、左右差、あと戻り、異物感"
 tags: "目頭上切開,二重埋没,平行二重,蒙古ひだ"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C6nHKeUy4Yl/?img_index=1"
+instagram_url: "https://www.instagram.com/p/C8wRRL9Sr1v/"
 published_at: "2026-04-02"
 ---
 

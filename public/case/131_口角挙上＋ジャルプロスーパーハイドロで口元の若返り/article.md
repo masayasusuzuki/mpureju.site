@@ -9,7 +9,7 @@ concern: "加齢による口元の変化,口角が下がり口元が落ちてき
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,ジャルプロスーパーハイドロ,口元の若返り,複合治療"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DOvWEB8k_ua/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DPqMvPjk-9Z/?img_index=1"
 published_at: "2026-04-02"
 ---
 

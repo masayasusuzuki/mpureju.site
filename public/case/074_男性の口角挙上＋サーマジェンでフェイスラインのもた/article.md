@@ -9,7 +9,7 @@ concern: "口角が下がって不機嫌・怖く見られる,フェイスライ
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,男性美容,サーマジェン,フェイスライン"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C_K1Ngcyazd/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DAiP_bVySAE/"
 published_at: "2026-04-02"
 ---
 

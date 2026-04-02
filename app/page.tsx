@@ -10,7 +10,7 @@ import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MediaSection } from "@/components/sections/MediaSection";
-import { getCampaigns, getCaseList, getColumnList, getMediaList, getNewsList, getTeamPhotos } from "@/lib/microcms/client";
+import { getCampaigns, getCaseList, getColumnList, getMediaList, getNewsList, getTeamPhotos, getTreatments } from "@/lib/microcms/client";
 import type { News } from "@/types/microcms";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -27,13 +27,14 @@ export default async function TopPage() {
   const hasCategory = (item: News, cat: string) =>
     Array.isArray(item.category) ? item.category.includes(cat) : item.category === cat;
 
-  const [mediaData, teamPhotoData, newsData, campaigns, columnData, caseData] = await Promise.all([
+  const [mediaData, teamPhotoData, newsData, campaigns, columnData, caseData, treatmentData] = await Promise.all([
     getMediaList(),
     getTeamPhotos(),
     getNewsList(),
     getCampaigns(),
     getColumnList({ limit: 3 }),
     getCaseList({ limit: 20 }),
+    getTreatments({ fields: ["title", "slug", "pillar", "catch_copy"], orders: "sort_order" }),
   ]);
   const latestColumns = columnData.contents;
   const teamPhotos = teamPhotoData.contents.map((t) => t.photo.url);
@@ -189,7 +190,7 @@ export default async function TopPage() {
       <section className="py-16 md:py-24 bg-[var(--color-brand-cream)]">
         <div className="section-container">
           <SectionHeading number="02" en="Treatment Menu" ja="施術名から探す" className="mb-12" />
-          <TreatmentTabs />
+          <TreatmentTabs treatments={treatmentData.contents} />
         </div>
       </section>
 

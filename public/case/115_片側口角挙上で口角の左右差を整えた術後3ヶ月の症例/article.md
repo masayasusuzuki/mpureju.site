@@ -9,7 +9,7 @@ concern: "口角の左右差が気になる,口角挙上後の左右差が残っ
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,口角の左右差,片側口角挙上,修正"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DLexsJ9z7Yc/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DMXYv8AzV-S/?img_index=1"
 published_at: "2026-04-02"
 ---
 

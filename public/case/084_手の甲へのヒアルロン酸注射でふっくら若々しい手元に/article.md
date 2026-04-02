@@ -9,7 +9,7 @@ concern: "手の甲のスジや血管が目立つ,手がゴツゴツして見え
 risks: "腫れ、内出血、血流障害など"
 tags: "ヒアルロン酸,ハンドケア,手の甲,手のシワ"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DC_j8i3yk4Y/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DEmU08Kypih/?img_index=1"
 published_at: "2026-04-02"
 ---
 

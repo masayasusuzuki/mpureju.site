@@ -9,7 +9,7 @@ concern: "自然に綺麗になりたい,ヒアルロン酸で不自然になら
 risks: "腫れ、内出血、血流障害など"
 tags: "ヒアルロン酸,自然なリフトアップ,顔のバランス,中下顔面"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DN2srwkZnkm/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DOvWEB8k_ua/?img_index=1"
 published_at: "2026-04-02"
 ---
 

@@ -9,7 +9,7 @@ concern: "笑いにくい,笑顔に自信がない,顔の余白が多い"
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,笑顔,笑いやすくなる,顔の余白"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DEri7b3S_vN/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DGDFrbRzjGJ/?img_index=1"
 published_at: "2026-04-02"
 ---
 

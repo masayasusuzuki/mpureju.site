@@ -9,7 +9,7 @@ concern: "外側人中の傷跡が心配,口元手術の傷跡を最小限にし
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "外側人中,傷跡,形成外科,口元手術"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DN7riVBk26A/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DOx0QhXE4bm/?img_index=1"
 published_at: "2026-04-02"
 ---
 

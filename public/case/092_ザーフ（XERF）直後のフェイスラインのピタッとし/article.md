@@ -9,7 +9,7 @@ concern: "フェイスラインが緩んでいる,口横のぽにょが気にな
 risks: "赤み、熱傷、むくみなど"
 tags: "ザーフ,XERF,高周波,RF,フェイスライン"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DFr9iUeyogC/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DHFgbq7y0A4/?img_index=1"
 published_at: "2026-04-02"
 ---
 

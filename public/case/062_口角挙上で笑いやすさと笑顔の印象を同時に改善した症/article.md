@@ -9,7 +9,7 @@ concern: "笑いにくい,笑顔がぎこちない,口角が下がっている"
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,口角形成,笑顔,笑いやすくなる"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C8wRRL9Sr1v/"
+instagram_url: "https://www.instagram.com/p/C-SAoKESu8p/?img_index=1"
 published_at: "2026-04-02"
 ---
 

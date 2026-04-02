@@ -9,7 +9,7 @@ concern: "無意識の時に口角が下がっている,斜めから見ると口
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,口角形成,無意識,斜め顔"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C-ziTlOSs-4/?img_index=1"
+instagram_url: "https://www.instagram.com/p/C_K1Ngcyazd/?img_index=1"
 published_at: "2026-04-02"
 ---
 

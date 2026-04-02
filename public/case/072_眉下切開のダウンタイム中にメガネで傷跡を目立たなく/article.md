@@ -9,7 +9,7 @@ concern: "眉下切開後のダウンタイムを隠したい,手術後の生活
 risks: "腫れ、内出血、傷跡など"
 tags: "眉下切開,ダウンタイム,ダウンタイム隠し,術後の生活"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/C--IuMQSbwy/?img_index=1"
+instagram_url: "https://www.instagram.com/p/C_plUfqy8P3/?img_index=1"
 published_at: "2026-04-02"
 ---
 

@@ -9,7 +9,7 @@ concern: "笑いにくい,しゃべりにくい,長期的な効果が心配"
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,1年後,長期経過,笑いやすくなる"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DNnNVRZyMAk/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DONvhc5E2EF/?img_index=1"
 published_at: "2026-04-02"
 ---
 

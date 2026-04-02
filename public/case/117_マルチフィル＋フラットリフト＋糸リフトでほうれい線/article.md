@@ -9,7 +9,7 @@ concern: "ほうれい線が目立ってきた,ヒアルロン酸を入れたく
 risks: "腫れ、内出血、引きつれ、左右差、糸の浮き出しなど"
 tags: "糸リフト,ほうれい線,マルチフィル,フラットリフト"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DL9pqEGTJ3_/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DNKLC58yNAJ/?img_index=1"
 published_at: "2026-04-02"
 ---
 

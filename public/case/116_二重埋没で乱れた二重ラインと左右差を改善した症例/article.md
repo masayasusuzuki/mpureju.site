@@ -9,7 +9,7 @@ concern: "二重ラインが安定しない,二重ラインの左右差が気に
 risks: "腫れ、内出血、左右差、目の開きの変化、ラインの消失など"
 tags: "二重埋没,二重の左右差,二重ラインが安定しない,まぶたのたるみ"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DLme2cyzWUO/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DM2LTKAuofx/?img_index=1"
 published_at: "2026-04-02"
 ---
 

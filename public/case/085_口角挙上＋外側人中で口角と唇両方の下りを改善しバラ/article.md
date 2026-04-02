@@ -9,7 +9,7 @@ concern: "口角と唇の両方が下がっている,唇のバランスが悪い
 risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,外側人中,唇のバランス,小顔効果"
 thumbnail: "image_1.jpg"
-instagram_url: "https://www.instagram.com/p/DDGjSGjSXLS/?img_index=1"
+instagram_url: "https://www.instagram.com/p/DEri7b3S_vN/?img_index=1"
 published_at: "2026-04-02"
 ---
 
