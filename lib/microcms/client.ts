@@ -55,18 +55,27 @@ export async function searchTreatments(keyword: string) {
   });
 }
 
+/** キーワードで症例を検索（title・treatment_label・concern・tags に絞る） */
+export async function searchCases(keyword: string, limit = 6) {
+  try {
+    return await microcms.getList<Case>({
+      endpoint: "cases",
+      queries: { q: keyword, limit },
+    });
+  } catch {
+    return { contents: [], totalCount: 0, offset: 0, limit };
+  }
+}
+
 /** キーワードでコラムを検索 */
-export async function searchColumns(keyword: string) {
+export async function searchColumns(keyword: string, limit = 10) {
   try {
     return await microcms.getList<Column>({
       endpoint: "columns",
-      queries: {
-        q: keyword,
-        limit: 10,
-      },
+      queries: { q: keyword, limit },
     });
   } catch {
-    return { contents: [], totalCount: 0, offset: 0, limit: 10 };
+    return { contents: [], totalCount: 0, offset: 0, limit };
   }
 }
 

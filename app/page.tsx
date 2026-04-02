@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     "銀座の美容外科・美容皮膚科クリニック。形成外科専門医が担当する目元・鼻・口元・リフトアップ・美容皮膚科の施術。",
 };
 
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MediaSection } from "@/components/sections/MediaSection";
@@ -168,7 +169,9 @@ export default async function TopPage() {
       {/* Search */}
       <section className="py-14 md:py-20 bg-[var(--color-brand-cream)]">
         <div className="section-container">
-          <SearchBar />
+          <Suspense>
+            <SearchBar />
+          </Suspense>
         </div>
       </section>
 

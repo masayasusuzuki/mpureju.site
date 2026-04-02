@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getCaseList } from "@/lib/microcms/client";
+import { getCaseList, searchCases } from "@/lib/microcms/client";
 import type { CasePillar } from "@/types/microcms";
 
 export const metadata: Metadata = {
@@ -24,25 +24,36 @@ const PER_PAGE = 10;
 export default async function CasePage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; pillar?: string }>;
+  searchParams: Promise<{ page?: string; pillar?: string; q?: string }>;
 }) {
-  const { page, pillar } = await searchParams;
+  const { page, pillar, q } = await searchParams;
   const currentPage = Math.max(1, Number(page) || 1);
   const currentPillar = pillar || "すべて";
+  const keyword = q?.trim() ?? "";
 
-  const filters = currentPillar !== "すべて" ? `pillar[contains]${currentPillar}` : undefined;
+  let cases: Awaited<ReturnType<typeof getCaseList>>["contents"];
+  let totalPages: number;
 
-  const offset = (currentPage - 1) * PER_PAGE;
-  const data = await getCaseList({ limit: PER_PAGE, offset, ...(filters ? { filters } : {}) });
-  const cases = data.contents;
-  const totalPages = Math.ceil(data.totalCount / PER_PAGE);
+  if (keyword) {
+    const offset = (currentPage - 1) * PER_PAGE;
+    const data = await searchCases(keyword, PER_PAGE + offset);
+    cases = data.contents.slice(offset, offset + PER_PAGE);
+    totalPages = Math.ceil(data.totalCount / PER_PAGE);
+  } else {
+    const filters = currentPillar !== "すべて" ? `pillar[contains]${currentPillar}` : undefined;
+    const offset = (currentPage - 1) * PER_PAGE;
+    const data = await getCaseList({ limit: PER_PAGE, offset, ...(filters ? { filters } : {}) });
+    cases = data.contents;
+    totalPages = Math.ceil(data.totalCount / PER_PAGE);
+  }
 
   function pageHref(p: number) {
     const params = new URLSearchParams();
-    if (currentPillar !== "すべて") params.set("pillar", currentPillar);
+    if (keyword) params.set("q", keyword);
+    if (currentPillar !== "すべて" && !keyword) params.set("pillar", currentPillar);
     if (p > 1) params.set("page", String(p));
-    const q = params.toString();
-    return `/case${q ? `?${q}` : ""}`;
+    const qs = params.toString();
+    return `/case${qs ? `?${qs}` : ""}`;
   }
 
   function pillarHref(v: string) {
@@ -70,9 +81,15 @@ export default async function CasePage({
           <h1 className="font-en text-5xl md:text-6xl tracking-widest text-[var(--color-brand-dark)] mb-4 leading-none">
             症例写真
           </h1>
-          <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
-            実際の施術結果をご確認いただけます
-          </p>
+          {keyword ? (
+            <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
+              「{keyword}」の検索結果
+            </p>
+          ) : (
+            <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
+              実際の施術結果をご確認いただけます
+            </p>
+          )}
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getColumnList } from "@/lib/microcms/client";
+import { getColumnList, searchColumns } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "美容コラム｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -23,31 +23,42 @@ const PER_PAGE = 9;
 export default async function ColumnPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; category?: string }>;
+  searchParams: Promise<{ page?: string; category?: string; q?: string }>;
 }) {
-  const { page, category } = await searchParams;
+  const { page, category, q } = await searchParams;
   const currentPage = Math.max(1, Number(page) || 1);
   const currentCategory = category || "すべて";
+  const keyword = q?.trim() ?? "";
 
-  const queries =
-    currentCategory !== "すべて"
-      ? { filters: `category[contains]${currentCategory}`, limit: 100 }
-      : { limit: 100 };
+  let allColumns: Awaited<ReturnType<typeof getColumnList>>["contents"];
+  let totalSearchCount = 0;
 
-  const data = await getColumnList(queries);
-  const allColumns = data.contents;
+  if (keyword) {
+    const data = await searchColumns(keyword, 100);
+    allColumns = data.contents;
+    totalSearchCount = data.totalCount;
+  } else {
+    const queries =
+      currentCategory !== "すべて"
+        ? { filters: `category[contains]${currentCategory}`, limit: 100 }
+        : { limit: 100 };
+    const data = await getColumnList(queries);
+    allColumns = data.contents;
+  }
+
   const totalPages = Math.ceil(allColumns.length / PER_PAGE);
   const columns = allColumns.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
 
-  const featured = currentPage === 1 ? columns[0] : null;
-  const rest = currentPage === 1 ? columns.slice(1) : columns;
+  const featured = currentPage === 1 && !keyword ? columns[0] : null;
+  const rest = currentPage === 1 && !keyword ? columns.slice(1) : columns;
 
   function pageHref(p: number) {
     const params = new URLSearchParams();
-    if (currentCategory !== "all") params.set("category", currentCategory);
+    if (keyword) params.set("q", keyword);
+    if (!keyword && currentCategory !== "すべて") params.set("category", currentCategory);
     if (p > 1) params.set("page", String(p));
-    const q = params.toString();
-    return `/column${q ? `?${q}` : ""}`;
+    const qs = params.toString();
+    return `/column${qs ? `?${qs}` : ""}`;
   }
 
   function categoryHref(cat: string) {
@@ -75,9 +86,15 @@ export default async function ColumnPage({
           <h1 className="font-en text-5xl md:text-6xl tracking-widest text-[var(--color-brand-dark)] mb-4 leading-none">
             美容コラム
           </h1>
-          <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
-            銀座の美容クリニックがお届けする、美容と健康の読みもの
-          </p>
+          {keyword ? (
+            <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
+              「{keyword}」の検索結果 {totalSearchCount}件
+            </p>
+          ) : (
+            <p className="text-xs tracking-widest text-[var(--color-text-secondary)]">
+              銀座の美容クリニックがお届けする、美容と健康の読みもの
+            </p>
+          )}
         </div>
       </section>
 
