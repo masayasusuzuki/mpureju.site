@@ -6,7 +6,7 @@ category:
 tags: "医療機器, カスタマイズ治療, たるみ治療, ウルトラセルZi, サーマジェン, XERF, ポテンツァ, サーマニードル, メソナJ, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DMKbDoryiIw/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-07-16"
 ---
 
 「SNSで流行っているから」「知人に勧められたから」という理由で美容施術を受けた経験はありませんか？肌質やお顔の状態はお一人おひとり異なるため、悩みを解消するには個人に合った治療の選択が重要です。

@@ -6,7 +6,7 @@ category:
 tags: "紫外線対策, サプリメント, 飲む日焼け止め, ビタミンC, ビタミンD, 光老化, シミ予防, 美白, 内服"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLZfMtEzCvH/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-27"
 ---
 
 肌の老化の約80%は紫外線が原因と言われています。外からの日焼け止めだけでなく、内側からのケアで光老化を予防しましょう。今回は用途別に3つの「飲む紫外線対策」サプリメントをご紹介します。

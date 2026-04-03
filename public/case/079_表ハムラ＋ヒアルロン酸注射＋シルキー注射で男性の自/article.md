@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡など"
 tags: "表ハムラ,男性美容,エイジングケア,シルキー注射"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DCyno_Py5ax/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-11-25"
 ---
 
 ## この症例について

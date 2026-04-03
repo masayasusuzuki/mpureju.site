@@ -6,7 +6,7 @@ category:
 tags: "サーマジェン, たるみ治療, 高周波, RF, コラーゲン生成, フェイスライン, ほうれい線, 引き締め, ハリ, 弾力"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DKmAHCeSd3L/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-06"
 ---
 
 当院で人気のたるみ治療「サーマジェン」の症例をご紹介します。皮膚表面から脂肪層まで高周波を届けることで、コラーゲン・エラスチンの生成を促進し、顔の引き締めや肌のハリ・弾力アップが期待できます。

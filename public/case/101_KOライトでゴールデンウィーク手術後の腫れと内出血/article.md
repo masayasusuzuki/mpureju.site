@@ -10,7 +10,7 @@ risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,ゴールデンウィーク"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DJBsUEkTcqx/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-04-29"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "ペリカンリフト, あご下, 二重顎, フェイスリフト, ネックリフト, 広頚筋, 脂肪吸引, たるみ, 切開リフト, フェイスライン"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DBBTFajzJB-/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-10-12"
 ---
 
 糸リフトや脂肪吸引では改善しきれなかったあご下のもたつき——その解決策となるのが「ペリカンリフト」です。

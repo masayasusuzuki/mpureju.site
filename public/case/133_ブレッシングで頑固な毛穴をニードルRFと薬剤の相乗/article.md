@@ -10,7 +10,7 @@ risks: "腫れ、赤み、点状出血、色素沈着など"
 tags: "ブレッシング,毛穴治療,ニードルRF,肌育"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DQ6MQovkoxb/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-11-11"
 ---
 
 ## この症例について

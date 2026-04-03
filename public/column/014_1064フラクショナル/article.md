@@ -6,7 +6,7 @@ category:
 tags: "1064フラクショナル, フラクショナルレーザー, 毛穴, ニキビ跡, 小じわ, コラーゲン, たるみ, 肌質改善"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cv4ULR8ulLi/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-08-13"
 ---
 
 「毛穴の開きやニキビ跡がなかなか改善しない」「小じわやたるみが気になってきた」——そんな肌悩みに対して、肌の自己再生力を引き出すことでアプローチできるのが「1064フラクショナル」です。

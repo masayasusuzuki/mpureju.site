@@ -6,7 +6,7 @@ category:
 tags: "糸リフト, スレッドリフト, ミントリフト, テスリフト, PDO, PCL, PLLA, たるみ, ほうれい線, フェイスライン, リフトアップ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3KV_MRygEV/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-02-10"
 ---
 
 Maison PUREJUの糸リフトメニューがリニューアルしました。

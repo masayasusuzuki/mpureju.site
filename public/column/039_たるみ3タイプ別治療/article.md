@@ -6,7 +6,7 @@ category:
 tags: "たるみ, ほうれい線, フェイスライン, 脂肪, SMAS, コラーゲン, リフトアップ, 骨萎縮, 皮膚弛緩"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C78v2KASlP4/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-06-08"
 ---
 
 「ほうれい線が深くなってきた」「フェイスラインがもたついてきた」——加齢とともに現れる「たるみ」ですが、実は原因は一種類ではありません。

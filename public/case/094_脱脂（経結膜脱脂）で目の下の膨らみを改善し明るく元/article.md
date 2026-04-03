@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、凹み、再発など"
 tags: "脱脂,くまとり,経結膜脱脂,目の下の膨らみ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DHiN8zzS-eV/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-03-23"
 ---
 
 ## この症例について

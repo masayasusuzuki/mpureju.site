@@ -6,7 +6,7 @@ category:
 tags: "ジェネシス, YAGレーザー, 毛穴, 赤ら顔, くすみ, 小じわ, ターンオーバー, ニキビ跡, 肝斑"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cu9IcIrS2T-/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-07-21"
 ---
 
 「毛穴の開きが気になる」「赤ら顔をなんとかしたい」「肌くすみをコツコツ改善したい」——そんな方に幅広く対応できるレーザー治療が「ジェネシス」です。

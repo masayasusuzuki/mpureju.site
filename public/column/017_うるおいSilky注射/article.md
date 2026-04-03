@@ -7,7 +7,7 @@ category:
 tags: "うるおいSilky注射, スキンブースター, 真皮, ヒアルロン酸, ポリヌクレオチド, 小じわ, 乾燥, 肌質改善"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cwzjs7-yLhv/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-09-05"
 ---
 
 「肌のツヤが落ちた」「乾燥が続く」「小じわが気になる」——そんな肌の変化は、真皮の衰えによるものかもしれません。

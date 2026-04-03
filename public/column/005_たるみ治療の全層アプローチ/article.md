@@ -7,7 +7,7 @@ category:
 tags: "たるみ, リフトアップ, HIFU, 糸リフト, ヒアルロン酸, ジャルプロ, ポテンツァ, ジェネシス, サーマジェン, SMAS, コラーゲン, 加齢"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cs8e_0fSk6m/"
-published_at: "2026-03-31"
+published_at: "2023-06-02"
 ---
 
 「最近、なんだか老けた気がする」「顔が大きく四角くなってきた気がする」——そう感じたことはありませんか？

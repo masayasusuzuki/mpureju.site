@@ -6,7 +6,7 @@ category:
 tags: "たるみ治療, スタッフ体験, 年間計画, HIFU, サーマジェン, XERF, ショートスレッド, 糸リフト, ヒアルロン酸, ボトックス, 予防ケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLHkBfJzdu8/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-20"
 ---
 
 たるみケアは未来の自分への投資——予防と継続が、本来の美しさをより際立たせます。今回はMaison PUREJUの看護師2名が、それぞれの悩みと年間たるみ治療プランを公開します。

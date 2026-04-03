@@ -5,6 +5,7 @@ import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { FaqNav } from "@/components/sections/FaqNav";
 import { FAQ_CATEGORIES } from "@/lib/faq-page-data";
 import { FaqHashOpener } from "@/components/ui/FaqHashOpener";
+import { CLINIC } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "よくあるご質問（FAQ）｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -126,7 +127,7 @@ export default function FaqPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
+              href={CLINIC.reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-4 min-w-[240px] py-4 bg-[var(--color-brand-dark)] text-white text-sm tracking-widest rounded-full hover:opacity-90 transition-opacity"

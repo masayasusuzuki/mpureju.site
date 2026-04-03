@@ -6,7 +6,7 @@ category:
 tags: "ソフウェーブ, たるみ治療, 超音波, コラーゲン生成, 引き締め, 小じわ, 皮膚たるみ, フェイスライン, 厚生労働省承認, ダウンタイムなし"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNShgk7yMQq/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-08-13"
 ---
 
 Maison PUREJUに新しく仲間入りしたたるみ治療「ソフウェーブ」をご紹介します。従来のHIFU・RFとは異なるアプローチで、しかも厚生労働省承認を取得した画期的な治療機器です。

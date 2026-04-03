@@ -10,7 +10,7 @@ risks: "赤み、熱傷（稀）、むくみなど"
 tags: "ソフウェーブ,30代のたるみ,フェイスライン,皮膚のたるみ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DVvNtIaEqUM/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2026-03-11"
 ---
 
 ## この症例について

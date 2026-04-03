@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CLINIC } from "@/lib/constants";
 
 const col1Links = [
   { label: "News", href: "/news" },
@@ -30,7 +31,7 @@ const treatmentLinks = [
 
 const col3Links = [
   { label: "Faq", href: "/faq" },
-  { label: "Reservation", href: "https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d", external: true },
+  { label: "Reservation", href: CLINIC.reservationUrl, external: true },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -71,7 +72,7 @@ const snsLinks = [
   },
   {
     label: "LINE",
-    href: "https://lin.ee/maisonpureju",
+    href: CLINIC.lineUrl,
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
@@ -191,11 +192,11 @@ export function Footer() {
               </p>
               <div className="space-y-1">
                 <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                  〒104-0061 東京都中央区銀座５丁目３−１３<br />
-                  Ginza SS 85ビル 4F
+                  {CLINIC.postal} {CLINIC.address}<br />
+                  {CLINIC.building}
                 </p>
                 <a
-                  href="https://www.google.com/maps?ll=35.671645,139.76263&z=16&t=m&hl=ja&gl=JP&mapclient=embed&cid=11387186794925088261"
+                  href={CLINIC.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-[var(--color-text-secondary)] underline underline-offset-2 hover:text-[var(--color-brand-dark)] transition-colors"
@@ -208,13 +209,13 @@ export function Footer() {
             {/* Phone + LINE */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <a href="tel:0332891222" className="flex items-center gap-2.5 px-6 py-3 border border-[var(--color-brand-dark)]/30 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors min-w-[180px] justify-center">
+                <a href={CLINIC.phoneTel} className="flex items-center gap-2.5 px-6 py-3 border border-[var(--color-brand-dark)]/30 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors min-w-[180px] justify-center">
                   <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                   </svg>
-                  03-3289-1222
+                  {CLINIC.phone}
                 </a>
-                <a href="https://lin.ee/maisonpureju" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-6 py-3 border border-[var(--color-brand-dark)]/30 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors min-w-[180px] justify-center">
+                <a href={CLINIC.lineUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-6 py-3 border border-[var(--color-brand-dark)]/30 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors min-w-[180px] justify-center">
                   <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
                   </svg>
@@ -222,7 +223,7 @@ export function Footer() {
                 </a>
               </div>
               <p className="text-xs text-[var(--color-text-secondary)] text-right">
-                受付時間　10:00〜19:00 / 休診日：月曜・不定休
+                受付時間　{CLINIC.hours} / 休診日：{CLINIC.closedDay}
               </p>
             </div>
 

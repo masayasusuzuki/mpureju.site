@@ -6,7 +6,7 @@ category:
 tags: "静脈麻酔, 痛み対策, 美容施術, 安全, カウンセリング, 麻酔方針, 施術体験, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DKttF2eyMBD/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-10"
 ---
 
 「痛みが怖くて美容施術を諦めた経験はありませんか？」せっかく効果のある治療でも、痛みがネックになってしまうのはもったいないことです。Maison PUREJUでは、痛みを軽減しながら最大の効果を引き出すために「静脈麻酔」を積極的に活用しています。

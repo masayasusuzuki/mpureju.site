@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、あと戻り、シスト形成、異物
 tags: "二重埋没, 末広二重, 自然な二重, ナチュラル, 周りにバレない, 骨格に合わせた二重"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CuOucfoSjgo/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-07-03"
 ---
 
 ## この症例について

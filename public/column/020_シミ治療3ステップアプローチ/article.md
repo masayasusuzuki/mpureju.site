@@ -7,7 +7,7 @@ category:
 tags: "シミ治療, ルビーフラクショナル, スポットレーザー, トーニング, トラネキサム酸, 炎症後色素沈着, 肝斑, プレトリートメント"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Czs8wo0ScGQ/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-11-16"
 ---
 
 シミ治療は、照射するだけで終わりではありません。

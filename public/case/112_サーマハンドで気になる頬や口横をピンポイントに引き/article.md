@@ -10,7 +10,7 @@ risks: "赤み、熱傷、むくみなど"
 tags: "サーマハンド,高周波,RF,ピンポイント引き締め,小顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DL9pqEGTJ3_/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-07-11"
 ---
 
 ## この症例について

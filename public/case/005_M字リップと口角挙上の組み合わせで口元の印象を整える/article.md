@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻り、血流障
 tags: "M字リップ, 口角挙上, 口元整形, 口角リフト, 唇の形, 口元美人"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cr0HZxDu0va/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-05-04"
 ---
 
 ## この症例について

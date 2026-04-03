@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡、感染など"
 tags: "二重全切開,ダウンタイム,二重修正,切開法,腫れ,内出血,二重整形,術後経過"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6OBaK0Sgyz/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-04-26"
 ---
 
 ## この症例について

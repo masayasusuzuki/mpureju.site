@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "スキンブースター,シルキー注射,毛穴治療,赤み,乾燥,肌育,真皮治療,ポテンツァ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5siZO5OWQ0/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-04-13"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "たるみ治療, HIFU, ウルトラセルZi, サーマジェン, 糸リフト, 切開リフト, フェイスリフト, ショートスレッド, ジャルプロ, リフトアップ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DAniAYQyEXq/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-10-02"
 ---
 
 たるみ治療には機械治療・注入治療・手術とさまざまな種類があり、どれを選べばいいか迷う方も多いと思います。

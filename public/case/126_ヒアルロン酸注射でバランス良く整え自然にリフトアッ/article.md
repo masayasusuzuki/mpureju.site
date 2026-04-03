@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "ヒアルロン酸,自然なリフトアップ,顔のバランス,中下顔面"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DOvWEB8k_ua/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-09-18"
 ---
 
 ## この症例について

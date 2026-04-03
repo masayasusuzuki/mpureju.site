@@ -6,7 +6,7 @@ category:
 tags: "HIFU, ハイフ, ウルトラセルZi, ULTRAcel, たるみ, リフトアップ, 小顔, 脂肪溶解, 毛穴, SMAS"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6sy3ykOA2W/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-05-08"
 ---
 
 「直後にすぐ上がるんですね」「フェイスラインがすごくすっきりしました」——Maison PUREJUのハイフ施術を受けた患者様からよくいただく声です。

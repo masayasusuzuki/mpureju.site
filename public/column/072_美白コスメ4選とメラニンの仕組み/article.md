@@ -6,7 +6,7 @@ category:
 tags: "美白, メラニン, シミ, ビタミンC, システアミン, トラネキサム酸, ハイドロキノン, ドクターズコスメ, シスペラ, ゼオスキン, レカルカ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLuI9ygzsOB/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-07-05"
 ---
 
 シミができる仕組みを理解することで、美白ケアの効果を最大限に引き出せます。今回はメラニンが生成されるメカニズムと、各美白有効成分の働き、そして当院スタッフが推す美白コスメ4選をご紹介します。

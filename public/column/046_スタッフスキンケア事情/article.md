@@ -6,7 +6,7 @@ category:
 tags: "スキンケア, ドクターズコスメ, 脂性肌, 乾燥肌, レカルカ, ゼオスキン, ガウディスキン, リビジョン, ビタミンC, レチノール, 美白"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C91v3JsSVRn/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-07-25"
 ---
 
 「スタッフはどんなスキンケアを使っているの？」——患者様から最も多くいただくご質問のひとつです。

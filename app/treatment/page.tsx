@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TreatmentNav, type TreatmentSearchRow } from "@/components/sections/TreatmentNav";
 import { TreatmentSubTabs, type TreatmentRow, type TreatmentSubTab } from "@/components/sections/TreatmentSubTabs";
 import { getTreatmentRowsBySection, getTreatmentSubTabs } from "@/lib/supabase/queries";
+import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
 
 export const revalidate = 3600; // 1時間キャッシュ
 
@@ -207,42 +208,7 @@ export default async function TreatmentPage() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="py-16 md:py-20 border-t border-[var(--color-brand-gold)]/20 bg-white">
-        <div className="section-container">
-          <p className="font-en text-xs tracking-[0.3em] text-[var(--color-brand-gold)] mb-4">CONSULTATION</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-[var(--color-brand-dark)] mb-3 leading-relaxed">
-            ご予約・ご相談はこちら
-          </h2>
-          <p className="text-sm text-[var(--color-text-secondary)] mb-10 leading-relaxed">
-            施術内容・ダウンタイムなど、<br className="md:hidden" />
-            ご不明な点はカウンセリングにてご確認ください。
-          </p>
-          <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
-            <a
-              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"
-            >
-              Web予約
-            </a>
-            <a
-              href="https://lin.ee/maisonpureju"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-[var(--color-brand-dark)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors"
-            >
-              LINE予約
-            </a>
-          </div>
-          <Link
-            href="/contact"
-            className="text-xs tracking-wider text-[var(--color-text-secondary)] underline underline-offset-4 hover:text-[var(--color-brand-gold)] transition-colors"
-          >
-            メールでのお問い合わせはこちら
-          </Link>
-        </div>
-      </section>
+      <ConsultationCTA variant="left" subtitle={<>施術内容・ダウンタイムなど、<br className="md:hidden" />ご不明な点はカウンセリングにてご確認ください。</>} />
     </>
   );
 }

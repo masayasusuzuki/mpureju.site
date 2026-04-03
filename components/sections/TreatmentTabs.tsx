@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Pillar } from "@/lib/microcms/types";
+import { PILLARS, PILLAR_MAP } from "@/lib/constants";
 
 type TabItem = {
   id: Pillar;
@@ -10,16 +11,6 @@ type TabItem = {
   pillarHref: string;
   treatments: { name: string; desc: string; href: string }[];
 };
-
-const PILLAR_META: Record<Pillar, { label: string; href: string }> = {
-  mouth: { label: "口元", href: "/mouth" },
-  eye:   { label: "目元", href: "/eye" },
-  nose:  { label: "鼻",   href: "/nose" },
-  lift:  { label: "リフトアップ", href: "/lift" },
-  skin:  { label: "美容皮膚科",  href: "/skin" },
-};
-
-const PILLAR_ORDER: Pillar[] = ["mouth", "eye", "nose", "lift", "skin"];
 
 export type TreatmentTabsProps = {
   treatments: {
@@ -31,20 +22,20 @@ export type TreatmentTabsProps = {
 };
 
 export function TreatmentTabs({ treatments }: TreatmentTabsProps) {
-  const tabs: TabItem[] = PILLAR_ORDER.map((id) => {
-    const meta = PILLAR_META[id];
+  const tabs: TabItem[] = PILLARS.map(({ id, label, path }) => {
     const items = treatments
       .filter((t) => t.pillar.includes(id))
       .map((t) => ({
         name: t.title,
         desc: t.catch_copy || "",
-        href: `${meta.href}/${t.slug}`,
+        href: `${path}/${t.slug}`,
       }));
-    return { id, label: meta.label, pillarHref: meta.href, treatments: items };
+    return { id, label, pillarHref: path, treatments: items };
   });
 
   const [activeId, setActiveId] = useState<string>("mouth");
-  const current = tabs.find((t) => t.id === activeId)!;
+  const current = tabs.find((t) => t.id === activeId);
+  if (!current) return null;
 
   return (
     <div>

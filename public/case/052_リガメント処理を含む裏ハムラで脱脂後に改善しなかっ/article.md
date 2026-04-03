@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、結膜浮腫、くぼみ、再発、外
 tags: "裏ハムラ,脱脂,脂肪再配置,リガメント,目の下のクマ,クマとり,目元整形,他院修正"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5-xh9NSHPM/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-04-21"
 ---
 
 ## この症例について

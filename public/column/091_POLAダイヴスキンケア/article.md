@@ -6,7 +6,7 @@ category:
 tags: "Dive, ダイヴ, POLA, ポーラメディカル, ドクターズコスメ, 美白, シワ改善, ルシノール, ニールワン, クリニック専売, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DRy0lAYkt6P/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-12-03"
 ---
 
 POLAメディカルから生まれた医療機関専売スキンケアブランド「Dive（ダイヴ）」。安全で確かな有効成分を配合したクリニック専売ラインです。Maison PUREJUでも取り扱いを開始しました。

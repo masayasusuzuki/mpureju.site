@@ -6,7 +6,7 @@ category:
 tags: "ダウンタイム, 内出血, ダウンタイムメイク, コンシーラー, 二重手術, 目元, 帽子, サングラス, ダウンタイムケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C9Rkd5Yy7GY/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-07-11"
 ---
 
 目元の手術後、内出血や腫れが気になってなかなか外出できない——そんなお声をよくいただきます。

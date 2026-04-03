@@ -6,7 +6,7 @@ category:
 tags: "脂肪溶解注射, チンセラプラス, デオキシコール酸, 小顔, 部分痩せ, 二重あご, ほうれい線, 顎下, リバウンド"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C99T69kS4U4/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-07-28"
 ---
 
 写真を撮ったとき、ふと鏡を見たとき——二重あごや頬のボリュームが気になった経験はありませんか。

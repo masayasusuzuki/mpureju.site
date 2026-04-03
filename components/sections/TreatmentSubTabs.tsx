@@ -60,6 +60,8 @@ function TreatmentTable({ rows }: { rows: TreatmentRow[] }) {
 export function TreatmentSubTabs({ tabs }: { tabs: TreatmentSubTab[] }) {
   const [active, setActive] = useState(0);
 
+  if (!tabs.length) return null;
+
   return (
     <div>
       <div className="flex flex-wrap gap-2 mb-6">

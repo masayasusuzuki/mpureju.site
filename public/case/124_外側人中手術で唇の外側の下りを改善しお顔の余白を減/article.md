@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "外側人中,外側人中短縮,への字口,唇のバランス"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DOf5ICIE-0Y/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-09-12"
 ---
 
 ## この症例について

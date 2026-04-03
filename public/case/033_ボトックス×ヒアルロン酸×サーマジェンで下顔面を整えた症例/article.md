@@ -10,7 +10,7 @@ risks: "腫れ、内出血、やけど、血流障害など"
 tags: "ボトックス注射,ヒアルロン酸注射,サーマジェン,下顔面整形,小顔,フェイスライン,たるみ,非手術,コンビネーション治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CyS1zmIy4nY/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-10-13"
 ---
 
 ## この症例について

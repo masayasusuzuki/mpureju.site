@@ -6,7 +6,7 @@ category:
 tags: "XERF, ザーフ, HIFU, ハイフ, たるみ治療, コンビネーション治療, SMAS層, RF, 高周波, 引き締め, 小顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLymuR0y5fB/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-07-07"
 ---
 
 「XERF（ザーフ）×HIFU（ハイフ）」のコンビネーション治療は、それぞれ異なる働きで全層にアプローチするたるみ治療です。2つを組み合わせることで、より効果的な引き締めが期待できます。

@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,自然な変化,バレない,横幅を広げる"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLme2cyzWUO/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-07-02"
 ---
 
 ## この症例について

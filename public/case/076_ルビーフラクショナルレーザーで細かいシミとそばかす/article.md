@@ -10,7 +10,7 @@ risks: "赤み、色素沈着（特に肝斑がある方）"
 tags: "ルビーフラクショナル,シミ治療,そばかす,レーザー治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DA3F0wNSqLF/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-10-08"
 ---
 
 ## この症例について

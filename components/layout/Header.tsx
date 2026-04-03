@@ -16,9 +16,28 @@ const menuItems = [
   { label: "美容コラム", href: "/column" },
 ];
 
+const aboutItems = [
+  { label: "クリニック紹介", href: "/about" },
+  { label: "院長紹介", href: "/doctor" },
+  { label: "スタッフブログ", href: "/staff-blog" },
+];
+
+const caseItems = [
+  { label: "すべての症例", href: "/case" },
+  { label: "口元", href: "/case?pillar=口元" },
+  { label: "目元", href: "/case?pillar=目元" },
+  { label: "鼻", href: "/case?pillar=鼻" },
+  { label: "リフトアップ", href: "/case?pillar=リフトアップ" },
+  { label: "美容皮膚科", href: "/case?pillar=美容皮膚科" },
+];
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [caseOpen, setCaseOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileCaseOpen, setMobileCaseOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -91,16 +110,38 @@ export function Header() {
               )}
             </div>
 
-            <Link
-              href="/case"
-              className={`px-3 py-2 text-sm transition-colors duration-300 ${
-                isTransparent
-                  ? "text-white/90 hover:text-white"
-                  : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
-              }`}
+            {/* 症例写真▼ dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setCaseOpen(true)}
+              onMouseLeave={() => setCaseOpen(false)}
             >
-              症例写真
-            </Link>
+              <button
+                className={`flex items-center gap-1 px-3 py-2 text-sm transition-colors duration-300 ${
+                  isTransparent
+                    ? "text-white/90 hover:text-white"
+                    : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
+                }`}
+              >
+                症例写真
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {caseOpen && (
+                <div className="absolute top-full left-0 mt-0 w-48 bg-white border border-[var(--color-brand-cream)] shadow-lg py-2">
+                  {caseItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-2.5 text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand-cream)] hover:text-[var(--color-brand-dark)] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href="/price"
               className={`px-3 py-2 text-sm transition-colors duration-300 ${
@@ -111,26 +152,38 @@ export function Header() {
             >
               料金表
             </Link>
-            <Link
-              href="/doctor"
-              className={`px-3 py-2 text-sm transition-colors duration-300 ${
-                isTransparent
-                  ? "text-white/90 hover:text-white"
-                  : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
-              }`}
+            {/* 当院について▼ dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setAboutOpen(true)}
+              onMouseLeave={() => setAboutOpen(false)}
             >
-              院長紹介
-            </Link>
-            <Link
-              href="/about"
-              className={`px-3 py-2 text-sm transition-colors duration-300 ${
-                isTransparent
-                  ? "text-white/90 hover:text-white"
-                  : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
-              }`}
-            >
-              当院について
-            </Link>
+              <button
+                className={`flex items-center gap-1 px-3 py-2 text-sm transition-colors duration-300 ${
+                  isTransparent
+                    ? "text-white/90 hover:text-white"
+                    : "text-[var(--color-text-primary)] hover:text-[var(--color-brand-gold)]"
+                }`}
+              >
+                当院について
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {aboutOpen && (
+                <div className="absolute top-full left-0 mt-0 w-48 bg-white border border-[var(--color-brand-cream)] shadow-lg py-2">
+                  {aboutItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-2.5 text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand-cream)] hover:text-[var(--color-brand-dark)] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href="/recruit"
               className={`px-3 py-2 text-sm transition-colors duration-300 ${
@@ -217,20 +270,30 @@ export function Header() {
           >
             料金表
           </Link>
-          <Link
-            href="/doctor"
-            className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            院長紹介
-          </Link>
-          <Link
-            href="/about"
-            className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
-            onClick={() => setMobileMenuOpen(false)}
+          {/* 当院について アコーディオン */}
+          <button
+            className="flex items-center justify-between w-full px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
+            onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
           >
             当院について
-          </Link>
+            <svg className={`w-3 h-3 transition-transform ${mobileAboutOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {mobileAboutOpen && (
+            <div className="bg-[var(--color-brand-cream)]/30">
+              {aboutItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-10 py-2.5 text-sm text-[var(--color-text-secondary)] border-b border-[var(--color-brand-cream)]"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
           <Link
             href="/recruit"
             className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"

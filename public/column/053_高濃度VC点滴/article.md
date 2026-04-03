@@ -6,7 +6,7 @@ category:
 tags: "高濃度ビタミンC点滴, ビタミンC, 美容点滴, 抗酸化, 美白, 疲労回復, コラーゲン, G6PD, 免疫力, 内服"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DADIxA-yG5l/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-09-18"
 ---
 
 「美容点滴って実際どうなの？」——そんなご質問をよくいただきます。

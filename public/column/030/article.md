@@ -7,7 +7,7 @@ category:
 tags: "洗顔, クレンジング, レカルカ, プラスリストア, エムディア, EGF, ペプチド, ナイアシンアミド, 泡洗顔, ニキビ肌"
 thumbnail: "video_1.mp4"
 instagram_url: "https://www.instagram.com/p/C3o1hSZyi5a/"
-published_at: "2026-03-31"
+published_at: "2024-02-22"
 ---
 
 毎日のスキンケアの基本となる「洗顔」。

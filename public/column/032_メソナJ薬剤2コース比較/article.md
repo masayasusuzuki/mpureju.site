@@ -7,7 +7,7 @@ category:
 tags: "メソナJ, メソポレーション, 導入美容, トーンアップ, 赤み改善, 乾燥肌, 敏感肌, ビタミンC, ヒアルロン酸, ダウンタイムなし"
 thumbnail: "image_2.jpg"
 instagram_url: "https://www.instagram.com/p/C5F8xXHO6SH/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-03-29"
 ---
 
 メソナJは「肌に塗った場合の300倍・イオン導入の70倍の有効成分を浸透させる」メソポレーション法ができる導入機です。

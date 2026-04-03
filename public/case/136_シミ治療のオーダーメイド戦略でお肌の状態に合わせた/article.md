@@ -10,7 +10,7 @@ risks: "赤み、色素沈着、紫外線による悪化など"
 tags: "シミ治療,カスタマイズ,オーダーメイド,レーザー"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DRjndGbk9Qd/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-11-27"
 ---
 
 ## この症例について

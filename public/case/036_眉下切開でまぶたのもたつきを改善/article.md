@@ -10,7 +10,7 @@ risks: "腫れ、内出血、傷跡など"
 tags: "眉下切開,眉下リフト,まぶたのたるみ,まぶたのもたつき,目元整形,20代,傷跡,小顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C2MpP5-SLZ3/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-01-17"
 ---
 
 ## この症例について

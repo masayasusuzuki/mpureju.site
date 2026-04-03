@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCaseList, searchCases } from "@/lib/microcms/client";
 import type { CasePillar } from "@/types/microcms";
+import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
+import { Pagination } from "@/components/ui/Pagination";
 
 export const metadata: Metadata = {
   title: "症例写真｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -147,7 +149,7 @@ export default async function CasePage({
                         <div className="flex items-baseline gap-2">
                           <span className="text-[10px] tracking-[0.15em] text-[var(--color-brand-gold)] shrink-0">お悩み</span>
                           <span className="text-sm text-[var(--color-text-secondary)] font-light line-clamp-1">
-                            {c.concern.split(/[,、，]/).slice(0, 3).join("・")}
+                            {(c.concern?.split(/[,、，]/) ?? []).slice(0, 3).join("・")}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-2">
@@ -166,78 +168,14 @@ export default async function CasePage({
               </div>
 
               {/* ページネーション */}
-              {totalPages > 1 && (
-                <nav className="flex items-center justify-center gap-2 mt-14">
-                  {currentPage > 1 && (
-                    <Link
-                      href={pageHref(currentPage - 1)}
-                      className="flex items-center justify-center w-10 h-10 border border-[var(--color-brand-brown)]/15 text-sm text-[var(--color-text-secondary)] hover:border-[var(--color-brand-gold)] hover:text-[var(--color-brand-gold)] transition-colors"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M9 2L4 7L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </Link>
-                  )}
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <Link
-                      key={p}
-                      href={pageHref(p)}
-                      className={`flex items-center justify-center w-10 h-10 text-sm font-en tracking-wider transition-colors ${
-                        p === currentPage
-                          ? "bg-[var(--color-brand-gold)] text-white"
-                          : "border border-[var(--color-brand-brown)]/15 text-[var(--color-text-secondary)] hover:border-[var(--color-brand-gold)] hover:text-[var(--color-brand-gold)]"
-                      }`}
-                    >
-                      {p}
-                    </Link>
-                  ))}
-                  {currentPage < totalPages && (
-                    <Link
-                      href={pageHref(currentPage + 1)}
-                      className="flex items-center justify-center w-10 h-10 border border-[var(--color-brand-brown)]/15 text-sm text-[var(--color-text-secondary)] hover:border-[var(--color-brand-gold)] hover:text-[var(--color-brand-gold)] transition-colors"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M5 2L10 7L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </Link>
-                  )}
-                </nav>
-              )}
+              <Pagination currentPage={currentPage} totalPages={totalPages} pageHref={pageHref} />
             </>
           )}
         </div>
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="bg-white border-t border-[var(--color-brand-gold)]/20 py-16 md:py-20">
-        <div className="section-container text-center">
-          <p className="font-en text-xs tracking-[0.3em] text-[var(--color-brand-gold)] mb-4">CONSULTATION</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-[var(--color-brand-dark)] mb-3">
-            ご予約・ご相談はこちら
-          </h2>
-          <p className="text-sm text-[var(--color-text-secondary)] mb-8">
-            院長が丁寧にご相談をお伺いし、あなたに最適なプランをご提案いたします。
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"
-            >
-              Web予約
-            </a>
-            <a
-              href="https://lin.ee/maisonpureju"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-[var(--color-brand-dark)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors"
-            >
-              LINE予約
-            </a>
-          </div>
-        </div>
-      </section>
+      <ConsultationCTA />
     </>
   );
 }

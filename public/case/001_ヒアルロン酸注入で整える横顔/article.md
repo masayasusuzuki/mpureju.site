@@ -10,7 +10,7 @@ risks: "内出血、左右差、血流障害、硬結、アレルギー"
 tags: "ヒアルロン酸,あご,唇,小顔,人中短縮,Eライン,横顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CqSXkeQuSlN/"
-published_at: "2026-04-01"
+published_at: "2023-03-28"
 ---
 
 ## この症例について

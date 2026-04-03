@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "ヒアルロン酸,あごヒアルロン酸,フェイスライン,カスタマイズヒアル"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6vt48qS6S_/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-05-09"
 ---
 
 ## この症例について

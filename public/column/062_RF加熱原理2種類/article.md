@@ -6,7 +6,7 @@ category:
 tags: "RF, ラジオ波, たるみ治療, サーマジェン, ボルニューマ, サーマクール, ジュール熱, 誘電加熱, 高周波, タイトニング"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DGh9GhoSgeq/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-02-26"
 ---
 
 「RF（ラジオ波）治療」と一言で言っても、その加熱の仕組みは大きく2種類に分かれます。機器の選び方はご自身の体質や悩みに合わせることが大切。今回はRFの加熱原理をわかりやすく解説します。

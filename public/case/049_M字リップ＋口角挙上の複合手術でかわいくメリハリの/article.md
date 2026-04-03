@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "M字リップ,口角挙上,口元整形,口元手術,口角形成,上唇,かわいい口元,女性らしい口元"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5a25PByOKS/"
-published_at: "2026-04-02"
+published_at: "2024-04-06"
 ---
 
 ## この症例について

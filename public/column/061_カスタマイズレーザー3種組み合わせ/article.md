@@ -6,7 +6,7 @@ category:
 tags: "カスタマイズレーザー, シミ治療, くすみ, 毛穴, ジェネシス, トーニング, フラクショナル, ルビーフラクショナル, 肝斑, ニキビ, 赤み"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DFPZdhvSRWl/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-01-25"
 ---
 
 シミ・くすみ・毛穴など複合的な肌悩みを抱えていても、「自分にどの治療が合っているかわからない」という方も多いのではないでしょうか。Maison PUREJUの「カスタマイズレーザー」は、複数の肌悩みに対して3種類のレーザーを組み合わせてアプローチする、オーダーメイドのレーザー治療です。

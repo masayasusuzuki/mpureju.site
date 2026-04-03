@@ -6,7 +6,7 @@ category:
 tags: "ビタミンC, 美白, 抗酸化, コラーゲン, シミ, 毛穴, ニキビ, ハリ, スキンケア, 点滴"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DBs_rcWTlBv/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-10-29"
 ---
 
 「ビタミンCが肌に良い」ことは広く知られていますが、実際にどのような仕組みで肌に作用するのかはあまり知られていません。

@@ -6,7 +6,7 @@ category:
 tags: "ゼオスキン, ロザトロール, 赤ら顔, 酒さ, 皮脂ケア, 角質ケア, バリア機能, スキンケア, ドクターズコスメ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DKooQzTy40c/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-10"
 ---
 
 赤ら顔・酒さ・過剰な皮脂にお悩みの方へ。ZO SKIN HEALTH（ゼオスキン）から「ロザトロール」が登場しました。赤みに着目して作られた美容液で、うるおいを与えながら肌のバリア機能をサポートします。

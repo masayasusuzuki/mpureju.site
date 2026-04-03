@@ -10,7 +10,7 @@ risks: "腫れ、内出血、傷跡、左右差、あと戻り、異物感"
 tags: "目頭上切開,二重埋没,平行二重,蒙古ひだ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C8wRRL9Sr1v/"
-published_at: "2026-04-02"
+published_at: "2024-06-28"
 ---
 
 ## この症例について

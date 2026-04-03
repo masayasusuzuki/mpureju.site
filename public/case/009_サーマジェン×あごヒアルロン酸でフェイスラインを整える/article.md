@@ -10,7 +10,7 @@ risks: "腫れ、内出血、やけど、血流障害など"
 tags: "サーマジェン, RF, ヒアルロン酸, フェイスライン, たるみ, 小顔, アンチエイジング, 痛みが少ない"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Csk_HlYObOK/"
-published_at: "2026-04-02"
+published_at: "2023-05-23"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "Maison PUREJU, クリニックコンセプト, 個室, プライバシー, こだわり, 銀座, 美容クリニック, ドクターズコスメ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C89IefLyqve/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-07-03"
 ---
 
 Maison PUREJUは1周年を迎えました。

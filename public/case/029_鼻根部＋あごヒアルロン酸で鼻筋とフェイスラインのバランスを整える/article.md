@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "鼻ヒアルロン酸, 鼻根部, あごヒアルロン酸, 横顔, Eライン, 鼻筋, バランス"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CxsLR74ybv0/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-09-27"
 ---
 
 ## この症例について

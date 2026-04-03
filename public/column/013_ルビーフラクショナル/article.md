@@ -7,7 +7,7 @@ category:
 tags: "ルビーフラクショナル, シミ, そばかす, ADM, 後天性真皮メラノサイトーシス, フラクショナルレーザー, 色素沈着"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CvrfHvCyquz/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-08-08"
 ---
 
 「光治療を繰り返しても気になるシミが消えない」「ADM（後天性真皮メラノサイトーシス）と言われたが治療法がわからない」——そんな悩みに応えられるのが「ルビーフラクショナル」です。

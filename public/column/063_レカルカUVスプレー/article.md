@@ -6,7 +6,7 @@ category:
 tags: "日焼け止め, UVスプレー, レカルカ, 紫外線対策, SPF50, PA++++, スキンケア, 美容コスメ, 夏"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DIn2v7_TDKf/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-04-19"
 ---
 
 紫外線が気になる季節に、メイクの上からさっとひと吹きできるUVスプレーをご紹介します。Lekarka（レカルカ）の「フレグランスUVカットスプレー」は、国内最高値SPF50+ / PA++++のUVカット性能に加え、スキンケア発想の美容成分を配合したマルチミストです。

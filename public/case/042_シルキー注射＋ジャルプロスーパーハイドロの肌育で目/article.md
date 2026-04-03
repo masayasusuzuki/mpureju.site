@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "スキンブースター,シルキー注射,ジャルプロスーパーハイドロ,肌育,真皮治療,小じわ,乾燥,ハリ,艶肌"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3jVpl0S2pI/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-02-21"
 ---
 
 ## この症例について

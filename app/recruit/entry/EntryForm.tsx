@@ -374,6 +374,59 @@ export function EntryForm() {
           </div>
         )}
       </div>
+
+      {/* ── 入力済みプレビュー ── */}
+      {stepIdx > 0 && currentId !== "confirm" && (
+        <div className="mt-16 pt-8 border-t border-[var(--color-brand-brown)]/10">
+          <p className="text-xs tracking-[0.2em] text-[var(--color-brand-gold)] mb-4">入力済みの内容</p>
+          <FullSummary form={form} activeTab={activeTab} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// FullSummary – 全項目の確認表示
+// ─────────────────────────────────────────────────────────────
+
+function FullSummary({ form, activeTab }: { form: FormState; activeTab: string }) {
+  return (
+    <div className="space-y-3">
+      <SummaryRow label="応募職種" value={TABS.find((t) => t.id === activeTab)?.label ?? ""} />
+      <SummaryRow label="氏名" value={form.name ? `${form.name}（${form.furigana}）` : ""} />
+      {form.birthYear && (
+        <SummaryRow label="生年月日" value={`${form.birthYear}年${form.birthMonth}月${form.birthDay}日`} />
+      )}
+      {form.gender && <SummaryRow label="性別" value={form.gender} />}
+      <SummaryRow label="メール" value={form.email} />
+      <SummaryRow label="電話" value={form.phone} />
+      <SummaryRow label="住所" value={[form.postalCode, form.prefecture, form.address, form.addressBuilding].filter(Boolean).join(" ")} />
+      {form.photo && <SummaryRow label="顔写真" value="アップロード済み" />}
+      {form.education.some((e) => e.schoolName) && (
+        <SummaryRow
+          label="学歴"
+          value={form.education
+            .filter((e) => e.schoolName)
+            .map((e) => `${e.schoolName}${e.department ? ` ${e.department}` : ""}${e.graduationYear ? `（${e.graduationYear}年${e.graduationMonth}月卒）` : ""}`)
+            .join("\n")}
+        />
+      )}
+      {form.workHistory.some((w) => w.companyName) && (
+        <SummaryRow
+          label="職歴"
+          value={form.workHistory
+            .filter((w) => w.companyName)
+            .map((w) => `${w.companyName}${w.jobTitle ? ` / ${w.jobTitle}` : ""}${w.periodFrom ? `（${w.periodFrom}〜${w.isCurrent ? "現在" : w.periodTo}）` : ""}`)
+            .join("\n")}
+        />
+      )}
+      <SummaryRow label="資格・免許" value={form.qualifications} />
+      <SummaryRow label="志望動機" value={form.motivation} />
+      <SummaryRow label="自己PR" value={form.selfPr} />
+      <SummaryRow label="希望勤務形態" value={form.workStyle} />
+      <SummaryRow label="希望給与等" value={form.desiredSalary} />
+      <SummaryRow label="ポートフォリオ" value={form.portfolioUrl} />
     </div>
   );
 }
@@ -726,16 +779,7 @@ function StepContent({ id, form, activeTab, photoPreview, isLookingUp, onChangeT
     case "confirm":
       return (
         <div className="space-y-5">
-          <div className="space-y-3">
-            <SummaryRow label="応募職種" value={TABS.find((t) => t.id === activeTab)?.label ?? ""} />
-            <SummaryRow label="氏名" value={`${form.name}（${form.furigana}）`} />
-            {form.birthYear && <SummaryRow label="生年月日" value={`${form.birthYear}年${form.birthMonth}月${form.birthDay}日`} />}
-            {form.gender && <SummaryRow label="性別" value={form.gender} />}
-            <SummaryRow label="メール" value={form.email} />
-            <SummaryRow label="電話" value={form.phone} />
-            <SummaryRow label="住所" value={[form.prefecture, form.address, form.addressBuilding].filter(Boolean).join(" ")} />
-            {form.motivation && <SummaryRow label="志望動機" value={form.motivation.slice(0, 50) + (form.motivation.length > 50 ? "…" : "")} />}
-          </div>
+          <FullSummary form={form} activeTab={activeTab} />
           <div className="pt-5 border-t border-[var(--color-brand-brown)]/10">
             <label className="flex items-start gap-3 cursor-pointer">
               <input type="checkbox" name="agreed" checked={form.agreed} onChange={onChange} className="w-4 h-4 mt-0.5 accent-[var(--color-brand-gold)] shrink-0" />
@@ -762,7 +806,7 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex gap-4">
       <span className="text-xs tracking-wider text-[var(--color-text-secondary)]/50 w-20 shrink-0 pt-0.5">{label}</span>
-      <span className="text-sm text-[var(--color-brand-dark)] leading-relaxed flex-1 break-all">{value}</span>
+      <span className="text-sm text-[var(--color-brand-dark)] leading-relaxed flex-1 break-all whitespace-pre-line">{value}</span>
     </div>
   );
 }

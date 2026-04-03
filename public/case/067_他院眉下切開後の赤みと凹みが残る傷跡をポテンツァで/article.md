@@ -10,7 +10,7 @@ risks: "腫れ、痛み、点状出血、赤み、色素沈着"
 tags: "眉下切開,傷跡修正,ポテンツァ,他院修正"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C-7RaqcygwZ/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-08-21"
 ---
 
 ## この症例について

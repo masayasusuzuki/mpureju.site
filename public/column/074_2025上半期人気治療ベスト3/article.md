@@ -6,7 +6,7 @@ category:
 tags: "人気治療, ランキング, XERF, ザーフ, うるおいシルキー注射, ジェネシス, たるみ, スキンブースター, 美肌, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DMHhrCoz97x/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-07-15"
 ---
 
 2025年上半期にMaison PUREJUで特に人気を集めた治療ベスト3をご紹介します。

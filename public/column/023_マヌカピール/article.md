@@ -7,7 +7,7 @@ category:
 tags: "マヌカピール, MIXピール, ピーリング, マヌカハニー, 毛穴, ニキビ, くすみ, 乳酸, グリコール酸, サリチル酸, 敏感肌"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C0ldO41yy7x/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-12-08"
 ---
 
 Maison PUREJUに新しいピーリングメニュー「マヌカピール（MIXピールマヌカ）」が導入されました。

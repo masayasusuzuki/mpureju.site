@@ -6,7 +6,7 @@ category:
 tags: "ゆらぎ肌, 赤み, 敏感肌, メソナJ, シルキー注射, 乾燥, 炎症, 血管拡張, 真皮治療, 肌育"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C0Ec0jKy18H/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-11-25"
 ---
 
 「最近、肌がゆらいでいる気がする」——そう感じたことはありませんか。

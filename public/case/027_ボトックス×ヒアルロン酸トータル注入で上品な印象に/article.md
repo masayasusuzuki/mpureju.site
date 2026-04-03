@@ -10,7 +10,7 @@ risks: "皮下出血、腫脹、左右差、血流障害、硬結、アレルギ
 tags: "ボトックス, ヒアルロン酸, 頬ヒアルロン酸, 唇ヒアルロン酸, 注入, トータルバランス, 上品"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cw4BSJwSYb5/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-09-07"
 ---
 
 ## この症例について

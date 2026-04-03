@@ -10,7 +10,7 @@ risks: "腫れ、内出血、傷跡など"
 tags: "眉下切開,眉下リフト,まぶたのたるみ,アンチエイジング"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C9j6WG3S2ZE/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-07-18"
 ---
 
 ## この症例について

@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,口角形成,口角リフト,不機嫌顔,口元整形,自然な変化,正面,斜め"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3zpxtbSPbD/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-02-26"
 ---
 
 ## この症例について

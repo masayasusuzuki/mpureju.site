@@ -6,7 +6,7 @@ category:
 tags: "ポテンツァ, ニードルRF, 毛穴, ニキビ跡, たるみ, ドラッグデリバリー, エクソソーム, マックーム"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cu50kN1yCLj/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-07-20"
 ---
 
 「毛穴の開きやニキビ跡がなかなか改善しない」「たるみとニキビを同時にケアしたい」——こうした複合的な肌悩みに対応できるのが、ニードルRF治療「ポテンツァ」です。

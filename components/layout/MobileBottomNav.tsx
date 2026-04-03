@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CLINIC } from "@/lib/constants";
 
 export function MobileBottomNav() {
   return (
@@ -8,7 +9,7 @@ export function MobileBottomNav() {
       <div className="grid grid-cols-4 h-16">
         {/* LINE相談 */}
         <a
-          href="https://lin.ee/maisonpureju"
+          href={CLINIC.lineUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center gap-1 text-white hover:bg-white/5 transition-colors"
@@ -21,7 +22,7 @@ export function MobileBottomNav() {
 
         {/* Web予約 */}
         <a
-          href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
+          href={CLINIC.reservationUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center gap-1 bg-[var(--color-brand-gold)] text-white hover:opacity-90 transition-opacity"
@@ -34,7 +35,7 @@ export function MobileBottomNav() {
 
         {/* 電話 */}
         <a
-          href="tel:0332891222"
+          href={CLINIC.phoneTel}
           className="flex flex-col items-center justify-center gap-1 text-white hover:bg-white/5 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

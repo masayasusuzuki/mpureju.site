@@ -6,7 +6,7 @@ category:
 tags: "ポテンツァ, サーマニードル, マイクロニードルRF, ニードルRF, ニキビ跡, クレーター, たるみ, 毛穴, コラーゲン, ドラックデリバリー"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C7RAVYfu-lV/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-05-22"
 ---
 
 美肌治療で定番となっているニードルRF（マイクロニードル高周波）。

@@ -6,7 +6,7 @@ category:
 tags: "HIFU, ウルトラセルZi, たるみ治療, リフトアップ, オーダーメイド照射, 笑気麻酔, フェイスライン, コケ顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3mo3JWufpj/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-02-21"
 ---
 
 「HIFUを受けたことがあるけど効果実感が乏しかった」「HIFUはどこでやっても同じ」——そう思っていませんか。

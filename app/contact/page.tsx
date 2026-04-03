@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { CLINIC } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "お問い合わせ｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -11,20 +12,20 @@ export const metadata: Metadata = {
 const CLINIC_INFO = [
   {
     label: "住所",
-    value: "〒104-0061\n東京都中央区銀座５丁目３−１３\nGinza SS 85ビル 4F",
+    value: `${CLINIC.postal}\n${CLINIC.address}\n${CLINIC.building}`,
   },
   {
     label: "電話",
-    value: "03-3289-1222",
-    href: "tel:0332891222",
+    value: CLINIC.phone,
+    href: CLINIC.phoneTel,
   },
   {
     label: "診療時間",
-    value: "10:00 〜 19:00",
+    value: CLINIC.hours,
   },
   {
     label: "休診日",
-    value: "月曜日・不定休",
+    value: CLINIC.closedDay,
   },
   {
     label: "アクセス",
@@ -102,7 +103,7 @@ export default function ContactPage() {
               {/* 予約ボタン */}
               <div className="space-y-3">
                 <a
-                  href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
+                  href={CLINIC.reservationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full py-3.5 bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] text-xs tracking-widest font-medium hover:opacity-90 transition-opacity"
@@ -110,7 +111,7 @@ export default function ContactPage() {
                   Web予約
                 </a>
                 <a
-                  href="https://lin.ee/maisonpureju"
+                  href={CLINIC.lineUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full py-3.5 bg-[#06C755] text-white text-xs tracking-widest font-medium hover:opacity-90 transition-opacity"

@@ -10,7 +10,7 @@ risks: "腫れ、内出血、感染など"
 tags: "シルキー注射,スキンブースター,光老化,肌育,真皮"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DFfRn_myev0/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-01-31"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "ポテンツァ, マイクロニードルRF, ニキビ跡, クレーター, 毛穴, 肝斑, ドラックデリバリー, マックーム, たるみ, 赤ら顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C8oVDlOSPjO/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-06-25"
 ---
 
 ニキビ跡・毛穴・肝斑・赤ら顔・たるみ——お肌の幅広いトラブルに対応できる美肌治療機器が「ポテンツァ」です。

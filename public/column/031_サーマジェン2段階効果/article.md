@@ -6,7 +6,7 @@ category:
 tags: "サーマジェン, 高周波, RF, たるみ治療, フェイスライン, コラーゲン, ハリ, HIFU, リフトアップ, 引き締め"
 thumbnail: "image_2.jpg"
 instagram_url: "https://www.instagram.com/p/C4sQcZ_yY6d/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-03-19"
 ---
 
 Maison PUREJUのリピート率No.1施術「サーマジェン（高周波）」。

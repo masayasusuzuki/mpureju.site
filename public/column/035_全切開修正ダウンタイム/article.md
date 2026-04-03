@@ -6,7 +6,7 @@ category:
 tags: "全切開, 二重修正, ダウンタイム, 腫れ, 内出血, 抜糸, 経過, 術後ケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6OBaK0Sgyz/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-04-26"
 ---
 
 「術後どのくらい腫れますか？」「いつから職場復帰できますか？」——二重全切開（修正）を検討する患者様から最もよくいただく質問が、ダウンタイムについてです。

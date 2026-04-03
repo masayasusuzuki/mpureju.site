@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "口角挙上,不機嫌そう,第一印象,口角が下がっている"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DPTUmWnk4Ic/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-10-02"
 ---
 
 ## この症例について

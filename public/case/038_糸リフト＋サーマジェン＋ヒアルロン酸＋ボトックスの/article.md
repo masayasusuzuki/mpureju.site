@@ -10,7 +10,7 @@ risks: "腫れ、内出血、感染、露出、へこみ、ひきつれ、一過
 tags: "糸リフト,サーマジェン,ヒアルロン酸注射,ボトックス注射,小顔,たるみ治療,フェイスライン,コンビネーション治療,引き締め"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C2mbZvWSkA1/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-01-27"
 ---
 
 ## この症例について

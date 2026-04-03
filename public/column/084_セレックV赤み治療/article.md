@@ -6,7 +6,7 @@ category:
 tags: "セレックV, IPL, 光治療, 赤み治療, シミ治療, 毛穴, くすみ, 赤ら顔, フィルター, ダウンタイムなし"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DN-S2VAkmp6/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-08-30"
 ---
 
 「何をしても顔の赤みが消えない」「赤みの治療をしたいけどどの機器が合うかわからない」——そんな方におすすめの治療が「セレックV」です。

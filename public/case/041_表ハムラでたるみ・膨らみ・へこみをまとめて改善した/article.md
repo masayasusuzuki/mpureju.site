@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、結膜浮腫、くぼみ、傷跡、外
 tags: "表ハムラ,目の下のクマ,クマとり,目の下のたるみ,脱脂,ハムラ法,目元整形"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3cRDIbubnh/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-02-17"
 ---
 
 ## この症例について

@@ -4,14 +4,11 @@ import { useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
+import { PILLARS } from "@/lib/constants";
 
 const CATEGORIES = [
-  { id: "all",   label: "すべて" },
-  { id: "目元",   label: "目元" },
-  { id: "鼻",     label: "鼻" },
-  { id: "口元",   label: "口元" },
-  { id: "リフトアップ", label: "リフトアップ" },
-  { id: "美容皮膚科",   label: "美容皮膚科" },
+  { id: "all", label: "すべて" },
+  ...PILLARS.map((p) => ({ id: p.label, label: p.label })),
 ];
 
 export type CaseItem = {

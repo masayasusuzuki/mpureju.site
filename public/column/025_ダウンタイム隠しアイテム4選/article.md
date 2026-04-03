@@ -6,7 +6,7 @@ category:
 tags: "ダウンタイム, 腫れ隠し, 内出血, サングラス, ヤケーヌ, 帽子, マスク, 術後ケア, 美容施術"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C1T7Y_IS4Em/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-12-26"
 ---
 
 美容施術を受けたいけれど「ダウンタイム中の外出が不安」という方も多いと思います。

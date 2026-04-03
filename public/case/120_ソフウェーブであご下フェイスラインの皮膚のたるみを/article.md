@@ -10,7 +10,7 @@ risks: "赤み、熱傷（稀）、むくみなど"
 tags: "ソフウェーブ,フェイスライン,皮膚のたるみ,あご下"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNuNIXk5if9/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-08-24"
 ---
 
 ## この症例について

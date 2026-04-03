@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡、術後変形、感染、露出
 tags: "鼻孔縁下降, 鼻尖形成, 耳介軟骨移植, 鼻の穴, 鼻整形, クローズ法, 鼻先"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CttIGAXucOh/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-06-20"
 ---
 
 ## この症例について

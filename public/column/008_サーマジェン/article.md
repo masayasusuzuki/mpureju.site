@@ -6,7 +6,7 @@ category:
 tags: "サーマジェン, RF, ラジオ波, たるみ, フェイスライン, コラーゲン, リフトアップ, ウルトラセルZi"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Ct1GILYyrrP/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-06-23"
 ---
 
 「たるみが気になるけど、痛みのある治療は怖い」「マスクを外したときのフェイスラインが気になる」——そんな方に注目いただきたいのが、RF（ラジオ波）を用いたたるみ治療「サーマジェン」です。

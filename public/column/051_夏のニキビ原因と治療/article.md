@@ -6,7 +6,7 @@ category:
 tags: "ニキビ, 夏のニキビ, 皮脂, バリア機能, ターンオーバー, ピーリング, メソナJ, ボトックス, レチノール, ニキビ治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C_NXu-ky-iB/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-08-28"
 ---
 
 紫外線が強く、汗や皮脂が増えやすい夏は、ニキビが悪化しやすい季節です。

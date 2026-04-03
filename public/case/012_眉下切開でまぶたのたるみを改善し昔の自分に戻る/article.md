@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷あと、再発、眼瞼痙攣など
 tags: "眉下切開, 眉下リフト, まぶたのたるみ, 二重埋没, 額のシワ, アンチエイジング, 若返り"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cs8aa35yKM5/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-06-01"
 ---
 
 ## この症例について

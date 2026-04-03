@@ -433,33 +433,50 @@ export default async function RecruitPage() {
           <div className="section-container">
             <SectionHeading en="Staff Blog" ja="スタッフブログ" number="03" className="mb-14" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {staffBlogs.map((post, i) => (
-                <ScrollFadeIn key={post.id} delay={i * 0.1}>
-                  <Link href={`/recruit/staff-blog/${post.slug}`} className="block bg-[var(--color-brand-cream)] overflow-hidden h-full group">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image
-                        src={post.thumbnail.url}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(26,20,8,0.2) 0%, transparent 35%, transparent 65%, rgba(26,20,8,0.2) 100%), rgba(26,20,8,0.08)" }} />
-                    </div>
-                    <div className="px-5 py-4">
-                      <p className="font-serif text-sm text-[var(--color-brand-dark)] leading-relaxed line-clamp-2 group-hover:text-[var(--color-brand-gold)] transition-colors">
-                        {post.title}
-                      </p>
-                    </div>
-                  </Link>
-                </ScrollFadeIn>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {staffBlogs.map((post, i) => {
+                const categories = Array.isArray(post.category) ? post.category : [post.category];
+                return (
+                  <ScrollFadeIn key={post.id} delay={i * 0.1}>
+                    <Link
+                      href={`/staff-blog/${post.slug}`}
+                      className="group block bg-white border border-[var(--color-brand-brown)]/10 overflow-hidden h-full shadow-sm hover:shadow-lg transition-shadow"
+                    >
+                      <div className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden">
+                        <Image
+                          src={post.thumbnail.url}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                      <div className="px-5 py-5">
+                        <div className="flex items-center gap-2.5 mb-3">
+                          <span className="text-[0.6rem] tracking-[0.2em] text-[var(--color-brand-gold)]">
+                            {categories.filter(Boolean).join(" / ")}
+                          </span>
+                          <time className="text-[0.6rem] text-[var(--color-text-secondary)]/50 tracking-wider">
+                            {new Date(post.published_at).toLocaleDateString("ja-JP", {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            }).replace(/\//g, ".")}
+                          </time>
+                        </div>
+                        <p className="text-sm font-light text-[var(--color-brand-dark)] leading-relaxed tracking-wide group-hover:text-[var(--color-brand-gold)] transition-colors line-clamp-2">
+                          {post.title}
+                        </p>
+                      </div>
+                    </Link>
+                  </ScrollFadeIn>
+                );
+              })}
             </div>
 
             <div className="mt-10 text-center">
               <Link
-                href="/recruit/staff-blog"
+                href="/staff-blog"
                 className="inline-flex items-center gap-2 text-sm text-[var(--color-brand-gold)] hover:underline underline-offset-4 font-light tracking-wide"
               >
                 スタッフブログをもっと見る →

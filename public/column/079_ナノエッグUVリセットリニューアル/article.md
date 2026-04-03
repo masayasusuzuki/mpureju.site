@@ -6,7 +6,7 @@ category:
 tags: "サプリメント, 日焼け対策, ダウンタイムケア, ナノエッグ, ビタミンD, ビタミンC, セラミド, DNA修復, 炎症, 色素沈着"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNAm5CLSywl/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-08-07"
 ---
 
 大人気でずっと品切れが続いていたサプリがリニューアルして再登場しました。「ナノエッグ UV＆DTリセット ホワイトサプリメント」は、紫外線ダメージのDNA修復に特化した配合で、しかも今回のリニューアルで配合量が従来比20%アップしています。

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getNewsBySlug, getNewsList } from "@/lib/microcms/client";
+import { CLINIC } from "@/lib/constants";
 
 export async function generateStaticParams() {
   const data = await getNewsList();
@@ -118,7 +119,7 @@ export default async function NewsDetailPage({
               {/* CTA */}
               <div className="space-y-3">
                 <a
-                  href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
+                  href={CLINIC.reservationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-6 py-3 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"
@@ -126,7 +127,7 @@ export default async function NewsDetailPage({
                   Web予約
                 </a>
                 <a
-                  href="https://lin.ee/maisonpureju"
+                  href={CLINIC.lineUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center border border-[var(--color-brand-dark)] text-[var(--color-brand-dark)] px-6 py-3 text-sm tracking-widest hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors"

@@ -62,7 +62,8 @@ export async function searchCases(keyword: string, limit = 6) {
       endpoint: "cases",
       queries: { q: keyword, limit },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] searchCases failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit };
   }
 }
@@ -74,7 +75,8 @@ export async function searchColumns(keyword: string, limit = 10) {
       endpoint: "columns",
       queries: { q: keyword, limit },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] searchColumns failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit };
   }
 }
@@ -149,7 +151,8 @@ export async function getStaffBlogList(queries?: MicroCMSQueries) {
         ...queries,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getStaffBlogList failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 10 };
   }
 }
@@ -165,7 +168,8 @@ export async function getStaffBlogBySlug(slug: string) {
       },
     });
     return data.contents[0] ?? null;
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getStaffBlogBySlug failed:", e);
     return null;
   }
 }
@@ -183,7 +187,8 @@ export async function getMachineList(queries?: MicroCMSQueries) {
         ...queries,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getMachineList failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 50 };
   }
 }
@@ -199,7 +204,8 @@ export async function getMachineBySlug(slug: string) {
       },
     });
     return data.contents[0] ?? null;
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getMachineBySlug failed:", e);
     return null;
   }
 }
@@ -234,7 +240,8 @@ export async function getMedicineBySlug(slug: string) {
       },
     });
     return data.contents[0] ?? null;
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getMedicineBySlug failed:", e);
     return null;
   }
 }
@@ -247,12 +254,13 @@ export async function getColumnList(queries?: MicroCMSQueries) {
     return await microcms.getList<Column>({
       endpoint: "columns",
       queries: {
-        orders: "-publishedAt",
+        orders: "-published_at",
         limit: 12,
         ...queries,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getColumnList failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 12 };
   }
 }
@@ -268,7 +276,8 @@ export async function getColumnBySlug(slug: string) {
       },
     });
     return data.contents[0] ?? null;
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getColumnBySlug failed:", e);
     return null;
   }
 }
@@ -286,7 +295,8 @@ export async function getCaseList(queries?: MicroCMSQueries) {
         ...queries,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getCaseList failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 12 };
   }
 }
@@ -302,7 +312,8 @@ export async function getCaseBySlug(slug: string) {
       },
     });
     return data.contents[0] ?? null;
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getCaseBySlug failed:", e);
     return null;
   }
 }
@@ -318,7 +329,8 @@ export async function getCasesByPillar(pillar: string) {
         limit: 6,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getCasesByPillar failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 6 };
   }
 }
@@ -334,7 +346,8 @@ export async function getCasesByTreatment(treatmentName: string) {
         limit: 6,
       },
     });
-  } catch {
+  } catch (e) {
+    console.error("[microcms] getCasesByTreatment failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 6 };
   }
 }

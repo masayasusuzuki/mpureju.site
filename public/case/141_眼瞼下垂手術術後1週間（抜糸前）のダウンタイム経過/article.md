@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷あと、再発、眼瞼痙攣など
 tags: "眼瞼下垂,眼瞼下垂手術,ダウンタイム,抜糸前"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DTKfgICE7YB/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2026-01-06"
 ---
 
 ## この症例について

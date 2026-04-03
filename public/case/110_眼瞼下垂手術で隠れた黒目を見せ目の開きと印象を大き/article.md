@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷あと、再発、眼瞼痙攣など
 tags: "眼瞼下垂,眼瞼下垂手術,目力アップ,ぱっちり二重"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DLexsJ9z7Yc/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-06-29"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "ブレッシング, ポテンツァ, ニードルRF, 傾斜ニードル, コラーゲン生成, ニキビ跡, サブシジョン, 毛穴, 肌質改善"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNu_PsAZpnJ/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-08-24"
 ---
 
 「ポテンツァ超え」とも言われる新しいニードルRF治療「ブレッシング」。世界初の「傾斜ニードルRF」技術が、従来のポテンツァよりも3つの点でパワーアップしています。

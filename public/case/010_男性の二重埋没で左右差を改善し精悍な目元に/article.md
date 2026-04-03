@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、あと戻り、シスト形成、異物
 tags: "二重埋没, 男性, 二重整形, 左右差, 目力, 一重, 似合わせ二重"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CsqWoa9ycIs/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-05-25"
 ---
 
 ## この症例について

@@ -10,7 +10,7 @@ risks: "赤み、色素沈着、ニキビの一時悪化など"
 tags: "ニキビ治療,IPLフォトフェイシャル,ホルモンバランス,大人ニキビ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DBqWh4Mz80e/"
-published_at: "2026-04-02"
+published_at: "2024-10-28"
 ---
 
 ## この症例について

@@ -10,7 +10,7 @@ risks: "発赤、腫脹、やけどなど"
 tags: "サーマジェン,RF,高周波,小顔,フェイスライン,引き締め,たるみ治療,ダウンタイム少"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6nHKeUy4Yl/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-05-06"
 ---
 
 ## この症例について

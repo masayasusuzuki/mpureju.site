@@ -10,7 +10,7 @@ risks: "内出血、左右差、血流障害、硬結、アレルギー"
 tags: "額ヒアルロン酸, こめかみ, ヒアルロン酸注射, 女性らしい顔, 若返り, 丸顔, 輪郭"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CtbUoKKyBXY/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-06-13"
 ---
 
 ## この症例について

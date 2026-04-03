@@ -6,7 +6,7 @@ category:
 tags: "脂性肌, オイリー肌, 皮脂ケア, プラスリストア, ゼオスキン, レヴェイエ, ビタミンC, 洗顔, 角質ケア, 毛穴"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C8EYewSOYf3/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-06-11"
 ---
 
 テカリ・べたつき・ニキビ・毛穴の詰まり——脂性肌のお悩みは皮脂の過剰分泌が根本にあります。

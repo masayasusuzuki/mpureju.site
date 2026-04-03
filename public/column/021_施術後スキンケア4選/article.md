@@ -7,7 +7,7 @@ category:
 tags: "ダウンタイム, スキンケア, EGF, 幹細胞培養液, ポテンツァ, フラクショナル, 施術後ケア, ピュレアジー, レカルカ, リビジョン"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cz8JRaMyj-O/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-11-23"
 ---
 
 ポテンツァやフラクショナルなどの施術は効果が高い一方で、ダウンタイムもつきものです。

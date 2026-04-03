@@ -6,7 +6,7 @@ category:
 tags: "シミ治療, プレトリートメント, 炎症後色素沈着, トラネキサム酸, ビタミンC, レーザー, メラニン, ターンオーバー, スキンケア, シミ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C-9vWATyTmk/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-08-22"
 ---
 
 「シミ治療したら逆に濃くなってしまった」——そんな経験や声を聞いたことはありませんか。

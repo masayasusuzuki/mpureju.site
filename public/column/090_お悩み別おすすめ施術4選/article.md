@@ -6,7 +6,7 @@ category:
 tags: "お悩み別治療, ヒアルロン酸, ショートスレッド, ソフウェーブ, シルキー注射, たるみ, 皮だるみ, ツヤ肌, カスタマイズ治療, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DRWhTLfkpfZ/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-11-22"
 ---
 
 お顔の悩みは人によってさまざま。「何から始めればいいかわからない」という方のために、お悩み別に4つのおすすめ施術をご紹介します。

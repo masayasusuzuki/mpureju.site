@@ -4,6 +4,8 @@ import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { getClinicCalendar } from "@/lib/supabase/queries";
 import { ClinicSlideshow } from "./ClinicSlideshow";
 import { ClinicCalendarWidget } from "@/components/ui/ClinicCalendarWidget";
+import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
+import { CLINIC } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "当院について｜Maison PUREJU 銀座の美容外科・美容皮膚科",
@@ -269,10 +271,10 @@ export default async function AboutPage() {
             <ScrollFadeIn delay={0.1}>
               <dl className="divide-y divide-[var(--color-brand-brown)]/10">
                 {[
-                  { label: "ADDRESS", value: "〒104-0061 東京都中央区銀座５丁目３−１３\nGinza SS 85ビル 4F" },
+                  { label: "ADDRESS", value: `${CLINIC.postal} ${CLINIC.address}\n${CLINIC.building}` },
                   { label: "ACCESS", value: "東京メトロ銀座駅 徒歩1分\nJR有楽町駅 徒歩5分" },
-                  { label: "TEL", value: "03-3289-1222" },
-                  { label: "HOURS", value: "10:00 〜 19:00\n休診日：月曜・不定休" },
+                  { label: "TEL", value: CLINIC.phone },
+                  { label: "HOURS", value: `${CLINIC.hours}\n休診日：${CLINIC.closedDay}` },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-6 py-5">
                     <dt className="font-en text-xs tracking-widest text-[var(--color-brand-gold)] w-20 shrink-0 pt-0.5">{item.label}</dt>
@@ -281,7 +283,7 @@ export default async function AboutPage() {
                 ))}
               </dl>
               <a
-                href="https://www.google.com/maps?ll=35.671645,139.76263&z=16&t=m&hl=ja&gl=JP&mapclient=embed&cid=11387186794925088261"
+                href={CLINIC.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-block text-xs text-[var(--color-brand-gold)] underline underline-offset-2 hover:opacity-70 transition-opacity"
@@ -315,35 +317,7 @@ export default async function AboutPage() {
       )}
 
       {/* ===== CTA ===== */}
-      <section className="py-16 md:py-20 border-t border-[var(--color-brand-gold)]/20 bg-white">
-        <div className="section-container text-center">
-          <p className="font-en text-xs tracking-[0.3em] text-[var(--color-brand-gold)] mb-4">CONSULTATION</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-[var(--color-brand-dark)] mb-3">
-            ご予約・ご相談はこちら
-          </h2>
-          <p className="text-sm text-[var(--color-text-secondary)] mb-8">
-            まずはカウンセリングでお気軽にご相談ください。
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[var(--color-brand-gold)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest font-medium hover:opacity-90 transition-opacity"
-            >
-              Web予約
-            </a>
-            <a
-              href="https://lin.ee/maisonpureju"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-[var(--color-brand-dark)] text-[var(--color-brand-dark)] px-10 py-4 text-sm tracking-widest hover:bg-[var(--color-brand-dark)] hover:text-white transition-colors"
-            >
-              LINE予約
-            </a>
-          </div>
-        </div>
-      </section>
+      <ConsultationCTA subtitle="まずはカウンセリングでお気軽にご相談ください。" />
     </>
   );
 }

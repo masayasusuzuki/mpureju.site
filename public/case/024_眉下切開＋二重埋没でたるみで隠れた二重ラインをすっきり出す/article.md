@@ -10,7 +10,7 @@ risks: "腫れ、内出血、傷跡、再発、糸の露出、ごろごろ感な
 tags: "眉下切開, 二重埋没, まぶたのたるみ, すっきり目元, 二重ライン"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cv1nVfduuAK/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-08-12"
 ---
 
 ## この症例について

@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷あと、再発、眼瞼痙攣など
 tags: "眼瞼下垂, 眼瞼下垂手術, 目の開き, 二重, 眉の左右差, 額のシワ, 目力アップ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CsA_rsnuCBD/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-05-09"
 ---
 
 ## この症例について

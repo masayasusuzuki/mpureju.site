@@ -10,7 +10,7 @@ risks: "腫れ、内出血、血流障害など"
 tags: "鼻ヒアルロン酸, あごヒアルロン酸, 光, ハイライト効果, 華やかさ, バランス"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CxxUwUXyzs7/"
-published_at: "2026-04-02"
+published_at: "2023-09-29"
 ---
 
 ## この症例について

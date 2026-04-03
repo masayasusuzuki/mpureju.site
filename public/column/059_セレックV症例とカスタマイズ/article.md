@@ -6,7 +6,7 @@ category:
 tags: "セレックV, IPL, 光治療, シミ, 赤ら顔, 酒さ, 毛細血管拡張症, くすみ, 肝斑, カスタマイズ治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DC6NrPVSmD_/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-11-28"
 ---
 
 セレックVはIPL（インテンス・パルス・ライト）光治療機器の中でも、9種類もの波長フィルターを搭載している点が最大の特徴です。

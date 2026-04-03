@@ -6,7 +6,7 @@ category:
 tags: "ゼオスキン, セラピューティック, ZeoSkin, 肌質改善, ターンオーバー, シミ, シワ, くすみ, ニキビ跡, ドクターズコスメ, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DSmYCEXkqf-/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-12-23"
 ---
 
 ドクターズコスメ「ゼオスキン」を使った集中肌質改善プログラム「セラピューティック」。当院スタッフが実際に体験した、開始から1ヶ月間の経過をご紹介します。

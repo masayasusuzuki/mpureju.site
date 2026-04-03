@@ -6,7 +6,7 @@ category:
 tags: "初診, カウンセリング, よくある質問, 予約, キャンセル, 未成年, 持ち物, 初めて"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C6S_XQqyI__/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-04-28"
 ---
 
 「初めて行くけど何を持っていけばいい？」「当日手術できる？」——初めてのご来院前によくいただくご質問をまとめました。

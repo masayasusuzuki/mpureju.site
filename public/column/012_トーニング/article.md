@@ -6,7 +6,7 @@ category:
 tags: "トーニング, カスタマイズトーニング, 肝斑, くすみ, シミ, そばかす, 毛穴, ダブルパルス, 敏感肌"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CvhEbSAu0Yp/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-08-04"
 ---
 
 「肝斑があってレーザー治療を躊躇している」「敏感肌やアトピーでも受けられるシミ治療が知りたい」——そんな方にご紹介したいのが「カスタマイズトーニング」です。

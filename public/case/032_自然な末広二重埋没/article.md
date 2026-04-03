@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、あと戻り、シスト形成、異物
 tags: "二重埋没,自然な二重,末広二重,アイプチ卒業,二重整形,重い一重,目元整形"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CyDS3qqOCQy/"
-published_at: "2026-04-02"
+published_at: "2023-10-06"
 ---
 
 ## この症例について

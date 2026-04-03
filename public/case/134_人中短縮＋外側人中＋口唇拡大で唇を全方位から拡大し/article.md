@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷痕、硬結、後戻りなど"
 tags: "人中短縮,外側人中,口唇拡大,複合手術"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DREj0qqE9p3/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-11-15"
 ---
 
 ## この症例について

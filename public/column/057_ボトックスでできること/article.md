@@ -6,7 +6,7 @@ category:
 tags: "ボトックス, シワ, 動的シワ, 表情シワ, 小顔, エラ, 多汗症, リフトアップ, 口角, ほうれい線"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DByX1IYzUjR/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-10-31"
 ---
 
 「ボトックス＝シワに効く」というイメージが強いですが、実際には用途は多岐にわたります。

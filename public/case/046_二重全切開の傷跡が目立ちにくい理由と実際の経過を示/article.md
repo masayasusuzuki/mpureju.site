@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡、感染など"
 tags: "二重全切開,二重切開,傷跡,二重整形,切開法,ダウンタイム,二重の経過"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C4sVo3Qy5mv/"
-published_at: "2026-04-02"
+published_at: "2024-03-19"
 ---
 
 ## この症例について

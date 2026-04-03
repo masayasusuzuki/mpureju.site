@@ -6,7 +6,7 @@ category:
 tags: "外科手術, 皮膚科治療, 割引, 美容医療, Maison PUREJU, アフターケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CwUo3g3yEAU/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-08-24"
 ---
 
 Maison PUREJUで外科治療を受けてくださった患者様へ、皮膚科治療に関する特別なご案内があります。

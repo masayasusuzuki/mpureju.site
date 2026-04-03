@@ -6,7 +6,7 @@ category:
 tags: "皮膚たるみ, ソフウェーブ, ショートスレッド, ニードルRF, 真皮層, 引き締め, コラーゲン, 二重顎, フェイスライン, 肌質改善"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNZl73jyOA0/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-08-16"
 ---
 
 「太っていないのに二重顎になってしまう」「笑うとさざ波のようなシワが出る」——それは皮膚のたるみが原因かもしれません。脂肪が少ない方でも、皮膚自体がたるんで見える場合があります。

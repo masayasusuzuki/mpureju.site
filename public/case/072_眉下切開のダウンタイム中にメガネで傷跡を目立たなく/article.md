@@ -10,7 +10,7 @@ risks: "腫れ、内出血、傷跡など"
 tags: "眉下切開,ダウンタイム,ダウンタイム隠し,術後の生活"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C_plUfqy8P3/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-09-08"
 ---
 
 ## この症例について

@@ -6,7 +6,7 @@ category:
 tags: "糸リフト, スパイラル, ロイヤル, テスリフト, フィックス, クレオV, マインリフト, ミントリフト, リフトアップ, たるみ, フェイスライン"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C3Unqb7ygt9/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-02-14"
 ---
 
 前回の記事では糸リフトの基本と材質についてご紹介しました。

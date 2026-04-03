@@ -10,7 +10,7 @@ risks: "腫れ、内出血、糸の露出/感染など"
 tags: "ショートスレッド,たるみ治療,口横のぽにょ,皮膚のゆるみ,フェイスライン,リフトアップ,非手術"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cx7rf10SfKD/"
-published_at: "2026-04-02"
+published_at: "2023-10-03"
 ---
 
 ## この症例について

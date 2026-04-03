@@ -7,7 +7,7 @@ category:
 tags: "紫外線ダメージ, ペパーミントピール, メソナJ, 高濃度ビタミンC点滴, 夏の肌ケア, 角質肥厚, 乾燥肌"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CwSA7EzSEQ9/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-08-23"
 ---
 
 夏の終わりに気になりはじめる、肌のごわつき・ざらつき・乾燥。

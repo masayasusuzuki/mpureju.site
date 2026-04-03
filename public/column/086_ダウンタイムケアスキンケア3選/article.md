@@ -6,7 +6,7 @@ category:
 tags: "ダウンタイム, スキンケア, レカルカ, DREX, ピュレアジー, PDRN, 幹細胞, 肌再生, 鎮静, 術後ケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DOiUWCFEhOK/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-09-13"
 ---
 
 「肌治療をした後は普段のスキンケアが沁みて使えない」「ダウンタイムを短縮したい」——そんな方におすすめの、施術後ダウンタイム中に使えるスキンケア3選をご紹介します。

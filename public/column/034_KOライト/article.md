@@ -6,7 +6,7 @@ category:
 tags: "KOライト, LED治療, 光治療, ダウンタイム, 術後ケア, ニキビ, 毛穴, コラーゲン, AGA, 育毛"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C57-8xIuo2w/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-04-20"
 ---
 
 Maison PUREJUに新登場した「KOライト」。超高輝度LEDで赤・青・混合色のハイパワーライトを照射する光治療機器です。ダウンタイムの短縮から肌質改善・育毛まで、幅広い悩みに対応できるのが特徴です。

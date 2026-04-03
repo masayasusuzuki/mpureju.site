@@ -6,7 +6,7 @@ category:
 tags: "ハイフ, 高周波, サーマジェン, ウルトラセルZi, たるみ, SMAS, リフトアップ, コラーゲン, サーマZI, 小顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C-yyrQXSq1Z/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-08-18"
 ---
 
 ハイフ（HIFU）と高周波を組み合わせて受けることで、単独施術では届かない層まで一度にアプローチできます。

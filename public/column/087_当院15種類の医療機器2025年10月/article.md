@@ -6,7 +6,7 @@ category:
 tags: "医療機器, カスタマイズ治療, たるみ治療, ウルトラセルZi, サーマジェン, XERF, ソフウェーブ, 肌診断, Maison PUREJU, 2025年最新"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DPV9F87EsYn/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-10-03"
 ---
 
 「治療の効果が思ったより出なかった」——それはご自身に合った治療法ではなかったからかもしれません。肌質やお顔の状態はお一人おひとり異なるため、最適な治療を選ぶことが大切です。

@@ -10,7 +10,7 @@ risks: "腫れ、内出血、感染、露出、へこみ、ひきつれ、一過
 tags: "糸リフト,ショートスレッド,ヒアルロン酸注射,フェイスライン,たるみ治療,小顔,引き締め,コンビネーション"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C4xXVi0ylTp/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-03-21"
 ---
 
 ## この症例について

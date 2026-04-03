@@ -10,7 +10,7 @@ risks: "赤み、腫れ、内出血、やけど、感染リスクなど"
 tags: "ポテンツァ, エクソソーム, メソナJ, アトピー性皮膚炎, 首ケア, 肌育, 炎症改善"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CtnrtcjSsqV/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2023-06-18"
 ---
 
 ## この症例について

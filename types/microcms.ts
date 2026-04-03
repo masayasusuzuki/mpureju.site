@@ -48,8 +48,12 @@ export interface StaffBlog {
   title: string;
   slug: string;
   thumbnail: MicroCMSImage;
+  images?: MicroCMSImage[];
   body: string;
   category: string[];
+  tags?: string;
+  author?: string;
+  instagram_url?: string;
   published_at: string;
 }
 

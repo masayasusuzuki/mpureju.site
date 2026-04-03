@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ReservationFlow } from "./ReservationFlow";
 import { getClinicCalendar } from "@/lib/supabase/queries";
 import { ClinicCalendarWidget } from "@/components/ui/ClinicCalendarWidget";
+import { CLINIC } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "ご予約・ご来院の流れ｜Maison PUREJU 銀座",
@@ -14,7 +15,7 @@ const BOOKING_METHODS = [
   {
     label: "Web予約",
     labelEn: "WEB",
-    href: "https://reservation.medical-force.com/c/0600773fd2b74afaba1282effeb9644d",
+    href: CLINIC.reservationUrl,
     desc: "24時間いつでもご予約いただけます。ご希望の日時・メニューをお選びください。",
     color: "bg-[var(--color-brand-gold)]",
     textColor: "text-[var(--color-brand-dark)]",
@@ -22,7 +23,7 @@ const BOOKING_METHODS = [
   {
     label: "LINE予約",
     labelEn: "LINE",
-    href: "https://lin.ee/maisonpureju",
+    href: CLINIC.lineUrl,
     desc: "LINEでお気軽にご相談・ご予約が可能です。友だち追加後、トーク画面からご連絡ください。",
     color: "bg-[#06C755]",
     textColor: "text-white",

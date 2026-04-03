@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡、再発など"
 tags: "蒙古ひだ形成,蒙古襞形成,目頭切開修正,他院修正,目元修正,目頭切開,目の内側"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5f3ORTyKau/"
-published_at: "2026-04-02"
+published_at: "2024-04-08"
 ---
 
 ## この症例について

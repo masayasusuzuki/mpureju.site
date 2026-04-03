@@ -6,7 +6,7 @@ category:
 tags: "ピーリング, ミラノリピール, マッサージピール, ペパーミントピール, マヌカピール, メイクアップピール, 毛穴, くすみ, ニキビ, 角質ケア"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DK_yVjqz2F7/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-06-17"
 ---
 
 「自分に合うピーリングはどれ？」という疑問に、当院のピーリング5種類を比較してご紹介します。肌悩みや肌質に合わせて最適な種類を選ぶことが大切です。

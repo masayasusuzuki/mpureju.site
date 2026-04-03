@@ -10,7 +10,7 @@ risks: "赤み、熱傷、むくみ、神経障害（稀）など"
 tags: "HIFU,ウルトラセルZi,ザーフ,RF,たるみ治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DHQTMF5Shfx/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-03-16"
 ---
 
 ## この症例について

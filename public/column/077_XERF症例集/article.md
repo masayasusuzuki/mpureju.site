@@ -6,7 +6,7 @@ category:
 tags: "XERF, ザーフ, たるみ治療, RF, SMAS層, コラーゲン生成, 引き締め, 小じわ, 症例, ダウンタイムなし"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DMoreFRSHMg/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-07-28"
 ---
 
 最新RFたるみ治療機「XERF（ザーフ）」の症例をご紹介します。世界初の2種類の周波数を組み合わせることで、皮膚表面からSMAS層まで熱を届け、中長期的にたるみや小じわを改善します。

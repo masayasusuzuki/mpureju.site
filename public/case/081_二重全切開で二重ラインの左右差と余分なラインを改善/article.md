@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡など"
 tags: "二重全切開,二重の左右差,二重調整,まぶたのたるみ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DDGjSGjSXLS/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-12-03"
 ---
 
 ## この症例について

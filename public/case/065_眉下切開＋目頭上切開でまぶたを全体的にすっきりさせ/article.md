@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡など"
 tags: "眉下切開,目頭上切開,まぶたのたるみ,眉毛の左右差"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C-xFGQ5y24Y/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-08-17"
 ---
 
 ## この症例について

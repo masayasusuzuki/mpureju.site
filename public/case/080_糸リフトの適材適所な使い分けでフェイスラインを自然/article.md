@@ -10,7 +10,7 @@ risks: "腫れ、内出血、引きつれ、左右差、糸の浮き出しなど
 tags: "糸リフト,ショートスレッド,たるみ治療,フェイスライン"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DC_j8i3yk4Y/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-11-30"
 ---
 
 ## この症例について

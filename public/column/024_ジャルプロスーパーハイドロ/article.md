@@ -6,7 +6,7 @@ category:
 tags: "ジャルプロスーパーハイドロ, JALUPRO, リガメント, たるみ治療, 注入治療, アミノ酸, ペプチド, ヒアルロン酸, ほうれい線, 老け顔"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C03jfJvSWnx/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-12-15"
 ---
 
 「HIFUや糸リフトをしたのにイマイチ効果が出なかった」「効果は出たけどすぐに戻ってしまった」——そんな経験はありませんか。

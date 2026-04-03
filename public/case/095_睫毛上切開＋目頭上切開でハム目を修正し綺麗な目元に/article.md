@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、傷跡など"
 tags: "ハム目修正,睫毛上切開,目頭上切開,二重修正"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DIBMHAfz1w6/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-04-04"
 ---
 
 ## この症例について

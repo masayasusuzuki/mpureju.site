@@ -6,7 +6,7 @@ category:
 tags: "セレックV, IPL, 光治療, シミ, そばかす, 赤ら顔, ニキビ, リジュビネーション, 肝斑, 毛穴"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CtnSN49yaxJ/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-06-18"
 ---
 
 「シミ治療の機器」というイメージが強いIPLですが、実は赤ら顔・ニキビ・くすみなど幅広い肌悩みに対応できる美肌治療器です。

@@ -7,7 +7,7 @@ category:
 tags: "シミ治療, ルビーフラクショナル, IPL, セレックV, ADM, 老人性色素斑, そばかす, ダウンタイム"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/Cxm8HgGyImd/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-09-25"
 ---
 
 「シミが気になるけど、どの機器が自分に合うかわからない」——そんな方のために、Maison PUREJUのシミ治療2大選択肢を徹底比較します。

@@ -6,7 +6,7 @@ category:
 tags: "メソナJ, メソポレーション, エレクトロポレーション, 経皮導入, ヒアルロン酸, ビタミンC, トラネキサム酸, コエンザイムQ10, ダウンタイムなし, 美肌"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CtEEmZnuZqr/"
-published_at: "2026-03-31"
+published_at: "2023-06-04"
 ---
 
 スキンケアで成分を塗り込んでも「本当に届いているのかな？」と感じたことはありませんか？

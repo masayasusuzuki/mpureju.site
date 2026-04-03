@@ -10,7 +10,7 @@ risks: "赤み、熱感、軽度の腫れ（通常数時間〜数日で落ち着
 tags: "サーマジェン,RF,たるみ改善,フェイスライン,引き締め,美容皮膚科,銀座"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CqhR9ePSh6I/?img_index=1"
-published_at: "2026-04-01"
+published_at: "2023-04-02"
 ---
 
 ## この症例について

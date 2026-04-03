@@ -10,7 +10,7 @@ risks: "赤み、熱傷（稀）、むくみなど"
 tags: "ソフウェーブ,ほうれい線,小じわ,毛穴"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DOnh25Rk0S-/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-09-15"
 ---
 
 ## この症例について

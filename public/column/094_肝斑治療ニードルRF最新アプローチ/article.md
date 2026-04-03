@@ -6,7 +6,7 @@ category:
 tags: "肝斑, ニードルRF, トーニング, ブレッシング, ポテンツァ, 基底膜, メラノサイト, 肝斑治療, ピーリング, トラネキサム酸, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DUc2TVYEjfB/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2026-02-07"
 ---
 
 「肝斑治療といえばトーニング」という認識が広まっていますが、肝斑治療は日々進化しています。現在の主流となりつつある「ニードルRF」によるアプローチをご紹介します。

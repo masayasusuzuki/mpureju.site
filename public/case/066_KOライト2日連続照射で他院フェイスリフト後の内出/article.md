@@ -10,7 +10,7 @@ risks: "なし（LED照射のため副作用は少ない）"
 tags: "KOライト,ダウンタイム軽減,内出血,フェイスリフト後"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C-ziTlOSs-4/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-08-27"
 ---
 
 ## この症例について

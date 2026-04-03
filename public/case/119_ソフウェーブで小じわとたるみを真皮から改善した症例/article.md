@@ -10,7 +10,7 @@ risks: "赤み、熱傷（稀）、むくみなど"
 tags: "ソフウェーブ,小じわ改善,たるみ治療,真皮治療"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DNnNVRZyMAk/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-08-21"
 ---
 
 ## この症例について

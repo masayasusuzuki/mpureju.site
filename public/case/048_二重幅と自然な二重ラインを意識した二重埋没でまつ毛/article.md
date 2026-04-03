@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、あと戻り、異物感"
 tags: "二重埋没,二重幅,まつ毛,自然な二重,二重整形,埋没,目元整形"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5Dc8r5ys75/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2024-03-28"
 ---
 
 ## この症例について

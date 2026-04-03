@@ -6,7 +6,7 @@ category:
 tags: "ウルトラセルZi, HIFU, 高密度焦点式超音波, たるみ, リフトアップ, ボリュームコントロール, フェイスライン, SMAS筋膜"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/CuHBhCfys3l/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2023-06-30"
 ---
 
 「ヒアルロン酸注入には抵抗がある」「ダウンタイムが取れないけどたるみを改善したい」——そんな方に選ばれているのが、HIFU（高密度焦点式超音波）治療「ウルトラセルZi」です。

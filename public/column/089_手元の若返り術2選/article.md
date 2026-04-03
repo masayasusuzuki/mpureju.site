@@ -6,7 +6,7 @@ category:
 tags: "手元ケア, ヒアルロン酸, シルキー注射, 手のシワ, 手のすじ, 若返り, 美容注射, Maison PUREJU"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DQYrl1UEjlg/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2025-10-29"
 ---
 
 「年齢を重ねるごとに、手のゴツゴツが気になるようになってきた」「手のシワ感で年齢を感じる」——そんなお悩みをお持ちの方は少なくありません。

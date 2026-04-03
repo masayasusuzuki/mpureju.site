@@ -10,7 +10,7 @@ risks: "腫れ、内出血、左右差、目の開きの変化、ラインの消
 tags: "二重埋没,二重の左右差,二重ラインが安定しない,まぶたのたるみ"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DM2LTKAuofx/?img_index=1"
-published_at: "2026-04-02"
+published_at: "2025-08-02"
 ---
 
 ## この症例について

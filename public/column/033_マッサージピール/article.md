@@ -6,7 +6,7 @@ category:
 tags: "マッサージピール, PRX-T33, ケミカルピーリング, コラーゲン, 艶肌, ハリ, トーンアップ, シミ, くすみ, 肝斑"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/C5VczIMSJuf/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-04-04"
 ---
 
 スタッフ一押しのピーリング、「マッサージピール（PRX-T33）」。施術直後から肌のハリ・艶・弾力アップが期待できる浸透型ピーリング剤です。今回はその成分の仕組みから効果・施術頻度まで詳しくご紹介します。

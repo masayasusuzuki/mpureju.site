@@ -6,7 +6,7 @@ category:
 tags: "シミ, ADM, そばかす, 老人性色素斑, 肝斑, ルビーフラクショナル, トーニング, セレックV, シミ治療, シミ診断"
 thumbnail: "image_1.jpg"
 instagram_url: "https://www.instagram.com/p/DCI3GaiyG_2/?img_index=1"
-published_at: "2026-03-31"
+published_at: "2024-11-09"
 ---
 
 一口に「シミ」といっても、その種類・原因・治療法はさまざまです。
