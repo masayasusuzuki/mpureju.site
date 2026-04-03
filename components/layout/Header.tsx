@@ -256,13 +256,30 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/case"
-            className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
-            onClick={() => setMobileMenuOpen(false)}
+          {/* 症例写真 アコーディオン */}
+          <button
+            className="flex items-center justify-between w-full px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
+            onClick={() => setMobileCaseOpen(!mobileCaseOpen)}
           >
             症例写真
-          </Link>
+            <svg className={`w-3 h-3 transition-transform ${mobileCaseOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {mobileCaseOpen && (
+            <div className="bg-[var(--color-brand-cream)]/30">
+              {caseItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-10 py-2.5 text-sm text-[var(--color-text-secondary)] border-b border-[var(--color-brand-cream)]"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
           <Link
             href="/price"
             className="block px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] border-b border-[var(--color-brand-cream)]"
