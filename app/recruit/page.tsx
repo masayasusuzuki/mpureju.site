@@ -6,7 +6,7 @@ import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
 import { ValuesCarousel } from "@/components/sections/ValuesCarousel";
 import { PositionAccordion } from "@/components/sections/PositionAccordion";
 import { IdealCandidateCarousel } from "./IdealCandidateCarousel";
-import { getStaffBlogList } from "@/lib/microcms/client";
+import { getBlogList } from "@/lib/microcms/client";
 
 export const metadata: Metadata = {
   title: "採用情報",
@@ -324,7 +324,7 @@ const SELECTION_STEPS = [
 ];
 
 export default async function RecruitPage() {
-  const staffBlogData = await getStaffBlogList({ limit: 3 });
+  const staffBlogData = await getBlogList({ filters: "slug[contains]staff", limit: 3 });
   const staffBlogs = staffBlogData.contents;
   return (
     <>

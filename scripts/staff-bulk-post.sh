@@ -1,5 +1,5 @@
 #!/bin/bash
-# microCMS staff_blog 一括投稿スクリプト
+# microCMS blog 一括投稿スクリプト
 # public/staff/ 配下の全ディレクトリを順番に投稿する
 
 cd "$(dirname "$0")/.."
@@ -23,7 +23,7 @@ find public/staff -maxdepth 1 -type d -name '[0-9]*' | sort | while IFS= read -r
   # ── slug重複チェック ──
   SLUG=$(grep '^slug:' "$FULL_PATH/article.md" | sed 's/slug: *"//' | sed 's/"//')
   if [ -n "$SLUG" ] && [ -n "$MICROCMS_WRITE_API_KEY" ]; then
-    DUP_COUNT=$(curl -s "https://${MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/staff_blog?filters=slug[equals]${SLUG}&fields=id&limit=1" \
+    DUP_COUNT=$(curl -s "https://${MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/blog?filters=slug[equals]${SLUG}&fields=id&limit=1" \
       -H "X-MICROCMS-API-KEY: ${MICROCMS_WRITE_API_KEY}" | grep -oE '"totalCount":[0-9]+' | grep -oE '[0-9]+')
     if [ -n "$DUP_COUNT" ] && [ "$DUP_COUNT" -gt 0 ]; then
       echo "⚠️  $DIR: slug '$SLUG' は既にmicroCMSに存在 → スキップ"

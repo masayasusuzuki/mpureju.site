@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // ============================================================
 // microcms-staff-blog-post.js
-// article.md を読み込んで microCMS staff_blog API に投稿する
+// article.md を読み込んで microCMS blog API に投稿する
 //
 // 使い方:
 //   node scripts/microcms-staff-blog-post.js public/staff/001_洗顔購入品紹介
@@ -122,7 +122,7 @@ function replaceImageRefs(content, imageMap) {
 // ── microCMS に POST ──────────────────────────────────────
 async function postStaffBlog(body) {
   const res = await fetch(
-    `https://${SERVICE_DOMAIN}.microcms.io/api/v1/staff_blog`,
+    `https://${SERVICE_DOMAIN}.microcms.io/api/v1/blog`,
     {
       method: "POST",
       headers: {
@@ -173,10 +173,13 @@ async function main() {
   const imageMap = {};
   imageMap[thumbnailName] = thumbnailUrl;
 
-  for (const imgFile of allImages) {
-    if (imgFile === thumbnailName) continue;
+  // サムネ以外の画像をアップロード
+  const extraImages = allImages.filter(f => f !== thumbnailName);
+  const imageUrls = [];
+  for (const imgFile of extraImages) {
     const url = await uploadImage(path.join(dir, imgFile));
     imageMap[imgFile] = url;
+    imageUrls.push(url);
   }
 
   const processedContent = replaceImageRefs(content, imageMap);
@@ -188,6 +191,7 @@ async function main() {
     category: meta.category ?? [],
     body: processedContent,
     thumbnail: thumbnailUrl,
+    ...(imageUrls.length > 0 ? { images: imageUrls } : {}),
     instagram_url: meta.instagram_url ?? "",
     published_at: meta.published_at ? new Date(meta.published_at).toISOString() : new Date().toISOString(),
   };
@@ -197,7 +201,7 @@ async function main() {
 
   console.log("\n✅ 投稿完了");
   console.log(`   ID  : ${result.id}`);
-  console.log(`   URL : https://app.microcms.io/services/${SERVICE_DOMAIN}/apis/staff_blog/editor/${result.id}`);
+  console.log(`   URL : https://app.microcms.io/services/${SERVICE_DOMAIN}/apis/blog/editor/${result.id}`);
 }
 
 main().catch((err) => {

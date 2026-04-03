@@ -62,6 +62,13 @@ $INSTALOADER \
   --no-video-thumbnails \
   -- "-$SHORTCODE"
 
+# ── 投稿日を抽出して保存 ─────────────────────────────────
+POST_DATE=$(ls "$TMP_DIR/" 2>/dev/null | head -1 | grep -oE '^[0-9]{4}-[0-9]{2}-[0-9]{2}')
+if [ -n "$POST_DATE" ]; then
+  echo "$POST_DATE" > "$OUT_DIR/published_at.txt"
+  echo "📅 投稿日: $POST_DATE"
+fi
+
 # ── ファイル整理 ──────────────────────────────────────────
 echo "📁 ファイルを整理中..."
 

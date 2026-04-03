@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getStaffBlogList, getStaffBlogBySlug, getCampaigns } from "@/lib/microcms/client";
+import { getBlogList, getBlogBySlug, getCampaigns } from "@/lib/microcms/client";
 import { ArticleDetailLayout } from "@/components/article/ArticleDetailLayout";
 import { SidebarList } from "@/components/article/SidebarList";
 
 export async function generateStaticParams() {
-  const data = await getStaffBlogList({ limit: 100 });
+  const data = await getBlogList({ filters: "slug[contains]staff", limit: 100 });
   return data.contents
     .filter((item) => item.slug)
     .map((item) => ({ slug: item.slug }));
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getStaffBlogBySlug(slug);
+  const post = await getBlogBySlug(slug);
   if (!post) return {};
   return {
     title: `${post.title}｜スタッフブログ｜Maison PUREJU`,
@@ -32,8 +32,8 @@ export default async function StaffBlogDetailPage({
 }) {
   const { slug } = await params;
   const [post, allData, campaignData] = await Promise.all([
-    getStaffBlogBySlug(slug),
-    getStaffBlogList({ limit: 100 }),
+    getBlogBySlug(slug),
+    getBlogList({ filters: "slug[contains]staff", limit: 100 }),
     getCampaigns(),
   ]);
   if (!post) notFound();

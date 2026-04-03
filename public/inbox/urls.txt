@@ -1,0 +1,23 @@
+# Instagram URL 投入口（article-orchestrator 用）
+# ============================================================
+# ここにURLを1行1件で貼り付けるだけ。
+# article-orchestrator が自動で振り分け・記事生成・CMS投稿まで実行する。
+# 処理済みの行は # [完了:タイプ] に自動更新される。
+#
+# 例:
+# https://www.instagram.com/p/XXXX/
+# https://www.instagram.com/reel/YYYY/
+# ============================================================
+
+https://www.instagram.com/p/DDi0d1xyh4g/?img_index=1
+https://www.instagram.com/p/C1RAc2fSoyl/?img_index=1
+https://www.instagram.com/p/Cza1ExES0HL/?img_index=1
+https://www.instagram.com/p/CmVjGZsy9yk/
+https://www.instagram.com/p/Ck51etuyASj/?img_index=1
+https://www.instagram.com/p/DOS2Oz5kz4D/?img_index=1
+https://www.instagram.com/p/Cn-7_blyxRZ/
+https://www.instagram.com/p/DVSZ9uEEi3m/?img_index=1
+https://www.instagram.com/p/DPOD7zgkx75/?img_index=1
+https://www.instagram.com/p/DMfITRwTOHQ/?img_index=1
+https://www.instagram.com/p/DMZpYjOuxfd/?img_index=1
+https://www.instagram.com/p/DIa7IH_T5zb/?img_index=3

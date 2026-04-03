@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,6 +24,20 @@ interface Props {
 export function PositionAccordion({ positions }: Props) {
   const [openId, setOpenId] = useState<string | null>(positions[0]?.id ?? null);
 
+  // URLハッシュで該当アコーディオンを開く
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && positions.some((p) => p.id === hash)) {
+      setOpenId(hash);
+      // レイアウト完了を待ってからスクロール
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      });
+    }
+  }, [positions]);
+
   function toggle(id: string) {
     setOpenId((prev) => (prev === id ? null : id));
   }
@@ -33,7 +47,7 @@ export function PositionAccordion({ positions }: Props) {
       {positions.map((pos, i) => {
         const isOpen = openId === pos.id;
         return (
-          <div key={pos.id}>
+          <div key={pos.id} id={pos.id} style={{ scrollMarginTop: "6rem" }}>
             {/* ヘッダー（クリックで開閉） */}
             <button
               type="button"

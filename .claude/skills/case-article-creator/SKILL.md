@@ -166,7 +166,13 @@ published_at: "YYYY-MM-DD"
 - thumbnail（microCMSにアップロードすべき画像）
 - instagram_urlフィールドが空の場合、元投稿URLがあれば追記を促す
 
-### Step 8: ディレクトリをリネームする
+### Step 8: インデックスを更新する
+
+以下の2ファイルに記事情報を追記する：
+- `public/case/CASE_INDEX.md` — 該当部位のテーブルに行を追加
+- `public/ARTICLE_INDEX.md` — 症例セクションの記事数を更新
+
+### Step 9: ディレクトリをリネームする
 
 記事作成・microCMS投稿完了後、対象ディレクトリを `{番号}_{記事タイトル}` 形式にリネームする。
 
@@ -194,7 +200,7 @@ export $(grep -v '^#' .env.local | grep -v '^image' | xargs) && node scripts/mic
 - **pillar判定は必ず施術名→マッピング表で行う**（施術部位や効果で推測しない）
 - 施術名がマッピング表にない場合はユーザーに確認する
 - 複数施術の組み合わせ（例: 糸リフト＋ヒアルロン酸）の場合、主たる施術のpillarを採用。判断に迷う場合はユーザーに確認
-- published_atは本日の日付を使用する
+- published_atの取得方法: `published_at.txt` があればその内容を使う。なければinstaloaderのダウンロードファイル名（`YYYY-MM-DD_HH-MM-SS_UTC`形式）の先頭から抽出する。どちらもなければ本日の日付を使用する
 - instagram_urlは空のまま保存してOK（後からユーザーが追記）
 - 画像に含まれるテキストは正確に反映する
 - CASE_INDEX.mdの更新を忘れないこと

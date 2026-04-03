@@ -1,7 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import type { Treatment } from "./types";
-import type { Campaign, Case, Column, Machine, Medicine, Media, News, StaffBlog, TeamPhoto } from "@/types/microcms";
+import type { Campaign, Case, Column, Machine, Medicine, Media, News, Blog, TeamPhoto } from "@/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
@@ -138,13 +138,13 @@ export async function getMediaList(queries?: MicroCMSQueries) {
   });
 }
 
-// ── staff_blog ──────────────────────────────
+// ── blog ──────────────────────────────
 
-/** スタッフブログ一覧を取得 */
-export async function getStaffBlogList(queries?: MicroCMSQueries) {
+/** ブログ一覧を取得 */
+export async function getBlogList(queries?: MicroCMSQueries) {
   try {
-    return await microcms.getList<StaffBlog>({
-      endpoint: "staff_blog",
+    return await microcms.getList<Blog>({
+      endpoint: "blog",
       queries: {
         orders: "-published_at",
         limit: 10,
@@ -152,16 +152,16 @@ export async function getStaffBlogList(queries?: MicroCMSQueries) {
       },
     });
   } catch (e) {
-    console.error("[microcms] getStaffBlogList failed:", e);
+    console.error("[microcms] getBlogList failed:", e);
     return { contents: [], totalCount: 0, offset: 0, limit: 10 };
   }
 }
 
-/** slugでスタッフブログを1件取得 */
-export async function getStaffBlogBySlug(slug: string) {
+/** slugでブログを1件取得 */
+export async function getBlogBySlug(slug: string) {
   try {
-    const data = await microcms.getList<StaffBlog>({
-      endpoint: "staff_blog",
+    const data = await microcms.getList<Blog>({
+      endpoint: "blog",
       queries: {
         filters: `slug[equals]${slug}`,
         limit: 1,
@@ -169,7 +169,7 @@ export async function getStaffBlogBySlug(slug: string) {
     });
     return data.contents[0] ?? null;
   } catch (e) {
-    console.error("[microcms] getStaffBlogBySlug failed:", e);
+    console.error("[microcms] getBlogBySlug failed:", e);
     return null;
   }
 }

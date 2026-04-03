@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getStaffBlogList } from "@/lib/microcms/client";
+import { getBlogList } from "@/lib/microcms/client";
 import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
 import { Pagination } from "@/components/ui/Pagination";
 
@@ -22,7 +22,7 @@ export default async function StaffBlogListPage({
   const currentPage = Math.max(1, Number(pageParam) || 1);
   const offset = (currentPage - 1) * PER_PAGE;
 
-  const data = await getStaffBlogList({ limit: PER_PAGE, offset });
+  const data = await getBlogList({ filters: "slug[contains]staff", limit: PER_PAGE, offset });
   const posts = data.contents;
   const totalPages = Math.ceil(data.totalCount / PER_PAGE);
 

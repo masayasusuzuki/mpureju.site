@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ScrollFadeIn } from "@/components/ui/ScrollFadeIn";
-import { getNewsList } from "@/lib/microcms/client";
+import Image from "next/image";
+import { getBlogList } from "@/lib/microcms/client";
 import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
 
 export const metadata: Metadata = {
@@ -38,12 +39,12 @@ const AFFILIATIONS = [
 
 
 export default async function DoctorPage() {
-  const lecturesData = await getNewsList({
-    filters: "category[contains]実績・掲載歴",
+  const blogData = await getBlogList({
+    filters: "slug[contains]doctor",
     orders: "-published_at",
-    limit: 20,
+    limit: 3,
   });
-  const lectures = lecturesData.contents;
+  const doctorBlogs = blogData.contents;
   return (
     <>
       {/* ===== Hero ===== */}
@@ -189,33 +190,65 @@ export default async function DoctorPage() {
         </div>
       </section>
 
-      {/* ===== 学会・講演発表 ===== */}
-      {lectures.length > 0 && (
+      {/* ===== 院長ブログ ===== */}
+      {doctorBlogs.length > 0 && (
         <section className="py-16 md:py-24 bg-[var(--color-brand-cream)]">
           <div className="section-container">
             <ScrollFadeIn>
-              <p className="font-en text-xs tracking-[0.35em] text-[var(--color-brand-gold)] mb-4">LECTURES</p>
+              <p className="font-en text-xs tracking-[0.35em] text-[var(--color-brand-gold)] mb-4">DOCTOR&apos;S BLOG</p>
               <h2 className="font-serif text-2xl md:text-3xl text-[var(--color-brand-dark)] mb-14 tracking-widest">
-                学会・講演発表
+                院長ブログ
               </h2>
             </ScrollFadeIn>
 
-            <div className="max-w-3xl divide-y divide-[var(--color-brand-brown)]/8">
-              {lectures.map((item, i) => (
-                <ScrollFadeIn key={item.id} delay={i * 0.05}>
-                  <Link
-                    href={`/news/${item.slug}`}
-                    className="flex flex-col md:flex-row md:items-start gap-2 md:gap-10 py-6 group hover:bg-[var(--color-brand-gold)]/5 -mx-4 px-4 transition-colors"
-                  >
-                    <p className="font-en text-xs tracking-widest text-[var(--color-brand-gold)] shrink-0 md:w-28 pt-0.5">
-                      {new Date(item.published_at).toLocaleDateString("ja-JP", { year: "numeric", month: "long" })}
-                    </p>
-                    <p className="text-sm text-[var(--color-brand-dark)] leading-relaxed group-hover:text-[var(--color-brand-gold)] transition-colors">
-                      {item.title}
-                    </p>
-                  </Link>
-                </ScrollFadeIn>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {doctorBlogs.map((post, i) => {
+                const categories = Array.isArray(post.category) ? post.category : [post.category];
+                return (
+                  <ScrollFadeIn key={post.id} delay={i * 0.1}>
+                    <Link
+                      href={`/doctor-blog/${post.slug}`}
+                      className="group block bg-white border border-[var(--color-brand-brown)]/10 overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+                    >
+                      <div className="relative aspect-square bg-[var(--color-brand-cream)] overflow-hidden">
+                        <Image
+                          src={post.thumbnail.url}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                      <div className="px-5 py-5">
+                        <div className="flex items-center gap-2.5 mb-3">
+                          <span className="text-[0.6rem] tracking-[0.2em] text-[var(--color-brand-gold)]">
+                            {categories.filter(Boolean).join(" / ")}
+                          </span>
+                          <time className="text-[0.6rem] text-[var(--color-text-secondary)]/50 tracking-wider">
+                            {new Date(post.published_at).toLocaleDateString("ja-JP", {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            }).replace(/\//g, ".")}
+                          </time>
+                        </div>
+                        <p className="text-sm font-light text-[var(--color-brand-dark)] leading-relaxed tracking-wide group-hover:text-[var(--color-brand-gold)] transition-colors line-clamp-2">
+                          {post.title}
+                        </p>
+                      </div>
+                    </Link>
+                  </ScrollFadeIn>
+                );
+              })}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link
+                href="/doctor-blog"
+                className="inline-flex items-center gap-2 text-sm text-[var(--color-brand-gold)] hover:underline underline-offset-4 font-light tracking-wide"
+              >
+                院長ブログをもっと見る →
+              </Link>
             </div>
           </div>
         </section>

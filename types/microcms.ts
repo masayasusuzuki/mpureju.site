@@ -42,8 +42,8 @@ export interface Media {
   title?: string;
 }
 
-/** microCMS staff_blog スキーマ */
-export interface StaffBlog {
+/** microCMS blog スキーマ */
+export interface Blog {
   id: string;
   title: string;
   slug: string;
